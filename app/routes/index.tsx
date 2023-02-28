@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-import { BlobCard } from "~/components/cards/BlobCard";
+import { BlobWithText } from "~/components/blobs/BlobWithText";
 
 export default function Index() {
   return (
@@ -9,17 +9,29 @@ export default function Index() {
       </section>
       <section className="grid grid-cols-1 gap-5 pt-20 lg:grid-cols-4">
         <Link to="blogposts">
-          <BlobCard text="Bloggposter" bgColor="#028377" />
+          <BlobWithText
+            text="Bloggposter"
+            blobPathNr={0}
+          />
         </Link>
 
         <Link to="course">
-          <BlobCard text="Kurs" bgColor="#028377" />
+          <BlobWithText
+            text="Kurs"
+            blobPathNr={1}
+          />
         </Link>
         <Link to="lecture">
-          <BlobCard text="Foredrag" bgColor="#028377" />
+          <BlobWithText
+            text="Foredrag"
+            blobPathNr={2}
+          />
         </Link>
         <Link to="videoes">
-          <BlobCard text="Videoer" bgColor="#028377" />
+          <BlobWithText
+            text="Videoer"
+            blobPathNr={3}
+          />
         </Link>
       </section>
     </main>
