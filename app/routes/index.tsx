@@ -27,7 +27,7 @@ export default function Index() {
             blobPathNr={2}
           />
         </Link>
-        <Link to="videoes">
+        <Link to="videos">
           <BlobWithText
             text="Videoer"
             blobPathNr={3}
