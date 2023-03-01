@@ -1,0 +1,30 @@
+import ShowMoreButton from "../buttons/ShowMoreButton";
+
+interface CardProps {
+  title: string;
+  createdAt: string;
+  linkToId: string;
+  children: JSX.Element;
+}
+
+const Card = (props: CardProps) => {
+  const { title, linkToId, createdAt, children } = props;
+  return (
+    <article className="overflow-hidden rounded-lg bg-gradient-to-br from-[#f4f1e7] to-[#ede8d7] shadow-lg">
+      {children}
+
+      <header className="ml-4">
+        <h4 className="my-6 text-left">{title}</h4>
+      </header>
+
+      <footer className="flex items-center justify-between p-2 leading-none md:p-4">
+        <ShowMoreButton linkToId={linkToId} />
+        <p className="text-grey-darker">
+          {new Date(createdAt).toLocaleDateString("nb")}
+        </p>
+      </footer>
+    </article>
+  );
+};
+
+export default Card;
