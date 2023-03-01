@@ -1,5 +1,5 @@
-const Videoes = () => {
+const Videos = () => {
   return <h1>Videoer kommer her</h1>;
 };
 
-export default Videoes;
+export default Videos;
