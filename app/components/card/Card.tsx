@@ -19,7 +19,7 @@ const Card = (props: CardProps) => {
 
       <footer className="flex items-center justify-between p-2 leading-none md:p-4">
         <ShowMoreButton linkToId={linkToId} />
-        <p className="text-grey-darker">
+        <p className="text-variant-black">
           {new Date(createdAt).toLocaleDateString("nb")}
         </p>
       </footer>
