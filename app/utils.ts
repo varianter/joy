@@ -1,2 +1,3 @@
-import { useMatches } from "@remix-run/react";
-import { useMemo } from "react";
+export function validateExample(tall1: number, tall2: number) {
+  return tall1+tall2;
+}
