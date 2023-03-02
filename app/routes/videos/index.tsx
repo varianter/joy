@@ -22,18 +22,16 @@ const Videos = () => {
         <h1 className="pt-8">Videoer</h1>
       </section>
       <section>
-        <h3 className="pt-8 text-left">Anbefalte videoer 🔥</h3>
-      </section>
-      <section>
+        <h2 className="pt-8 text-left">Anbefalte videoer 🔥</h2>
         <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {videos.map((y) => {
+          {videos.map((video) => {
             return (
               <div className="my-1">
                 <CardWithVideo
-                  title={y.title}
-                  linkToId={y.id}
-                  youtubeId={y.uri}
-                  createdAt={y.createdAt}
+                  title={video.title}
+                  linkToId={video.id}
+                  youtubeId={video.uri}
+                  createdAt={video.createdAt}
                 />
               </div>
             );
@@ -42,18 +40,16 @@ const Videos = () => {
       </section>
 
       <section>
-        <h3 className="pt-8 text-left">Nytt og fresht! 🤩</h3>
-      </section>
-      <section>
+        <h2 className="pt-8 text-left">Nytt og fresht! 🤩</h2>
         <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {videos.map((y) => {
+          {videos.map((video) => {
             return (
               <div className="my-1">
                 <CardWithVideo
-                  title={y.title}
-                  linkToId={y.id}
-                  youtubeId={y.uri}
-                  createdAt={y.createdAt}
+                  title={video.title}
+                  linkToId={video.id}
+                  youtubeId={video.uri}
+                  createdAt={video.createdAt}
                 />
               </div>
             );
