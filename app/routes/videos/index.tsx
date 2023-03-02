@@ -26,7 +26,7 @@ const Videos = () => {
         <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {videos.map((video) => {
             return (
-              <div className="my-1">
+              <div key={video.id} className="my-1">
                 <CardWithVideo
                   title={video.title}
                   linkToId={video.id}
@@ -44,7 +44,7 @@ const Videos = () => {
         <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {videos.map((video) => {
             return (
-              <div className="my-1">
+              <div key={video.id} className="my-1">
                 <CardWithVideo
                   title={video.title}
                   linkToId={video.id}
