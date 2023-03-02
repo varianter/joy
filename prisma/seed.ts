@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import { randomUUID } from "crypto";
 
 const prisma = new PrismaClient();
 
@@ -82,6 +83,38 @@ Isn't it great?
       where: { slug: post.slug },
       update: post,
       create: post,
+    });
+  }
+
+  const videos = [
+    {
+      id: randomUUID(),
+      title: "Lyntale: Sarah Serussi - Introduksjon til API",
+      description:
+        "Hva er et API? Hvordan brukes det? Hva er GET, POST og PUT?! I denne lyntalen gir Sarah deg en introduksjon til nettopp dette, med gode forklaringer og ekte eksempler ved bruk av Spotifys API.",
+      uri: "n5Ik3vwIrFk",
+    },
+    {
+      id: randomUUID(),
+      title: "Lyntale: Vikas Gupta - Introduksjon til Interaksjonsdesign",
+      description:
+        "I denne videoen gir Vikas deg en introduksjon til interaksjonsdesign. Gjennom en historie i flere akter forklarer han hvordan interaksjonsdesign kan introduseres i en organisasjon.",
+      uri: "unZ5ksYj2r0",
+    },
+    {
+      id: randomUUID(),
+      title: "Lyntale: Marius Krakeli - Introduksjon til CSS",
+      description:
+        "Det er bare fantasien som setter grenser for hva man kan lage med CSS. I denne lyntalen forklarer Marius forholdet mellom HTML og CSS og han viser hvordan man kan komme i gang med enkel layout ved hjelp av CSS Grid. I tillegg forsøker han seg på litt mer avansert CSS i håp om å inspirere til videre læring.",
+      uri: "mnMnXED2Ro4",
+    },
+  ];
+
+  for (const video of videos) {
+    await prisma.videos.upsert({
+      where: { id: video.id },
+      update: video,
+      create: video,
     });
   }
 
