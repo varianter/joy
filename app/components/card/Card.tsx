@@ -13,9 +13,7 @@ const Card = (props: CardProps) => {
     <article className="overflow-hidden rounded-lg bg-gradient-to-br from-[#f4f1e7] to-[#ede8d7] shadow-lg">
       {children}
 
-      <header className="ml-4">
-        <h4 className="my-6 text-left">{title}</h4>
-      </header>
+      <h1 className="ml-4 my-6 text-left text-base">{title}</h1>
 
       <footer className="flex items-center justify-between p-2 leading-none md:p-4">
         <ShowMoreButton linkToId={linkToId} />
