@@ -21,7 +21,7 @@ export default function PostSlug() {
   return (
     <main className="mx-auto max-w-4xl">
       <h1 className="my-6 border-b-2">{video.title}</h1>
-      <h2 className="my-6 border-b-2 ">{video.description}</h2>
+      <p className="my-6 border-b-2 ">{video.description}</p>
     </main>
   );
 }
