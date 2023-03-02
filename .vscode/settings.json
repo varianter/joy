@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "pgOptions": {
+                "ssl": true
+            },
+            "previewLimit": 50,
+            "server": "variant-learning-hub-4291.6zw.cockroachlabs.cloud",
+            "port": 26257,
+            "askForPassword": true,
+            "driver": "CockroachDB",
+            "name": "learninghub",
+            "username": "markus",
+            "database": "learninghub"
+        }
+    ]
+}
