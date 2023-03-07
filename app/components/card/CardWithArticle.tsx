@@ -6,7 +6,7 @@ interface CardWithArticleProps {
   title: string;
   linkToArticle: string;
   createdAt: string;
-  altImageText: string;
+  altImageText: string | null;
 }
 
 const CardWithArticle = (props: CardWithArticleProps) => {
