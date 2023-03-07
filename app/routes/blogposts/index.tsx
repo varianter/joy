@@ -25,6 +25,7 @@ const Blogposts = () => {
                       linkToArticle={blogpost.url}
                       image={blogpost.image}
                       createdAt={blogpost.createdAt}
+                      altImageText={blogpost.imageText}
                     />
                   </div>
                 )
@@ -46,6 +47,7 @@ const Blogposts = () => {
                       linkToArticle={blogpost.url}
                       image={blogpost.image}
                       createdAt={blogpost.createdAt}
+                      altImageText={blogpost.imageText}
                     />
                   </div>
                 )

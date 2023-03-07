@@ -25,6 +25,7 @@ model Blogposts {
   url String
   suggested Boolean  @default(false)
   image String?
+  imageText String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
