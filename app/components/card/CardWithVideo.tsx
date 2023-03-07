@@ -1,4 +1,5 @@
-import ShowMoreButton from "../buttons/ShowMoreButton";
+import { Link } from "@remix-run/react";
+import AnimatedButton from "../buttons/AnimatedButton";
 import Card from "./Card";
 
 interface CardWithVideoProps {
@@ -24,7 +25,10 @@ const CardWithVideo = (props: CardWithVideoProps) => {
         <h1 className="my-6 ml-4 text-left text-base">{title}</h1>
 
         <footer className="flex items-center justify-between p-2 leading-none md:p-4">
-          <ShowMoreButton linkToId={linkToId} />
+          <Link to={linkToId}>
+            <AnimatedButton text="Se mer" />
+          </Link>
+
           <p className="text-variant-black">
             {new Date(createdAt).toLocaleDateString("nb")}
           </p>
