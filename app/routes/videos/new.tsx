@@ -89,7 +89,7 @@ const NewVideoPage = () => {
                   <input
                     ref={titleRef}
                     name="title"
-                    className="border-blue-500 flex-1 rounded-md border-2 px-3 text-lg leading-loose"
+                    className="flex-1 rounded-md border-2 px-3 leading-loose"
                     aria-invalid={actionData?.errors?.title ? true : undefined}
                     aria-errormessage={
                       actionData?.errors?.title ? "title-error" : undefined
@@ -104,12 +104,12 @@ const NewVideoPage = () => {
               </div>
 
               <div>
-                <label className="flex w-full flex-col gap-1">
+                <label className="flex flex-col gap-1">
                   <span>Beskrivelse: </span>
                   <textarea
                     ref={descriptionRef}
                     name="description"
-                    className="rounded-md border-2 py-2 px-3 leading-6"
+                    className="rounded-md border-2 py-2 px-3"
                     aria-invalid={
                       actionData?.errors?.description ? true : undefined
                     }
@@ -136,7 +136,7 @@ const NewVideoPage = () => {
                   <input
                     ref={youtubeIdnRef}
                     name="youtubeid"
-                    className="border-blue-500 flex-1 rounded-md border-2 px-3 text-lg leading-loose"
+                    className="rounded-md border-2 px-3"
                     aria-invalid={
                       actionData?.errors?.youtubeid ? true : undefined
                     }
@@ -155,12 +155,12 @@ const NewVideoPage = () => {
               </div>
 
               <div>
-                <label className="flex w-full flex-col gap-1">
+                <label className="flex flex-col gap-1">
                   <span>Anbefalt: </span>
                   <select
                     ref={suggestedRef}
                     name="suggested"
-                    className="border-blue-500 flex-1 rounded-md border-2 px-3 text-lg leading-loose"
+                    className="flex-1 rounded-md border-2 px-3 "
                   >
                     <option value="false">Nei</option>
                     <option value="true">Ja</option>
