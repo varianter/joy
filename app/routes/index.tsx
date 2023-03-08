@@ -1,42 +1,36 @@
 import { Link } from "@remix-run/react";
+import { BlobWithNavigation } from "~/components/blobs/BlobWithNavigation";
 
 export default function Index() {
   return (
-    <main className="grid min-h-screen grid-rows-3 items-center bg-gradient-to-br from-blue via-green to-lime text-center">
-      <section className="header">
-        <h1 className="font-serif text-7xl">Læringshub</h1>
+    <main>
+      <section className="grid grid-cols-1 gap-5 pt-20 lg:grid-cols-4">
+        <Link to="blogposts">
+          <BlobWithNavigation
+            text="Bloggposter"
+            blobPathNr={0}
+          />
+        </Link>
+
+        <Link to="course">
+          <BlobWithNavigation
+            text="Kurs"
+            blobPathNr={1}
+          />
+        </Link>
+        <Link to="lecture">
+          <BlobWithNavigation
+            text="Foredrag"
+            blobPathNr={2}
+          />
+        </Link>
+        <Link to="videos">
+          <BlobWithNavigation
+            text="Videoer"
+            blobPathNr={3}
+          />
+        </Link>
       </section>
-      <section className="grid grid-cols-1 lg:grid-cols-4">
-        <div className="m-8 rounded-2xl bg-white p-8 shadow-xl">
-          <div className="m-16 text-center">
-            <Link to="/posts" className="text-blue-600 text-xl underline">
-              Bloggposter
-            </Link>
-          </div>
-        </div>
-        <div className="m-8 rounded-2xl bg-white p-8 shadow-xl">
-          <div className="m-16 text-center">
-            <Link to="/posts" className="text-blue-600 text-xl underline">
-              Kurs
-            </Link>
-          </div>
-        </div>
-        <div className="m-8 rounded-2xl bg-white p-8 shadow-xl">
-          <div className="m-16 text-center">
-            <Link to="/posts" className="text-blue-600 text-xl underline">
-              Foredrag
-            </Link>
-          </div>
-        </div>
-        <div className="m-8 rounded-2xl bg-white p-8 shadow-xl">
-          <div className="m-16 text-center">
-            <Link to="/posts" className="text-blue-600 text-xl underline">
-              Videoer
-            </Link>
-          </div>
-        </div>
-      </section>
-      <section className="footer">Footer</section>
     </main>
   );
 }
