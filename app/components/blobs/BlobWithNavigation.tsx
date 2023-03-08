@@ -14,9 +14,9 @@ export const BlobWithNavigation = (props: BlobWithNavigationProps) => {
       customCss="text-variant-blue hover:text-variant-pink"
     >
       <div>
-        <p className="pb-5 text-4xl text-white">{text}</p>
+        <p className="py-2 text-xl text-white">{text}</p>
         <svg
-          width="157"
+          width="100"
           height="48"
           viewBox="0 0 157 48"
           fill="none"
