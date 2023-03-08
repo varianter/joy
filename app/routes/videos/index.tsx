@@ -1,20 +1,39 @@
-import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { json, LoaderArgs } from "@remix-run/node";
+import { Link, useLoaderData } from "@remix-run/react";
+import AnimatedButton from "~/components/buttons/AnimatedButton";
+import PrimaryButton from "~/components/buttons/PrimaryButton";
 import Card from "~/components/card/Card";
 import CardWithVideo from "~/components/card/CardWithVideo";
 import { getVideos } from "~/models/videos.server";
+import { authenticator } from "~/services/auth.server";
 
-export const loader = async () => {
-  return json({ videos: await getVideos() });
+export const loader = async ({ request }: LoaderArgs) => {
+  const [user, videos] = await Promise.all([
+    authenticator.isAuthenticated(request),
+    getVideos(),
+  ]);
+  return json({ user, videos });
 };
 
 const Videos = () => {
-  const { videos } = useLoaderData<typeof loader>();
+  const { user, videos } = useLoaderData<typeof loader>();
+  const isAuthenticated = user?.profile ? true : false;
 
   return (
     <main>
       <section>
-        <Card header={"Populære 🔥"}>
+        <Card
+          header={"Populære 🔥"}
+          buttonRight={
+            <>
+              {isAuthenticated && (
+                <Link to="new" className="flex justify-end">
+                  <AnimatedButton text="Legg til ny" />
+                </Link>
+              )}
+            </>
+          }
+        >
           <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {videos.map((video) => {
               return (

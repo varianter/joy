@@ -10,18 +10,21 @@ export const Layout = (props: LayoutProps) => {
 
   return (
     <main className="min-h-screen bg-gradient-to-tr from-[#423D89] to-[#E61A6B] p-5 px-6 text-center">
-      <div className="flex justify-end gap-4 pb-5">
-        {isAuthenticated && (
-          <Link to="/admin">
-            <PrimaryButton text="Admin" />
-          </Link>
-        )}
+      <div className="flex pb-5">
+        <Link to="/">
+          <img
+            alt={"Figur av læreglede"}
+            className="h-[7rem]"
+            src={"/assets/default-article-image.svg"}
+          />
+        </Link>
 
         <form
+          className="ml-auto pt-5"
           action={`/auth/${isAuthenticated ? "logout" : "login"}`}
           method="post"
         >
-          <PrimaryButton text={isAuthenticated ? "Logg ut" : "Logg in"} />
+          <PrimaryButton text={isAuthenticated ? "Logg ut" : "Logg inn"} />
         </form>
       </div>
       <Outlet />
