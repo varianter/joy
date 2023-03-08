@@ -14,17 +14,19 @@ const CardWithVideo = (props: CardWithVideoProps) => {
 
   return (
     <Card>
-      <>
-        <iframe
-          title={title}
-          className="block h-[15rem] w-full"
-          src={`https://www.youtube-nocookie.com/embed/${youtubeId}?controls=0`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        ></iframe>
-        <h1 className="my-6 ml-4 text-left text-base">{title}</h1>
+      <div className="flex h-full flex-col justify-between py-2">
+        <section>
+          <iframe
+            title={title}
+            className="block h-[15rem] w-full"
+            src={`https://www.youtube-nocookie.com/embed/${youtubeId}?controls=0`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+          <h1 className="my-4 text-left text-base">{title}</h1>
+        </section>
 
-        <footer className="flex items-center justify-between p-2 leading-none md:p-4">
+        <footer className="inline-flex items-end justify-between leading-none">
           <Link to={linkToId}>
             <AnimatedButton text="Se mer" />
           </Link>
@@ -33,7 +35,7 @@ const CardWithVideo = (props: CardWithVideoProps) => {
             {new Date(createdAt).toLocaleDateString("nb")}
           </p>
         </footer>
-      </>
+      </div>
     </Card>
   );
 };
