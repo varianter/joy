@@ -82,14 +82,14 @@ const NewVideoPage = () => {
       <section>
         <div className="flex justify-center text-left">
           <Card>
-            <Form method="post" className="w-[30rem]">
+            <Form method="post" className="w-auto lg:w-[30rem]">
               <div>
                 <label className="flex w-full flex-col gap-1">
                   <span>Tittel: </span>
                   <input
                     ref={titleRef}
                     name="title"
-                    className="flex-1 rounded-md border-2 px-3 leading-loose"
+                    className="rounded-md border-2 px-3 leading-loose"
                     aria-invalid={actionData?.errors?.title ? true : undefined}
                     aria-errormessage={
                       actionData?.errors?.title ? "title-error" : undefined

@@ -4,9 +4,6 @@ import { BlobWithNavigation } from "~/components/blobs/BlobWithNavigation";
 export default function Index() {
   return (
     <main>
-      <section>
-        <h1 className="pt-8">Læringshub</h1>
-      </section>
       <section className="grid grid-cols-1 gap-5 pt-20 lg:grid-cols-4">
         <Link to="blogposts">
           <BlobWithNavigation
