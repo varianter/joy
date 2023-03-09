@@ -20,8 +20,8 @@ const Videos = () => {
   const isAuthenticated = user?.profile ? true : false;
 
   return (
-    <main>
-      <section>
+    <main className="flex flex-col items-center justify-center">
+      <section className="max-w-6xl">
         <Card
           header={"Populære 🔥"}
           buttonRight={
@@ -38,7 +38,7 @@ const Videos = () => {
             {videos.map((video) => {
               return (
                 video.suggested && (
-                  <div key={video.id} className="my-1">
+                  <div key={video.id} className="my-1 inline-grid">
                     <CardWithVideo
                       title={video.title}
                       linkToId={video.id}
@@ -53,13 +53,13 @@ const Videos = () => {
         </Card>
       </section>
 
-      <section className="pt-5">
+      <section className="max-w-6xl pt-5">
         <Card header={"Nytt og fresht 🤩"}>
           <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {videos.map((video) => {
               return (
                 !video.suggested && (
-                  <div key={video.id} className="my-1">
+                  <div key={video.id} className="my-1 inline-grid">
                     <CardWithVideo
                       title={video.title}
                       linkToId={video.id}

@@ -16,9 +16,7 @@ export const VariantBlob = (props: VariantBlobProps) => {
   ];
 
   return (
-    <div
-      className={`flex justify-center ${customCss}`}
-    >
+    <div className={`flex justify-center ${customCss}`}>
       <svg
         className="fill-current"
         width="402"
