@@ -67,3 +67,10 @@ p {
   font-family: "Graphic-Regular";
   line-height: 1.6;
 }
+
+.background {
+  position: absolute;
+  min-width: 100%;
+  background: url("/assets/background.svg");
+  background-repeat: no-repeat;
+}

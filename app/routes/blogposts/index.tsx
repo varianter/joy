@@ -5,6 +5,8 @@ import CardWithArticle from "~/components/card/CardWithArticle";
 import { getBlogposts } from "~/models/blogposts.server";
 
 export const loader = async () => {
+  const blogposts = await getBlogposts();
+  console.log("BLOGPOASTS: ", blogposts)
   return json({ blogposts: await getBlogposts() });
 };
 
@@ -16,7 +18,7 @@ const Blogposts = () => {
       <section>
         <Card header={"Anbefalt 🔥"}>
           <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {blogposts.map((blogpost) => {
+            {blogposts?.map((blogpost) => {
               return (
                 blogpost.suggested && (
                   <div key={blogpost.id} className="my-1">
@@ -38,7 +40,7 @@ const Blogposts = () => {
       <section className="pt-5">
         <Card header={"Nytt og fresht 🤩"}>
           <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {blogposts.map((blogpost) => {
+            {blogposts?.map((blogpost) => {
               return (
                 !blogpost.suggested && (
                   <div key={blogpost.id} className="my-1">

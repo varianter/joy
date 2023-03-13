@@ -9,15 +9,16 @@ export const Layout = (props: LayoutProps) => {
   const { isAuthenticated } = props;
 
   return (
-    <main className="min-h-screen bg-gradient-to-tr from-[#423D89] to-[#E61A6B] p-5 px-6 text-center">
-      <div className="flex pb-5">
+    <main className="background min-h-screen p-5 px-6 text-center">
+      <div className="flex items-center pb-5">
         <Link to="/">
           <img
             alt={"Figur av læreglede"}
-            className="h-[7rem]"
-            src={"/assets/default-article-image.svg"}
+            className="h-[2rem]"
+            src={"/assets/variant-bw.svg"}
           />
         </Link>
+        <h1 className="ml-6 mt-2 text-4xl text-white">Læreglede</h1>
 
         <form
           className="ml-auto pt-5"
@@ -27,7 +28,9 @@ export const Layout = (props: LayoutProps) => {
           <PrimaryButton text={isAuthenticated ? "Logg ut" : "Logg inn"} />
         </form>
       </div>
-      <Outlet />
+      <div className="mx-36 mt-36 ">
+        <Outlet />
+      </div>
     </main>
   );
 };

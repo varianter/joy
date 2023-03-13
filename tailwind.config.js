@@ -17,9 +17,12 @@ module.exports = {
       "variant-white": "#FCF7FF",
       "variant-gray": "#C4CAD0",
       "variant-blue": "#423D89", 
+      "variant-secondary-blue": "#35316E",
       "variant-pink": "#E61A6B",
       "variant-wenge": "#655560",
-      "variant-black": "#333333"
+      "variant-black": "#333333",
+      "variant-beige": "#FFC4BC",
+      "variant-secondary-beige": "#FFDCD7"
     },
     extend: {
       gridTemplateRows: {
