@@ -67,7 +67,6 @@ export default function Index() {
               />
             }
           />
-        </Link>
 
         <Link to="videos">
           <NavigationCard

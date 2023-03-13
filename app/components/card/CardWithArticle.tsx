@@ -14,15 +14,17 @@ const CardWithArticle = (props: CardWithArticleProps) => {
 
   return (
     <Card>
-      <>
-        <img
-          alt={altImageText ?? "Figur av læreglede"}
-          className="h-[15rem] w-full"
-          src={image ?? "/assets/default-article-image.svg"}
-        />
-        <h1 className="my-6 ml-4 text-left text-base">{title}</h1>
+      <div className="flex h-full flex-col justify-between py-2">
+        <section>
+          <img
+            alt={altImageText ?? "Figur av læreglede"}
+            className="h-[15rem] w-full"
+            src={image ?? "/assets/default-article-image.svg"}
+          />
+          <h1 className="my-4 text-left text-base">{title}</h1>
+        </section>
 
-        <footer className="flex items-center justify-between p-2 leading-none md:p-4">
+        <footer className="inline-flex items-end justify-between leading-none">
           <a href={linkToArticle} target="_blank" rel="noreferrer">
             <AnimatedButton text="Les hele" />
           </a>
@@ -31,7 +33,7 @@ const CardWithArticle = (props: CardWithArticleProps) => {
             {new Date(createdAt).toLocaleDateString("nb")}
           </p>
         </footer>
-      </>
+      </div>
     </Card>
   );
 };
