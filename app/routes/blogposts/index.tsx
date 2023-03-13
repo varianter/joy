@@ -1,4 +1,3 @@
-import { Blogposts } from "@prisma/client";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import Card from "~/components/card/Card";
