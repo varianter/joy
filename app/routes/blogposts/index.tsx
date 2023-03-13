@@ -11,11 +11,12 @@ export const loader = async () => {
 };
 
 const Blogposts = () => {
-  //const { blogposts } = useLoaderData<typeof loader>();
+  const { blogposts } = useLoaderData<typeof loader>();
 
-  const blogposts: Blogposts[] = []
-
-  if (!blogposts || blogposts.length === 0) return <h1 className="text-white">Wooops, ingen bloggposter her enda...</h1>;
+  if (!blogposts || blogposts.length === 0)
+    return (
+      <h1 className="text-white">Wooops, ingen bloggposter her enda...</h1>
+    );
 
   return (
     <main className="flex flex-col items-center justify-center">
@@ -30,7 +31,7 @@ const Blogposts = () => {
                       title={blogpost.title}
                       linkToArticle={blogpost.url}
                       image={blogpost.image}
-                      createdAt={blogpost.createdAt.toISOString()}
+                      createdAt={blogpost.createdAt}
                       altImageText={blogpost.imageText}
                     />
                   </div>
@@ -52,7 +53,7 @@ const Blogposts = () => {
                       title={blogpost.title}
                       linkToArticle={blogpost.url}
                       image={blogpost.image}
-                      createdAt={blogpost.createdAt.toISOString()}
+                      createdAt={blogpost.createdAt}
                       altImageText={blogpost.imageText}
                     />
                   </div>

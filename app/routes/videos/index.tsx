@@ -1,7 +1,6 @@
 import { json, LoaderArgs } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import AnimatedButton from "~/components/buttons/AnimatedButton";
-import PrimaryButton from "~/components/buttons/PrimaryButton";
 import Card from "~/components/card/Card";
 import CardWithVideo from "~/components/card/CardWithVideo";
 import { getVideos } from "~/models/videos.server";
@@ -18,6 +17,9 @@ export const loader = async ({ request }: LoaderArgs) => {
 const Videos = () => {
   const { user, videos } = useLoaderData<typeof loader>();
   const isAuthenticated = user?.profile ? true : false;
+
+  if (!videos || videos.length === 0)
+    return <h1 className="text-white">Wooops, ingen videoer her enda...</h1>;
 
   return (
     <main className="flex flex-col items-center justify-center">
