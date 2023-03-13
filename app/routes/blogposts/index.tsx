@@ -1,3 +1,4 @@
+import { Blogposts } from "@prisma/client";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import Card from "~/components/card/Card";
@@ -10,7 +11,11 @@ export const loader = async () => {
 };
 
 const Blogposts = () => {
-  const { blogposts } = useLoaderData<typeof loader>();
+  //const { blogposts } = useLoaderData<typeof loader>();
+
+  const blogposts: Blogposts[] = []
+
+  if (!blogposts || blogposts.length === 0) return <h1 className="text-white">Wooops, ingen bloggposter her enda...</h1>;
 
   return (
     <main className="flex flex-col items-center justify-center">
@@ -25,7 +30,7 @@ const Blogposts = () => {
                       title={blogpost.title}
                       linkToArticle={blogpost.url}
                       image={blogpost.image}
-                      createdAt={blogpost.createdAt}
+                      createdAt={blogpost.createdAt.toISOString()}
                       altImageText={blogpost.imageText}
                     />
                   </div>
@@ -47,7 +52,7 @@ const Blogposts = () => {
                       title={blogpost.title}
                       linkToArticle={blogpost.url}
                       image={blogpost.image}
-                      createdAt={blogpost.createdAt}
+                      createdAt={blogpost.createdAt.toISOString()}
                       altImageText={blogpost.imageText}
                     />
                   </div>
