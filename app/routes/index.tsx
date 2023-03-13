@@ -17,8 +17,8 @@ export default function Index() {
   return (
     <main>
       <section className="text-left">
-        <h1 className="text-2xl text-white">En variant av</h1>
-        <h2 className="text-5xl text-white">Læreglede</h2>
+        <p className="text-2xl text-white">En variant av</p>
+        <h1 className="text-5xl text-white">Læreglede</h1>
         <p className="mt-4 text-white">
           Lorem ipsum dolor sit amet consectetur. Amet ultrices id posuere purus
           etiam tincidunt non varius. Auctor vitae congue id ac tellus. Nibh
