@@ -6,7 +6,7 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
   const { text } = props;
 
   return (
-    <button className="group relative inline-flex items-center justify-start overflow-hidden rounded bg-variant-blue px-6 py-3 font-medium text-white transition-all hover:bg-variant-white hover:text-black">
+    <button className="group relative inline-flex hidden items-center justify-start overflow-hidden rounded-3xl bg-variant-beige px-9 py-3 text-xs font-medium text-variant-blue transition-all hover:bg-variant-secondary-beige  md:block">
       {text}
     </button>
   );

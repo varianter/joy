@@ -9,6 +9,10 @@ export async function getVideo(id: string) {
   return prisma.videos.findUnique({ where: { id } });
 }
 
+export async function getNumVideos() {
+  return prisma.videos.count();
+}
+
 export function createVideo({
   title,
   description,

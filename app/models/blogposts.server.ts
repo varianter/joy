@@ -7,3 +7,7 @@ export async function getBlogposts() {
 export async function getBlogpost(id: string) {
   return prisma.blogposts.findUnique({ where: { id } });
 }
+
+export async function getNumBlogposts() {
+  return prisma.blogposts.count();
+}
