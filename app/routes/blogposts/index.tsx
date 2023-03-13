@@ -6,7 +6,6 @@ import { getBlogposts } from "~/models/blogposts.server";
 
 export const loader = async () => {
   const blogposts = await getBlogposts();
-  console.log("BLOGPOASTS: ", blogposts)
   return json({ blogposts: await getBlogposts() });
 };
 
