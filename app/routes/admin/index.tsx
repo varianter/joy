@@ -122,8 +122,19 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
+  const author = "Legg til bruker her";
+
   await createContent(
-    { title, description, url, suggested, categoryId, image, imageText },
+    {
+      title,
+      description,
+      url,
+      suggested,
+      categoryId,
+      image,
+      imageText,
+      author,
+    },
     tags
   );
 

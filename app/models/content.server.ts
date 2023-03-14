@@ -24,6 +24,7 @@ export function createContent(
     categoryId,
     image,
     imageText,
+    author
   }: Pick<
     Content,
     | "title"
@@ -33,6 +34,7 @@ export function createContent(
     | "categoryId"
     | "image"
     | "imageText"
+    | "author"
   >,
   tags?: string[]
 ) {
@@ -45,6 +47,7 @@ export function createContent(
       categoryId,
       image,
       imageText,
+      author,
       tags: {
         connect: tags?.map((t) => {
           return { id: t };
