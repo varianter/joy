@@ -1,19 +1,18 @@
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import NavigationCard from "~/components/card/NavigationCard";
-import { getNumBlogposts } from "~/models/blogposts.server";
-import { getNumVideos } from "~/models/videos.server";
 
-export const loader = async () => {
-  const [numBlogposts, numVideos] = await Promise.all([
-    getNumBlogposts(),
-    getNumVideos(),
-  ]);
-  return json({ numBlogposts, numVideos });
-};
+// export const loader = async () => {
+//   const [numBlogposts, numVideos] = await Promise.all([
+//     getNumBlogposts(),
+//     getNumVideos(),
+//   ]);
+//   return json({ numBlogposts, numVideos });
+// };
 
 export default function Index() {
-  const { numBlogposts, numVideos } = useLoaderData<typeof loader>();
+  //const { numBlogposts, numVideos } = useLoaderData<typeof loader>();
+
   return (
     <main>
       <section className="text-left">
@@ -30,7 +29,7 @@ export default function Index() {
         <Link to="blogposts">
           <NavigationCard
             header="Bloggposter"
-            count={numBlogposts}
+            count={0}
             icon={
               <img
                 alt={"Figur av læreglede"}
@@ -72,7 +71,7 @@ export default function Index() {
         <Link to="videos">
           <NavigationCard
             header="Videoer"
-            count={numVideos}
+            count={0}
             icon={
               <img
                 alt={"Figur av læreglede"}

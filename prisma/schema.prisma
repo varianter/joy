@@ -7,26 +7,30 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Videos {
-  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  title    String
+model Content {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title       String
   description String
-  youtubeid String
-  suggested Boolean  @default(false)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  url         String
+  suggested   Boolean  @default(false)
+  author      String
+  category    Category @relation(fields: [categoryId], references: [id])
+  tags        Tag[]
+  image       String?
+  imageText   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  categoryId  String @db.Uuid
 }
 
-model Blogposts {
-  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  title    String
-  description String
-  url String
-  suggested Boolean  @default(false)
-  image String?
-  imageText String?
+model Category {
+  id       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  text String    @unique
+  content  Content[]
+}
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+model Tag {
+  id      String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  text     String    @unique
+  content Content[]
 }

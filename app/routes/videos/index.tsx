@@ -3,7 +3,7 @@ import { Link, useLoaderData } from "@remix-run/react";
 import AnimatedButton from "~/components/buttons/AnimatedButton";
 import Card from "~/components/card/Card";
 import CardWithVideo from "~/components/card/CardWithVideo";
-import { getVideos } from "~/models/videos.server";
+import { getVideos } from "~/models/content.server";
 import { authenticator } from "~/services/auth.server";
 
 export const loader = async ({ request }: LoaderArgs) => {
@@ -44,7 +44,7 @@ const Videos = () => {
                     <CardWithVideo
                       title={video.title}
                       linkToId={video.id}
-                      youtubeId={video.youtubeid}
+                      youtubeId={video.url}
                       createdAt={video.createdAt}
                     />
                   </div>
@@ -65,7 +65,7 @@ const Videos = () => {
                     <CardWithVideo
                       title={video.title}
                       linkToId={video.id}
-                      youtubeId={video.youtubeid}
+                      youtubeId={video.url}
                       createdAt={video.createdAt}
                     />
                   </div>

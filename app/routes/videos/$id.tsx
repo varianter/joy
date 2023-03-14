@@ -3,7 +3,7 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import Card from "~/components/card/Card";
-import { getVideo } from "~/models/videos.server";
+import { getVideo } from "~/models/content.server";
 
 export async function loader({ params }: LoaderArgs) {
   invariant(params.id, "id not found");
@@ -25,7 +25,7 @@ export default function Video() {
             <iframe
               title={video.title}
               className="block h-[30rem] w-full"
-              src={`https://www.youtube-nocookie.com/embed/${video.youtubeid}?controls=0`}
+              src={`https://www.youtube-nocookie.com/embed/${video.url}?controls=0`}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             ></iframe>
