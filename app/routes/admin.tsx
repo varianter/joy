@@ -1,10 +1,16 @@
 import { Link, Outlet } from "@remix-run/react";
+import { LoaderArgs } from "@remix-run/server-runtime";
 import NavigationCard from "~/components/card/NavigationCard";
+import { requireUserSession } from "~/services/session";
+
+export const loader = async ({ request }: LoaderArgs) => {
+  return await requireUserSession(request);
+};
 
 const Admin = () => {
   return (
     <>
-      <section className="md:w-1/2 text-left text-white">
+      <section className="text-left text-white md:w-1/2">
         <h1>Admin 🥷</h1>
         <p>
           Her kan du legge til, fjerne eller endre innhold. Ved spørsmål eller
@@ -12,7 +18,7 @@ const Admin = () => {
         </p>
       </section>
       <section>
-        <div className="flex flex-col md:flex-row gap-5 mt-5">
+        <div className="mt-5 flex flex-col gap-5 md:flex-row">
           <Link to="content/new">
             <NavigationCard
               header="Legg til innhold"

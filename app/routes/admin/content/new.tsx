@@ -8,19 +8,14 @@ import Toggle from "~/components/Toggle";
 import { getCategories } from "~/models/category.server";
 import { createContent } from "~/models/content.server";
 import { getTags } from "~/models/tag.server";
-
-import { requireUserSession } from "~/services/session";
 import { isValidUrl } from "~/utils";
 
 export const loader = async ({ request }: LoaderArgs) => {
-  await requireUserSession(request);
   const [tags, categories] = await Promise.all([getTags(), getCategories()]);
   return json({ tags, categories });
 };
 
 export async function action({ request }: ActionArgs) {
-  await requireUserSession(request);
-
   const formData = await request.formData();
 
   const title = formData.get("title");
@@ -206,21 +201,21 @@ const NewContent = () => {
       <Input
         error={actionData?.errors?.title}
         label={"Tittel"}
-        ref={titleRef}
+        htmlRef={titleRef}
         name={"title"}
       />
 
       <TextArea
         error={actionData?.errors?.description}
         label={"Beskrivelse"}
-        ref={descriptionRef}
+        htmlRef={descriptionRef}
         name={"description"}
       />
 
       <Input
         error={actionData?.errors?.url}
         label={"Url"}
-        ref={urlRef}
+        htmlRef={urlRef}
         name={"url"}
       />
 
@@ -239,25 +234,25 @@ const NewContent = () => {
             </a>
           </span>
         }
-        ref={imageRef}
+        htmlRef={imageRef}
         name={"image"}
       />
 
       <Input
         error={actionData?.errors?.imageText}
         label={"Alt-tekst for bilde"}
-        ref={imageAltTextRef}
+        htmlRef={imageAltTextRef}
         name={"imageText"}
       />
 
       <Input
         error={actionData?.errors?.author}
         label={"Forfatter"}
-        ref={authorRef}
+        htmlRef={authorRef}
         name={"author"}
       />
 
-      <div className="mt-3 grid pb-4 grid-cols-2 md:grid-cols-3">
+      <div className="mt-3 grid grid-cols-2 pb-4 md:grid-cols-3">
         <Toggle
           leftText={"Nei"}
           rightText={"Ja"}
@@ -317,7 +312,7 @@ const NewContent = () => {
         })}
       </fieldset>
 
-      <div className="flex justify-end mt-5">
+      <div className="mt-5 flex justify-end">
         <PrimaryButton text="Lagre" />
       </div>
     </Form>

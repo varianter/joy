@@ -2,19 +2,19 @@ import { RefObject } from "react";
 
 interface InputProps {
   error: string | null | undefined;
-  label: string | JSX.Element;
-  ref: RefObject<HTMLInputElement>;
+  label: string | JSX.Element;
+  htmlRef: RefObject<HTMLInputElement>;
   name: string;
 }
 
 const Input = (props: InputProps) => {
-  const { error, label, name, ref } = props;
+  const { error, label, name, htmlRef } = props;
 
   return (
     <div className="flex w-full flex-col gap-1 pb-4">
       <label>{label}</label>
       <input
-        ref={ref}
+        ref={htmlRef}
         type="text"
         name={name}
         className="rounded-md bg-variant-blue-3 px-3 leading-loose text-black"

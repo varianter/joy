@@ -3,18 +3,18 @@ import { RefObject } from "react";
 interface TextAreaProps {
   error: string | null | undefined;
   label: string;
-  ref: RefObject<HTMLTextAreaElement>;
+  htmlRef: RefObject<HTMLTextAreaElement>;
   name: string;
 }
 
 const TextArea = (props: TextAreaProps) => {
-  const { error, label, name, ref } = props;
+  const { error, label, name, htmlRef } = props;
 
   return (
     <div className="flex w-full flex-col gap-1 pb-4">
       <label>{label}</label>
       <textarea
-        ref={ref}
+        ref={htmlRef}
         name={name}
         className="rounded-md bg-variant-blue-3 px-3 leading-loose text-black"
         aria-invalid={error ? true : undefined}
