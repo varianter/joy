@@ -21,14 +21,14 @@ export const Layout = (props: LayoutProps) => {
         <h1 className="ml-6 mt-2 text-4xl text-white">Læreglede</h1>
 
         <form
-          className="ml-auto pt-5"
+          className="ml-auto hidden pt-5 md:block"
           action={`/auth/${isAuthenticated ? "logout" : "login"}`}
           method="post"
         >
           <PrimaryButton text={isAuthenticated ? "Logg ut" : "Logg inn"} />
         </form>
       </div>
-      <div className="md:mx-24 mt-36">
+      <div className="mt-36 md:mx-24">
         <Outlet />
       </div>
     </main>

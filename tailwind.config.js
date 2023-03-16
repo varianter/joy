@@ -5,6 +5,7 @@ module.exports = {
     colors: {
       black: "#000",
       blue: "#1fb6ff",
+      red: "#FF0000",
       purple: "#7e5bef",
       pink: "rgba(244,2,144,1)",
       orange: "rgba(254,109,1,1)",
@@ -17,12 +18,14 @@ module.exports = {
       "variant-white": "#FCF7FF",
       "variant-gray": "#C4CAD0",
       "variant-blue": "#423D89", 
-      "variant-secondary-blue": "#35316E",
+      "variant-blue-2": "#35316E",
+      "variant-blue-3": "#B7B4DE",
       "variant-pink": "#E61A6B",
+      "variant-pink-2": "#EB4889",
       "variant-wenge": "#655560",
       "variant-black": "#333333",
       "variant-beige": "#FFC4BC",
-      "variant-secondary-beige": "#FFDCD7"
+      "variant-beige-2": "#FFDCD7"
     },
     extend: {
       gridTemplateRows: {

@@ -28,13 +28,12 @@ export default function Index() {
       <section className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
         <Link to="blogposts">
           <NavigationCard
-            header="Bloggposter"
-            count={0}
+            header="Bloggposter (0)"
             icon={
               <img
                 alt={"Figur av læreglede"}
                 className="h-[3rem]"
-                src={"/assets/icons/blogpostIcon.svg"}
+                src={"/assets/icons/blogpost.svg"}
               />
             }
           />
@@ -42,13 +41,12 @@ export default function Index() {
 
         <Link to="lecture">
           <NavigationCard
-            header="Foredrag"
-            count={0}
+            header="Foredrag (0)"
             icon={
               <img
                 alt={"Figur av læreglede"}
                 className="h-[3rem]"
-                src={"/assets/icons/lectureIcon.svg"}
+                src={"/assets/icons/lecture.svg"}
               />
             }
           />
@@ -56,13 +54,12 @@ export default function Index() {
 
         <Link to="course">
           <NavigationCard
-            header="Kurs"
-            count={0}
+            header="Kurs (0)"
             icon={
               <img
                 alt={"Figur av læreglede"}
                 className="h-[3rem]"
-                src={"/assets/icons/courseIcon.svg"}
+                src={"/assets/icons/course.svg"}
               />
             }
           />
@@ -70,13 +67,12 @@ export default function Index() {
 
         <Link to="videos">
           <NavigationCard
-            header="Videoer"
-            count={0}
+            header="Videoer (0)"
             icon={
               <img
                 alt={"Figur av læreglede"}
                 className="h-[3rem]"
-                src={"/assets/icons/videoIcon.svg"}
+                src={"/assets/icons/video.svg"}
               />
             }
           />
@@ -90,7 +86,7 @@ export default function Index() {
               <img
                 alt={"Figur av læreglede"}
                 className="h-[3rem]"
-                src={"/assets/icons/podcastIcon.svg"}
+                src={"/assets/icons/podcast.svg"}
               />
             }
           />
