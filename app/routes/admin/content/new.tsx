@@ -116,7 +116,7 @@ export async function action({ request }: ActionArgs) {
       {
         errors: {
           ...errors,
-          imageText: "Alt-tekst på bilde er påkrevd",
+          imageText: "Alternativ tekst på bilde er påkrevd",
         },
       },
       { status: 400 }
@@ -240,14 +240,14 @@ const NewContent = () => {
 
       <Input
         error={actionData?.errors?.imageText}
-        label={"Alt-tekst for bilde"}
+        label={"Alternativ tekst for bilde"}
         htmlRef={imageAltTextRef}
         name={"imageText"}
       />
 
       <Input
         error={actionData?.errors?.author}
-        label={"Forfatter"}
+        label={"Forfatter (Variant-epost)"}
         htmlRef={authorRef}
         name={"author"}
       />
