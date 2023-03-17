@@ -117,7 +117,7 @@ export default function Index() {
                   <div className="grid md:grid-cols-2 items-center">
                     <img
                       alt={content.imageText ?? "Figur av læreglede"}
-                      className={`h-[20rem] md:h-[30rem] w-full  ${
+                      className={`h-[20rem] md:h-full w-full  ${
                         index % 2 === 0 ? "md:order-last" : "md:order-first"
                       } `}
                       src={content.image ?? "/assets/default-article-image.svg"}
