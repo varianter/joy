@@ -12,7 +12,7 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
     >
       {text}
     </button>
-  );  
+  );
 };
 
 export default PrimaryButton;

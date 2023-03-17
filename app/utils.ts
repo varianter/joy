@@ -11,3 +11,17 @@ export const isValidUrl = (str: string) => {
   }
 };
 
+export const getIconForCategory = (category: string) => {
+  switch (category.toLowerCase()) {
+    case "bloggpost":
+      return "blogpost";
+    case "kurs":
+      return "course";
+    case "video":
+      return "video";
+    case "podcast":
+      return "podcast";
+    case "foredrag":
+      return "lecture";
+  }
+};

@@ -28,7 +28,7 @@ export const Layout = (props: LayoutProps) => {
           <PrimaryButton text={isAuthenticated ? "Logg ut" : "Logg inn"} />
         </form>
       </div>
-      <div className="mt-36 md:mx-24">
+      <div className="mt-36 md:mx-[20rem]">
         <Outlet />
       </div>
     </main>
