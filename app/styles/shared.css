@@ -68,6 +68,10 @@ p {
   line-height: 1.6;
 }
 
+* {
+  font-family: "Recoleta-Regular";
+ }
+
 .background {
   position: relative;
   background: url("/assets/background.svg");
