@@ -57,7 +57,7 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
   };
 
   return (
-    <div className="p-10 text-left">
+    <div className="p-3 md:p-10 text-left">
       <div className="mb-5 flex gap-2">
         <img
           alt={"Figur av læreglede"}
