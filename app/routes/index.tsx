@@ -109,7 +109,7 @@ export default function Index() {
       </section>
 
       <section className="mt-16">
-        <h1 className="mb-8 text-left text-5xl text-white">Bli inspirert</h1>
+        <h1 className="mb-8 text-left text-4xl md:text-5xl text-white">Bli inspirert 🤩</h1>
         <div>
           {newestContent.map((content, index) => {
             return (
@@ -118,7 +118,7 @@ export default function Index() {
                   <div className="grid items-center md:grid-cols-2">
                     <img
                       alt={content.imageText ?? "Figur av læreglede"}
-                      className={`h-[20rem] w-full md:h-full  ${
+                      className={`h-[15rem] w-full md:h-full  ${
                         index % 2 === 0 ? "md:order-last" : "md:order-first"
                       } `}
                       src={content.image ?? "/assets/default-article-image.svg"}
