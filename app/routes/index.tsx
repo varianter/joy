@@ -140,7 +140,7 @@ export default function Index() {
                   <div className="flex justify-end gap-4">
                     {content.tags.map((tag) => {
                       return (
-                        <div className="my-4">
+                        <div key={tag.id} className="my-4">
                           <TagButton text={tag.text} />
                         </div>
                       );
