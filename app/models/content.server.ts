@@ -2,7 +2,17 @@ import { Content, Tag } from "@prisma/client";
 import { prisma } from "~/db.server";
 
 export async function getContent() {
-  return prisma.content.findMany();
+  return prisma.content.findMany({ include: { tags: true } });
+}
+
+export async function getNumNewestContent(numItems: number) {
+  return prisma.content.findMany({
+    take: numItems,
+    orderBy: {
+      createdAt: "desc",
+    },
+    include: { tags: true },
+  });
 }
 
 export async function getVideos() {
@@ -15,6 +25,12 @@ export async function getVideo(id: string) {
   return prisma.content.findUnique({ where: { id } });
 }
 
+export async function getNumVideos() {
+  return prisma.content.count({
+    where: { category: { text: "Video" } },
+  });
+}
+
 export function createContent(
   {
     title,
@@ -24,7 +40,7 @@ export function createContent(
     categoryId,
     image,
     imageText,
-    author
+    author,
   }: Pick<
     Content,
     | "title"
@@ -59,6 +75,12 @@ export function createContent(
 
 export async function getBlogposts() {
   return prisma.content.findMany({
+    where: { category: { text: "Bloggpost" } },
+  });
+}
+
+export async function getNumBlogposts() {
+  return prisma.content.count({
     where: { category: { text: "Bloggpost" } },
   });
 }

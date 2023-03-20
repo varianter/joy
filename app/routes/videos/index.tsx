@@ -1,6 +1,5 @@
 import { json, LoaderArgs } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
-import AnimatedButton from "~/components/buttons/AnimatedButton";
 import Card from "~/components/card/Card";
 import CardWithVideo from "~/components/card/CardWithVideo";
 import { getVideos } from "~/models/content.server";
@@ -24,18 +23,7 @@ const Videos = () => {
   return (
     <main className="flex flex-col items-center justify-center">
       <section className="max-w-6xl">
-        <Card
-          header={"Populære 🔥"}
-          buttonRight={
-            <>
-              {isAuthenticated && (
-                <Link to="new" className="flex justify-end">
-                  <AnimatedButton text="Legg til ny" />
-                </Link>
-              )}
-            </>
-          }
-        >
+        <Card>
           <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {videos.map((video) => {
               return (
@@ -56,7 +44,7 @@ const Videos = () => {
       </section>
 
       <section className="max-w-6xl pt-5">
-        <Card header={"Nytt og fresht 🤩"}>
+        <Card>
           <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {videos.map((video) => {
               return (

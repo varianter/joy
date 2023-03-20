@@ -19,7 +19,7 @@ export default function Video() {
   const { video } = useLoaderData<typeof loader>();
   return (
     <main className="mx-auto max-w-4xl">
-      <Card header={video.title}>
+      <Card >
         <div className="mt-5">
           <section>
             <iframe

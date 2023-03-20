@@ -20,7 +20,7 @@ const Blogposts = () => {
   return (
     <main className="flex flex-col items-center justify-center">
       <section className="max-w-5xl">
-        <Card header={"Anbefalt 🔥"}>
+        <Card>
           <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {blogposts?.map((blogpost) => {
               return (
@@ -42,7 +42,7 @@ const Blogposts = () => {
       </section>
 
       <section className="max-w-5xl pt-5">
-        <Card header={"Nytt og fresht 🤩"}>
+        <Card>
           <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {blogposts?.map((blogpost) => {
               return (
