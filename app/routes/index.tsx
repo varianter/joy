@@ -1,6 +1,7 @@
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import ArticlePreview from "~/components/ArticlePreview";
+import TagButton from "~/components/buttons/TagButton";
 import Card from "~/components/card/Card";
 import NavigationCard from "~/components/card/NavigationCard";
 import { getCategories } from "~/models/category.server";
@@ -114,10 +115,10 @@ export default function Index() {
             return (
               <div className="my-5">
                 <Card>
-                  <div className="grid md:grid-cols-2 items-center">
+                  <div className="grid items-center md:grid-cols-2">
                     <img
                       alt={content.imageText ?? "Figur av læreglede"}
-                      className={`h-[20rem] md:h-full w-full  ${
+                      className={`h-[20rem] w-full md:h-full  ${
                         index % 2 === 0 ? "md:order-last" : "md:order-first"
                       } `}
                       src={content.image ?? "/assets/default-article-image.svg"}
@@ -134,6 +135,18 @@ export default function Index() {
                     />
                   </div>
                 </Card>
+                {content.tags.length > 0 && (
+                  // TODO: Ved klikk på tags, så skal man finne all content relevant til denne
+                  <div className="flex justify-end gap-4">
+                    {content.tags.map((tag) => {
+                      return (
+                        <div className="my-4">
+                          <TagButton text={tag.text} />
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             );
           })}

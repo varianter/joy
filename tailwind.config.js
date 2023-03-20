@@ -17,15 +17,16 @@ module.exports = {
       white: "#fafaf6",
       "variant-white": "#FCF7FF",
       "variant-gray": "#C4CAD0",
-      "variant-blue": "#423D89", 
+      "variant-blue": "#423D89",
       "variant-blue-2": "#35316E",
-      "variant-blue-3": "#B7B4DE",
+      "variant-blue-3": "#736EBE",
+      "variant-blue-4": "#B7B4DE",
       "variant-pink": "#E61A6B",
       "variant-pink-2": "#EB4889",
       "variant-wenge": "#655560",
       "variant-black": "#333333",
       "variant-beige": "#FFC4BC",
-      "variant-beige-2": "#FFDCD7"
+      "variant-beige-2": "#FFDCD7",
     },
     extend: {
       gridTemplateRows: {
@@ -39,6 +40,16 @@ module.exports = {
       mono: ["ui-monospace", "SFMono-Regular"],
       display: ["Oswald"],
       body: ['"Open Sans"'],
+    },
+    screens: {
+      sm: "576px",
+      // => @media (min-width: 576px) { ... }
+
+      md: "960px",
+      // => @media (min-width: 960px) { ... }
+
+      lg: "1440px",
+      // => @media (min-width: 1440px) { ... }
     },
   },
   plugins: [],

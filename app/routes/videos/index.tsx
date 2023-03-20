@@ -1,6 +1,5 @@
 import { json, LoaderArgs } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
-import AnimatedButton from "~/components/buttons/AnimatedButton";
 import Card from "~/components/card/Card";
 import CardWithVideo from "~/components/card/CardWithVideo";
 import { getVideos } from "~/models/content.server";

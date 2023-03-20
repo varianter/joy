@@ -2,7 +2,7 @@ import { Content, Tag } from "@prisma/client";
 import { prisma } from "~/db.server";
 
 export async function getContent() {
-  return prisma.content.findMany();
+  return prisma.content.findMany({ include: { tags: true } });
 }
 
 export async function getNumNewestContent(numItems: number) {
@@ -11,6 +11,7 @@ export async function getNumNewestContent(numItems: number) {
     orderBy: {
       createdAt: "desc",
     },
+    include: { tags: true },
   });
 }
 

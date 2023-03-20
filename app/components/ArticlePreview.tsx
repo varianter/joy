@@ -20,8 +20,6 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
 
   const icon = getIconForCategory(category);
 
-  console.log("ICON :", icon);
-
   const buttonText = () => {
     switch (category.toLowerCase()) {
       case "bloggpost":
@@ -57,7 +55,7 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
   };
 
   return (
-    <div className="p-3 md:p-10 text-left">
+    <div className="p-3 text-left md:p-10">
       <div className="mb-5 flex gap-2">
         <img
           alt={"Figur av læreglede"}
