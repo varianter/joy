@@ -1,4 +1,4 @@
-import { json, LoaderArgs } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import ArticlePreview from "~/components/ArticlePreview";
 import TagButton from "~/components/buttons/TagButton";
@@ -8,13 +8,12 @@ import { getCategories } from "~/models/category.server";
 import {
   getNumBlogposts,
   getNumNewestContent,
-  getNumVideos,
-  searchContent,
+  getNumVideos
 } from "~/models/content.server";
 
 const numberOfNewContent = 2;
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async () => {
   const [numBlogposts, numVideos, newestContent, categories] =
     await Promise.all([
       getNumBlogposts(),

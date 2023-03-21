@@ -1,6 +1,6 @@
-import { Content } from "@prisma/client";
 import { useLoaderData } from "@remix-run/react";
-import { json, LoaderArgs } from "@remix-run/server-runtime";
+import type { LoaderArgs } from "@remix-run/server-runtime";
+import { json } from "@remix-run/server-runtime";
 import ArticlePreview from "~/components/ArticlePreview";
 import Card from "~/components/card/Card";
 import { getCategories } from "~/models/category.server";

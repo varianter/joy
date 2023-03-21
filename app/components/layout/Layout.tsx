@@ -1,4 +1,4 @@
-import { Content } from "@prisma/client";
+import type { Content } from "@prisma/client";
 import { Link, Outlet, useSearchParams } from "@remix-run/react";
 import PrimaryButton from "../buttons/PrimaryButton";
 import { SearchInput } from "../search/SearchInput";

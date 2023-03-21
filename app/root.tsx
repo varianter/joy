@@ -1,4 +1,5 @@
-import { json, LinksFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
+import type { LinksFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -14,7 +15,7 @@ import globalStylesheetUrl from "./styles/shared.css";
 import { Layout } from "./components/layout/Layout";
 import { authenticator } from "./services/auth.server";
 import { searchContent } from "./models/content.server";
-import { Content } from "@prisma/client";
+import type { Content } from "@prisma/client";
 
 export const links: LinksFunction = () => {
   return [

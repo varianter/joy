@@ -1,4 +1,4 @@
-import { Content, Tag } from "@prisma/client";
+import type { Content } from "@prisma/client";
 import { prisma } from "~/db.server";
 
 export async function getContent() {
