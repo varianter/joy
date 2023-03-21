@@ -5,6 +5,19 @@ export async function getContent() {
   return prisma.content.findMany({ include: { tags: true } });
 }
 
+export async function searchContent(search: string) {
+  return prisma.content.findMany({
+    where: {
+      OR: [
+        { title: { contains: search, mode: "insensitive" } },
+        { author: { contains: search, mode: "insensitive" } },
+        { description: { contains: search, mode: "insensitive" } }
+      ],
+    },
+    include: { tags: true },
+  });
+}
+
 export async function getNumNewestContent(numItems: number) {
   return prisma.content.findMany({
     take: numItems,

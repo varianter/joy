@@ -1,4 +1,4 @@
-import { json } from "@remix-run/node";
+import { json, LoaderArgs } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import ArticlePreview from "~/components/ArticlePreview";
 import TagButton from "~/components/buttons/TagButton";
@@ -9,11 +9,12 @@ import {
   getNumBlogposts,
   getNumNewestContent,
   getNumVideos,
+  searchContent,
 } from "~/models/content.server";
 
 const numberOfNewContent = 2;
 
-export const loader = async () => {
+export const loader = async ({ request }: LoaderArgs) => {
   const [numBlogposts, numVideos, newestContent, categories] =
     await Promise.all([
       getNumBlogposts(),
@@ -21,7 +22,12 @@ export const loader = async () => {
       getNumNewestContent(numberOfNewContent),
       getCategories(),
     ]);
-  return json({ numBlogposts, numVideos, newestContent, categories });
+  return json({
+    numBlogposts,
+    numVideos,
+    newestContent,
+    categories,
+  });
 };
 
 export default function Index() {
@@ -109,7 +115,9 @@ export default function Index() {
       </section>
 
       <section className="mt-16">
-        <h1 className="mb-8 text-left text-4xl md:text-5xl text-white">Bli inspirert 🤩</h1>
+        <h1 className="mb-8 text-left text-4xl text-white md:text-5xl">
+          Bli inspirert 🤩
+        </h1>
         <div>
           {newestContent.map((content, index) => {
             return (
