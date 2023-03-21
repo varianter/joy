@@ -121,7 +121,7 @@ export default function Index() {
         <div>
           {newestContent.map((content, index) => {
             return (
-              <div className="my-5">
+              <div key={content.id} className="my-5">
                 <Card>
                   <div className="grid items-center md:grid-cols-2">
                     <img

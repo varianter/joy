@@ -1,10 +1,10 @@
 import { Form } from "@remix-run/react";
 
-interface SearchInput {
+interface SearchInputProps {
   onChange: (e: any) => void;
 }
 
-export const SearchInput = (props: SearchInput) => {
+export const SearchInput = (props: SearchInputProps) => {
   const { onChange } = props;
 
   return (

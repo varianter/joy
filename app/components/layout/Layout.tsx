@@ -12,9 +12,14 @@ export const Layout = (props: LayoutProps) => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const onChange = (event: any) => {
-    if (event.target.value === "") setSearchParams(undefined);
-    setSearchParams({ search: event.target.value });
+  const handleOnChangeSearch = (event: any) => {
+    if (event.target.value === "") {
+      searchParams.delete("search");
+      setSearchParams(searchParams);
+    } else {
+      searchParams.set("search", event.target.value);
+      setSearchParams(searchParams);
+    }
   };
 
   return (
@@ -33,7 +38,7 @@ export const Layout = (props: LayoutProps) => {
 
         <div className="flex">
           <div className="relative ml-auto mt-5 w-full md:w-2/3">
-            <SearchInput onChange={onChange} />
+            <SearchInput onChange={handleOnChangeSearch} />
             {searchResult.length > 0 && (
               <div className="absolute z-10 mt-2 max-h-48 w-full divide-y overflow-y-auto rounded-xl border bg-variant-blue-4 text-left">
                 <div className="block grid grid-cols-2 gap-4 p-2">
@@ -45,7 +50,7 @@ export const Layout = (props: LayoutProps) => {
                     <Link
                       key={res.id}
                       className="block grid grid-cols-2 gap-4 p-2 hover:bg-variant-blue-3"
-                      to="#"
+                      to={"/content/" + res.id}
                     >
                       <span className="truncate">{res.title}</span>
                       <span className="truncate">{res.author}</span>
