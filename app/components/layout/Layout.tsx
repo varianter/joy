@@ -43,9 +43,7 @@ export const Layout = (props: LayoutProps) => {
             <SearchInput onChange={handleOnChangeSearch} />
             {searchResult.length > 0 && (
               <div className="absolute z-10 mt-2 max-h-48 w-full divide-y overflow-y-auto rounded-xl border bg-variant-blue-4 text-left">
-                {isLoadingSearchResult && searchResult.length > 0 && (
-                  <p className="p-2">Laster...</p>
-                )}
+                {isLoadingSearchResult && <p className="p-2">Laster...</p>}
                 {!isLoadingSearchResult &&
                   searchResult.map((res) => {
                     return (

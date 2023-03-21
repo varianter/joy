@@ -56,7 +56,11 @@ export default function App() {
 
   const navigation = useNavigation();
 
-  const isLoading = navigation.state === "loading" ? true : false;
+  const isLoadingSearchResult =
+    navigation.state === "loading" &&
+    navigation.location.search.includes("search")
+      ? true
+      : false;
 
   return (
     <html lang="en" className="h-full">
@@ -68,7 +72,7 @@ export default function App() {
         <Layout
           isAuthenticated={isAuthenticated}
           searchResult={search}
-          isLoadingSearchResult={isLoading}
+          isLoadingSearchResult={isLoadingSearchResult}
         />
         <ScrollRestoration />
         <Scripts />
