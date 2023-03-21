@@ -9,8 +9,20 @@ const Course = () => {
                 <CourseCard
                   title="HMTM & DOM"
                   linkToCourse=""
-                  createdAt=""
+                  createdAt={new Date().toDateString()}
                   author="Linnea"
+                />
+                <CourseCard
+                  title="JavaScript 101"
+                  linkToCourse=""
+                  createdAt={new Date().toDateString()}
+                  author="Sarah"
+                />
+                <CourseCard
+                  title="Game Development"
+                  linkToCourse=""
+                  createdAt={new Date().toDateString()}
+                  author="Matsh"
                 />
       </div>
   </section>
