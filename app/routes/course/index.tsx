@@ -1,5 +1,5 @@
 const Course = () => {
-  return <h1>Kurs kommer her</h1>;
+  return <h1 className="text-white">Kurs</h1>;
 };
-
+ 
 export default Course;
