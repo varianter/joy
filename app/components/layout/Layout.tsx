@@ -42,7 +42,7 @@ export const Layout = (props: LayoutProps) => {
           <div className="relative ml-auto mt-5 w-full md:w-2/3">
             <SearchInput onChange={handleOnChangeSearch} />
             {(searchResult.length > 0 || isLoadingSearchResult) && (
-              <div className="absolute z-10 mt-2 max-h-48 w-full divide-y overflow-y-auto rounded-xl border bg-variant-blue-4 text-left">
+              <div className="absolute z-10 mt-2 max-h-48 w-full divide-y  overflow-y-auto rounded-xl border bg-variant-blue-4 text-left">
                 {isLoadingSearchResult && <p className="p-2">Laster...</p>}
                 {!isLoadingSearchResult &&
                   searchResult.length > 0 &&
@@ -50,10 +50,10 @@ export const Layout = (props: LayoutProps) => {
                     return (
                       <Link
                         key={res.id}
-                        className="block p-2 hover:bg-variant-blue-3"
+                        className="block truncate p-2 hover:bg-variant-blue-3"
                         to={"/content/" + res.id}
                       >
-                        <span className="truncate">{res.title}</span>
+                        <span>{res.title}</span>
                       </Link>
                     );
                   })}
