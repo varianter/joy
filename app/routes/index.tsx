@@ -8,7 +8,7 @@ import { getCategories } from "~/models/category.server";
 import {
   getNumBlogposts,
   getNumNewestContent,
-  getNumVideos,
+  getNumVideos
 } from "~/models/content.server";
 
 const numberOfNewContent = 2;
@@ -21,7 +21,12 @@ export const loader = async () => {
       getNumNewestContent(numberOfNewContent),
       getCategories(),
     ]);
-  return json({ numBlogposts, numVideos, newestContent, categories });
+  return json({
+    numBlogposts,
+    numVideos,
+    newestContent,
+    categories,
+  });
 };
 
 export default function Index() {
@@ -109,11 +114,13 @@ export default function Index() {
       </section>
 
       <section className="mt-16">
-        <h1 className="mb-8 text-left text-4xl md:text-5xl text-white">Bli inspirert 🤩</h1>
+        <h1 className="mb-8 text-left text-4xl text-white md:text-5xl">
+          Bli inspirert 🤩
+        </h1>
         <div>
           {newestContent.map((content, index) => {
             return (
-              <div className="my-5">
+              <div key={content.id} className="my-5">
                 <Card>
                   <div className="grid items-center md:grid-cols-2">
                     <img
