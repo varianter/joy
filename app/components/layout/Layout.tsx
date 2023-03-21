@@ -6,9 +6,11 @@ import { SearchInput } from "../search/SearchInput";
 interface LayoutProps {
   isAuthenticated: boolean;
   searchResult: Content[];
+  isLoadingSearchResult: boolean;
 }
+
 export const Layout = (props: LayoutProps) => {
-  const { isAuthenticated, searchResult } = props;
+  const { isAuthenticated, searchResult, isLoadingSearchResult } = props;
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -41,22 +43,21 @@ export const Layout = (props: LayoutProps) => {
             <SearchInput onChange={handleOnChangeSearch} />
             {searchResult.length > 0 && (
               <div className="absolute z-10 mt-2 max-h-48 w-full divide-y overflow-y-auto rounded-xl border bg-variant-blue-4 text-left">
-                <div className="block grid grid-cols-2 gap-4 p-2">
-                  <span className="font-bold">Tittel</span>
-                  <span className="font-bold">Forfatter</span>
-                </div>
-                {searchResult.map((res) => {
-                  return (
-                    <Link
-                      key={res.id}
-                      className="block grid grid-cols-2 gap-4 p-2 hover:bg-variant-blue-3"
-                      to={"/content/" + res.id}
-                    >
-                      <span className="truncate">{res.title}</span>
-                      <span className="truncate">{res.author}</span>
-                    </Link>
-                  );
-                })}
+                {isLoadingSearchResult && searchResult.length > 0 && (
+                  <p className="p-2">Laster...</p>
+                )}
+                {!isLoadingSearchResult &&
+                  searchResult.map((res) => {
+                    return (
+                      <Link
+                        key={res.id}
+                        className="block p-2 hover:bg-variant-blue-3"
+                        to={"/content/" + res.id}
+                      >
+                        <span className="truncate">{res.title}</span>
+                      </Link>
+                    );
+                  })}
               </div>
             )}
           </div>

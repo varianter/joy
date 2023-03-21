@@ -16,6 +16,7 @@ export async function searchContent(search: string) {
         { title: { contains: search, mode: "insensitive" } },
         { author: { contains: search, mode: "insensitive" } },
         { description: { contains: search, mode: "insensitive" } },
+        { tags: { some: { text: { contains: search, mode: "insensitive" } } } },
       ],
     },
     include: { tags: true },

@@ -7,6 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  useNavigation,
 } from "@remix-run/react";
 
 import tailwindStylesheetUrl from "./styles/tailwind.css";
@@ -53,6 +54,10 @@ export default function App() {
     ? searchResult.map((result) => result as unknown as Content)
     : [];
 
+  const navigation = useNavigation();
+
+  const isLoading = navigation.state === "loading" ? true : false;
+
   return (
     <html lang="en" className="h-full">
       <head>
@@ -60,7 +65,11 @@ export default function App() {
         <Links />
       </head>
       <body className="h-full">
-        <Layout isAuthenticated={isAuthenticated} searchResult={search} />
+        <Layout
+          isAuthenticated={isAuthenticated}
+          searchResult={search}
+          isLoadingSearchResult={isLoading}
+        />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
