@@ -16,7 +16,16 @@ const CourseCard = (props: CourseCardProps) => {
   return (
     <Card>
       <div className="flex flex-col y-2">
-        <div className="flex justify-between"> <p>:) Kurs</p>
+        <div className="flex justify-between">
+          <div className="inline-flex items-center"><img
+            alt="Kurs icon"
+            className="h-[1rem] pr-1"
+            src={"/assets/icons/course.svg"}
+          />
+            <p>Kurs</p>
+          </div>
+
+
           <p className="text-variant-black">
             {new Date(createdAt).toLocaleDateString("nb")}
           </p>
@@ -27,6 +36,7 @@ const CourseCard = (props: CourseCardProps) => {
           className="h-[15rem] w-full"
           src={image ?? "/assets/default-article-image.svg"}
         />
+
         <h1 className="my-4 text-left text-base">{title}</h1>
         <div className="inline-flex items-end justify-between leading-none">
           <a href={linkToCourse} target="_blank" rel="noreferrer">
