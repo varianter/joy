@@ -42,7 +42,7 @@ const CourseCard = (props: CourseCardProps) => {
           <p className="text-left pb-2">{description}</p>
         </div>
 
-        <div className="inline-flex items-end justify-end">
+        <div className="inline-flex justify-end">
           <a href={linkToCourse} target="_blank" rel="noreferrer">
             <AnimatedButton text="Ta kurset" />
 
