@@ -1,16 +1,25 @@
 import type { Content } from "@prisma/client";
 import { Link, Outlet, useSearchParams } from "@remix-run/react";
 import PrimaryButton from "../buttons/PrimaryButton";
+import NavigationCard from "../card/NavigationCard";
 import { SearchInput } from "../search/SearchInput";
 
 interface LayoutProps {
   isAuthenticated: boolean;
   searchResult: Content[];
   isLoadingSearchResult: boolean;
+  numVideos: number;
+  numBlogposts: number;
 }
 
 export const Layout = (props: LayoutProps) => {
-  const { isAuthenticated, searchResult, isLoadingSearchResult } = props;
+  const {
+    isAuthenticated,
+    searchResult,
+    isLoadingSearchResult,
+    numVideos,
+    numBlogposts
+  } = props;
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -26,7 +35,7 @@ export const Layout = (props: LayoutProps) => {
 
   return (
     <main className="background min-h-screen p-5 px-6 text-center">
-      <div className="grid pb-5  md:grid-cols-2">
+      <div className="grid pb-5 md:grid-cols-2">
         <div className="flex items-center">
           <Link to="/">
             <img
@@ -70,8 +79,88 @@ export const Layout = (props: LayoutProps) => {
           </form>
         </div>
       </div>
-      <div className="mt-36 lg:mx-[15rem]">
-        <Outlet />
+
+      <div className="mt-24 md:mx-[5rem] md:mt-32 lg:mx-[15rem] xl:mx-[35rem]">
+        <section className="text-left">
+          <p className="text-2xl text-white">En variant av</p>
+          <h1 className="text-5xl text-white">Læreglede</h1>
+          <p className="mt-4 text-white">
+            Lorem ipsum dolor sit amet consectetur. Amet ultrices id posuere
+            purus etiam tincidunt non varius. Auctor vitae congue id ac tellus.
+            Nibh pellentesque.
+          </p>
+        </section>
+
+        <section className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <Link to="blogposts">
+            <NavigationCard
+              header={`Bloggposter (${numBlogposts})`}
+              icon={
+                <img
+                  alt={"Figur av bloggpost"}
+                  className="h-[3rem]"
+                  src={"/assets/icons/blogpost.svg"}
+                />
+              }
+            />
+          </Link>
+
+          <Link to="lecture">
+            <NavigationCard
+              header="Foredrag (0)"
+              icon={
+                <img
+                  alt={"Figur av foredrag"}
+                  className="h-[3rem]"
+                  src={"/assets/icons/lecture.svg"}
+                />
+              }
+            />
+          </Link>
+
+          <Link to="course">
+            <NavigationCard
+              header="Kurs (0)"
+              icon={
+                <img
+                  alt={"Figur av kurs"}
+                  className="h-[3rem]"
+                  src={"/assets/icons/course.svg"}
+                />
+              }
+            />
+          </Link>
+
+          <Link to="videos">
+            <NavigationCard
+              header={`Videoer (${numVideos})`}
+              icon={
+                <img
+                  alt={"Figur av video"}
+                  className="h-[3rem]"
+                  src={"/assets/icons/video.svg"}
+                />
+              }
+            />
+          </Link>
+
+          {/* <Link to="podcasts">
+          <NavigationCard
+            header="Podcasts"
+            count={0}
+            icon={
+              <img
+                alt={"Figur av læreglede"}
+                className="h-[3rem]"
+                src={"/assets/icons/podcast.svg"}
+              />
+            }
+          />
+        </Link> */}
+        </section>
+        <div className="mt-10">
+          <Outlet />
+        </div>
       </div>
     </main>
   );

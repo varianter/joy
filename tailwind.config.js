@@ -46,7 +46,8 @@ module.exports = {
       // => @media (min-width: 576px) { ... }
       md: "960px",
       lg: "1440px",
+      xl: "2400px"
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };
