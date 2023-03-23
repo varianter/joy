@@ -12,11 +12,31 @@ export const loader = async () => {
 const Blogposts = () => {
   const { blogposts } = useLoaderData<typeof loader>();
 
+  const suggestedBlogposts = blogposts.filter((blogpost) => blogpost.suggested);
+  const otherBlogposts = blogposts.filter((blogpost) => !blogpost.suggested);
+
   return (
-    <CardWithMultipleContent
-      content={blogposts as unknown as Content[]}
-      categoryHeader={"Bloggposter"}
-    />
+    <div>
+      <h1 className="mb-8 text-left text-4xl text-white md:text-5xl">
+        Bloggposter
+      </h1>
+
+      {suggestedBlogposts.length > 0 && (
+        <CardWithMultipleContent
+          content={suggestedBlogposts as unknown as Content[]}
+          cardHeader={"Fremhevet 🤩"}
+        />
+      )}
+
+      {otherBlogposts.length > 0 && (
+        <div className="mt-5">
+          <CardWithMultipleContent
+            content={otherBlogposts as unknown as Content[]}
+            cardHeader={"Alle bloggposter 🤩"}
+          />
+        </div>
+      )}
+    </div>
   );
 };
 
