@@ -12,11 +12,30 @@ export const loader = async () => {
 const Videos = () => {
   const { videos } = useLoaderData<typeof loader>();
 
+  const suggestedVideos = videos.filter((video) => video.suggested);
+  const otherVideos = videos.filter((video) => !video.suggested);
+
   return (
-    <CardWithMultipleContent
-      content={videos as unknown as Content[]}
-      categoryHeader={"Videoer"}
-    />
+    <div>
+      <h1 className="mb-8 text-left text-4xl text-white md:text-5xl">
+        Videoer
+      </h1>
+      {suggestedVideos.length > 0 && (
+        <CardWithMultipleContent
+          content={suggestedVideos as unknown as Content[]}
+          cardHeader={"Fremhevet 🤩"}
+        />
+      )}
+
+      {otherVideos.length > 0 && (
+        <div className="mt-5">
+          <CardWithMultipleContent
+            content={otherVideos as unknown as Content[]}
+            cardHeader={"Alle Videoer 🤩"}
+          />
+        </div>
+      )}
+    </div>
   );
 };
 
