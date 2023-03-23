@@ -23,13 +23,13 @@ const CourseCard = (props: CourseCardProps) => {
             <div className="inline-flex items-center">
               <img
                 alt="Kurs icon"
-                className="h-[1rem] pr-2"
+                className="h-[1rem] pr-3"
                 src={"/assets/icons/course.svg"}
               />
               <p>Kurs</p>
               <img
                 alt="Beginner icon"
-                className="pl-2"
+                className="pl-3"
                 src={"/assets/icons/beginner.svg"} />
             </div>
 
@@ -45,7 +45,7 @@ const CourseCard = (props: CourseCardProps) => {
             src={image ?? "/assets/default-article-image.svg"}
           />
 
-          <h1 className="mt-2 text-left text-base">{title}</h1>
+          <h1 className="mt-2 text-left font-semibold text-2xl">{title}</h1>
           <p className="text-left pb-2">{description}</p>
         </div>
 
