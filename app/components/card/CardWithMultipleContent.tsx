@@ -17,7 +17,7 @@ export const CardWithMultipleContent = (
 
   return (
     <div>
-      <h1 className="mb-10 text-left text-3xl text-white md:text-5xl">
+      <h1 className="mb-8 text-left text-4xl text-white md:text-5xl">
         {categoryHeader}
       </h1>
       <div className="flex flex-col items-center justify-center">
