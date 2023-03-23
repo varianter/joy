@@ -1,3 +1,4 @@
+import Course from "~/routes/course";
 import AnimatedButton from "../buttons/AnimatedButton";
 import Card from "./Card";
 
@@ -13,17 +14,23 @@ interface CourseCardProps {
 const CourseCard = (props: CourseCardProps) => {
   const { image, altImageText, title, linkToCourse, createdAt, description } = props;
 
+
   return (
     <Card>
       <div className="flex flex-col y-2 justify-between h-full">
         <div className="inline-flex flex-col">
           <div className="flex justify-between">
-            <div className="inline-flex items-center"><img
-              alt="Kurs icon"
-              className="h-[1rem] pr-1.5"
-              src={"/assets/icons/course.svg"}
-            />
+            <div className="inline-flex items-center">
+              <img
+                alt="Kurs icon"
+                className="h-[1rem] pr-2"
+                src={"/assets/icons/course.svg"}
+              />
               <p>Kurs</p>
+              <img
+                alt="Beginner icon"
+                className="pl-2"
+                src={"/assets/icons/beginner.svg"} />
             </div>
 
 
