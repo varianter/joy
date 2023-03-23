@@ -66,8 +66,8 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
         <span className="ml-auto font-bold">{createdDate}</span>
       </div>
       <h1 className="text-left text-4xl">{title}</h1>
-      <p className="my-5">{description}</p>
-      <div className="mt-16 flex items-center">
+      <p className="my-5 line-clamp-3">{description}</p>
+      <div className=" flex items-center">
         <Link
           className="underline hover:text-variant-pink "
           to={linkButtonText().route}
