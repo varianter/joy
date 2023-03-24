@@ -1,8 +1,8 @@
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import Card from "~/components/card/Card";
-import CardWithArticle from "~/components/card/CardWithArticle";
+import { CardWithMultipleContent } from "~/components/card/CardWithMultipleContent";
 import { getBlogposts } from "~/models/content.server";
+import type { Content } from "@prisma/client";
 
 export const loader = async () => {
   const blogposts = await getBlogposts();
@@ -12,57 +12,31 @@ export const loader = async () => {
 const Blogposts = () => {
   const { blogposts } = useLoaderData<typeof loader>();
 
-  if (!blogposts || blogposts.length === 0)
-    return (
-      <h1 className="text-white">Wooops, ingen bloggposter her enda...</h1>
-    );
+  const suggestedBlogposts = blogposts.filter((blogpost) => blogpost.suggested);
+  const otherBlogposts = blogposts.filter((blogpost) => !blogpost.suggested);
 
   return (
-    <main className="flex flex-col items-center justify-center">
-      <section className="max-w-5xl">
-        <Card header={"Anbefalt 🔥"}>
-          <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {blogposts?.map((blogpost) => {
-              return (
-                blogpost.suggested && (
-                  <div key={blogpost.id} className="my-1 inline-grid">
-                    <CardWithArticle
-                      title={blogpost.title}
-                      linkToArticle={blogpost.url}
-                      image={blogpost.image}
-                      createdAt={blogpost.createdAt}
-                      altImageText={blogpost.imageText}
-                    />
-                  </div>
-                )
-              );
-            })}
-          </div>
-        </Card>
-      </section>
+    <div>
+      <h1 className="mb-8 text-left text-4xl text-white md:text-5xl">
+        Bloggposter
+      </h1>
 
-      <section className="max-w-5xl pt-5">
-        <Card header={"Nytt og fresht 🤩"}>
-          <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {blogposts?.map((blogpost) => {
-              return (
-                !blogpost.suggested && (
-                  <div key={blogpost.id} className="my-1">
-                    <CardWithArticle
-                      title={blogpost.title}
-                      linkToArticle={blogpost.url}
-                      image={blogpost.image}
-                      createdAt={blogpost.createdAt}
-                      altImageText={blogpost.imageText}
-                    />
-                  </div>
-                )
-              );
-            })}
-          </div>
-        </Card>
-      </section>
-    </main>
+      {suggestedBlogposts.length > 0 && (
+        <CardWithMultipleContent
+          content={suggestedBlogposts as unknown as Content[]}
+          cardHeader={"Fremhevet 🤩"}
+        />
+      )}
+
+      {otherBlogposts.length > 0 && (
+        <div className="mt-5">
+          <CardWithMultipleContent
+            content={otherBlogposts as unknown as Content[]}
+            cardHeader={"Alle bloggposter 🤩"}
+          />
+        </div>
+      )}
+    </div>
   );
 };
 

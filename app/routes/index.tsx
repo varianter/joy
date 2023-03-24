@@ -1,97 +1,73 @@
 import { json } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
-import NavigationCard from "~/components/card/NavigationCard";
+import { useLoaderData } from "@remix-run/react";
+import ArticlePreview from "~/components/ArticlePreview";
+import TagButton from "~/components/buttons/TagButton";
+import Card from "~/components/card/Card";
+import { getCategories } from "~/models/category.server";
+import { getNumNewestContent } from "~/models/content.server";
 
-// export const loader = async () => {
-//   const [numBlogposts, numVideos] = await Promise.all([
-//     getNumBlogposts(),
-//     getNumVideos(),
-//   ]);
-//   return json({ numBlogposts, numVideos });
-// };
+const numberOfNewContent = 2;
+
+export const loader = async () => {
+  const [newestContent, categories] = await Promise.all([
+    getNumNewestContent(numberOfNewContent),
+    getCategories(),
+  ]);
+  return json({
+    newestContent,
+    categories,
+  });
+};
 
 export default function Index() {
-  //const { numBlogposts, numVideos } = useLoaderData<typeof loader>();
+  const { newestContent, categories } = useLoaderData<typeof loader>();
 
   return (
-    <main>
-      <section className="text-left">
-        <p className="text-2xl text-white">En variant av</p>
-        <h1 className="text-5xl text-white">Læreglede</h1>
-        <p className="mt-4 text-white">
-          Lorem ipsum dolor sit amet consectetur. Amet ultrices id posuere purus
-          etiam tincidunt non varius. Auctor vitae congue id ac tellus. Nibh
-          pellentesque.
-        </p>
-      </section>
-
-      <section className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
-        <Link to="blogposts">
-          <NavigationCard
-            header="Bloggposter (0)"
-            icon={
-              <img
-                alt={"Figur av læreglede"}
-                className="h-[3rem]"
-                src={"/assets/icons/blogpost.svg"}
-              />
-            }
-          />
-        </Link>
-
-        <Link to="lecture">
-          <NavigationCard
-            header="Foredrag (0)"
-            icon={
-              <img
-                alt={"Figur av læreglede"}
-                className="h-[3rem]"
-                src={"/assets/icons/lecture.svg"}
-              />
-            }
-          />
-        </Link>
-
-        <Link to="course">
-          <NavigationCard
-            header="Kurs (0)"
-            icon={
-              <img
-                alt={"Figur av læreglede"}
-                className="h-[3rem]"
-                src={"/assets/icons/course.svg"}
-              />
-            }
-          />
-        </Link>
-
-        <Link to="videos">
-          <NavigationCard
-            header="Videoer (0)"
-            icon={
-              <img
-                alt={"Figur av læreglede"}
-                className="h-[3rem]"
-                src={"/assets/icons/video.svg"}
-              />
-            }
-          />
-        </Link>
-
-        {/* <Link to="podcasts">
-          <NavigationCard
-            header="Podcasts"
-            count={0}
-            icon={
-              <img
-                alt={"Figur av læreglede"}
-                className="h-[3rem]"
-                src={"/assets/icons/podcast.svg"}
-              />
-            }
-          />
-        </Link> */}
-      </section>
-    </main>
+    <section>
+      <h1 className="mb-8 text-left text-4xl text-white md:text-5xl">
+        Bli inspirert 🤩
+      </h1>
+      <div className="">
+        {newestContent.map((content, index) => {
+          return (
+            <div key={content.id} className="my-5">
+              <Card>
+                <div className="grid items-center md:grid-cols-2">
+                  <img
+                    alt={content.imageText ?? "Figur av læreglede"}
+                    className={`h-[15rem] w-full md:h-full  ${
+                      index % 2 === 0 ? "md:order-last" : "md:order-first"
+                    } `}
+                    src={content.image ?? "/assets/default-article-image.svg"}
+                  />
+                  <ArticlePreview
+                    category={
+                      categories.find((c) => c.id === content.categoryId)
+                        ?.text ?? ""
+                    }
+                    createdDate={content.createdAt.split("T")[0]}
+                    title={content.title}
+                    description={content.description}
+                    url={content.url}
+                  />
+                </div>
+              </Card>
+              {content.tags.length > 0 && (
+                // TODO: Ved klikk på tags, så skal man finne all content relevant til denne
+                <div className="flex justify-end gap-4">
+                  {content.tags.map((tag) => {
+                    return (
+                      <div key={tag.id} className="my-4">
+                        <TagButton text={tag.text} />
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 }

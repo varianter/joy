@@ -1,81 +1,41 @@
-import { json, LoaderArgs } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
-import AnimatedButton from "~/components/buttons/AnimatedButton";
-import Card from "~/components/card/Card";
-import CardWithVideo from "~/components/card/CardWithVideo";
+import { json } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import { CardWithMultipleContent } from "~/components/card/CardWithMultipleContent";
 import { getVideos } from "~/models/content.server";
-import { authenticator } from "~/services/auth.server";
+import type { Content } from "@prisma/client";
 
-export const loader = async ({ request }: LoaderArgs) => {
-  const [user, videos] = await Promise.all([
-    authenticator.isAuthenticated(request),
-    getVideos(),
-  ]);
-  return json({ user, videos });
+export const loader = async () => {
+  const videos = await getVideos();
+  return json({ videos: videos });
 };
 
 const Videos = () => {
-  const { user, videos } = useLoaderData<typeof loader>();
-  const isAuthenticated = user?.profile ? true : false;
+  const { videos } = useLoaderData<typeof loader>();
 
-  if (!videos || videos.length === 0)
-    return <h1 className="text-white">Wooops, ingen videoer her enda...</h1>;
+  const suggestedVideos = videos.filter((video) => video.suggested);
+  const otherVideos = videos.filter((video) => !video.suggested);
 
   return (
-    <main className="flex flex-col items-center justify-center">
-      <section className="max-w-6xl">
-        <Card
-          header={"Populære 🔥"}
-          buttonRight={
-            <>
-              {isAuthenticated && (
-                <Link to="new" className="flex justify-end">
-                  <AnimatedButton text="Legg til ny" />
-                </Link>
-              )}
-            </>
-          }
-        >
-          <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {videos.map((video) => {
-              return (
-                video.suggested && (
-                  <div key={video.id} className="my-1 inline-grid">
-                    <CardWithVideo
-                      title={video.title}
-                      linkToId={video.id}
-                      youtubeId={video.url}
-                      createdAt={video.createdAt}
-                    />
-                  </div>
-                )
-              );
-            })}
-          </div>
-        </Card>
-      </section>
+    <div>
+      <h1 className="mb-8 text-left text-4xl text-white md:text-5xl">
+        Videoer
+      </h1>
+      {suggestedVideos.length > 0 && (
+        <CardWithMultipleContent
+          content={suggestedVideos as unknown as Content[]}
+          cardHeader={"Fremhevet 🤩"}
+        />
+      )}
 
-      <section className="max-w-6xl pt-5">
-        <Card header={"Nytt og fresht 🤩"}>
-          <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {videos.map((video) => {
-              return (
-                !video.suggested && (
-                  <div key={video.id} className="my-1 inline-grid">
-                    <CardWithVideo
-                      title={video.title}
-                      linkToId={video.id}
-                      youtubeId={video.url}
-                      createdAt={video.createdAt}
-                    />
-                  </div>
-                )
-              );
-            })}
-          </div>
-        </Card>
-      </section>
-    </main>
+      {otherVideos.length > 0 && (
+        <div className="mt-5">
+          <CardWithMultipleContent
+            content={otherVideos as unknown as Content[]}
+            cardHeader={"Alle Videoer 🤩"}
+          />
+        </div>
+      )}
+    </div>
   );
 };
 
