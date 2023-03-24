@@ -102,3 +102,9 @@ export async function getNumBlogposts() {
     where: { category: { text: "Bloggpost" } },
   });
 }
+
+export async function getCourses() {
+  return prisma.content.findMany({
+    where: { category: { text: "Kurs" } },
+  });
+}
