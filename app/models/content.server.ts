@@ -9,6 +9,10 @@ export async function getContentById(id: string) {
   return prisma.content.findUnique({ where: { id }, include: { tags: true } });
 }
 
+export async function deleteContent(id: string) {
+  return prisma.content.delete({ where: { id } });
+}
+
 export async function searchContent(search: string) {
   return prisma.content.findMany({
     where: {
@@ -48,7 +52,7 @@ export async function getNumVideos() {
     where: { category: { text: "Video" } },
   });
 }
-
+ 
 export function createContent(
   {
     title,
