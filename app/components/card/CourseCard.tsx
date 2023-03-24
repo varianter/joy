@@ -1,4 +1,3 @@
-import Course from "~/routes/course";
 import AnimatedButton from "../buttons/AnimatedButton";
 import Card from "./Card";
 
@@ -9,15 +8,53 @@ interface CourseCardProps {
   createdAt: string;
   altImageText?: string | null;
   description: string;
+  tags?: string[];
 }
 
 const CourseCard = (props: CourseCardProps) => {
-  const { image, altImageText, title, linkToCourse, createdAt, description } = props;
+  const {
+    image,
+    altImageText,
+    title,
+    linkToCourse,
+    createdAt,
+    description,
+    tags,
+  } = props;
 
+  const getLevel = (tag: string) => {
+    if (tag == "beginner") {
+      return (
+        <img
+          alt="Beginner icon"
+          className="pl-3"
+          src={"/assets/icons/beginner.svg"}
+        />
+      );
+    } else if (tag == "intermediate") {
+      return (
+        <img
+          alt="Intermediate icon"
+          className="pl-3"
+          src={"/assets/icons/intermediate.svg"}
+        />
+      );
+    } else if (tag == "advanced") {
+      return (
+        <img
+          alt="Advanced icon"
+          className="pl-3"
+          src={"/assets/icons/advanced.svg"}
+        />
+      );
+    } else {
+      return null;
+    }
+  };
 
   return (
     <Card>
-      <div className="flex flex-col y-2 justify-between h-full">
+      <div className="y-2 flex h-full flex-col justify-between">
         <div className="inline-flex flex-col">
           <div className="flex justify-between">
             <div className="inline-flex items-center">
@@ -27,12 +64,8 @@ const CourseCard = (props: CourseCardProps) => {
                 src={"/assets/icons/course.svg"}
               />
               <p>Kurs</p>
-              <img
-                alt="Beginner icon"
-                className="pl-3"
-                src={"/assets/icons/beginner.svg"} />
+              {tags && tags.map((tag) => getLevel(tag))}
             </div>
-
 
             <p className="text-variant-black">
               {new Date(createdAt).toLocaleDateString("nb")}
@@ -45,16 +78,14 @@ const CourseCard = (props: CourseCardProps) => {
             src={image ?? "/assets/default-article-image.svg"}
           />
 
-          <h1 className="mt-2 text-left font-semibold text-2xl">{title}</h1>
-          <p className="text-left pb-2">{description}</p>
+          <h1 className="mt-2 text-left text-2xl font-semibold">{title}</h1>
+          <p className="pb-2 text-left">{description}</p>
         </div>
 
         <div className="inline-flex justify-end">
           <a href={linkToCourse} target="_blank" rel="noreferrer">
             <AnimatedButton text="Ta kurset" />
-
           </a>
-
         </div>
       </div>
     </Card>

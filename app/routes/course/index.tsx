@@ -10,13 +10,12 @@ export const loader = async () => {
 
 const Course = () => {
   const { courses } = useLoaderData<typeof loader>();
+
   return (
     <main className="flex flex-col items-center justify-center">
-
       <h1 className="text-white">Kurs</h1>
       <section className="max-w-5xl">
         <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-
           {courses?.map((course) => {
             return (
               <div key={course.id} className="my-1 inline-grid">
@@ -38,12 +37,14 @@ const Course = () => {
             linkToCourse=""
             createdAt={new Date().toDateString()}
             description="Grunnleggende innføring i HTML og DOM"
+            tags={["beginner"]}
           />
           <CourseCard
             title="JavaScript 101"
             linkToCourse=""
             createdAt={new Date().toDateString()}
             description="Grunnleggende innføring i JavaScript"
+            tags={["intermediate"]}
           />
           <CourseCard
             title="Game Development"
@@ -51,11 +52,12 @@ const Course = () => {
             linkToCourse=""
             createdAt={new Date().toDateString()}
             description="Grunnleggende innføring i spillutvikling"
+            tags={["advanced"]}
           />
         </div>
       </section>
     </main>
-  )
+  );
 };
 
 export default Course;
