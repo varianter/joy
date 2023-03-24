@@ -59,7 +59,7 @@ const CourseCard = (props: CourseCardProps) => {
           <div className="flex justify-between">
             <div className="inline-flex items-center">
               <img
-                alt="Kurs icon"
+                alt="course icon"
                 className="h-[1rem] pr-3"
                 src={"/assets/icons/course.svg"}
               />
@@ -73,7 +73,7 @@ const CourseCard = (props: CourseCardProps) => {
           </div>
 
           <img
-            alt={altImageText ?? "Figur av læreglede"}
+            alt={altImageText ?? "Variant icon"}
             className="h-[15rem] w-full py-3"
             src={image ?? "/assets/default-article-image.svg"}
           />

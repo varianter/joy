@@ -30,30 +30,6 @@ const Course = () => {
               </div>
             );
           })}
-
-          <CourseCard
-            title="HTML & DOM"
-            image={"/assets/icons/course.svg"}
-            linkToCourse=""
-            createdAt={new Date().toDateString()}
-            description="Grunnleggende innføring i HTML og DOM"
-            tags={["beginner"]}
-          />
-          <CourseCard
-            title="JavaScript 101"
-            linkToCourse=""
-            createdAt={new Date().toDateString()}
-            description="Grunnleggende innføring i JavaScript"
-            tags={["intermediate"]}
-          />
-          <CourseCard
-            title="Game Development"
-            image={"/assets/icons/course.svg"}
-            linkToCourse=""
-            createdAt={new Date().toDateString()}
-            description="Grunnleggende innføring i spillutvikling"
-            tags={["advanced"]}
-          />
         </div>
       </section>
     </main>
