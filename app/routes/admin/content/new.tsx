@@ -1,4 +1,5 @@
-import { ActionArgs, json, LoaderArgs, redirect } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs} from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
 import { Form, useActionData, useLoaderData } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import PrimaryButton from "~/components/buttons/PrimaryButton";

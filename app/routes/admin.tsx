@@ -1,5 +1,5 @@
 import { Link, Outlet } from "@remix-run/react";
-import { LoaderArgs } from "@remix-run/server-runtime";
+import type { LoaderArgs } from "@remix-run/server-runtime";
 import NavigationCard from "~/components/card/NavigationCard";
 import { requireUserSession } from "~/services/session";
 
