@@ -53,7 +53,7 @@ const CourseCard = (props: CourseCardProps) => {
   };
 
   return (
-    <Card>
+    <Card cssClass="bg-variant-blue-3 p-3">
       <div className="y-2 flex h-full flex-col justify-between">
         <div className="inline-flex flex-col">
           <div className="flex justify-between">
