@@ -26,6 +26,7 @@ const Course = () => {
                   createdAt={course.createdAt}
                   altImageText={course.imageText}
                   description={course.description}
+                  id={course.id}
                 />
               </div>
             );

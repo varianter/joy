@@ -1,3 +1,5 @@
+
+import { NavLink } from "@remix-run/react";
 import AnimatedButton from "../buttons/AnimatedButton";
 import Card from "./Card";
 
@@ -9,6 +11,7 @@ interface CourseCardProps {
   altImageText?: string | null;
   description: string;
   tags?: string[];
+  id: string;
 }
 
 const CourseCard = (props: CourseCardProps) => {
@@ -20,6 +23,7 @@ const CourseCard = (props: CourseCardProps) => {
     createdAt,
     description,
     tags,
+    id
   } = props;
 
   const getLevel = (tag: string) => {
@@ -83,9 +87,10 @@ const CourseCard = (props: CourseCardProps) => {
         </div>
 
         <div className="inline-flex justify-end">
-          <a href={linkToCourse} target="_blank" rel="noreferrer">
+          {/* <a href={linkToCourse} target="_blank" rel="noreferrer">
             <AnimatedButton text="Ta kurset" />
-          </a>
+          </a> */}
+          <NavLink to={id}>Gå til kurs</NavLink>
         </div>
       </div>
     </Card>
