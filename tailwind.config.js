@@ -35,8 +35,8 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ['"Open Sans"', "system-ui"],
-      serif: ['"Playfair_Display"', "ui-serif"],
+      sans: ['"Graphik-Regular"', "system-ui"],
+      serif: ['"Recoleta-Regular"', "ui-serif"],
       mono: ["ui-monospace", "SFMono-Regular"],
       display: ["Oswald"],
       body: ['"Open Sans"'],

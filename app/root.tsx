@@ -15,11 +15,7 @@ import globalStylesheetUrl from "./styles/shared.css";
 
 import { Layout } from "./components/layout/Layout";
 import { authenticator } from "./services/auth.server";
-import {
-  getNumBlogposts,
-  getNumVideos,
-  searchContent,
-} from "./models/content.server";
+import { searchContent } from "./models/content.server";
 import type { Content } from "@prisma/client";
 
 export const links: LinksFunction = () => {
@@ -39,23 +35,19 @@ export async function loader({ request }: LoaderArgs) {
   const queryParams = new URL(request.url).searchParams;
   const query = queryParams.get("search");
 
-  const [user, searchResult, numBlogposts, numVideos] = await Promise.all([
+  const [user, searchResult] = await Promise.all([
     authenticator.isAuthenticated(request),
-    query && query.length > 0 && searchContent(query ?? ""),
-    getNumBlogposts(),
-    getNumVideos(),
+    query && query.length > 0 && searchContent(query ?? "")
   ]);
 
   return json({
     user,
-    searchResult,
-    numBlogposts,
-    numVideos
+    searchResult
   });
 }
 
 export default function App() {
-  const { user, searchResult, numVideos, numBlogposts } =
+  const { user, searchResult } =
     useLoaderData<typeof loader>();
 
   const isAuthenticated = user?.profile ? true : false;
@@ -82,8 +74,6 @@ export default function App() {
           isAuthenticated={isAuthenticated}
           searchResult={search}
           isLoadingSearchResult={isLoadingSearchResult}
-          numVideos={numVideos}
-          numBlogposts={numBlogposts}
         />
         <ScrollRestoration />
         <Scripts />
