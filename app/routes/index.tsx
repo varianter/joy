@@ -42,7 +42,7 @@ export default function Index() {
         <section className="my-8 grid grid-cols-2 gap-5 md:grid-cols-4">
           <Link to="blogposts">
             <NavigationCard
-              header={`Bloggposter (${numBlogposts})`}
+              title={`Bloggposter (${numBlogposts})`}
               icon={
                 <img
                 alt={"Figur av bloggpost"}
@@ -55,7 +55,7 @@ export default function Index() {
 
           <Link to="lecture">
             <NavigationCard
-              header="Foredrag (0)"
+              title="Foredrag (0)"
               icon={
                 <img
                 alt={"Figur av foredrag"}
@@ -68,7 +68,7 @@ export default function Index() {
 
           <Link to="course">
             <NavigationCard
-              header={`Kurs (${numCourses})`}
+              title={`Kurs (${numCourses})`}
               icon={
                 <img
                   alt={"Figur av kurs"}
@@ -81,7 +81,7 @@ export default function Index() {
 
           <Link to="videos">
             <NavigationCard
-              header={`Videoer (${numVideos})`}
+              title={`Videoer (${numVideos})`}
               icon={
                 <img
                 alt={"Figur av video"}
