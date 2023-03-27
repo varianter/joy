@@ -5,27 +5,29 @@ import TagButton from "~/components/buttons/TagButton";
 import Card from "~/components/card/Card";
 import NavigationCard from "~/components/card/NavigationCard";
 import { getCategories } from "~/models/category.server";
-import { getNumBlogposts, getNumNewestContent, getNumVideos } from "~/models/content.server";
+import { getNumBlogposts, getNumCourses, getNumNewestContent, getNumVideos } from "~/models/content.server";
 
 const numberOfNewContent = 2;
 
 export const loader = async () => {
-  const [newestContent, categories, numVideos, numBlogposts] = await Promise.all([
+  const [newestContent, categories, numVideos, numBlogposts, numCourses] = await Promise.all([
     getNumNewestContent(numberOfNewContent),
     getCategories(),
     getNumVideos(),
-    getNumBlogposts()
+    getNumBlogposts(),
+    getNumCourses()
   ]);
   return json({
     newestContent,
     categories,
     numVideos,
-    numBlogposts
+    numBlogposts,
+    numCourses
   });
 };
 
 export default function Index() {
-  const { newestContent, categories, numVideos, numBlogposts } = useLoaderData<typeof loader>();
+  const { newestContent, categories, numVideos, numBlogposts, numCourses } = useLoaderData<typeof loader>();
 
   return (
       <div className="mt-24 md:mx-[5rem] md:mt-32 lg:mx-[15rem] xl:mx-[35rem]">
@@ -66,7 +68,7 @@ export default function Index() {
 
           <Link to="course">
             <NavigationCard
-              header="Kurs (0)"
+              header={`Kurs (${numCourses})`}
               icon={
                 <img
                   alt={"Figur av kurs"}

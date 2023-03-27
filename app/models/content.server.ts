@@ -112,3 +112,9 @@ export async function getCourses() {
     where: { category: { text: "Kurs" } },
   });
 }
+
+export async function getNumCourses() {
+  return prisma.content.count({
+    where: { category: { text: "Kurs" } },
+  });
+}
