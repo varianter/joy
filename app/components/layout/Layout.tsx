@@ -54,7 +54,7 @@ export const Layout = (props: LayoutProps) => {
                     return (
                       <Link
                         key={res.id}
-                        className="block truncate p-2 hover:bg-variant-blue-3"
+                        className="block truncate p-2 hover:bg-variant-blue-3 focus:bg-variant-blue-3"
                         to={"/content/" + res.id}
                       >
                         <span>{res.title}</span>
