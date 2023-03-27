@@ -5,8 +5,8 @@ import { getCourse, getCourses } from "~/models/content.server";
 import invariant from "tiny-invariant";
 
 export const loader = async ({ request, params }: LoaderArgs) => {
-    invariant(params.id, "course not found")
-    const course = await getCourse(params.id ?? "");
+    invariant(params.courseId, "Course not found")
+    const course = await getCourse(params.courseId ?? "");
     if (!course) {
         throw new Response("Not Found", { status: 404 });
     }
@@ -15,7 +15,6 @@ export const loader = async ({ request, params }: LoaderArgs) => {
 
 const CourseId = () => {
     const { course } = useLoaderData<typeof loader>();
-    console.log(course)
 
     return (
         <main className="flex flex-col items-center justify-center">
