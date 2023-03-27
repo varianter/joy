@@ -116,3 +116,9 @@ export async function getCourses() {
 export async function getCourse(id: string) {
   return prisma.content.findUnique({ where: { id } });
 }
+
+export async function getNumCourses() {
+  return prisma.content.count({
+    where: { category: { text: "Kurs" } },
+  });
+}

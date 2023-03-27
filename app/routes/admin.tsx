@@ -21,7 +21,7 @@ const Admin = () => {
         <div className="mt-5 flex flex-col gap-5 md:flex-row">
           <Link to="content/new">
             <NavigationCard
-              header="Legg til innhold"
+              title="Legg til innhold"
               icon={
                 <img
                   alt={"Figur av læreglede"}
@@ -33,7 +33,7 @@ const Admin = () => {
           </Link>
           <Link to="content/edit">
             <NavigationCard
-              header="Endre innhold"
+              title="Endre innhold"
               icon={
                 <img
                   alt={"Figur av læreglede"}
@@ -45,7 +45,7 @@ const Admin = () => {
           </Link>
           <Link to="content/delete">
             <NavigationCard
-              header="Slett innhold"
+              title="Slett innhold"
               icon={
                 <img
                   alt={"Figur av læreglede"}
