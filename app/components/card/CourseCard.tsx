@@ -1,6 +1,5 @@
-
 import { NavLink } from "@remix-run/react";
-import AnimatedButton from "../buttons/AnimatedButton";
+import Level from "../Level";
 import Card from "./Card";
 
 interface CourseCardProps {
@@ -23,52 +22,22 @@ const CourseCard = (props: CourseCardProps) => {
     createdAt,
     description,
     tags,
-    id
+    id,
   } = props;
 
-  const getLevel = (tag: string) => {
-    if (tag == "beginner") {
-      return (
-        <img
-          alt="Beginner icon"
-          className="pl-3"
-          src={"/assets/icons/beginner.svg"}
-        />
-      );
-    } else if (tag == "intermediate") {
-      return (
-        <img
-          alt="Intermediate icon"
-          className="pl-3"
-          src={"/assets/icons/intermediate.svg"}
-        />
-      );
-    } else if (tag == "advanced") {
-      return (
-        <img
-          alt="Advanced icon"
-          className="pl-3"
-          src={"/assets/icons/advanced.svg"}
-        />
-      );
-    } else {
-      return null;
-    }
-  };
-
   return (
-    <Card cssClass="bg-variant-blue-3 p-3">
+    <Card cssClass="bg-variant-blue-4 p-3">
       <div className="y-2 flex h-full flex-col justify-between">
         <div className="inline-flex flex-col">
           <div className="flex justify-between">
-            <div className="inline-flex items-center">
+            <div className="alig inline-flex items-center">
               <img
                 alt="course icon"
                 className="h-[1rem] pr-3"
                 src={"/assets/icons/course.svg"}
               />
-              <p>Kurs</p>
-              {tags && tags.map((tag) => getLevel(tag))}
+              <p className="pr-2">Kurs</p>
+              {tags && tags.map((tag) => <Level key={id} tag={tag} />)}
             </div>
 
             <p className="text-variant-black">

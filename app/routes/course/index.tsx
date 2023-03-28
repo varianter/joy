@@ -31,6 +31,16 @@ const Course = () => {
               </div>
             );
           })}
+          <CourseCard
+            title="Intro til HTML"
+            linkToCourse=""
+            image="/assets/icons/course.svg"
+            createdAt="11.06.2023"
+            altImageText="Bildeteskt"
+            description="Beskrivelse her av en beginner app"
+            id=""
+            tags={["beginner"]}
+          />
         </div>
       </section>
     </main>
