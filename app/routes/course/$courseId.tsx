@@ -6,6 +6,7 @@ import Level from "~/components/Level";
 import { Tag } from "@prisma/client";
 import { getTags } from "~/models/tag.server";
 import SecondaryButton from "~/components/buttons/SecondaryButton";
+import CheckTask from "~/components/CheckTask";
 
 const FAKE_TAGS: Tag[] = [
   { id: "1", text: "Nybegynner" },
@@ -63,7 +64,7 @@ const CourseId = () => {
 
       <p>{course.description}</p>
       <hr className="my-5 h-px w-full"></hr>
-      <h3>Innhold</h3>
+      <h2>Innhold</h2>
       <div className="text-left underline md:mx-[12rem] md:mt-32 lg:mx-[12rem] xl:mx-[12srem]">
         <div className="flex items-center">
           <p>Intro</p>
@@ -91,57 +92,31 @@ const CourseId = () => {
         </div>
       </div>
 
-      <h3 className="mt-5 py-10">Intro</h3>
+      <h2 className="mt-5 py-10">Intro</h2>
       <div className=" flex w-full rounded-2xl bg-variant-blue-2 p-5">
         Slides...
       </div>
 
-      <h3 className="mt-5 py-10">Kapittel 1 med oppgaveliste</h3>
+      <h2 className="mt-5 py-10">Kapittel 1 med oppgaveliste</h2>
+      <CheckTask
+        title="Oppgave 1: skriv navnet ditt"
+        description="  Bruk turtle-komandoene som forward(), left(), right(), penup() og
+            pendown() til å skrive navnet ditt i Python."
+        done={true}
+      />
+      <CheckTask
+        title="Oppgave 2: Fyldte bokstaver"
+        description=" Som neste utfordring skal du lage den første bokstaven i navnet ditt som en fyllt bokstav.
+        Her kan det være lurt å dele bokstaven opp i enkle figurer som firkanter, trekanter og halvsirkler, og tegne én og én del."
+        done={true}
+      />
+      <CheckTask
+        title="Oppgave 3: Figurer"
+        description="   Lek deg med ulike farger, og tegn et hus, en bil eller noe annet du har lyst til å lage. Bruk fantasien!"
+        done={false}
+      />
 
-      <div className="mb-10 flex w-full flex-col items-start rounded-2xl bg-variant-blue-2 p-5">
-        <p className="pl-4 text-xl">Oppgave 1: Skriv navnet ditt </p>
-        <div className="flex flex-row items-center justify-center">
-          <input
-            type="checkbox"
-            name="testCheckbox"
-            className="m-4 h-7 w-7 rounded-full"
-          />
-          <label htmlFor="testCheckbox" className="text-left">
-            Bruk turtle-komandoene som forward(), left(), right(), penup() og
-            pendown() til å skrive navnet ditt i Python.
-          </label>
-        </div>
-      </div>
-
-      <div className="mb-10 flex w-full flex-col items-start rounded-2xl bg-variant-blue-2 p-5">
-        <p className="pl-4 text-xl">Oppgave 2: Skriv navnet ditt </p>
-        <div className="flex flex-row items-center justify-center">
-          <input
-            type="checkbox"
-            name="testCheckbox"
-            className="m-4 h-7 w-7 rounded-full"
-          />
-          <label htmlFor="testCheckbox" className="text-left">
-            Bruk turtle-komandoene som forward(), left(), right(), penup() og
-            pendown() til å skrive navnet ditt i Python.
-          </label>
-        </div>
-      </div>
-
-      <div className="mb-10 flex w-full flex-col items-start rounded-2xl bg-variant-blue-2 p-5">
-        <p className="pl-4 text-xl">Oppgave 3: Skriv navnet ditt </p>
-        <div className="flex flex-row items-center justify-center">
-          <input
-            type="checkbox"
-            name="testCheckbox"
-            className="m-4 h-7 w-7 rounded-full"
-          />
-          <label htmlFor="testCheckbox" className="text-left">
-            Bruk turtle-komandoene som forward(), left(), right(), penup() og
-            pendown() til å skrive navnet ditt i Python.
-          </label>
-
-          <a
+      {/* <a
             className="items-left pl-8"
             href={"/"}
             target="_blank"
@@ -155,9 +130,7 @@ const CourseId = () => {
                 Sandbox
               </NavLink>
             </div>
-          </a>
-        </div>
-      </div>
+          </a> */}
     </main>
   );
 };
