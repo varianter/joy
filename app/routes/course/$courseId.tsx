@@ -1,24 +1,163 @@
 import { json, LoaderArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { getCourse } from "~/models/content.server";
+import { NavLink, useLoaderData } from "@remix-run/react";
+import { getCourse, getCourseTags } from "~/models/content.server";
 import invariant from "tiny-invariant";
+import Level from "~/components/Level";
+import { Tag } from "@prisma/client";
+import { getTags } from "~/models/tag.server";
+import SecondaryButton from "~/components/buttons/SecondaryButton";
+
+const FAKE_TAGS: Tag[] = [
+  { id: "1", text: "Nybegynner" },
+  { id: "2", text: "CSS" },
+];
 
 export const loader = async ({ request, params }: LoaderArgs) => {
   invariant(params.courseId, "Course not found");
-  const course = await getCourse(params.courseId ?? "");
+  const [course, tags] = await Promise.all([
+    getCourse(params.courseId),
+    getTags(),
+  ]);
+
   if (!course) {
     throw new Response("Not Found", { status: 404 });
   }
-  return json({ course });
+
+  return json({ course, tags: FAKE_TAGS });
 };
 
 const CourseId = () => {
-  const { course } = useLoaderData<typeof loader>();
+  const { course, tags } = useLoaderData<typeof loader>();
+
+  console.log(tags);
+  console.log(course);
 
   return (
-    <main className="flex flex-col">
-      <h1 className="text-white">{course.title}</h1>
-      <p className="text-white">{course.description}</p>
+    <main className=" mt-24 flex flex-col items-start text-white md:mx-[5rem] md:mt-32 lg:mx-[15rem] xl:mx-[35rem]">
+      <NavLink to={"/course"}>
+        <SecondaryButton text="Tilbake" />
+      </NavLink>
+      <div className="flex w-full justify-between pt-10">
+        <div className="flex items-center">
+          <img
+            alt="course icon"
+            className="h-[1rem] pr-2"
+            src={"/assets/icons/course.svg"}
+          />
+          <p>Kurs</p>
+        </div>
+        <p>{new Date(course.createdAt).toLocaleDateString("nb")} </p>
+      </div>
+      <h1>{course.title}</h1>
+      <div className="flex w-full flex-row justify-between pb-5 pt-10">
+        {tags && tags.map((tag: Tag) => <Level tag={tag.text} />)}
+        <ul className="flex items-end">
+          {tags &&
+            tags.map((tag: Tag) => (
+              <li className=" mr-3 rounded-3xl bg-variant-blue-3 px-2 py-1 text-xs hover:bg-variant-blue md:px-6 md:text-sm">
+                {tag.text}
+              </li>
+            ))}
+        </ul>
+      </div>
+
+      <p>{course.description}</p>
+      <hr className="my-5 h-px w-full"></hr>
+      <h3>Innhold</h3>
+      <div className="text-left underline md:mx-[12rem] md:mt-32 lg:mx-[12rem] xl:mx-[12srem]">
+        <div className="flex items-center">
+          <p>Intro</p>
+          <img
+            alt="arrowRigth"
+            className="h-[1rem] pl-2"
+            src={"/assets/icons/arrowRight.svg"}
+          />
+        </div>
+        <div className="flex items-center">
+          <p>Kapitel 1</p>
+          <img
+            alt="arrowRigth"
+            className="h-[1rem] pl-2"
+            src={"/assets/icons/arrowRight.svg"}
+          />
+        </div>
+        <div className="flex items-center">
+          <p>Kapitel 2</p>
+          <img
+            alt="arrowRigth"
+            className="h-[1rem] pl-2"
+            src={"/assets/icons/arrowRight.svg"}
+          />
+        </div>
+      </div>
+
+      <h3 className="mt-5 py-10">Intro</h3>
+      <div className=" flex w-full rounded-2xl bg-variant-blue-2 p-5">
+        Slides...
+      </div>
+
+      <h3 className="mt-5 py-10">Kapittel 1 med oppgaveliste</h3>
+
+      <div className="mb-10 flex w-full flex-col items-start rounded-2xl bg-variant-blue-2 p-5">
+        <p className="pl-4 text-xl">Oppgave 1: Skriv navnet ditt </p>
+        <div className="flex flex-row items-center justify-center">
+          <input
+            type="checkbox"
+            name="testCheckbox"
+            className="m-4 h-7 w-7 rounded-full"
+          />
+          <label htmlFor="testCheckbox" className="text-left">
+            Bruk turtle-komandoene som forward(), left(), right(), penup() og
+            pendown() til å skrive navnet ditt i Python.
+          </label>
+        </div>
+      </div>
+
+      <div className="mb-10 flex w-full flex-col items-start rounded-2xl bg-variant-blue-2 p-5">
+        <p className="pl-4 text-xl">Oppgave 2: Skriv navnet ditt </p>
+        <div className="flex flex-row items-center justify-center">
+          <input
+            type="checkbox"
+            name="testCheckbox"
+            className="m-4 h-7 w-7 rounded-full"
+          />
+          <label htmlFor="testCheckbox" className="text-left">
+            Bruk turtle-komandoene som forward(), left(), right(), penup() og
+            pendown() til å skrive navnet ditt i Python.
+          </label>
+        </div>
+      </div>
+
+      <div className="mb-10 flex w-full flex-col items-start rounded-2xl bg-variant-blue-2 p-5">
+        <p className="pl-4 text-xl">Oppgave 3: Skriv navnet ditt </p>
+        <div className="flex flex-row items-center justify-center">
+          <input
+            type="checkbox"
+            name="testCheckbox"
+            className="m-4 h-7 w-7 rounded-full"
+          />
+          <label htmlFor="testCheckbox" className="text-left">
+            Bruk turtle-komandoene som forward(), left(), right(), penup() og
+            pendown() til å skrive navnet ditt i Python.
+          </label>
+
+          <a
+            className="items-left pl-8"
+            href={"/"}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <div className="flex">
+              <NavLink
+                to={"/"}
+                className="rounded-3xl bg-variant-blue-3 px-9 py-3 text-white hover:bg-variant-blue"
+              >
+                Sandbox
+              </NavLink>
+            </div>
+          </a>
+        </div>
+      </div>
     </main>
   );
 };

@@ -13,7 +13,7 @@ const Course = () => {
 
   return (
     <main className="flex flex-col items-center justify-center">
-      <h1 className="text-white">Kurs</h1>
+      <h1 className="pb-8 text-white">Kurs</h1>
       <section className="max-w-5xl">
         <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {courses?.map((course) => {

@@ -36,7 +36,7 @@ const CourseCard = (props: CourseCardProps) => {
                 className="h-[1rem] pr-3"
                 src={"/assets/icons/course.svg"}
               />
-              <p className="pr-2">Kurs</p>
+              <p>Kurs</p>
               {tags && tags.map((tag) => <Level key={id} tag={tag} />)}
             </div>
 
