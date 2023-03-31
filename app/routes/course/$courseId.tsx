@@ -1,37 +1,25 @@
 import { json, LoaderArgs } from "@remix-run/node";
 import { NavLink, useLoaderData } from "@remix-run/react";
-import { getCourse, getCourseTags } from "~/models/content.server";
+import { getContentById } from "~/models/content.server";
 import invariant from "tiny-invariant";
 import Level from "~/components/Level";
 import { Tag } from "@prisma/client";
-import { getTags } from "~/models/tag.server";
 import SecondaryButton from "~/components/buttons/SecondaryButton";
 import CheckTask from "~/components/CheckTask";
 
-const FAKE_TAGS: Tag[] = [
-  { id: "1", text: "Nybegynner" },
-  { id: "2", text: "CSS" },
-];
-
-export const loader = async ({ request, params }: LoaderArgs) => {
+export const loader = async ({ params }: LoaderArgs) => {
   invariant(params.courseId, "Course not found");
-  const [course, tags] = await Promise.all([
-    getCourse(params.courseId),
-    getTags(),
-  ]);
+  const content = await getContentById(params.courseId);
 
-  if (!course) {
+  if (!content) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  return json({ course, tags: FAKE_TAGS });
+  return json({ content });
 };
 
 const CourseId = () => {
-  const { course, tags } = useLoaderData<typeof loader>();
-
-  console.log(tags);
-  console.log(course);
+  const { content } = useLoaderData<typeof loader>();
 
   return (
     <main className=" mt-24 flex flex-col items-start text-white md:mx-[5rem] md:mt-32 lg:mx-[15rem] xl:mx-[35rem]">
@@ -47,14 +35,15 @@ const CourseId = () => {
           />
           <p>Kurs</p>
         </div>
-        <p>{new Date(course.createdAt).toLocaleDateString("nb")} </p>
+        <p>{new Date(content.createdAt).toLocaleDateString("nb")} </p>
       </div>
-      <h1>{course.title}</h1>
+      <h1>{content.title}</h1>
       <div className="flex w-full flex-row justify-between pb-5 pt-10">
-        {tags && tags.map((tag: Tag) => <Level tag={tag.text} />)}
+        {content.tags &&
+          content.tags.map((tag: Tag) => <Level tag={tag.text} />)}
         <ul className="flex items-end">
-          {tags &&
-            tags.map((tag: Tag) => (
+          {content.tags &&
+            content.tags.map((tag: Tag) => (
               <li className=" mr-3 rounded-3xl bg-variant-blue-3 px-2 py-1 text-xs hover:bg-variant-blue md:px-6 md:text-sm">
                 {tag.text}
               </li>
@@ -62,7 +51,7 @@ const CourseId = () => {
         </ul>
       </div>
 
-      <p>{course.description}</p>
+      <p className="text-left">{content.description}</p>
       <hr className="my-5 h-px w-full"></hr>
       <h2>Innhold</h2>
       <div className="text-left underline md:mx-[12rem] md:mt-32 lg:mx-[12rem] xl:mx-[12srem]">
@@ -115,22 +104,6 @@ const CourseId = () => {
         description="   Lek deg med ulike farger, og tegn et hus, en bil eller noe annet du har lyst til å lage. Bruk fantasien!"
         done={false}
       />
-
-      {/* <a
-            className="items-left pl-8"
-            href={"/"}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <div className="flex">
-              <NavLink
-                to={"/"}
-                className="rounded-3xl bg-variant-blue-3 px-9 py-3 text-white hover:bg-variant-blue"
-              >
-                Sandbox
-              </NavLink>
-            </div>
-          </a> */}
     </main>
   );
 };
