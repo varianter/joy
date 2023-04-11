@@ -52,7 +52,7 @@ export async function getNumVideos() {
     where: { category: { text: "Video" } },
   });
 }
- 
+
 export function createContent(
   {
     title,
@@ -111,6 +111,10 @@ export async function getCourses() {
   return prisma.content.findMany({
     where: { category: { text: "Kurs" } },
   });
+}
+
+export async function getCourse(id: string) {
+  return prisma.content.findUnique({ where: { id } });
 }
 
 export async function getNumCourses() {
