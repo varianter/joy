@@ -23,13 +23,14 @@ export const loader = async ({ params }: LoaderArgs) => {
 const Content = () => {
   const { content, categories } = useLoaderData<typeof loader>();
   return (
-    <Card>
-      <div className="grid items-center md:grid-cols-2">
+    <Card cssClass="bg-variant-blue-4 ">
+      <div className="grid h-full sm:grid-cols-2">
         <img
           alt={content.imageText ?? "Figur av læreglede"}
-          className="h-[15rem] w-full md:h-full"
+          className="h-full w-full object-cover"
           src={content.image ?? "/assets/default-article-image.svg"}
         />
+
         <ArticlePreview
           category={
             categories.find((c) => c.id === content.categoryId)?.text ?? ""
