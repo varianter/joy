@@ -6,13 +6,13 @@ import type { Content } from "@prisma/client";
 
 export const loader = async () => {
   const lectures = await getLectures();
-  return json({ lectures: lectures });
+  return json({ lectures });
 };
 
 const Lecture = () => {
   const { lectures } = useLoaderData<typeof loader>();
 
-  const suggestedLectures = lectures.filter(
+  const featuredLectures = lectures.filter(
     (lecture) => lecture.suggested
   ) as unknown as Content[];
 
@@ -22,9 +22,9 @@ const Lecture = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      {suggestedLectures.length > 0 && (
+      {featuredLectures.length > 0 && (
         <CardWithMultipleContent
-          content={suggestedLectures}
+          content={featuredLectures}
           header={"Anbefalte 🔥"}
           buttonText={"Se foredrag"}
         />

@@ -6,13 +6,13 @@ import type { Content } from "@prisma/client";
 
 export const loader = async () => {
   const videos = await getVideos();
-  return json({ videos: videos });
+  return json({ videos });
 };
 
 const Videos = () => {
   const { videos } = useLoaderData<typeof loader>();
 
-  const suggestedVideos = videos.filter(
+  const featuredVideos = videos.filter(
     (video) => video.suggested
   ) as unknown as Content[];
 
@@ -22,9 +22,9 @@ const Videos = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      {suggestedVideos.length > 0 && (
+      {featuredVideos.length > 0 && (
         <CardWithMultipleContent
-          content={suggestedVideos}
+          content={featuredVideos}
           header={"Anbefalte 🔥"}
           buttonText={"Se video"}
         />
