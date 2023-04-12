@@ -292,7 +292,7 @@ const NewContent = () => {
         </fieldset>
       </div>
 
-      <fieldset className="mt-3 flex gap-4">
+      <fieldset className="mt-3 grid grid-cols-2 sm:grid-cols-5 gap-4">
         <legend>Tags:</legend>
         {tags?.map((tag) => {
           return (
