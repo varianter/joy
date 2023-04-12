@@ -6,13 +6,13 @@ import CardWithMultipleContent from "~/components/card/CardWithMultipleContent";
 
 export const loader = async () => {
   const blogposts = await getBlogposts();
-  return json({ blogposts: blogposts });
+  return json({ blogposts });
 };
 
 const Blogposts = () => {
   const { blogposts } = useLoaderData<typeof loader>();
 
-  const suggestedBlogposts = blogposts.filter(
+  const featuredBlogposts = blogposts.filter(
     (blogpost) => blogpost.suggested
   ) as unknown as Content[];
 
@@ -22,10 +22,11 @@ const Blogposts = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      {suggestedBlogposts.length > 0 && (
+      {featuredBlogposts.length > 0 && (
         <CardWithMultipleContent
-          content={suggestedBlogposts}
+          content={featuredBlogposts}
           header={"Anbefalte 🔥"}
+          buttonText={"Les mer"}
         />
       )}
 
@@ -33,6 +34,7 @@ const Blogposts = () => {
         <CardWithMultipleContent
           content={otherBlogposts}
           header={"Alle bloggposter 🤩"}
+          buttonText={"Les mer"}
         />
       )}
     </div>
