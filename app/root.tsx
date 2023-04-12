@@ -21,7 +21,7 @@ import type { Content } from "@prisma/client";
 export const links: LinksFunction = () => {
   return [
     { rel: "stylesheet", href: tailwindStylesheetUrl },
-    { rel: "stylesheet", href: globalStylesheetUrl },
+    { rel: "stylesheet", href: globalStylesheetUrl }
   ];
 };
 
