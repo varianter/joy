@@ -83,7 +83,6 @@ p {
 }
 
 .footer__inner {
-
   position: relative;
   z-index: 2;
   max-width: 50rem;
@@ -143,11 +142,11 @@ p {
 }
 
 .footer__item a {
-  color: #736EBE;
+  color: #736ebe;
   text-decoration: underline;
   padding-bottom: 0.1rem;
   transition: border-bottom 200ms ease-out;
 }
 .footer__item a:hover {
-  color: #B7B4DE;
+  color: #b7b4de;
 }
