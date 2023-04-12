@@ -122,3 +122,15 @@ export async function getNumCourses() {
     where: { category: { text: "Kurs" } },
   });
 }
+
+export async function getLectures() {
+  return prisma.content.findMany({
+    where: { category: { text: "Foredrag" } },
+  });
+}
+
+export async function getNumLectures() {
+  return prisma.content.count({
+    where: { category: { text: "Foredrag" } },
+  });
+}

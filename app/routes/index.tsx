@@ -8,6 +8,7 @@ import { getCategories } from "~/models/category.server";
 import {
   getNumBlogposts,
   getNumCourses,
+  getNumLectures,
   getNumNewestContent,
   getNumVideos,
 } from "~/models/content.server";
@@ -15,13 +16,14 @@ import {
 const numberOfNewContent = 2;
 
 export const loader = async () => {
-  const [newestContent, categories, numVideos, numBlogposts, numCourses] =
+  const [newestContent, categories, numVideos, numBlogposts, numCourses, numLectures] =
     await Promise.all([
       getNumNewestContent(numberOfNewContent),
       getCategories(),
       getNumVideos(),
       getNumBlogposts(),
       getNumCourses(),
+      getNumLectures()
     ]);
   return json({
     newestContent,
@@ -29,11 +31,12 @@ export const loader = async () => {
     numVideos,
     numBlogposts,
     numCourses,
+    numLectures
   });
 };
 
 export default function Index() {
-  const { newestContent, categories, numVideos, numBlogposts, numCourses } =
+  const { newestContent, categories, numVideos, numBlogposts, numCourses, numLectures } =
     useLoaderData<typeof loader>();
 
   return (
@@ -65,7 +68,7 @@ export default function Index() {
 
         <Link to="lecture">
           <NavigationCard
-            title="Foredrag (0)"
+            title={`Foredrag (${numLectures})`}
             icon={
               <img
                 alt={"Figur av foredrag"}

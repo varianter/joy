@@ -5,11 +5,13 @@ import Card from "./Card";
 interface CardWithMultipleContentProps {
   content: Content[];
   header: string;
+  buttonText: string;
 }
 
 const CardWithMultipleContent = ({
   content,
   header,
+  buttonText
 }: CardWithMultipleContentProps) => {
   return (
     <Card cssClass="bg-variant-blue-3 p-3">
@@ -47,7 +49,7 @@ const CardWithMultipleContent = ({
                         target="_blank"
                         rel="noreferrer"
                       >
-                        <SecondaryButton text={"Les mer"} />
+                        <SecondaryButton text={buttonText} />
                       </a>
                     </div>
                   </div>

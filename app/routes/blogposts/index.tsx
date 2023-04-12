@@ -26,6 +26,7 @@ const Blogposts = () => {
         <CardWithMultipleContent
           content={suggestedBlogposts}
           header={"Anbefalte 🔥"}
+          buttonText={"Les mer"}
         />
       )}
 
@@ -33,6 +34,7 @@ const Blogposts = () => {
         <CardWithMultipleContent
           content={otherBlogposts}
           header={"Alle bloggposter 🤩"}
+          buttonText={"Les mer"}
         />
       )}
     </div>

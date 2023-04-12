@@ -26,6 +26,7 @@ const Videos = () => {
         <CardWithMultipleContent
           content={suggestedVideos}
           header={"Anbefalte 🔥"}
+          buttonText={"Se video"}
         />
       )}
 
@@ -33,6 +34,7 @@ const Videos = () => {
         <CardWithMultipleContent
           content={otherVideos}
           header={"Alle videoer 🤩"}
+          buttonText={"Se video"}
         />
       )}
     </div>
