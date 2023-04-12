@@ -1,7 +1,7 @@
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { CardWithMultipleContent } from "~/components/card/CardWithMultipleContent";
 import { getVideos } from "~/models/content.server";
+import CardWithMultipleContent from "~/components/card/CardWithMultipleContent";
 import type { Content } from "@prisma/client";
 
 export const loader = async () => {
@@ -12,28 +12,28 @@ export const loader = async () => {
 const Videos = () => {
   const { videos } = useLoaderData<typeof loader>();
 
-  const suggestedVideos = videos.filter((video) => video.suggested);
-  const otherVideos = videos.filter((video) => !video.suggested);
+  const suggestedVideos = videos.filter(
+    (video) => video.suggested
+  ) as unknown as Content[];
+
+  const otherVideos = videos.filter(
+    (video) => !video.suggested
+  ) as unknown as Content[];
 
   return (
-    <div>
-      <h1 className="mb-8 text-left text-4xl text-white md:text-5xl">
-        Videoer
-      </h1>
+    <div className="flex flex-col gap-4">
       {suggestedVideos.length > 0 && (
         <CardWithMultipleContent
-          content={suggestedVideos as unknown as Content[]}
-          cardHeader={"Fremhevet 🤩"}
+          content={suggestedVideos}
+          header={"Anbefalte 🔥"}
         />
       )}
 
       {otherVideos.length > 0 && (
-        <div className="mt-5">
-          <CardWithMultipleContent
-            content={otherVideos as unknown as Content[]}
-            cardHeader={"Alle Videoer 🤩"}
-          />
-        </div>
+        <CardWithMultipleContent
+          content={otherVideos}
+          header={"Alle videoer 🤩"}
+        />
       )}
     </div>
   );

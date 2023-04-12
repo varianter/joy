@@ -40,22 +40,22 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
   const linkButtonText = (): LinkButtonProps => {
     switch (category.toLowerCase()) {
       case "bloggpost":
-        return { text: "Se alle bloggposter", route: "blogposts" };
+        return { text: "Se alle bloggposter", route: "/blogposts" };
       case "video":
-        return { text: "Se alle videoer", route: "videos" };
+        return { text: "Se alle videoer", route: "/videos" };
       case "podcast":
-        return { text: "Se alle pocasts", route: "podcasts" };
+        return { text: "Se alle pocasts", route: "/podcasts" };
       case "kurs":
-        return { text: "Se alle kurs", route: "course" };
+        return { text: "Se alle kurs", route: "/course" };
       case "foredrag":
-        return { text: "Se alle foredrag", route: "lecture" };
+        return { text: "Se alle foredrag", route: "/lecture" };
       default:
-        return { text: "", route: "" };
+        return { text: "", route: "/" };
     }
   };
 
   return (
-    <div className="p-3 text-left md:p-10">
+    <div className="p-3 text-left sm:relative ">
       <div className="mb-5 flex gap-2">
         <img
           alt={"Figur av læreglede"}
@@ -65,11 +65,11 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
         <span>{category}</span>
         <span className="ml-auto font-bold">{createdDate}</span>
       </div>
-      <h1 className="text-left text-4xl">{title}</h1>
+      <h1 className="text-left text-4xl line-clamp-2">{title}</h1>
       <p className="my-5 line-clamp-3">{description}</p>
-      <div className=" flex items-center">
+      <div className="flex items-center sm:absolute sm:bottom-2 sm:inset-x-6">
         <Link
-          className="underline hover:text-variant-pink "
+          className="underline hover:text-variant-pink"
           to={linkButtonText().route}
         >
           {linkButtonText().text}

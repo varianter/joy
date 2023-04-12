@@ -74,7 +74,7 @@ export const Layout = (props: LayoutProps) => {
           </form>
         </div>
       </div>
-        <div className="mt-10">
+        <div className="mt-24 md:mx-[5rem] sm:mt-32 xl:mx-[35rem]">
           <Outlet />
         </div>
     </main>
