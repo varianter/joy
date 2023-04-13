@@ -6,10 +6,11 @@ interface ToggleProps {
   label: string;
   ref: RefObject<HTMLInputElement>;
   inputName: string;
+  defaultChecked?: boolean;
 }
 
 const Toggle = (props: ToggleProps) => {
-  const { leftText, rightText, label, ref, inputName } = props;
+  const { leftText, rightText, label, ref, inputName, defaultChecked } = props;
 
   return (
     <div className="flex flex-col">
@@ -26,6 +27,7 @@ const Toggle = (props: ToggleProps) => {
             type="checkbox"
             className="peer hidden"
             ref={ref}
+            defaultChecked={defaultChecked}
           />
           <div className="h-6 w-10 rounded-full bg-variant-blue-3 shadow-inner"></div>
           <div className="absolute inset-y-0 left-0 m-1 h-4 w-4 rounded-full bg-variant-blue shadow peer-checked:right-0 peer-checked:left-auto"></div>

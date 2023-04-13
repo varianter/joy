@@ -1,4 +1,4 @@
-import { Link, Outlet } from "@remix-run/react";
+import { Link, Outlet, useLocation } from "@remix-run/react";
 import type { LoaderArgs } from "@remix-run/server-runtime";
 import NavigationCard from "~/components/card/NavigationCard";
 import { requireUserSession } from "~/services/session";
@@ -8,9 +8,11 @@ export const loader = async ({ request }: LoaderArgs) => {
 };
 
 const Admin = () => {
+  const location = useLocation();
+
   return (
-    <>
-      <section className="text-left text-white md:w-1/2">
+    <div className="flex flex-col items-center">
+      <section className="text-left text-white sm:w-1/2">
         <h1>Admin 🥷</h1>
         <p>
           Her kan du legge til, fjerne eller endre innhold. Ved spørsmål eller
@@ -22,6 +24,7 @@ const Admin = () => {
           <Link to="content/new">
             <NavigationCard
               title="Legg til innhold"
+              isActive={location.pathname.includes("new")}
               icon={
                 <img
                   alt={"Figur av læreglede"}
@@ -34,6 +37,7 @@ const Admin = () => {
           <Link to="content/edit">
             <NavigationCard
               title="Endre innhold"
+              isActive={location.pathname.includes("edit")}
               icon={
                 <img
                   alt={"Figur av læreglede"}
@@ -46,6 +50,7 @@ const Admin = () => {
           <Link to="content/delete">
             <NavigationCard
               title="Slett innhold"
+              isActive={location.pathname.includes("delete")}
               icon={
                 <img
                   alt={"Figur av læreglede"}
@@ -58,7 +63,7 @@ const Admin = () => {
         </div>
       </section>
       <Outlet />
-    </>
+    </div>
   );
 };
 

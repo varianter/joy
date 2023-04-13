@@ -13,6 +13,51 @@ export async function deleteContent(id: string) {
   return prisma.content.delete({ where: { id } });
 }
 
+export function updateContent(
+  {
+    id,
+    title,
+    description,
+    url,
+    suggested,
+    categoryId,
+    image,
+    imageText,
+    author,
+  }: Pick<
+    Content,
+    | "id"
+    | "title"
+    | "description"
+    | "url"
+    | "suggested"
+    | "categoryId"
+    | "image"
+    | "imageText"
+    | "author"
+  >,
+  tags?: string[]
+) {
+  return prisma.content.update({
+    where: { id },
+    data: {
+      title,
+      description,
+      url,
+      suggested,
+      categoryId,
+      image,
+      imageText,
+      author,
+      tags: {
+        connect: tags?.map((t) => {
+          return { id: t };
+        }),
+      },
+    },
+  });
+}
+
 export async function searchContent(search: string) {
   return prisma.content.findMany({
     where: {

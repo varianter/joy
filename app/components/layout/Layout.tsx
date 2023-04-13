@@ -1,6 +1,5 @@
 import type { Content } from "@prisma/client";
 import { Link, Outlet, useSearchParams } from "@remix-run/react";
-import { and } from "~/utils";
 import PrimaryButton from "../buttons/PrimaryButton";
 import { SearchInput } from "../search/SearchInput";
 
@@ -71,7 +70,7 @@ export const Layout = (props: LayoutProps) => {
           </form>
         </div>
       </div>
-      <div className="mt-24 sm:mt-32 md:mx-[5rem] xl:mx-[35rem] mx-5">
+      <div className="mx-5 mt-24 sm:mt-32 md:mx-[5rem] xl:mx-[35rem] min-h-[40rem]">
         <Outlet />
       </div>
       <footer className="footer mt-10">

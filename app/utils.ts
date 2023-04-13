@@ -25,6 +25,3 @@ export const getIconForCategory = (category: string) => {
       return "lecture";
   }
 };
-
-export const and = (...classes: (string | undefined)[]) =>
-  classes.filter(Boolean).join(" ");
