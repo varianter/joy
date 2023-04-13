@@ -6,17 +6,18 @@ interface InputProps {
   htmlRef: RefObject<HTMLInputElement>;
   name: string;
   defaultValue?: string;
+  type?: string;
 }
 
 const Input = (props: InputProps) => {
-  const { error, label, name, htmlRef, defaultValue } = props;
+  const { error, label, name, htmlRef, defaultValue, type } = props;
 
   return (
     <div className="flex w-full flex-col gap-1 pb-4">
       <label>{label}</label>
       <input
         ref={htmlRef}
-        type="text"
+        type={!type ? "text" : type}
         name={name}
         defaultValue={defaultValue}
         className="rounded-md bg-variant-blue-3 px-3 leading-loose text-black"

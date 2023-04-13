@@ -24,6 +24,7 @@ export function updateContent(
     image,
     imageText,
     author,
+    createdAt
   }: Pick<
     Content,
     | "id"
@@ -35,6 +36,7 @@ export function updateContent(
     | "image"
     | "imageText"
     | "author"
+    | "createdAt"
   >,
   tags?: string[]
 ) {
@@ -49,6 +51,7 @@ export function updateContent(
       image,
       imageText,
       author,
+      createdAt,
       tags: {
         connect: tags?.map((t) => {
           return { id: t };

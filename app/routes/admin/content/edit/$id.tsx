@@ -1,6 +1,11 @@
 import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
-import { Form, useActionData, useLoaderData } from "@remix-run/react";
+import {
+  Form,
+  useActionData,
+  useLoaderData,
+  useTransition,
+} from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import PrimaryButton from "~/components/buttons/PrimaryButton";
 import Input from "~/components/inputs/Input";
@@ -33,6 +38,7 @@ export async function action({ request }: ActionArgs) {
   const author = formData.get("author");
   const categoryId = formData.get("categoryId");
   const tags = (formData.getAll("tag") as string[]) ?? [];
+  const createdAt = new Date(formData.get("createdAt") as string);
 
   const errors = {
     title: null,
@@ -43,7 +49,8 @@ export async function action({ request }: ActionArgs) {
     image: null,
     imageText: null,
     author: null,
-    id: null
+    id: null,
+    createdAt: null,
   };
 
   if (typeof title !== "string" || title.length === 0) {
@@ -154,6 +161,18 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
+  if (isNaN(createdAt.getDate())) {
+    return json(
+      {
+        errors: {
+          ...errors,
+          createdAt: "Opprettetdato er påkrevd",
+        },
+      },
+      { status: 400 }
+    );
+  }
+
   if (typeof categoryId !== "string") {
     return json(
       {
@@ -166,22 +185,23 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-    await updateContent(
-      {
-        id,
-        title,
-        description,
-        url,
-        suggested,
-        categoryId,
-        image,
-        imageText,
-        author,
-      },
-      tags
-    );
+  await updateContent(
+    {
+      id,
+      title,
+      description,
+      url,
+      suggested,
+      categoryId,
+      image,
+      imageText,
+      author,
+      createdAt,
+    },
+    tags
+  );
 
-  return redirect(`/`);
+  return redirect(`/admin/content/edit`);
 }
 
 const EditContent = () => {
@@ -193,9 +213,14 @@ const EditContent = () => {
   const suggestedRef = useRef<HTMLInputElement>(null);
   const tagsRef = useRef<HTMLInputElement>(null);
   const categoriesRef = useRef<HTMLInputElement>(null);
+  const createdAtRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLInputElement>(null);
   const imageAltTextRef = useRef<HTMLInputElement>(null);
   const authorRef = useRef<HTMLInputElement>(null);
+
+  const transition = useTransition();
+
+  console.log("TRANS: ", transition);
 
   useEffect(() => {
     if (actionData?.errors?.title) {
@@ -203,6 +228,8 @@ const EditContent = () => {
     } else if (actionData?.errors?.description) {
       descriptionRef.current?.focus();
     } else if (actionData?.errors?.suggested) {
+      suggestedRef.current?.focus();
+    } else if (actionData?.errors?.createdAt) {
       suggestedRef.current?.focus();
     } else if (actionData?.errors?.url) {
       urlRef.current?.focus();
@@ -279,6 +306,15 @@ const EditContent = () => {
         name={"author"}
       />
 
+      <Input
+        type="date"
+        error={actionData?.errors?.createdAt}
+        label={"Opprettet (mm-dd-yyyy)"}
+        htmlRef={createdAtRef}
+        defaultValue={content.createdAt.split("T")[0]}
+        name={"createdAt"}
+      />
+
       <div className="mt-3 grid grid-cols-2 pb-4 md:grid-cols-3">
         <Toggle
           leftText={"Nei"}
@@ -347,7 +383,12 @@ const EditContent = () => {
       </fieldset>
 
       <div className="mt-5 flex justify-end">
-        <PrimaryButton text="Lagre" />
+        <PrimaryButton
+          text="Lagre"
+          disabled={
+            transition.state === "submitting" || transition.state === "loading"
+          }
+        />
       </div>
     </Form>
   );
