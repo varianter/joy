@@ -1,7 +1,7 @@
 interface NavigationCardProps {
   title: string;
   icon: JSX.Element;
-  isActive: boolean;
+  isActive?: boolean;
 }
 
 const NavigationCard = (props: NavigationCardProps) => {
