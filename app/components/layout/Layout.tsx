@@ -26,7 +26,7 @@ export const Layout = (props: LayoutProps) => {
   };
 
   return (
-    <main className="background min-h-screen  text-center">
+    <main className="background min-h-screen text-center">
       <div className="grid p-5 px-6 pb-5 md:grid-cols-2">
         <div className="flex items-center">
           <Link to="/">
@@ -71,7 +71,7 @@ export const Layout = (props: LayoutProps) => {
           </form>
         </div>
       </div>
-      <div className="mt-24 sm:mt-32 md:mx-[5rem] xl:mx-[35rem]">
+      <div className="mt-24 sm:mt-32 md:mx-[5rem] xl:mx-[35rem] mx-5">
         <Outlet />
       </div>
       <footer className="footer mt-10">
