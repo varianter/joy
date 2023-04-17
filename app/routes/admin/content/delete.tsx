@@ -1,4 +1,4 @@
-import { Form, useLoaderData } from "@remix-run/react";
+import { Form, useLoaderData, useTransition } from "@remix-run/react";
 import type { ActionArgs } from "@remix-run/server-runtime";
 import { json } from "@remix-run/server-runtime";
 import { redirect } from "@remix-run/server-runtime";
@@ -35,6 +35,9 @@ export async function action({ request }: ActionArgs) {
 const DeleteContent = () => {
   const { content } = useLoaderData<typeof loader>();
   const [filteredContent, setFilteredContent] = useState(content);
+  const [selectedRow, setSelectedRow] = useState("");
+
+  const transition = useTransition();
 
   const handleSearchChange = (e: React.FormEvent<HTMLInputElement>) => {
     const tempFilteredContent = content.filter((fc) =>
@@ -68,7 +71,21 @@ const DeleteContent = () => {
             </div>
 
             <div className="mb-5 flex justify-end">
-              <PrimaryButton text="Slett" />
+              <PrimaryButton
+                onClickFunction={() => setSelectedRow(c.id)}
+                text={
+                  (transition.state === "submitting" ||
+                    transition.state === "loading") &&
+                  selectedRow === c.id
+                    ? "sletter ... "
+                    : "Slett"
+                }
+                disabled={
+                  (transition.state === "submitting" ||
+                    transition.state === "loading") &&
+                  selectedRow === c.id
+                }
+              />
             </div>
           </Form>
         );

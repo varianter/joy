@@ -220,8 +220,6 @@ const EditContent = () => {
 
   const transition = useTransition();
 
-  console.log("TRANS: ", transition);
-
   useEffect(() => {
     if (actionData?.errors?.title) {
       titleRef.current?.focus();
@@ -245,7 +243,7 @@ const EditContent = () => {
       method="put"
       className="w-full rounded-3xl bg-variant-blue p-5 text-left text-white lg:w-[60rem]"
     >
-      <input name="id" hidden value={id} />
+      <input name="id" hidden defaultValue={id} />
       <Input
         error={actionData?.errors?.title}
         label={"Tittel"}
@@ -384,7 +382,11 @@ const EditContent = () => {
 
       <div className="mt-5 flex justify-end">
         <PrimaryButton
-          text="Lagre"
+          text={
+            transition.state === "submitting" || transition.state === "loading"
+              ? "Lagrer ... "
+              : "Lagre"
+          }
           disabled={
             transition.state === "submitting" || transition.state === "loading"
           }

@@ -1,6 +1,6 @@
-import type { ActionArgs, LoaderArgs} from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
-import { Form, useActionData, useLoaderData } from "@remix-run/react";
+import { Form, useActionData, useLoaderData, useTransition } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import PrimaryButton from "~/components/buttons/PrimaryButton";
 import Input from "~/components/inputs/Input";
@@ -178,6 +178,9 @@ const NewContent = () => {
   const imageAltTextRef = useRef<HTMLInputElement>(null);
   const authorRef = useRef<HTMLInputElement>(null);
 
+  const transition = useTransition();
+
+
   useEffect(() => {
     if (actionData?.errors?.title) {
       titleRef.current?.focus();
@@ -292,7 +295,7 @@ const NewContent = () => {
         </fieldset>
       </div>
 
-      <fieldset className="mt-3 grid grid-cols-2 sm:grid-cols-5 gap-4">
+      <fieldset className="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-5">
         <legend>Tags:</legend>
         {tags?.map((tag) => {
           return (
@@ -314,7 +317,16 @@ const NewContent = () => {
       </fieldset>
 
       <div className="mt-5 flex justify-end">
-        <PrimaryButton text="Lagre" />
+        <PrimaryButton
+          text={
+            transition.state === "submitting" || transition.state === "loading"
+              ? "Lagrer ... "
+              : "Lagre"
+          }
+          disabled={
+            transition.state === "submitting" || transition.state === "loading"
+          }
+        />
       </div>
     </Form>
   );
