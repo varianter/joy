@@ -1,6 +1,18 @@
-# Joy - en hub for læreglede 
-Created by using Remix Indie Stack. Learn more about [Remix Stacks](https://remix.run/stacks).
+# Joy - en hub for læreglede
 
+Vi i Variant lager og holder en del kurs og foredrag i flere sammenhenger. Vi har noen bloggposter her, noen YouTube-videoer der og noen foredrag en annen plass. Vi har læringsmateriell på vår nettside, på bloggen vår, på YouTube, på konferansesider og en del på våre interne kanaler som Docs og Slack. Med denne huben ønsker vi å samle dette. Denne huben skal være åpen for både varianter og ikke-varianter.
+
+Laget med Remix Indie Stack. Les mer om [Remix Stacks](https://remix.run/stacks).
+
+## Hvordan kjøre opp prosjektet
+
+- Last ned koden (clone-knapp i Github)
+- Lag en kopi av .env.example-filen, og kall den .env
+- Legg til miljøvariabler i .env-filen (spør noen Varianter om de riktige verdiene)
+- Kjør `npm install` for å installere pakker
+- Kjør `npx prisma generate` for å generere typer
+- Kjør `npm run dev` for å kjøre opp lokalt
+- Nå skal prosjektet vises på `http://localhost:3000`
 
 ## What's in the stack
 
