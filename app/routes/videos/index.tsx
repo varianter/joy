@@ -13,11 +13,11 @@ const Videos = () => {
   const { videos } = useLoaderData<typeof loader>();
 
   const featuredVideos = videos.filter(
-    (video) => video.suggested
+    (video) => video.featured
   ) as unknown as Content[];
 
   const otherVideos = videos.filter(
-    (video) => !video.suggested
+    (video) => !video.featured
   ) as unknown as Content[];
 
   return (

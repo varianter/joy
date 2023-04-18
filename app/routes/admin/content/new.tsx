@@ -27,7 +27,7 @@ export async function action({ request }: ActionArgs) {
   const title = formData.get("title");
   const description = formData.get("description");
   const url = formData.get("url");
-  const suggested = formData.get("suggested") === "on" ? true : false;
+  const featured = formData.get("featured") === "on" ? true : false;
   const image = formData.get("image");
   const imageText = formData.get("imageText");
   const author = formData.get("author");
@@ -38,7 +38,7 @@ export async function action({ request }: ActionArgs) {
     title: null,
     description: null,
     url: null,
-    suggested: null,
+    featured: null,
     categoryId: null,
     image: null,
     imageText: null,
@@ -158,7 +158,7 @@ export async function action({ request }: ActionArgs) {
       title,
       description,
       url,
-      suggested,
+      featured,
       categoryId,
       image,
       imageText,
@@ -176,7 +176,7 @@ const NewContent = () => {
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
   const urlRef = useRef<HTMLInputElement>(null);
-  const suggestedRef = useRef<HTMLInputElement>(null);
+  const featuredRef = useRef<HTMLInputElement>(null);
   const tagsRef = useRef<HTMLInputElement>(null);
   const categoriesRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLInputElement>(null);
@@ -190,8 +190,8 @@ const NewContent = () => {
       titleRef.current?.focus();
     } else if (actionData?.errors?.description) {
       descriptionRef.current?.focus();
-    } else if (actionData?.errors?.suggested) {
-      suggestedRef.current?.focus();
+    } else if (actionData?.errors?.featured) {
+      featuredRef.current?.focus();
     } else if (actionData?.errors?.url) {
       urlRef.current?.focus();
     } else if (actionData?.errors?.image) {
@@ -265,8 +265,8 @@ const NewContent = () => {
           leftText={"Nei"}
           rightText={"Ja"}
           label={"Fremhevet"}
-          ref={suggestedRef}
-          inputName={"suggested"}
+          htmlRef={featuredRef}
+          inputName={"featured"}
         />
 
         <fieldset className="sm:mt-4 md:col-span-2">

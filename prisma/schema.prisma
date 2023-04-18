@@ -12,7 +12,7 @@ model Content {
   title       String
   description String
   url         String
-  suggested   Boolean  @default(false)
+  featured    Boolean  @default(false)
   author      String
   category    Category @relation(fields: [categoryId], references: [id])
   tags        Tag[]

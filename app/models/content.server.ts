@@ -19,7 +19,7 @@ export function updateContent(
     title,
     description,
     url,
-    suggested,
+    featured,
     categoryId,
     image,
     imageText,
@@ -31,7 +31,7 @@ export function updateContent(
     | "title"
     | "description"
     | "url"
-    | "suggested"
+    | "featured"
     | "categoryId"
     | "image"
     | "imageText"
@@ -46,7 +46,7 @@ export function updateContent(
       title,
       description,
       url,
-      suggested,
+      featured,
       categoryId,
       image,
       imageText,
@@ -106,7 +106,7 @@ export function createContent(
     title,
     description,
     url,
-    suggested,
+    featured,
     categoryId,
     image,
     imageText,
@@ -116,7 +116,7 @@ export function createContent(
     | "title"
     | "description"
     | "url"
-    | "suggested"
+    | "featured"
     | "categoryId"
     | "image"
     | "imageText"
@@ -129,7 +129,7 @@ export function createContent(
       title,
       description,
       url,
-      suggested,
+      featured,
       categoryId,
       image,
       imageText,

@@ -13,11 +13,11 @@ const Lecture = () => {
   const { lectures } = useLoaderData<typeof loader>();
 
   const featuredLectures = lectures.filter(
-    (lecture) => lecture.suggested
+    (lecture) => lecture.featured
   ) as unknown as Content[];
 
   const otherLectures = lectures.filter(
-    (lecture) => !lecture.suggested
+    (lecture) => !lecture.featured
   ) as unknown as Content[];
 
   return (
