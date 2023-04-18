@@ -211,7 +211,6 @@ const EditContent = () => {
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
   const urlRef = useRef<HTMLInputElement>(null);
   const featuredRef = useRef<HTMLInputElement>(null);
-  const categoriesRef = useRef<HTMLInputElement>(null);
   const createdAtRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLInputElement>(null);
   const imageAltTextRef = useRef<HTMLInputElement>(null);
@@ -331,7 +330,6 @@ const EditContent = () => {
                   <input
                     className="h-4 w-4 cursor-pointer"
                     type="radio"
-                    ref={categoriesRef}
                     name="categoryId"
                     id="category"
                     value={category.id}
