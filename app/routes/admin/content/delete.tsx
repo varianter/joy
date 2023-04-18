@@ -29,7 +29,7 @@ export async function action({ request }: ActionArgs) {
   }
 
   await deleteContent(idToDelete);
-  return redirect("/admin/content/delete");
+  return redirect("/admin");
 }
 
 const DeleteContent = () => {
