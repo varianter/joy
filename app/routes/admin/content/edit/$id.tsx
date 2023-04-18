@@ -216,27 +216,29 @@ const EditContent = () => {
   const imageAltTextRef = useRef<HTMLInputElement>(null);
   const authorRef = useRef<HTMLInputElement>(null);
 
+  const errors = actionData?.errors;
+
   const transition = useTransition();
 
   useEffect(() => {
-    if (actionData?.errors?.title) {
+    if (errors?.title) {
       titleRef.current?.focus();
-    } else if (actionData?.errors?.description) {
+    } else if (errors?.description) {
       descriptionRef.current?.focus();
-    } else if (actionData?.errors?.featured) {
+    } else if (errors?.featured) {
       featuredRef.current?.focus();
-    } else if (actionData?.errors?.createdAt) {
+    } else if (errors?.createdAt) {
       createdAtRef.current?.focus();
-    } else if (actionData?.errors?.url) {
+    } else if (errors?.url) {
       urlRef.current?.focus();
-    } else if (actionData?.errors?.image) {
+    } else if (errors?.image) {
       imageRef.current?.focus();
-    } else if (actionData?.errors?.imageText) {
+    } else if (errors?.imageText) {
       imageAltTextRef.current?.focus();
-    } else if (actionData?.errors?.author) {
+    } else if (errors?.author) {
       authorRef.current?.focus();
     }
-  }, [actionData]);
+  }, [errors]);
 
   return (
     <Form
@@ -245,7 +247,7 @@ const EditContent = () => {
     >
       <input name="id" hidden defaultValue={id} />
       <Input
-        error={actionData?.errors?.title}
+        error={errors?.title}
         label={"Tittel"}
         htmlRef={titleRef}
         name={"title"}
@@ -253,7 +255,7 @@ const EditContent = () => {
       />
 
       <TextArea
-        error={actionData?.errors?.description}
+        error={errors?.description}
         label={"Beskrivelse"}
         htmlRef={descriptionRef}
         name={"description"}
@@ -261,7 +263,7 @@ const EditContent = () => {
       />
 
       <Input
-        error={actionData?.errors?.url}
+        error={errors?.url}
         label={"Url"}
         htmlRef={urlRef}
         name={"url"}
@@ -269,7 +271,7 @@ const EditContent = () => {
       />
 
       <Input
-        error={actionData?.errors?.image}
+        error={errors?.image}
         defaultValue={content.image ?? ""}
         label={
           <span>
@@ -289,7 +291,7 @@ const EditContent = () => {
       />
 
       <Input
-        error={actionData?.errors?.imageText}
+        error={errors?.imageText}
         label={"Alternativ tekst for bilde"}
         htmlRef={imageAltTextRef}
         defaultValue={content.imageText ?? ""}
@@ -297,7 +299,7 @@ const EditContent = () => {
       />
 
       <Input
-        error={actionData?.errors?.author}
+        error={errors?.author}
         label={"Forfatter (Variant-epost)"}
         htmlRef={authorRef}
         defaultValue={content.author}
@@ -306,7 +308,7 @@ const EditContent = () => {
 
       <Input
         type="date"
-        error={actionData?.errors?.createdAt}
+        error={errors?.createdAt}
         label={"Opprettet (mm-dd-yyyy)"}
         htmlRef={createdAtRef}
         defaultValue={content.createdAt.split("T")[0]}
@@ -345,9 +347,9 @@ const EditContent = () => {
             })}
           </div>
 
-          {actionData?.errors?.categoryId && (
+          {errors?.categoryId && (
             <div className="pb-1 text-variant-pink-2" id="error">
-              {actionData?.errors?.categoryId}
+              {errors?.categoryId}
             </div>
           )}
         </fieldset>
