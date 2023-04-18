@@ -37,7 +37,7 @@ export async function action({ request }: ActionArgs) {
   const imageText = formData.get("imageText");
   const author = formData.get("author");
   const categoryId = formData.get("categoryId");
-  const tags = (formData.getAll("tag") as string[]) ?? [];
+  const tags = (formData.getAll("tag") as string[]);
   const createdAt = new Date(formData.get("createdAt") as string);
 
   const errors = {
