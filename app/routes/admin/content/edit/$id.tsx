@@ -211,7 +211,6 @@ const EditContent = () => {
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
   const urlRef = useRef<HTMLInputElement>(null);
   const featuredRef = useRef<HTMLInputElement>(null);
-  const tagsRef = useRef<HTMLInputElement>(null);
   const categoriesRef = useRef<HTMLInputElement>(null);
   const createdAtRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLInputElement>(null);
@@ -228,7 +227,7 @@ const EditContent = () => {
     } else if (actionData?.errors?.featured) {
       featuredRef.current?.focus();
     } else if (actionData?.errors?.createdAt) {
-      featuredRef.current?.focus();
+      createdAtRef.current?.focus();
     } else if (actionData?.errors?.url) {
       urlRef.current?.focus();
     } else if (actionData?.errors?.image) {
@@ -362,7 +361,6 @@ const EditContent = () => {
               <input
                 className="h-4 w-4 cursor-pointer"
                 type="checkbox"
-                ref={tagsRef}
                 name="tag"
                 id={tag.id}
                 value={tag.id}
