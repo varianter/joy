@@ -1,10 +1,10 @@
-import type { ActionArgs, LoaderArgs } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import {
   Form,
   useActionData,
   useLoaderData,
-  useTransition,
+  useNavigation,
 } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import PrimaryButton from "~/components/buttons/PrimaryButton";
@@ -16,7 +16,7 @@ import { createContent } from "~/models/content.server";
 import { getTags } from "~/models/tag.server";
 import { isValidUrl } from "~/utils";
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async () => {
   const [tags, categories] = await Promise.all([getTags(), getCategories()]);
   return json({ tags, categories });
 };
@@ -182,7 +182,7 @@ const NewContent = () => {
   const imageAltTextRef = useRef<HTMLInputElement>(null);
   const authorRef = useRef<HTMLInputElement>(null);
 
-  const transition = useTransition();
+  const navigation = useNavigation();
 
   useEffect(() => {
     if (actionData?.errors?.title) {
@@ -320,12 +320,12 @@ const NewContent = () => {
         <PrimaryButton
           type="submit"
           text={
-            transition.state === "submitting" || transition.state === "loading"
+            navigation.state === "submitting" || navigation.state === "loading"
               ? "Lagrer ... "
               : "Lagre"
           }
           disabled={
-            transition.state === "submitting" || transition.state === "loading"
+            navigation.state === "submitting" || navigation.state === "loading"
           }
         />
       </div>

@@ -1,4 +1,4 @@
-import { Form, useLoaderData, useTransition } from "@remix-run/react";
+import { Form, useLoaderData, useNavigation } from "@remix-run/react";
 import type { ActionArgs } from "@remix-run/server-runtime";
 import { json } from "@remix-run/server-runtime";
 import { redirect } from "@remix-run/server-runtime";
@@ -37,7 +37,7 @@ const DeleteContent = () => {
   const [filteredContent, setFilteredContent] = useState(content);
   const [itemToDelete, setItemToDelete] = useState("");
 
-  const transition = useTransition();
+  const navigation = useNavigation();
 
   const handleSearchChange = (e: React.FormEvent<HTMLInputElement>) => {
     const tempFilteredContent = content.filter((fc) =>
@@ -75,15 +75,15 @@ const DeleteContent = () => {
                 type="submit"
                 onClick={() => setItemToDelete(c.id)}
                 text={
-                  (transition.state === "submitting" ||
-                    transition.state === "loading") &&
+                  (navigation.state === "submitting" ||
+                    navigation.state === "loading") &&
                   itemToDelete === c.id
                     ? "sletter ... "
                     : "Slett"
                 }
                 disabled={
-                  (transition.state === "submitting" ||
-                    transition.state === "loading") &&
+                  (navigation.state === "submitting" ||
+                    navigation.state === "loading") &&
                   itemToDelete === c.id
                 }
               />

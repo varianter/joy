@@ -4,7 +4,7 @@ import {
   Form,
   useActionData,
   useLoaderData,
-  useTransition,
+  useNavigation,
 } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import PrimaryButton from "~/components/buttons/PrimaryButton";
@@ -217,7 +217,7 @@ const EditContent = () => {
 
   const errors = actionData?.errors;
 
-  const transition = useTransition();
+  const navigation = useNavigation();
 
   useEffect(() => {
     if (errors?.title) {
@@ -380,12 +380,12 @@ const EditContent = () => {
         <PrimaryButton
           type="submit"
           text={
-            transition.state === "submitting" || transition.state === "loading"
+            navigation.state === "submitting" || navigation.state === "loading"
               ? "Lagrer ... "
               : "Lagre"
           }
           disabled={
-            transition.state === "submitting" || transition.state === "loading"
+            navigation.state === "submitting" || navigation.state === "loading"
           }
         />
       </div>
