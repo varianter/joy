@@ -17,7 +17,7 @@ const Input = (props: InputProps) => {
       <label>{label}</label>
       <input
         ref={htmlRef}
-        type={!type ? "text" : type}
+        type={type ?? "text"}
         name={name}
         defaultValue={defaultValue}
         className="rounded-md bg-variant-blue-3 px-3 leading-loose text-black"
