@@ -1,4 +1,4 @@
-import type { ActionArgs } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import {
   Form,
@@ -12,27 +12,33 @@ import Input from "~/components/inputs/Input";
 import TextArea from "~/components/inputs/TextArea";
 import Toggle from "~/components/Toggle";
 import { getCategories } from "~/models/category.server";
-import { createContent } from "~/models/content.server";
+import { getContentById, updateContent } from "~/models/content.server";
 import { getTags } from "~/models/tag.server";
 import { isValidUrl } from "~/utils";
 
-export const loader = async () => {
+export const loader = async ({ params }: LoaderArgs) => {
+  const content = await getContentById(params.id ?? "");
+  if (!content) {
+    throw new Response("Not Found", { status: 404 });
+  }
   const [tags, categories] = await Promise.all([getTags(), getCategories()]);
-  return json({ tags, categories });
+  return json({ id: params.id, content, tags, categories });
 };
 
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData();
 
+  const id = formData.get("id");
   const title = formData.get("title");
   const description = formData.get("description");
   const url = formData.get("url");
-  const featured = formData.get("featured") === "on";
+  const featured = formData.get("featured") === "on" ? true : false;
   const image = formData.get("image");
   const imageText = formData.get("imageText");
   const author = formData.get("author");
   const categoryId = formData.get("categoryId");
-  const tags = (formData.getAll("tag") as string[]) ?? [];
+  const tags = formData.getAll("tag") as string[];
+  const createdAt = new Date(formData.get("createdAt") as string);
 
   const errors = {
     title: null,
@@ -43,6 +49,8 @@ export async function action({ request }: ActionArgs) {
     image: null,
     imageText: null,
     author: null,
+    id: null,
+    createdAt: null,
   };
 
   if (typeof title !== "string" || title.length === 0) {
@@ -51,6 +59,18 @@ export async function action({ request }: ActionArgs) {
         errors: {
           ...errors,
           title: "Tittel er påkrevd",
+        },
+      },
+      { status: 400 }
+    );
+  }
+
+  if (typeof id !== "string" || id.length === 0) {
+    return json(
+      {
+        errors: {
+          ...errors,
+          id: "ID er påkrevd",
         },
       },
       { status: 400 }
@@ -141,6 +161,18 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
+  if (isNaN(createdAt.getDate())) {
+    return json(
+      {
+        errors: {
+          ...errors,
+          createdAt: "Opprettetdato er påkrevd",
+        },
+      },
+      { status: 400 }
+    );
+  }
+
   if (typeof categoryId !== "string") {
     return json(
       {
@@ -153,8 +185,9 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  await createContent(
+  await updateContent(
     {
+      id,
       title,
       description,
       url,
@@ -163,69 +196,80 @@ export async function action({ request }: ActionArgs) {
       image,
       imageText,
       author,
+      createdAt,
     },
     tags
   );
 
-  return redirect(`/`);
+  return redirect(`/admin/content/edit`);
 }
 
-const NewContent = () => {
-  const { tags, categories } = useLoaderData<typeof loader>();
+const EditContent = () => {
+  const { id, content, tags, categories } = useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
   const urlRef = useRef<HTMLInputElement>(null);
-  const tagsRef = useRef<HTMLInputElement>(null);
-  const categoriesRef = useRef<HTMLInputElement>(null);
+  const createdAtRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLInputElement>(null);
   const imageAltTextRef = useRef<HTMLInputElement>(null);
   const authorRef = useRef<HTMLInputElement>(null);
 
+  const errors = actionData?.errors;
+
   const navigation = useNavigation();
 
   useEffect(() => {
-    if (actionData?.errors?.title) {
+    if (errors?.title) {
       titleRef.current?.focus();
-    } else if (actionData?.errors?.description) {
+    } else if (errors?.description) {
       descriptionRef.current?.focus();
-    } else if (actionData?.errors?.url) {
+    } else if (errors?.createdAt) {
+      createdAtRef.current?.focus();
+    } else if (errors?.url) {
       urlRef.current?.focus();
-    } else if (actionData?.errors?.image) {
+    } else if (errors?.image) {
       imageRef.current?.focus();
-    } else if (actionData?.errors?.imageText) {
+    } else if (errors?.imageText) {
       imageAltTextRef.current?.focus();
+    } else if (errors?.author) {
+      authorRef.current?.focus();
     }
-  }, [actionData]);
+  }, [errors]);
 
   return (
     <Form
-      method="post"
+      method="put"
       className="w-full rounded-3xl bg-variant-blue p-5 text-left text-white"
     >
+      <input name="id" hidden defaultValue={id} />
       <Input
-        error={actionData?.errors?.title}
-        label="Tittel"
+        error={errors?.title}
+        label={"Tittel"}
         htmlRef={titleRef}
-        name="title"
+        name={"title"}
+        defaultValue={content.title}
       />
 
       <TextArea
-        error={actionData?.errors?.description}
-        label="Beskrivelse"
+        error={errors?.description}
+        label={"Beskrivelse"}
         htmlRef={descriptionRef}
-        name="description"
+        name={"description"}
+        defaultValue={content.description}
       />
 
       <Input
-        error={actionData?.errors?.url}
-        label="Url"
+        error={errors?.url}
+        label={"Url"}
         htmlRef={urlRef}
-        name="url"
+        name={"url"}
+        defaultValue={content.url}
       />
 
       <Input
-        error={actionData?.errors?.image}
+        error={errors?.image}
+        defaultValue={content.image ?? ""}
         label={
           <span>
             Base64-enkodet bilde: Kan genereres{" "}
@@ -240,29 +284,41 @@ const NewContent = () => {
           </span>
         }
         htmlRef={imageRef}
-        name="image"
+        name={"image"}
       />
 
       <Input
-        error={actionData?.errors?.imageText}
-        label="Alternativ tekst for bilde"
+        error={errors?.imageText}
+        label={"Alternativ tekst for bilde"}
         htmlRef={imageAltTextRef}
-        name="imageText"
+        defaultValue={content.imageText ?? ""}
+        name={"imageText"}
       />
 
       <Input
-        error={actionData?.errors?.author}
-        label="Forfatter (Variant-epost)"
+        error={errors?.author}
+        label={"Forfatter (Variant-epost)"}
         htmlRef={authorRef}
-        name="author"
+        defaultValue={content.author}
+        name={"author"}
+      />
+
+      <Input
+        type="date"
+        error={errors?.createdAt}
+        label={"Opprettet (mm-dd-yyyy)"}
+        htmlRef={createdAtRef}
+        defaultValue={content.createdAt.split("T")[0]}
+        name={"createdAt"}
       />
 
       <div className="mt-3 grid grid-cols-2 pb-4 md:grid-cols-3">
         <Toggle
-          leftText="Nei"
-          rightText="Ja"
-          label="Fremhevet"
-          inputName="featured"
+          leftText={"Nei"}
+          rightText={"Ja"}
+          label={"Fremhevet"}
+          inputName={"featured"}
+          defaultChecked={content.featured}
         />
 
         <fieldset className="sm:mt-4 md:col-span-2">
@@ -274,10 +330,10 @@ const NewContent = () => {
                   <input
                     className="h-4 w-4 cursor-pointer"
                     type="radio"
-                    ref={categoriesRef}
                     name="categoryId"
                     id="category"
                     value={category.id}
+                    defaultChecked={content.categoryId === category.id}
                   />
                   <label className="font-bold" htmlFor="category">
                     {category.text}
@@ -287,9 +343,9 @@ const NewContent = () => {
             })}
           </div>
 
-          {actionData?.errors?.categoryId && (
+          {errors?.categoryId && (
             <div className="pb-1 text-variant-pink-2" id="error">
-              {actionData?.errors?.categoryId}
+              {errors?.categoryId}
             </div>
           )}
         </fieldset>
@@ -303,10 +359,14 @@ const NewContent = () => {
               <input
                 className="h-4 w-4 cursor-pointer"
                 type="checkbox"
-                ref={tagsRef}
                 name="tag"
                 id={tag.id}
                 value={tag.id}
+                defaultChecked={
+                  content.tags.findIndex((t) => t.id === tag.id) !== -1
+                    ? true
+                    : false
+                }
               />
               <label className="font-bold" htmlFor="tag">
                 {tag.text}
@@ -333,4 +393,4 @@ const NewContent = () => {
   );
 };
 
-export default NewContent;
+export default EditContent;
