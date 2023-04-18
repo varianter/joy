@@ -41,7 +41,7 @@ const DeleteContent = () => {
 
   const handleSearchChange = (e: React.FormEvent<HTMLInputElement>) => {
     const tempFilteredContent = content.filter((fc) =>
-      fc.title.toLowerCase().includes(e.currentTarget.value.toLocaleLowerCase())
+      fc.title.toLowerCase().includes(e.currentTarget.value.toLowerCase())
     );
 
     setFilteredContent(tempFilteredContent);
