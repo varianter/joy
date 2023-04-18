@@ -72,7 +72,7 @@ const DeleteContent = () => {
 
             <div className="mb-5 flex justify-end">
               <PrimaryButton
-                onClickFunction={() => setSelectedRow(c.id)}
+                onClick={() => setSelectedRow(c.id)}
                 text={
                   (transition.state === "submitting" ||
                     transition.state === "loading") &&
