@@ -27,7 +27,7 @@ export async function action({ request }: ActionArgs) {
   const title = formData.get("title");
   const description = formData.get("description");
   const url = formData.get("url");
-  const featured = formData.get("featured") === "on" ? true : false;
+  const featured = formData.get("featured") === "on";
   const image = formData.get("image");
   const imageText = formData.get("imageText");
   const author = formData.get("author");
@@ -176,7 +176,6 @@ const NewContent = () => {
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
   const urlRef = useRef<HTMLInputElement>(null);
-  const featuredRef = useRef<HTMLInputElement>(null);
   const tagsRef = useRef<HTMLInputElement>(null);
   const categoriesRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLInputElement>(null);
@@ -190,8 +189,6 @@ const NewContent = () => {
       titleRef.current?.focus();
     } else if (actionData?.errors?.description) {
       descriptionRef.current?.focus();
-    } else if (actionData?.errors?.featured) {
-      featuredRef.current?.focus();
     } else if (actionData?.errors?.url) {
       urlRef.current?.focus();
     } else if (actionData?.errors?.image) {
@@ -208,23 +205,23 @@ const NewContent = () => {
     >
       <Input
         error={actionData?.errors?.title}
-        label={"Tittel"}
+        label="Tittel"
         htmlRef={titleRef}
-        name={"title"}
+        name="title"
       />
 
       <TextArea
         error={actionData?.errors?.description}
-        label={"Beskrivelse"}
+        label="Beskrivelse"
         htmlRef={descriptionRef}
-        name={"description"}
+        name="description"
       />
 
       <Input
         error={actionData?.errors?.url}
-        label={"Url"}
+        label="Url"
         htmlRef={urlRef}
-        name={"url"}
+        name="url"
       />
 
       <Input
@@ -243,30 +240,29 @@ const NewContent = () => {
           </span>
         }
         htmlRef={imageRef}
-        name={"image"}
+        name="image"
       />
 
       <Input
         error={actionData?.errors?.imageText}
-        label={"Alternativ tekst for bilde"}
+        label="Alternativ tekst for bilde"
         htmlRef={imageAltTextRef}
-        name={"imageText"}
+        name="imageText"
       />
 
       <Input
         error={actionData?.errors?.author}
-        label={"Forfatter (Variant-epost)"}
+        label="Forfatter (Variant-epost)"
         htmlRef={authorRef}
-        name={"author"}
+        name="author"
       />
 
       <div className="mt-3 grid grid-cols-2 pb-4 md:grid-cols-3">
         <Toggle
-          leftText={"Nei"}
-          rightText={"Ja"}
-          label={"Fremhevet"}
-          htmlRef={featuredRef}
-          inputName={"featured"}
+          leftText="Nei"
+          rightText="Ja"
+          label="Fremhevet"
+          inputName="featured"
         />
 
         <fieldset className="sm:mt-4 md:col-span-2">

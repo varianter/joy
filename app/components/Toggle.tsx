@@ -4,13 +4,12 @@ interface ToggleProps {
   leftText: string;
   rightText: string;
   label: string;
-  htmlRef: RefObject<HTMLInputElement>;
   inputName: string;
   defaultChecked?: boolean;
 }
 
 const Toggle = (props: ToggleProps) => {
-  const { leftText, rightText, label, htmlRef, inputName, defaultChecked } =
+  const { leftText, rightText, label, inputName, defaultChecked } =
     props;
 
   return (
@@ -27,7 +26,6 @@ const Toggle = (props: ToggleProps) => {
             name={inputName}
             type="checkbox"
             className="peer hidden"
-            ref={htmlRef}
             defaultChecked={defaultChecked}
           />
           <div className="h-6 w-10 rounded-full bg-variant-blue-3 shadow-inner"></div>

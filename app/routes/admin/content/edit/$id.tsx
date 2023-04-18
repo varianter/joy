@@ -210,7 +210,6 @@ const EditContent = () => {
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
   const urlRef = useRef<HTMLInputElement>(null);
-  const featuredRef = useRef<HTMLInputElement>(null);
   const createdAtRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLInputElement>(null);
   const imageAltTextRef = useRef<HTMLInputElement>(null);
@@ -225,8 +224,6 @@ const EditContent = () => {
       titleRef.current?.focus();
     } else if (errors?.description) {
       descriptionRef.current?.focus();
-    } else if (errors?.featured) {
-      featuredRef.current?.focus();
     } else if (errors?.createdAt) {
       createdAtRef.current?.focus();
     } else if (errors?.url) {
@@ -320,7 +317,6 @@ const EditContent = () => {
           leftText={"Nei"}
           rightText={"Ja"}
           label={"Fremhevet"}
-          htmlRef={featuredRef}
           inputName={"featured"}
           defaultChecked={content.featured}
         />
