@@ -382,6 +382,7 @@ const EditContent = () => {
 
       <div className="mt-5 flex justify-end">
         <PrimaryButton
+          type="submit"
           text={
             transition.state === "submitting" || transition.state === "loading"
               ? "Lagrer ... "

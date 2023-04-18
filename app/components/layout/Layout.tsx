@@ -66,11 +66,14 @@ export const Layout = (props: LayoutProps) => {
             action={`/auth/${isAuthenticated ? "logout" : "login"}`}
             method="post"
           >
-            <PrimaryButton text={isAuthenticated ? "Logg ut" : "Logg inn"} />
+            <PrimaryButton
+              type="submit"
+              text={isAuthenticated ? "Logg ut" : "Logg inn"}
+            />
           </form>
         </div>
       </div>
-      <div className="mx-5 mt-24 sm:mt-32 md:mx-[5rem] xl:mx-[35rem] min-h-[40rem]">
+      <div className="mx-5 mt-24 min-h-[40rem] sm:mt-32 md:mx-[5rem] xl:mx-[35rem]">
         <Outlet />
       </div>
       <footer className="footer mt-10">

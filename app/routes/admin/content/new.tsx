@@ -1,6 +1,11 @@
 import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
-import { Form, useActionData, useLoaderData, useTransition } from "@remix-run/react";
+import {
+  Form,
+  useActionData,
+  useLoaderData,
+  useTransition,
+} from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import PrimaryButton from "~/components/buttons/PrimaryButton";
 import Input from "~/components/inputs/Input";
@@ -180,7 +185,6 @@ const NewContent = () => {
 
   const transition = useTransition();
 
-
   useEffect(() => {
     if (actionData?.errors?.title) {
       titleRef.current?.focus();
@@ -318,6 +322,7 @@ const NewContent = () => {
 
       <div className="mt-5 flex justify-end">
         <PrimaryButton
+          type="submit"
           text={
             transition.state === "submitting" || transition.state === "loading"
               ? "Lagrer ... "
