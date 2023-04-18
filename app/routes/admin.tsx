@@ -11,7 +11,7 @@ const Admin = () => {
   const location = useLocation();
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col">
       <section className="text-left text-white sm:w-1/2">
         <h1>Admin 🥷</h1>
         <p>

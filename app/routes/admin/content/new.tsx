@@ -204,7 +204,7 @@ const NewContent = () => {
   return (
     <Form
       method="post"
-      className="w-full rounded-3xl bg-variant-blue p-5 text-left text-white lg:w-[60rem]"
+      className="w-full rounded-3xl bg-variant-blue p-5 text-left text-white"
     >
       <Input
         error={actionData?.errors?.title}

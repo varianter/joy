@@ -241,7 +241,7 @@ const EditContent = () => {
   return (
     <Form
       method="put"
-      className="w-full rounded-3xl bg-variant-blue p-5 text-left text-white lg:w-[60rem]"
+      className="w-full rounded-3xl bg-variant-blue p-5 text-left text-white"
     >
       <input name="id" hidden defaultValue={id} />
       <Input
