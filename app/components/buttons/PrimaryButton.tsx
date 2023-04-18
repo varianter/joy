@@ -14,10 +14,10 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
       disabled={disabled}
       onClick={(e) => onClick && onClick(e)}
       className={`rounded-3xl ${
-        disabled ? "bg-variant-gray" : "bg-variant-beige"
-      } px-9 py-3 text-variant-blue transition-all ${
-        !disabled && "hover:bg-variant-beige-2"
-      }`}
+        disabled
+          ? "bg-variant-gray"
+          : "bg-variant-beige hover:bg-variant-beige-2"
+      } px-9 py-3 text-variant-blue transition-all`}
     >
       {text}
     </button>
