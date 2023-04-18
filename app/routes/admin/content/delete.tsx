@@ -35,7 +35,7 @@ export async function action({ request }: ActionArgs) {
 const DeleteContent = () => {
   const { content } = useLoaderData<typeof loader>();
   const [filteredContent, setFilteredContent] = useState(content);
-  const [selectedRow, setSelectedRow] = useState("");
+  const [itemToDelete, setItemToDelete] = useState("");
 
   const transition = useTransition();
 
@@ -73,18 +73,18 @@ const DeleteContent = () => {
             <div className="mb-5 flex justify-end">
               <PrimaryButton
                 type="submit"
-                onClick={() => setSelectedRow(c.id)}
+                onClick={() => setItemToDelete(c.id)}
                 text={
                   (transition.state === "submitting" ||
                     transition.state === "loading") &&
-                  selectedRow === c.id
+                  itemToDelete === c.id
                     ? "sletter ... "
                     : "Slett"
                 }
                 disabled={
                   (transition.state === "submitting" ||
                     transition.state === "loading") &&
-                  selectedRow === c.id
+                  itemToDelete === c.id
                 }
               />
             </div>
