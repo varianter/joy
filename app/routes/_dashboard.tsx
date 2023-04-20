@@ -9,7 +9,6 @@ import {
   getNumNewestContent,
   getNumVideos,
 } from "~/models/content.server";
-import Featured from "./_dashboard.featured";
 
 const numberOfNewContent = 2;
 
