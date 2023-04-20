@@ -1,5 +1,5 @@
 import { json } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import NavigationCard from "~/components/card/NavigationCard";
 import { getCategories } from "~/models/category.server";
 import {
@@ -9,7 +9,7 @@ import {
   getNumNewestContent,
   getNumVideos,
 } from "~/models/content.server";
-import Featured from "./featured";
+import Featured from "./_dashboard.featured";
 
 const numberOfNewContent = 2;
 
@@ -109,7 +109,7 @@ export default function Index() {
           />
         </Link>
       </section>
-      <Featured />
+      <Outlet />
     </div>
   );
 }
