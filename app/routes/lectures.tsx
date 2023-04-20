@@ -9,7 +9,7 @@ export const loader = async () => {
   return json({ lectures });
 };
 
-const Lecture = () => {
+const Lectures = () => {
   const { lectures } = useLoaderData<typeof loader>();
 
   const featuredLectures = lectures.filter(
@@ -41,4 +41,4 @@ const Lecture = () => {
   );
 };
 
-export default Lecture;
+export default Lectures;

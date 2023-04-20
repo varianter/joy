@@ -47,7 +47,7 @@ export async function loader({ request }: LoaderArgs) {
   });
 }
 
-export default function App() {
+export default function Root() {
   const { user, searchResult } = useLoaderData<typeof loader>();
 
   const isAuthenticated = user?.profile ? true : false;
