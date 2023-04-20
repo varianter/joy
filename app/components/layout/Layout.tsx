@@ -1,17 +1,22 @@
 import type { Content } from "@prisma/client";
-import { Link, Outlet, useSearchParams } from "@remix-run/react";
+import { Link, useSearchParams } from "@remix-run/react";
 import PrimaryButton from "../buttons/PrimaryButton";
 import { SearchInput } from "../search/SearchInput";
+import type { ReactNode } from "react";
 
 interface LayoutProps {
+  children: ReactNode;
   isAuthenticated: boolean;
-  searchResult: Content[];
   isLoadingSearchResult: boolean;
+  searchResult: Content[];
 }
 
-export const Layout = (props: LayoutProps) => {
-  const { isAuthenticated, searchResult, isLoadingSearchResult } = props;
-
+export const Layout = ({
+  children,
+  isAuthenticated,
+  isLoadingSearchResult,
+  searchResult,
+}: LayoutProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleOnChangeSearch = (event: any) => {
@@ -74,7 +79,7 @@ export const Layout = (props: LayoutProps) => {
         </div>
       </div>
       <div className="mx-5 mt-24 min-h-[40rem] sm:mt-32 md:mx-[5rem] xl:mx-[35rem]">
-        <Outlet />
+        {children}
       </div>
       <footer className="footer mt-10">
         <div className="footer__inner">
