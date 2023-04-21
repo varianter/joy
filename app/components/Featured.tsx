@@ -1,11 +1,12 @@
 import type { Category, Content, Tag } from "@prisma/client";
+import type { SerializeFrom } from "@remix-run/server-runtime";
 import ArticlePreview from "~/components/ArticlePreview";
 import TagButton from "~/components/buttons/TagButton";
 import Card from "~/components/card/Card";
 
 
 interface FeaturedProps {
-  newestContent: (Content & { tags: Tag[]})[]
+  newestContent: SerializeFrom<(Content & { tags: Tag[]})[]>
   categories: Category[];
 }
 
