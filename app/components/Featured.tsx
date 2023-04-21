@@ -1,27 +1,16 @@
-import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import type { Category, Content, Tag } from "@prisma/client";
 import ArticlePreview from "~/components/ArticlePreview";
 import TagButton from "~/components/buttons/TagButton";
 import Card from "~/components/card/Card";
-import { getCategories } from "~/models/category.server";
-import { getNumNewestContent } from "~/models/content.server";
 
-const numberOfNewContent = 2;
 
-export const loader = async () => {
-  const [newestContent, categories] = await Promise.all([
-    getNumNewestContent(numberOfNewContent),
-    getCategories(),
-  ]);
-  return json({
-    newestContent,
-    categories,
-  });
-};
+interface FeaturedProps {
+  newestContent: (Content & { tags: Tag[]})[]
+  categories: Category[];
+}
 
-export default function Featured() {
-  const { newestContent, categories } = useLoaderData<typeof loader>();
 
+const Featured = ({newestContent, categories}: FeaturedProps) => {
   return (
     <div>
       <section>
@@ -53,7 +42,7 @@ export default function Featured() {
                         categories.find((c) => c.id === content.categoryId)
                           ?.text ?? ""
                       }
-                      createdDate={content.createdAt.split("T")[0]}
+                      createdDate={content.createdAt.toString().split("T")[0]}
                       title={content.title}
                       description={content.description}
                       url={content.url}
@@ -80,3 +69,5 @@ export default function Featured() {
     </div>
   );
 }
+
+export default Featured;

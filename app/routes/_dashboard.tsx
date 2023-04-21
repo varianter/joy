@@ -1,36 +1,26 @@
 import { json } from "@remix-run/node";
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import NavigationCard from "~/components/card/NavigationCard";
-import { getCategories } from "~/models/category.server";
 import {
   getNumBlogposts,
   getNumCourses,
   getNumLectures,
-  getNumNewestContent,
   getNumVideos,
 } from "~/models/content.server";
 
-const numberOfNewContent = 2;
-
 export const loader = async () => {
   const [
-    newestContent,
-    categories,
     numVideos,
     numBlogposts,
     numCourses,
     numLectures,
   ] = await Promise.all([
-    getNumNewestContent(numberOfNewContent),
-    getCategories(),
     getNumVideos(),
     getNumBlogposts(),
     getNumCourses(),
     getNumLectures(),
   ]);
   return json({
-    newestContent,
-    categories,
     numVideos,
     numBlogposts,
     numCourses,
@@ -38,7 +28,7 @@ export const loader = async () => {
   });
 };
 
-export default function Index() {
+export default function Dashboard() {
   const { numVideos, numBlogposts, numCourses, numLectures } =
     useLoaderData<typeof loader>();
 
