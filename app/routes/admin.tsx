@@ -21,7 +21,7 @@ const Admin = () => {
       </section>
       <section>
         <div className="mt-5 flex flex-col gap-5 md:flex-row">
-          <Link to="content/new">
+          <Link to="new">
             <NavigationCard
               title="Legg til innhold"
               isActive={location.pathname.includes("new")}
@@ -34,7 +34,7 @@ const Admin = () => {
               }
             />
           </Link>
-          <Link to="content/edit">
+          <Link to="edit">
             <NavigationCard
               title="Endre innhold"
               isActive={location.pathname.includes("edit")}
@@ -47,7 +47,7 @@ const Admin = () => {
               }
             />
           </Link>
-          <Link to="content/delete">
+          <Link to="delete">
             <NavigationCard
               title="Slett innhold"
               isActive={location.pathname.includes("delete")}

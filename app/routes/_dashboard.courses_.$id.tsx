@@ -1,29 +1,30 @@
-import { json, LoaderArgs } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { NavLink, useLoaderData } from "@remix-run/react";
 import { getContentById } from "~/models/content.server";
 import invariant from "tiny-invariant";
 import Level from "~/components/Level";
-import { Tag } from "@prisma/client";
+import type { Tag } from "@prisma/client";
 import SecondaryButton from "~/components/buttons/SecondaryButton";
 import CheckTask from "~/components/CheckTask";
 
 export const loader = async ({ params }: LoaderArgs) => {
-  invariant(params.courseId, "Course not found");
-  const content = await getContentById(params.courseId);
+  invariant(params.id, "Course not found");
+  const course = await getContentById(params.id);
 
-  if (!content) {
+  if (!course) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  return json({ content });
+  return json({ course });
 };
 
 const CourseId = () => {
-  const { content } = useLoaderData<typeof loader>();
+  const { course } = useLoaderData<typeof loader>();
 
   return (
     <main className=" mt-24 flex flex-col items-start text-white md:mx-[5rem] md:mt-32 lg:mx-[15rem] xl:mx-[35rem]">
-      <NavLink to={"/course"}>
+      <NavLink to={"/courses"}>
         <SecondaryButton text="Tilbake" />
       </NavLink>
       <div className="flex w-full justify-between pt-10">
@@ -35,23 +36,26 @@ const CourseId = () => {
           />
           <p>Kurs</p>
         </div>
-        <p>{new Date(content.createdAt).toLocaleDateString("nb")} </p>
+        <p>{new Date(course.createdAt).toLocaleDateString("nb")} </p>
       </div>
-      <h1>{content.title}</h1>
+      <h1>{course.title}</h1>
       <div className="flex w-full flex-row justify-between pb-5 pt-10">
-        {content.tags &&
-          content.tags.map((tag: Tag) => <Level tag={tag.text} />)}
+        {course.tags &&
+          course.tags.map((tag: Tag) => <Level key={tag.id} tag={tag.text} />)}
         <ul className="flex items-end">
-          {content.tags &&
-            content.tags.map((tag: Tag) => (
-              <li className=" mr-3 rounded-3xl bg-variant-blue-3 px-2 py-1 text-xs hover:bg-variant-blue md:px-6 md:text-sm">
+          {course.tags &&
+            course.tags.map((tag: Tag) => (
+              <li
+                key={tag.id}
+                className=" mr-3 rounded-3xl bg-variant-blue-3 px-2 py-1 text-xs hover:bg-variant-blue md:px-6 md:text-sm"
+              >
                 {tag.text}
               </li>
             ))}
         </ul>
       </div>
 
-      <p className="text-left">{content.description}</p>
+      <p className="text-left">{course.description}</p>
       <hr className="my-5 h-px w-full"></hr>
       <h2>Innhold</h2>
       <div className="text-left underline md:mx-[12rem] md:mt-32 lg:mx-[12rem] xl:mx-[12srem]">

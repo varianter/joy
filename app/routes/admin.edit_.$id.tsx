@@ -201,7 +201,7 @@ export async function action({ request }: ActionArgs) {
     tags
   );
 
-  return redirect(`/admin/content/edit`);
+  return redirect(`/admin/edit`);
 }
 
 const EditContent = () => {
@@ -238,158 +238,162 @@ const EditContent = () => {
   }, [errors]);
 
   return (
-    <Form
-      method="put"
-      className="w-full rounded-3xl bg-variant-blue p-5 text-left text-white"
-    >
-      <input name="id" hidden defaultValue={id} />
-      <Input
-        error={errors?.title}
-        label={"Tittel"}
-        htmlRef={titleRef}
-        name={"title"}
-        defaultValue={content.title}
-      />
-
-      <TextArea
-        error={errors?.description}
-        label={"Beskrivelse"}
-        htmlRef={descriptionRef}
-        name={"description"}
-        defaultValue={content.description}
-      />
-
-      <Input
-        error={errors?.url}
-        label={"Url"}
-        htmlRef={urlRef}
-        name={"url"}
-        defaultValue={content.url}
-      />
-
-      <Input
-        error={errors?.image}
-        defaultValue={content.image ?? ""}
-        label={
-          <span>
-            Base64-enkodet bilde: Kan genereres{" "}
-            <a
-              href="https://www.base64-image.de/"
-              className="text-variant-pink"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              HER
-            </a>
-          </span>
-        }
-        htmlRef={imageRef}
-        name={"image"}
-      />
-
-      <Input
-        error={errors?.imageText}
-        label={"Alternativ tekst for bilde"}
-        htmlRef={imageAltTextRef}
-        defaultValue={content.imageText ?? ""}
-        name={"imageText"}
-      />
-
-      <Input
-        error={errors?.author}
-        label={"Forfatter (Variant-epost)"}
-        htmlRef={authorRef}
-        defaultValue={content.author}
-        name={"author"}
-      />
-
-      <Input
-        type="date"
-        error={errors?.createdAt}
-        label={"Opprettet (mm-dd-yyyy)"}
-        htmlRef={createdAtRef}
-        defaultValue={content.createdAt.split("T")[0]}
-        name={"createdAt"}
-      />
-
-      <div className="mt-3 grid grid-cols-2 pb-4 md:grid-cols-3">
-        <Toggle
-          leftText={"Nei"}
-          rightText={"Ja"}
-          label={"Fremhevet"}
-          inputName={"featured"}
-          defaultChecked={content.featured}
+    <div className="items-left mt-5 flex justify-center">
+      <Form
+        method="put"
+        className="w-full rounded-3xl bg-variant-blue p-5 text-left text-white"
+      >
+        <input name="id" hidden defaultValue={id} />
+        <Input
+          error={errors?.title}
+          label={"Tittel"}
+          htmlRef={titleRef}
+          name={"title"}
+          defaultValue={content.title}
         />
 
-        <fieldset className="sm:mt-4 md:col-span-2">
-          <legend>Kategori:</legend>
-          <div className="mt-3 gap-4 md:flex">
-            {categories?.map((category) => {
-              return (
-                <div key={category.id} className="flex items-center gap-1">
-                  <input
-                    className="h-4 w-4 cursor-pointer"
-                    type="radio"
-                    name="categoryId"
-                    id="category"
-                    value={category.id}
-                    defaultChecked={content.categoryId === category.id}
-                  />
-                  <label className="font-bold" htmlFor="category">
-                    {category.text}
-                  </label>
-                </div>
-              );
-            })}
-          </div>
+        <TextArea
+          error={errors?.description}
+          label={"Beskrivelse"}
+          htmlRef={descriptionRef}
+          name={"description"}
+          defaultValue={content.description}
+        />
 
-          {errors?.categoryId && (
-            <div className="pb-1 text-variant-pink-2" id="error">
-              {errors?.categoryId}
+        <Input
+          error={errors?.url}
+          label={"Url"}
+          htmlRef={urlRef}
+          name={"url"}
+          defaultValue={content.url}
+        />
+
+        <Input
+          error={errors?.image}
+          defaultValue={content.image ?? ""}
+          label={
+            <span>
+              Base64-enkodet bilde: Kan genereres{" "}
+              <a
+                href="https://www.base64-image.de/"
+                className="text-variant-pink"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                HER
+              </a>
+            </span>
+          }
+          htmlRef={imageRef}
+          name={"image"}
+        />
+
+        <Input
+          error={errors?.imageText}
+          label={"Alternativ tekst for bilde"}
+          htmlRef={imageAltTextRef}
+          defaultValue={content.imageText ?? ""}
+          name={"imageText"}
+        />
+
+        <Input
+          error={errors?.author}
+          label={"Forfatter (Variant-epost)"}
+          htmlRef={authorRef}
+          defaultValue={content.author}
+          name={"author"}
+        />
+
+        <Input
+          type="date"
+          error={errors?.createdAt}
+          label={"Opprettet (mm-dd-yyyy)"}
+          htmlRef={createdAtRef}
+          defaultValue={content.createdAt.split("T")[0]}
+          name={"createdAt"}
+        />
+
+        <div className="mt-3 grid grid-cols-2 pb-4 md:grid-cols-3">
+          <Toggle
+            leftText={"Nei"}
+            rightText={"Ja"}
+            label={"Fremhevet"}
+            inputName={"featured"}
+            defaultChecked={content.featured}
+          />
+
+          <fieldset className="sm:mt-4 md:col-span-2">
+            <legend>Kategori:</legend>
+            <div className="mt-3 gap-4 md:flex">
+              {categories?.map((category) => {
+                return (
+                  <div key={category.id} className="flex items-center gap-1">
+                    <input
+                      className="h-4 w-4 cursor-pointer"
+                      type="radio"
+                      name="categoryId"
+                      id="category"
+                      value={category.id}
+                      defaultChecked={content.categoryId === category.id}
+                    />
+                    <label className="font-bold" htmlFor="category">
+                      {category.text}
+                    </label>
+                  </div>
+                );
+              })}
             </div>
-          )}
+
+            {errors?.categoryId && (
+              <div className="pb-1 text-variant-pink-2" id="error">
+                {errors?.categoryId}
+              </div>
+            )}
+          </fieldset>
+        </div>
+
+        <fieldset className="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-5">
+          <legend>Tags:</legend>
+          {tags?.map((tag) => {
+            return (
+              <div key={tag.id} className="flex items-center gap-1 ">
+                <input
+                  className="h-4 w-4 cursor-pointer"
+                  type="checkbox"
+                  name="tag"
+                  id={tag.id}
+                  value={tag.id}
+                  defaultChecked={
+                    content.tags.findIndex((t) => t.id === tag.id) !== -1
+                      ? true
+                      : false
+                  }
+                />
+                <label className="font-bold" htmlFor="tag">
+                  {tag.text}
+                </label>
+              </div>
+            );
+          })}
         </fieldset>
-      </div>
 
-      <fieldset className="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-5">
-        <legend>Tags:</legend>
-        {tags?.map((tag) => {
-          return (
-            <div key={tag.id} className="flex items-center gap-1 ">
-              <input
-                className="h-4 w-4 cursor-pointer"
-                type="checkbox"
-                name="tag"
-                id={tag.id}
-                value={tag.id}
-                defaultChecked={
-                  content.tags.findIndex((t) => t.id === tag.id) !== -1
-                    ? true
-                    : false
-                }
-              />
-              <label className="font-bold" htmlFor="tag">
-                {tag.text}
-              </label>
-            </div>
-          );
-        })}
-      </fieldset>
-
-      <div className="mt-5 flex justify-end">
-        <PrimaryButton
-          type="submit"
-          text={
-            navigation.state === "submitting" || navigation.state === "loading"
-              ? "Lagrer ... "
-              : "Lagre"
-          }
-          disabled={
-            navigation.state === "submitting" || navigation.state === "loading"
-          }
-        />
-      </div>
-    </Form>
+        <div className="mt-5 flex justify-end">
+          <PrimaryButton
+            type="submit"
+            text={
+              navigation.state === "submitting" ||
+              navigation.state === "loading"
+                ? "Lagrer ... "
+                : "Lagre"
+            }
+            disabled={
+              navigation.state === "submitting" ||
+              navigation.state === "loading"
+            }
+          />
+        </div>
+      </Form>
+    </div>
   );
 };
 
