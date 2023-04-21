@@ -34,10 +34,10 @@ export default function Dashboard() {
 
   return (
     <div>
-      <section className="text-left">
-        <p className="text-2xl text-white">En variant av en</p>
-        <h2 className="text-5xl text-white">Læringshub</h2>
-        <p className="mt-4 text-white">
+      <section className="text-left text-white">
+        <p className="text-2xl ">En variant av en</p>
+        <h2 className="text-5xl">Læringshub</h2>
+        <p className="mt-4">
           Vi i Variant lager og holder en del kurs og foredrag i flere
           sammenhenger. Vi har noen bloggposter her, noen YouTube-videoer der,
           og noen foredrag en annen plass. Dette har vi samlet i denne
