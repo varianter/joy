@@ -23,7 +23,7 @@ const CourseId = () => {
   const { course } = useLoaderData<typeof loader>();
 
   return (
-    <main className=" mt-24 flex flex-col items-start text-white md:mx-[5rem] md:mt-32 lg:mx-[15rem] xl:mx-[35rem]">
+    <div className="flex flex-col items-start text-white md:mx-[5rem] lg:mx-[15rem] xl:mx-[35rem]">
       <NavLink to={"/courses"}>
         <SecondaryButton text="Tilbake" />
       </NavLink>
@@ -108,7 +108,7 @@ const CourseId = () => {
         description="   Lek deg med ulike farger, og tegn et hus, en bil eller noe annet du har lyst til å lage. Bruk fantasien!"
         done={false}
       />
-    </main>
+    </div>
   );
 };
 

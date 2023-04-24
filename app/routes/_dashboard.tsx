@@ -9,12 +9,7 @@ import {
 } from "~/models/content.server";
 
 export const loader = async () => {
-  const [
-    numVideos,
-    numBlogposts,
-    numCourses,
-    numLectures,
-  ] = await Promise.all([
+  const [numVideos, numBlogposts, numCourses, numLectures] = await Promise.all([
     getNumVideos(),
     getNumBlogposts(),
     getNumCourses(),
@@ -33,7 +28,7 @@ export default function Dashboard() {
     useLoaderData<typeof loader>();
 
   return (
-    <div>
+    <div className="mt-24 sm:mt-32">
       <section className="text-left text-white">
         <p className="text-2xl ">En variant av en</p>
         <h2 className="text-5xl">Læringshub</h2>
