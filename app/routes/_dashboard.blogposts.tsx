@@ -1,7 +1,6 @@
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getBlogposts } from "~/models/content.server";
-import type { Content } from "@prisma/client";
 import CardWithMultipleContent from "~/components/card/CardWithMultipleContent";
 
 export const loader = async () => {
@@ -12,29 +11,25 @@ export const loader = async () => {
 const Blogposts = () => {
   const { blogposts } = useLoaderData<typeof loader>();
 
-  const featuredBlogposts = blogposts.filter(
-    (blogpost) => blogpost.featured
-  ) as unknown as Content[];
+  const featuredBlogposts = blogposts.filter((blogpost) => blogpost.featured);
 
-  const otherBlogposts = blogposts.filter(
-    (blogpost) => !blogpost.featured
-  ) as unknown as Content[];
+  const otherBlogposts = blogposts.filter((blogpost) => !blogpost.featured);
 
   return (
     <div className="flex flex-col gap-4">
       {featuredBlogposts.length > 0 && (
         <CardWithMultipleContent
           content={featuredBlogposts}
-          header={"Anbefalte 🔥"}
-          buttonText={"Les mer"}
+          heading="Anbefalte 🔥"
+          buttonText="Les mer"
         />
       )}
 
       {otherBlogposts.length > 0 && (
         <CardWithMultipleContent
           content={otherBlogposts}
-          header={"Alle bloggposter 🤩"}
-          buttonText={"Les mer"}
+          heading="Alle bloggposter 🤩"
+          buttonText="Les mer"
         />
       )}
     </div>
