@@ -2,11 +2,14 @@ import type { Content } from "@prisma/client";
 import { prisma } from "~/db.server";
 
 export async function getContent() {
-  return prisma.content.findMany({ include: { tags: true } });
+  return prisma.content.findMany({ include: { tags: true, category: true } });
 }
 
 export async function getContentById(id: string) {
-  return prisma.content.findUnique({ where: { id }, include: { tags: true } });
+  return prisma.content.findUnique({
+    where: { id },
+    include: { tags: true, category: true },
+  });
 }
 
 export async function deleteContent(id: string) {
@@ -75,13 +78,13 @@ export async function searchContent(search: string) {
   });
 }
 
-export async function getNumNewestContent(numItems: number) {
+export async function getNewestContent(numberOfItems: number) {
   return prisma.content.findMany({
-    take: numItems,
+    take: numberOfItems,
     orderBy: {
       createdAt: "desc",
     },
-    include: { tags: true },
+    include: { tags: true, category: true },
   });
 }
 
@@ -95,7 +98,7 @@ export async function getVideo(id: string) {
   return prisma.content.findUnique({ where: { id } });
 }
 
-export async function getNumVideos() {
+export async function getNumberOfVideos() {
   return prisma.content.count({
     where: { category: { text: "Video" } },
   });
@@ -149,7 +152,7 @@ export async function getBlogposts() {
   });
 }
 
-export async function getNumBlogposts() {
+export async function getNumberOfBlogposts() {
   return prisma.content.count({
     where: { category: { text: "Bloggpost" } },
   });
@@ -165,7 +168,7 @@ export async function getCourse(id: string) {
   return prisma.content.findUnique({ where: { id } });
 }
 
-export async function getNumCourses() {
+export async function getNumberOfCourses() {
   return prisma.content.count({
     where: { category: { text: "Kurs" } },
   });
@@ -177,7 +180,7 @@ export async function getLectures() {
   });
 }
 
-export async function getNumLectures() {
+export async function getNumberOfLectures() {
   return prisma.content.count({
     where: { category: { text: "Foredrag" } },
   });

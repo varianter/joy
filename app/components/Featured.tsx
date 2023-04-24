@@ -4,14 +4,13 @@ import ArticlePreview from "~/components/ArticlePreview";
 import TagButton from "~/components/buttons/TagButton";
 import Card from "~/components/card/Card";
 
-
 interface FeaturedProps {
-  newestContent: SerializeFrom<(Content & { tags: Tag[]})[]>
-  categories: Category[];
+  newestContent: SerializeFrom<
+    (Content & { tags: Tag[] } & { category: Category })[]
+  >;
 }
 
-
-const Featured = ({newestContent, categories}: FeaturedProps) => {
+const Featured = ({ newestContent }: FeaturedProps) => {
   return (
     <div>
       <section>
@@ -39,10 +38,7 @@ const Featured = ({newestContent, categories}: FeaturedProps) => {
                     </div>
 
                     <ArticlePreview
-                      category={
-                        categories.find((c) => c.id === content.categoryId)
-                          ?.text ?? ""
-                      }
+                      category={content.category.text}
                       createdDate={content.createdAt.toString().split("T")[0]}
                       title={content.title}
                       description={content.description}
@@ -69,6 +65,6 @@ const Featured = ({newestContent, categories}: FeaturedProps) => {
       </section>
     </div>
   );
-}
+};
 
 export default Featured;
