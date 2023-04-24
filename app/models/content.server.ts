@@ -24,7 +24,7 @@ export function updateContent(
     image,
     imageText,
     author,
-    createdAt
+    createdAt,
   }: Pick<
     Content,
     | "id"

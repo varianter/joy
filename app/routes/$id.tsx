@@ -20,7 +20,7 @@ export const loader = async ({ params }: LoaderArgs) => {
   });
 };
 
-const Content = () => {
+const ContentId = () => {
   const { content, categories } = useLoaderData<typeof loader>();
   return (
     <Card cssClass="bg-variant-blue-4 ">
@@ -45,4 +45,4 @@ const Content = () => {
   );
 };
 
-export default Content;
+export default ContentId;

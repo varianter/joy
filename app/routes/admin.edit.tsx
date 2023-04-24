@@ -39,10 +39,7 @@ const Edit = () => {
               <p className="items-center">{c.title}</p>
             </div>
 
-            <Link
-              to={`/admin/content/edit/${c.id}`}
-              className="mb-5 flex justify-end"
-            >
+            <Link to={`/admin/edit/${c.id}`} className="mb-5 flex justify-end">
               <SecondaryButton text="Endre" />
             </Link>
           </div>
