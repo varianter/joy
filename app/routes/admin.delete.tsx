@@ -1,4 +1,4 @@
-import { Form, useLoaderData } from "@remix-run/react";
+import { Form, useLoaderData, useNavigation } from "@remix-run/react";
 import type { ActionArgs } from "@remix-run/server-runtime";
 import { json } from "@remix-run/server-runtime";
 import { redirect } from "@remix-run/server-runtime";
@@ -29,16 +29,19 @@ export async function action({ request }: ActionArgs) {
   }
 
   await deleteContent(idToDelete);
-  return redirect("/admin/content/delete");
+  return redirect("/admin");
 }
 
 const DeleteContent = () => {
   const { content } = useLoaderData<typeof loader>();
   const [filteredContent, setFilteredContent] = useState(content);
+  const [itemToDelete, setItemToDelete] = useState("");
+
+  const navigation = useNavigation();
 
   const handleSearchChange = (e: React.FormEvent<HTMLInputElement>) => {
     const tempFilteredContent = content.filter((fc) =>
-      fc.title.toLowerCase().includes(e.currentTarget.value.toLocaleLowerCase())
+      fc.title.toLowerCase().includes(e.currentTarget.value.toLowerCase())
     );
 
     setFilteredContent(tempFilteredContent);
@@ -68,7 +71,22 @@ const DeleteContent = () => {
             </div>
 
             <div className="mb-5 flex justify-end">
-              <PrimaryButton text="Slett" />
+              <PrimaryButton
+                type="submit"
+                onClick={() => setItemToDelete(c.id)}
+                text={
+                  (navigation.state === "submitting" ||
+                    navigation.state === "loading") &&
+                  itemToDelete === c.id
+                    ? "sletter ... "
+                    : "Slett"
+                }
+                disabled={
+                  (navigation.state === "submitting" ||
+                    navigation.state === "loading") &&
+                  itemToDelete === c.id
+                }
+              />
             </div>
           </Form>
         );

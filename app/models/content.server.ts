@@ -13,6 +13,54 @@ export async function deleteContent(id: string) {
   return prisma.content.delete({ where: { id } });
 }
 
+export function updateContent(
+  {
+    id,
+    title,
+    description,
+    url,
+    featured,
+    categoryId,
+    image,
+    imageText,
+    author,
+    createdAt,
+  }: Pick<
+    Content,
+    | "id"
+    | "title"
+    | "description"
+    | "url"
+    | "featured"
+    | "categoryId"
+    | "image"
+    | "imageText"
+    | "author"
+    | "createdAt"
+  >,
+  tags?: string[]
+) {
+  return prisma.content.update({
+    where: { id },
+    data: {
+      title,
+      description,
+      url,
+      featured,
+      categoryId,
+      image,
+      imageText,
+      author,
+      createdAt,
+      tags: {
+        connect: tags?.map((t) => {
+          return { id: t };
+        }),
+      },
+    },
+  });
+}
+
 export async function searchContent(search: string) {
   return prisma.content.findMany({
     where: {
@@ -58,7 +106,7 @@ export function createContent(
     title,
     description,
     url,
-    suggested,
+    featured,
     categoryId,
     image,
     imageText,
@@ -68,7 +116,7 @@ export function createContent(
     | "title"
     | "description"
     | "url"
-    | "suggested"
+    | "featured"
     | "categoryId"
     | "image"
     | "imageText"
@@ -81,7 +129,7 @@ export function createContent(
       title,
       description,
       url,
-      suggested,
+      featured,
       categoryId,
       image,
       imageText,

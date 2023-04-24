@@ -13,11 +13,11 @@ const Blogposts = () => {
   const { blogposts } = useLoaderData<typeof loader>();
 
   const featuredBlogposts = blogposts.filter(
-    (blogpost) => blogpost.suggested
+    (blogpost) => blogpost.featured
   ) as unknown as Content[];
 
   const otherBlogposts = blogposts.filter(
-    (blogpost) => !blogpost.suggested
+    (blogpost) => !blogpost.featured
   ) as unknown as Content[];
 
   return (

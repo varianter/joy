@@ -9,15 +9,15 @@ export const loader = async () => {
   return json({ lectures });
 };
 
-const Lecture = () => {
+const Lectures = () => {
   const { lectures } = useLoaderData<typeof loader>();
 
   const featuredLectures = lectures.filter(
-    (lecture) => lecture.suggested
+    (lecture) => lecture.featured
   ) as unknown as Content[];
 
   const otherLectures = lectures.filter(
-    (lecture) => !lecture.suggested
+    (lecture) => !lecture.featured
   ) as unknown as Content[];
 
   return (
@@ -41,4 +41,4 @@ const Lecture = () => {
   );
 };
 
-export default Lecture;
+export default Lectures;

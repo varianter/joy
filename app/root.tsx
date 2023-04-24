@@ -4,6 +4,7 @@ import {
   Links,
   LiveReload,
   Meta,
+  Outlet,
   Scripts,
   ScrollRestoration,
   useLoaderData,
@@ -21,7 +22,7 @@ import type { Content } from "@prisma/client";
 export const links: LinksFunction = () => {
   return [
     { rel: "stylesheet", href: tailwindStylesheetUrl },
-    { rel: "stylesheet", href: globalStylesheetUrl }
+    { rel: "stylesheet", href: globalStylesheetUrl },
   ];
 };
 
@@ -37,18 +38,17 @@ export async function loader({ request }: LoaderArgs) {
 
   const [user, searchResult] = await Promise.all([
     authenticator.isAuthenticated(request),
-    query && query.length > 0 && searchContent(query ?? "")
+    query && query.length > 0 && searchContent(query ?? ""),
   ]);
 
   return json({
     user,
-    searchResult
+    searchResult,
   });
 }
 
-export default function App() {
-  const { user, searchResult } =
-    useLoaderData<typeof loader>();
+export default function Root() {
+  const { user, searchResult } = useLoaderData<typeof loader>();
 
   const isAuthenticated = user?.profile ? true : false;
   const search: Content[] = searchResult
@@ -74,7 +74,9 @@ export default function App() {
           isAuthenticated={isAuthenticated}
           searchResult={search}
           isLoadingSearchResult={isLoadingSearchResult}
-        />
+        >
+          <Outlet />
+        </Layout>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

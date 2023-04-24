@@ -1,4 +1,4 @@
-import { Link, Outlet } from "@remix-run/react";
+import { Link, Outlet, useLocation } from "@remix-run/react";
 import type { LoaderArgs } from "@remix-run/server-runtime";
 import NavigationCard from "~/components/card/NavigationCard";
 import { requireUserSession } from "~/services/session";
@@ -8,9 +8,11 @@ export const loader = async ({ request }: LoaderArgs) => {
 };
 
 const Admin = () => {
+  const location = useLocation();
+
   return (
-    <>
-      <section className="text-left text-white md:w-1/2">
+    <div className="flex flex-col">
+      <section className="text-left text-white sm:w-1/2">
         <h1>Admin 🥷</h1>
         <p>
           Her kan du legge til, fjerne eller endre innhold. Ved spørsmål eller
@@ -19,9 +21,10 @@ const Admin = () => {
       </section>
       <section>
         <div className="mt-5 flex flex-col gap-5 md:flex-row">
-          <Link to="content/new">
+          <Link to="new">
             <NavigationCard
               title="Legg til innhold"
+              isActive={location.pathname.includes("new")}
               icon={
                 <img
                   alt={"Figur av læreglede"}
@@ -31,9 +34,10 @@ const Admin = () => {
               }
             />
           </Link>
-          <Link to="content/edit">
+          <Link to="edit">
             <NavigationCard
               title="Endre innhold"
+              isActive={location.pathname.includes("edit")}
               icon={
                 <img
                   alt={"Figur av læreglede"}
@@ -43,9 +47,10 @@ const Admin = () => {
               }
             />
           </Link>
-          <Link to="content/delete">
+          <Link to="delete">
             <NavigationCard
               title="Slett innhold"
+              isActive={location.pathname.includes("delete")}
               icon={
                 <img
                   alt={"Figur av læreglede"}
@@ -58,7 +63,7 @@ const Admin = () => {
         </div>
       </section>
       <Outlet />
-    </>
+    </div>
   );
 };
 
