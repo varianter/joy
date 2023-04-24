@@ -2,15 +2,17 @@ import type { Content, Tag } from "@prisma/client";
 import SecondaryButton from "../buttons/SecondaryButton";
 import Card from "./Card";
 import type { SerializeFrom } from "@remix-run/node";
-
+import { NavLink } from "@remix-run/react";
 interface CardWithMultipleContentProps {
   content: SerializeFrom<(Content & { tags?: Tag[] })[]>;
+  contentType?: "course" | "blogpost" | "video" | "lecture" | "podcast";
   heading: string;
   buttonText: string;
 }
 
 const CardWithMultipleContent = ({
   content,
+  contentType,
   heading,
   buttonText,
 }: CardWithMultipleContentProps) => {
@@ -43,14 +45,20 @@ const CardWithMultipleContent = ({
                     <span className="font-bold">
                       {new Date(content.createdAt).toLocaleDateString("nb")}
                     </span>
-                    <a
-                      className="ml-auto"
-                      href={content.url}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <SecondaryButton text={buttonText} />
-                    </a>
+                    {contentType === "course" ? (
+                      <NavLink to={content.id} className="ml-auto">
+                        <SecondaryButton text={buttonText} />
+                      </NavLink>
+                    ) : (
+                      <a
+                        className="ml-auto"
+                        href={content.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <SecondaryButton text={buttonText} />
+                      </a>
+                    )}
                   </div>
                 </div>
               </Card>
