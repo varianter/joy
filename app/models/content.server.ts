@@ -2,11 +2,14 @@ import type { Content } from "@prisma/client";
 import { prisma } from "~/db.server";
 
 export async function getContent() {
-  return prisma.content.findMany({ include: { tags: true } });
+  return prisma.content.findMany({ include: { tags: true, category: true } });
 }
 
 export async function getContentById(id: string) {
-  return prisma.content.findUnique({ where: { id }, include: { tags: true } });
+  return prisma.content.findUnique({
+    where: { id },
+    include: { tags: true, category: true },
+  });
 }
 
 export async function deleteContent(id: string) {
@@ -75,13 +78,13 @@ export async function searchContent(search: string) {
   });
 }
 
-export async function getNumNewestContent(numItems: number) {
+export async function getNewestContent(numberOfItems: number) {
   return prisma.content.findMany({
-    take: numItems,
+    take: numberOfItems,
     orderBy: {
       createdAt: "desc",
     },
-    include: { tags: true },
+    include: { tags: true, category: true },
   });
 }
 
