@@ -12,7 +12,7 @@ const Courses = () => {
   const { courses } = useLoaderData<typeof loader>();
 
   return (
-    <section className="flex max-w-5xl flex-col items-center justify-center">
+    <section className="flex flex-col items-center justify-center">
       <CardWithMultipleContent
         content={courses}
         contentType="course"
