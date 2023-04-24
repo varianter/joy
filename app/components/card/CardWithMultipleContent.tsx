@@ -3,6 +3,7 @@ import SecondaryButton from "../buttons/SecondaryButton";
 import Card from "./Card";
 import type { SerializeFrom } from "@remix-run/node";
 import { NavLink } from "@remix-run/react";
+
 interface CardWithMultipleContentProps {
   content: SerializeFrom<(Content & { tags?: Tag[] })[]>;
   contentType?: "course" | "blogpost" | "video" | "lecture" | "podcast";
