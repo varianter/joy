@@ -1,9 +1,5 @@
 import { json } from "@remix-run/node";
-import {
-  useLoaderData,
-  useRouteError,
-  isRouteErrorResponse,
-} from "@remix-run/react";
+import { useLoaderData, useRouteError } from "@remix-run/react";
 import { getVideos } from "~/models/content.server";
 import CardWithMultipleContent from "~/components/card/CardWithMultipleContent";
 import ErrorComponent from "~/components/Error";
