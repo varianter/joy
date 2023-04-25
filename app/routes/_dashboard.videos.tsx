@@ -1,7 +1,12 @@
 import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import {
+  useLoaderData,
+  useRouteError,
+  isRouteErrorResponse,
+} from "@remix-run/react";
 import { getVideos } from "~/models/content.server";
 import CardWithMultipleContent from "~/components/card/CardWithMultipleContent";
+import ErrorComponent from "~/components/Error";
 
 export const loader = async () => {
   const videos = await getVideos();
@@ -37,3 +42,9 @@ const Videos = () => {
 };
 
 export default Videos;
+
+export const ErrorBoundary = () => {
+  const error = useRouteError();
+
+  return <ErrorComponent error={error} />;
+};

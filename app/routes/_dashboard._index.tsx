@@ -1,7 +1,8 @@
 import { json } from "@remix-run/node";
 import { getNewestContent } from "~/models/content.server";
 import Featured from "~/components/Featured";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useRouteError } from "@remix-run/react";
+import ErrorComponent from "~/components/Error";
 
 const numberOfNewContent = 2;
 
@@ -18,3 +19,9 @@ export default function Index() {
 
   return <Featured newestContent={newestContent} />;
 }
+
+export const ErrorBoundary = () => {
+  const error = useRouteError();
+
+  return <ErrorComponent error={error} />;
+};

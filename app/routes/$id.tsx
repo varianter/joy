@@ -1,7 +1,8 @@
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useRouteError } from "@remix-run/react";
 import type { LoaderArgs } from "@remix-run/server-runtime";
 import { json } from "@remix-run/server-runtime";
 import ArticlePreview from "~/components/ArticlePreview";
+import ErrorComponent from "~/components/Error";
 import Card from "~/components/card/Card";
 import { getContentById } from "~/models/content.server";
 
@@ -40,3 +41,9 @@ const ContentId = () => {
 };
 
 export default ContentId;
+
+export const ErrorBoundary = () => {
+  const error = useRouteError();
+
+  return <ErrorComponent error={error} />;
+};

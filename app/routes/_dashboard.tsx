@@ -1,5 +1,6 @@
 import { json } from "@remix-run/node";
-import { Link, Outlet, useLoaderData } from "@remix-run/react";
+import { Link, Outlet, useLoaderData, useRouteError } from "@remix-run/react";
+import ErrorComponent from "~/components/Error";
 import NavigationCard from "~/components/card/NavigationCard";
 import {
   getNumberOfBlogposts,
@@ -97,3 +98,9 @@ export default function Dashboard() {
     </div>
   );
 }
+
+export const ErrorBoundary = () => {
+  const error = useRouteError();
+
+  return <ErrorComponent error={error} />;
+};
