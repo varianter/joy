@@ -1,7 +1,8 @@
 import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useRouteError } from "@remix-run/react";
 import { getLectures } from "~/models/content.server";
 import CardWithMultipleContent from "~/components/card/CardWithMultipleContent";
+import ErrorComponent from "~/components/Error";
 
 export const loader = async () => {
   const lectures = await getLectures();
@@ -37,3 +38,9 @@ const Lectures = () => {
 };
 
 export default Lectures;
+
+export const ErrorBoundary = () => {
+  const error = useRouteError();
+
+  return <ErrorComponent error={error} />;
+};

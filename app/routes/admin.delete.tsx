@@ -1,8 +1,14 @@
-import { Form, useLoaderData, useNavigation } from "@remix-run/react";
+import {
+  Form,
+  useLoaderData,
+  useNavigation,
+  useRouteError,
+} from "@remix-run/react";
 import type { ActionArgs } from "@remix-run/server-runtime";
 import { json } from "@remix-run/server-runtime";
 import { redirect } from "@remix-run/server-runtime";
 import { useState } from "react";
+import ErrorComponent from "~/components/Error";
 import PrimaryButton from "~/components/buttons/PrimaryButton";
 import { SearchInput } from "~/components/search/SearchInput";
 import { deleteContent, getContent } from "~/models/content.server";
@@ -96,3 +102,9 @@ const DeleteContent = () => {
 };
 
 export default DeleteContent;
+
+export const ErrorBoundary = () => {
+  const error = useRouteError();
+
+  return <ErrorComponent error={error} />;
+};

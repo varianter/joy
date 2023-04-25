@@ -5,9 +5,11 @@ import {
   useActionData,
   useLoaderData,
   useNavigation,
+  useRouteError,
 } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import PrimaryButton from "~/components/buttons/PrimaryButton";
+import ErrorComponent from "~/components/Error";
 import Input from "~/components/inputs/Input";
 import TextArea from "~/components/inputs/TextArea";
 import Toggle from "~/components/Toggle";
@@ -398,3 +400,9 @@ const EditContent = () => {
 };
 
 export default EditContent;
+
+export const ErrorBoundary = () => {
+  const error = useRouteError();
+
+  return <ErrorComponent error={error} />;
+};

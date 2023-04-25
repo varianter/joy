@@ -1,5 +1,6 @@
-import { Link, Outlet, useLocation } from "@remix-run/react";
+import { Link, Outlet, useLocation, useRouteError } from "@remix-run/react";
 import type { LoaderArgs } from "@remix-run/server-runtime";
+import ErrorComponent from "~/components/Error";
 import NavigationCard from "~/components/card/NavigationCard";
 import { requireUserSession } from "~/services/session";
 
@@ -68,3 +69,9 @@ const Admin = () => {
 };
 
 export default Admin;
+
+export const ErrorBoundary = () => {
+  const error = useRouteError();
+
+  return <ErrorComponent error={error} />;
+};

@@ -1,6 +1,7 @@
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData, useRouteError } from "@remix-run/react";
 import { json } from "@remix-run/server-runtime";
 import { useState } from "react";
+import ErrorComponent from "~/components/Error";
 import SecondaryButton from "~/components/buttons/SecondaryButton";
 import { SearchInput } from "~/components/search/SearchInput";
 import { getContent } from "~/models/content.server";
@@ -50,3 +51,9 @@ const Edit = () => {
 };
 
 export default Edit;
+
+export const ErrorBoundary = () => {
+  const error = useRouteError();
+
+  return <ErrorComponent error={error} />;
+};
