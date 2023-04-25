@@ -2,7 +2,6 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getLectures } from "~/models/content.server";
 import CardWithMultipleContent from "~/components/card/CardWithMultipleContent";
-import type { Content } from "@prisma/client";
 
 export const loader = async () => {
   const lectures = await getLectures();
@@ -12,29 +11,25 @@ export const loader = async () => {
 const Lectures = () => {
   const { lectures } = useLoaderData<typeof loader>();
 
-  const featuredLectures = lectures.filter(
-    (lecture) => lecture.featured
-  ) as unknown as Content[];
+  const featuredLectures = lectures.filter((lecture) => lecture.featured);
 
-  const otherLectures = lectures.filter(
-    (lecture) => !lecture.featured
-  ) as unknown as Content[];
+  const otherLectures = lectures.filter((lecture) => !lecture.featured);
 
   return (
     <div className="flex flex-col gap-4">
       {featuredLectures.length > 0 && (
         <CardWithMultipleContent
           content={featuredLectures}
-          header={"Anbefalte 🔥"}
-          buttonText={"Se foredrag"}
+          heading="Anbefalte 🔥"
+          buttonText="Se foredrag"
         />
       )}
 
       {otherLectures.length > 0 && (
         <CardWithMultipleContent
           content={otherLectures}
-          header={"Alle foredrag 🤩"}
-          buttonText={"Se foredrag"}
+          heading="Alle foredrag 🤩"
+          buttonText="Se foredrag"
         />
       )}
     </div>

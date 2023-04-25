@@ -3,7 +3,6 @@ import type { LoaderArgs } from "@remix-run/server-runtime";
 import { json } from "@remix-run/server-runtime";
 import ArticlePreview from "~/components/ArticlePreview";
 import Card from "~/components/card/Card";
-import { getCategories } from "~/models/category.server";
 import { getContentById } from "~/models/content.server";
 
 export const loader = async ({ params }: LoaderArgs) => {
@@ -12,16 +11,13 @@ export const loader = async ({ params }: LoaderArgs) => {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const categories = await getCategories();
-
   return json({
     content,
-    categories,
   });
 };
 
 const ContentId = () => {
-  const { content, categories } = useLoaderData<typeof loader>();
+  const { content } = useLoaderData<typeof loader>();
   return (
     <Card cssClass="bg-variant-blue-4 ">
       <div className="grid h-full sm:grid-cols-2">
@@ -32,9 +28,7 @@ const ContentId = () => {
         />
 
         <ArticlePreview
-          category={
-            categories.find((c) => c.id === content.categoryId)?.text ?? ""
-          }
+          category={content.category.text}
           createdDate={content.createdAt.toString().split("T")[0]}
           title={content.title}
           description={content.description}

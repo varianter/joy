@@ -2,23 +2,18 @@ import { json } from "@remix-run/node";
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import NavigationCard from "~/components/card/NavigationCard";
 import {
-  getNumBlogposts,
-  getNumCourses,
-  getNumLectures,
-  getNumVideos,
+  getNumberOfBlogposts,
+  getNumberOfCourses,
+  getNumberOfLectures,
+  getNumberOfVideos,
 } from "~/models/content.server";
 
 export const loader = async () => {
-  const [
-    numVideos,
-    numBlogposts,
-    numCourses,
-    numLectures,
-  ] = await Promise.all([
-    getNumVideos(),
-    getNumBlogposts(),
-    getNumCourses(),
-    getNumLectures(),
+  const [numVideos, numBlogposts, numCourses, numLectures] = await Promise.all([
+    getNumberOfVideos(),
+    getNumberOfBlogposts(),
+    getNumberOfCourses(),
+    getNumberOfLectures(),
   ]);
   return json({
     numVideos,
@@ -33,7 +28,7 @@ export default function Dashboard() {
     useLoaderData<typeof loader>();
 
   return (
-    <div>
+    <div className="mt-24 sm:mt-32">
       <section className="text-left text-white">
         <p className="text-2xl ">En variant av en</p>
         <h2 className="text-5xl">Læringshub</h2>

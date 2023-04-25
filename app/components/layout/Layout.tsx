@@ -78,7 +78,7 @@ export const Layout = ({
           </form>
         </div>
       </div>
-      <div className="mx-5 mt-24 min-h-[40rem] sm:mt-32 md:mx-[5rem] xl:mx-[35rem]">
+      <div className="mx-5 min-h-[40rem] md:mx-[5rem] xl:mx-[35rem]">
         {children}
       </div>
       <footer className="footer mt-10">
