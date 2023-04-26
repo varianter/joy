@@ -25,3 +25,19 @@ export const getIconForCategory = (category: string) => {
       return "lecture";
   }
 };
+
+export enum Category {
+  Blogpost = "Bloggpost",
+  Course = "Kurs",
+  Video = "Video",
+  Podcast = "Podcast",
+  Lecture = "Foredrag",
+}
+
+export const CATEGORIES = [
+  Category.Blogpost,
+  Category.Course,
+  Category.Video,
+  Category.Podcast,
+  Category.Lecture,
+];

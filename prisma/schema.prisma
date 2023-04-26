@@ -8,29 +8,22 @@ generator client {
 }
 
 model Content {
-  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id          String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title       String
   description String
   url         String
-  featured    Boolean  @default(false)
+  featured    Boolean @default(false)
   author      String
-  category    Category @relation(fields: [categoryId], references: [id])
   tags        Tag[]
   image       String?
   imageText   String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now())
-  categoryId  String @db.Uuid
-}
-
-model Category {
-  id       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  text String    @unique
-  content  Content[]
+  category    String
 }
 
 model Tag {
-  id      String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   text     String    @unique
-  content Content[]
+  content  Content[]
 }
