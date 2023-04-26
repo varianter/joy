@@ -164,7 +164,7 @@ export async function getCourses() {
   });
 }
 
-export async function getCourse(id: string) {
+export async function getCourseById(id: string) {
   return prisma.content.findUnique({ where: { id } });
 }
 
