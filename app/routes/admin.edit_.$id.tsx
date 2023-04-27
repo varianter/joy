@@ -15,7 +15,7 @@ import TextArea from "~/components/inputs/TextArea";
 import Toggle from "~/components/Toggle";
 import { getContentById, updateContent } from "~/models/content.server";
 import { getTags } from "~/models/tag.server";
-import { CATEGORIES, isValidUrl } from "~/utils";
+import { CATEGORIES, Category, isValidUrl } from "~/utils";
 
 export const loader = async ({ params }: LoaderArgs) => {
   const content = await getContentById(params.id ?? "");
@@ -102,7 +102,7 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  if (!isValidUrl(url)) {
+  if (category !== Category.Course && !isValidUrl(url)) {
     return json(
       {
         errors: {
