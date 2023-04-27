@@ -9,7 +9,7 @@ interface PrimaryButtonProps {
 const PrimaryButton = (props: PrimaryButtonProps) => {
   const { text, disabled, onClick, type, size } = props;
 
-  const getButtonSize = (size: "small" | "medium" | "large") => {
+  const setButtonSize = (size: "small" | "medium" | "large") => {
     switch (size) {
       case "small":
         return "px-3 py-1 text-sm";
@@ -32,7 +32,7 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
           ? "bg-variant-gray"
           : "bg-variant-beige hover:bg-variant-beige-2"
       } ${
-        size ? getButtonSize(size) : `px-9 py-3`
+        size ? setButtonSize(size) : `px-9 py-3`
       } text-variant-blue transition-all`}
     >
       {/* String.fromCharCode(160) creates a non-breaking space */}
