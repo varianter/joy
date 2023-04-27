@@ -27,7 +27,7 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
       type={type}
       disabled={disabled}
       onClick={(e) => onClick && onClick(e)}
-      className={`rounded-3xl font-sans ${
+      className={`rounded-3xl font-sans text-black ${
         disabled
           ? "bg-variant-gray"
           : "bg-variant-beige hover:bg-variant-beige-2"
