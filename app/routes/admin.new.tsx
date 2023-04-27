@@ -15,7 +15,7 @@ import TextArea from "~/components/inputs/TextArea";
 import Toggle from "~/components/Toggle";
 import { createContent } from "~/models/content.server";
 import { getTags } from "~/models/tag.server";
-import { CATEGORIES, isValidUrl } from "~/utils";
+import { CATEGORIES, Category, isValidUrl } from "~/utils";
 
 export const loader = async () => {
   const tags = await getTags();
@@ -82,7 +82,7 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  if (!isValidUrl(url)) {
+  if (category !== Category.Course && !isValidUrl(url)) {
     return json(
       {
         errors: {
@@ -154,7 +154,7 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  await createContent(
+  const newContentRecord = await createContent(
     {
       title,
       description,
@@ -168,7 +168,9 @@ export async function action({ request }: ActionArgs) {
     tags
   );
 
-  return redirect(`/`);
+  if (category == Category.Course) {
+    return redirect(`/admin/new/${newContentRecord.id}`);
+  } else return redirect(`/`);
 }
 
 const NewContent = () => {

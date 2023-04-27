@@ -1,6 +1,6 @@
 import type { Content } from "@prisma/client";
 import { prisma } from "~/db.server";
-import { CATEGORIES, Category } from "~/utils";
+import { Category } from "~/utils";
 
 export async function getContent() {
   return prisma.content.findMany({ include: { tags: true } });
