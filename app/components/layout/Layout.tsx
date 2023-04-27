@@ -1,5 +1,5 @@
 import type { Content } from "@prisma/client";
-import { Link, useSearchParams } from "@remix-run/react";
+import { Form, Link, useSearchParams } from "@remix-run/react";
 import PrimaryButton from "../buttons/PrimaryButton";
 import { SearchInput } from "../search/SearchInput";
 import type { ReactNode } from "react";
@@ -31,58 +31,91 @@ export const Layout = ({
 
   return (
     <main className="background min-h-screen text-center">
-      <div className="grid p-5 px-6 pb-5 md:grid-cols-2">
-        <div className="flex items-center">
+      <div className="mx-6 gap-4 p-6 sm:flex">
+        <div className="flex sm:items-center">
           <Link to="/">
             <img
               alt={"Variant-logo"}
-              className="h-[2rem]"
+              className="h-[2rem] md:h-[4rem]"
               src={"/assets/variant-bw.svg"}
             />
           </Link>
-          <h1 className="ml-6 mt-2 text-4xl text-white">Læreglede</h1>
+          <h1 className="hidden text-white md:mt-2 md:ml-6 md:block md:text-4xl">
+            Læreglede
+          </h1>
         </div>
 
-        <div className="flex">
-          <div className="relative ml-auto mt-5 w-full md:w-2/3">
-            <SearchInput onChange={handleOnChangeSearch} />
-            {(searchResult.length > 0 || isLoadingSearchResult) && (
-              <div className="absolute z-10 mt-2 max-h-48 w-full divide-y  overflow-y-auto rounded-xl border bg-variant-blue-4 text-left">
-                {isLoadingSearchResult && <p className="p-2">Laster...</p>}
-                {!isLoadingSearchResult &&
-                  searchResult.length > 0 &&
-                  searchResult.map((res) => {
-                    return (
-                      <Link
-                        key={res.id}
-                        className="block truncate p-2 hover:bg-variant-blue-3 focus:bg-variant-blue-3"
-                        to={res.id}
-                      >
-                        <span>{res.title}</span>
-                      </Link>
-                    );
-                  })}
-              </div>
-            )}
-          </div>
+        <div className="my-4 w-full lg:px-48">
+          <SearchInput onChange={handleOnChangeSearch} />
+          {(searchResult.length > 0 || isLoadingSearchResult) && (
+            <div className="mt-2 overflow-y-auto rounded-xl border bg-variant-blue-4 text-left">
+              {isLoadingSearchResult && <p className="p-2">Søker...</p>}
+              {!isLoadingSearchResult &&
+                searchResult.length > 0 &&
+                searchResult.map((res) => {
+                  return (
+                    <Link
+                      key={res.id}
+                      className="block truncate p-2 hover:bg-variant-blue-3 focus:bg-variant-blue-3"
+                      to={res.id}
+                    >
+                      <span>{res.title}</span>
+                    </Link>
+                  );
+                })}
+            </div>
+          )}
+        </div>
+        <div
+          className={`hidden items-center sm:flex ${
+            isAuthenticated ? "sm:grid-cols-2" : "sm:grid-cols-1"
+          } sm:gap-2`}
+        >
+          {isAuthenticated && (
+            <Link to="/admin">
+              <PrimaryButton type="button" text={"Admin"} size="medium" />
+            </Link>
+          )}
 
-          <form
-            className="ml-auto hidden pt-5 md:block"
+          <Form
+            className=""
             action={`/auth/${isAuthenticated ? "logout" : "login"}`}
             method="post"
           >
             <PrimaryButton
               type="submit"
               text={isAuthenticated ? "Logg ut" : "Logg inn"}
+              size="medium"
             />
-          </form>
+          </Form>
         </div>
       </div>
+
       <div className="mx-5 min-h-[40rem] md:mx-[5rem] xl:mx-[35rem]">
         {children}
       </div>
-      <footer className="footer mt-10">
+      <footer className="footer">
         <div className="footer__inner">
+          <div className="footer__item">
+            <div className="grid gap-4 sm:hidden">
+              {isAuthenticated && (
+                <Link to="/admin">
+                  <PrimaryButton type="button" text={"Admin"} size="small" />
+                </Link>
+              )}
+
+              <Form
+                action={`/auth/${isAuthenticated ? "logout" : "login"}`}
+                method="post"
+              >
+                <PrimaryButton
+                  type="submit"
+                  text={isAuthenticated ? "Logg ut" : "Logg inn"}
+                  size="small"
+                />
+              </Form>
+            </div>
+          </div>
           <div className="footer__item">
             <h2>Utforsk</h2>
             <ul>
