@@ -1,13 +1,11 @@
-import type { Category, Content, Tag } from "@prisma/client";
+import type { Content, Tag } from "@prisma/client";
 import type { SerializeFrom } from "@remix-run/server-runtime";
 import ArticlePreview from "~/components/ArticlePreview";
 import TagButton from "~/components/buttons/TagButton";
 import Card from "~/components/card/Card";
 
 interface FeaturedProps {
-  newestContent: SerializeFrom<
-    (Content & { tags: Tag[] } & { category: Category })[]
-  >;
+  newestContent: SerializeFrom<(Content & { tags: Tag[] })[]>;
 }
 
 const Featured = ({ newestContent }: FeaturedProps) => {
@@ -38,7 +36,7 @@ const Featured = ({ newestContent }: FeaturedProps) => {
                     </div>
 
                     <ArticlePreview
-                      category={content.category.text}
+                      category={content.category}
                       createdDate={content.createdAt.toString().split("T")[0]}
                       title={content.title}
                       description={content.description}

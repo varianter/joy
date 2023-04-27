@@ -29,7 +29,7 @@ const ContentId = () => {
         />
 
         <ArticlePreview
-          category={content.category.text}
+          category={content.category}
           createdDate={content.createdAt.toString().split("T")[0]}
           title={content.title}
           description={content.description}

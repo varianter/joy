@@ -13,18 +13,17 @@ import ErrorComponent from "~/components/Error";
 import Input from "~/components/inputs/Input";
 import TextArea from "~/components/inputs/TextArea";
 import Toggle from "~/components/Toggle";
-import { getCategories } from "~/models/category.server";
 import { getContentById, updateContent } from "~/models/content.server";
 import { getTags } from "~/models/tag.server";
-import { isValidUrl } from "~/utils";
+import { CATEGORIES, isValidUrl } from "~/utils";
 
 export const loader = async ({ params }: LoaderArgs) => {
   const content = await getContentById(params.id ?? "");
   if (!content) {
     throw new Response("Not Found", { status: 404 });
   }
-  const [tags, categories] = await Promise.all([getTags(), getCategories()]);
-  return json({ id: params.id, content, tags, categories });
+  const tags = await getTags();
+  return json({ id: params.id, content, tags });
 };
 
 export async function action({ request }: ActionArgs) {
@@ -38,7 +37,7 @@ export async function action({ request }: ActionArgs) {
   const image = formData.get("image");
   const imageText = formData.get("imageText");
   const author = formData.get("author");
-  const categoryId = formData.get("categoryId");
+  const category = formData.get("category");
   const tags = formData.getAll("tag") as string[];
   const createdAt = new Date(formData.get("createdAt") as string);
 
@@ -47,7 +46,7 @@ export async function action({ request }: ActionArgs) {
     description: null,
     url: null,
     featured: null,
-    categoryId: null,
+    category: null,
     image: null,
     imageText: null,
     author: null,
@@ -175,12 +174,12 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  if (typeof categoryId !== "string") {
+  if (typeof category !== "string") {
     return json(
       {
         errors: {
           ...errors,
-          categoryId: "Kategori er påkrevd",
+          category: "Kategori er påkrevd",
         },
       },
       { status: 400 }
@@ -194,7 +193,7 @@ export async function action({ request }: ActionArgs) {
       description,
       url,
       featured,
-      categoryId,
+      category,
       image,
       imageText,
       author,
@@ -207,7 +206,7 @@ export async function action({ request }: ActionArgs) {
 }
 
 const EditContent = () => {
-  const { id, content, tags, categories } = useLoaderData<typeof loader>();
+  const { id, content, tags } = useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
@@ -327,28 +326,28 @@ const EditContent = () => {
           <fieldset className="sm:mt-4 md:col-span-2">
             <legend>Kategori:</legend>
             <div className="mt-3 gap-4 md:flex">
-              {categories?.map((category) => {
+              {CATEGORIES.map((category) => {
                 return (
-                  <div key={category.id} className="flex items-center gap-1">
+                  <div key={category} className="flex items-center gap-1">
                     <input
                       className="h-4 w-4 cursor-pointer"
                       type="radio"
-                      name="categoryId"
+                      name="category"
                       id="category"
-                      value={category.id}
-                      defaultChecked={content.categoryId === category.id}
+                      value={category}
+                      defaultChecked={content.category === category}
                     />
                     <label className="font-bold" htmlFor="category">
-                      {category.text}
+                      {category}
                     </label>
                   </div>
                 );
               })}
             </div>
 
-            {errors?.categoryId && (
+            {errors?.category && (
               <div className="pb-1 text-variant-pink-2" id="error">
-                {errors?.categoryId}
+                {errors?.category}
               </div>
             )}
           </fieldset>

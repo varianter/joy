@@ -16,7 +16,6 @@ const Courses = () => {
     <section className="flex flex-col items-center justify-center">
       <CardWithMultipleContent
         content={courses}
-        contentType="course"
         heading="Kurs"
         buttonText="Gå til kurs"
       />

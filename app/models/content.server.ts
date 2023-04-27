@@ -1,14 +1,15 @@
 import type { Content } from "@prisma/client";
 import { prisma } from "~/db.server";
+import { Category } from "~/utils";
 
 export async function getContent() {
-  return prisma.content.findMany({ include: { tags: true, category: true } });
+  return prisma.content.findMany({ include: { tags: true } });
 }
 
 export async function getContentById(id: string) {
   return prisma.content.findUnique({
     where: { id },
-    include: { tags: true, category: true },
+    include: { tags: true },
   });
 }
 
@@ -23,7 +24,7 @@ export function updateContent(
     description,
     url,
     featured,
-    categoryId,
+    category,
     image,
     imageText,
     author,
@@ -35,7 +36,7 @@ export function updateContent(
     | "description"
     | "url"
     | "featured"
-    | "categoryId"
+    | "category"
     | "image"
     | "imageText"
     | "author"
@@ -50,7 +51,7 @@ export function updateContent(
       description,
       url,
       featured,
-      categoryId,
+      category,
       image,
       imageText,
       author,
@@ -84,13 +85,13 @@ export async function getNewestContent(numberOfItems: number) {
     orderBy: {
       createdAt: "desc",
     },
-    include: { tags: true, category: true },
+    include: { tags: true },
   });
 }
 
 export async function getVideos() {
   return prisma.content.findMany({
-    where: { category: { text: "Video" } },
+    where: { category: Category.Video },
   });
 }
 
@@ -100,7 +101,7 @@ export async function getVideo(id: string) {
 
 export async function getNumberOfVideos() {
   return prisma.content.count({
-    where: { category: { text: "Video" } },
+    where: { category: Category.Video },
   });
 }
 
@@ -110,7 +111,7 @@ export function createContent(
     description,
     url,
     featured,
-    categoryId,
+    category,
     image,
     imageText,
     author,
@@ -120,7 +121,7 @@ export function createContent(
     | "description"
     | "url"
     | "featured"
-    | "categoryId"
+    | "category"
     | "image"
     | "imageText"
     | "author"
@@ -133,7 +134,7 @@ export function createContent(
       description,
       url,
       featured,
-      categoryId,
+      category,
       image,
       imageText,
       author,
@@ -148,40 +149,40 @@ export function createContent(
 
 export async function getBlogposts() {
   return prisma.content.findMany({
-    where: { category: { text: "Bloggpost" } },
+    where: { category: Category.Blogpost },
   });
 }
 
 export async function getNumberOfBlogposts() {
   return prisma.content.count({
-    where: { category: { text: "Bloggpost" } },
+    where: { category: Category.Blogpost },
   });
 }
 
 export async function getCourses() {
   return prisma.content.findMany({
-    where: { category: { text: "Kurs" } },
+    where: { category: Category.Course },
   });
 }
 
-export async function getCourse(id: string) {
+export async function getCourseById(id: string) {
   return prisma.content.findUnique({ where: { id } });
 }
 
 export async function getNumberOfCourses() {
   return prisma.content.count({
-    where: { category: { text: "Kurs" } },
+    where: { category: Category.Course },
   });
 }
 
 export async function getLectures() {
   return prisma.content.findMany({
-    where: { category: { text: "Foredrag" } },
+    where: { category: Category.Lecture },
   });
 }
 
 export async function getNumberOfLectures() {
   return prisma.content.count({
-    where: { category: { text: "Foredrag" } },
+    where: { category: Category.Lecture },
   });
 }

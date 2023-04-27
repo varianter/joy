@@ -57,17 +57,18 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
   return (
     <div className="p-3 text-left sm:relative ">
       <div className="mb-5 flex gap-2">
+        {/* TODO: change back to src={`/assets/icons/${icon}.svg`} when prisma schema is correctly updated */}
         <img
           alt={"Figur av læreglede"}
           className="fill-current h-[1.5rem] text-variant-pink"
-          src={`/assets/icons/${icon}.svg`}
+          src={`/assets/icons/course.svg`}
         />
         <span>{category}</span>
         <span className="ml-auto font-bold">{createdDate}</span>
       </div>
       <h1 className="text-left text-4xl line-clamp-2">{title}</h1>
       <p className="my-5 line-clamp-3">{description}</p>
-      <div className="flex items-center sm:absolute sm:bottom-2 sm:inset-x-6">
+      <div className="flex items-center sm:absolute sm:inset-x-6 sm:bottom-2">
         <Link
           className="underline hover:text-variant-pink"
           to={linkButtonText().route}
