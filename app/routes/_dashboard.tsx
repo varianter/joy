@@ -29,11 +29,11 @@ export default function Dashboard() {
     useLoaderData<typeof loader>();
 
   return (
-    <div className="mt-24 sm:mt-32">
+    <div className="mt-12 sm:mt-24">
       <section className="text-left text-white">
-        <p className="text-2xl ">En variant av en</p>
+        <p className="font-serif text-xl">En variant av en</p>
         <h2 className="text-5xl">Læringshub</h2>
-        <p className="mt-4">
+        <p className="mt-8">
           Vi i Variant lager og holder en del kurs og foredrag i flere
           sammenhenger. Vi har noen bloggposter her, noen YouTube-videoer der,
           og noen foredrag en annen plass. Dette har vi samlet i denne
