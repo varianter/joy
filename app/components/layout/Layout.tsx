@@ -1,5 +1,5 @@
 import type { Content } from "@prisma/client";
-import { Form, Link, useSearchParams } from "@remix-run/react";
+import { Form, Link, NavLink, useSearchParams } from "@remix-run/react";
 import PrimaryButton from "../buttons/PrimaryButton";
 import { SearchInput } from "../search/SearchInput";
 import type { ReactNode } from "react";
@@ -31,15 +31,11 @@ export const Layout = ({
 
   return (
     <main className="background min-h-screen text-center">
-      <div className="mx-6 gap-4 p-6 sm:flex">
+      <div className="mx-6 gap-4 py-6 sm:flex sm:px-6">
         <div className="flex sm:items-center">
-          <Link to="/">
-            <img
-              alt={"Variant-logo"}
-              className="h-[2rem] md:h-[4rem]"
-              src={"/assets/variant-bw.svg"}
-            />
-          </Link>
+          <NavLink className="w-32" to="/">
+            <img alt={"Variant-logo"} src={"/assets/variant-bw.svg"} />
+          </NavLink>
           <h1 className="hidden text-white md:mt-2 md:ml-6 md:block md:text-4xl">
             Læreglede
           </h1>
