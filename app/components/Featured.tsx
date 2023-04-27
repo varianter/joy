@@ -12,7 +12,7 @@ const Featured = ({ newestContent }: FeaturedProps) => {
   return (
     <div>
       <section>
-        <h2 className="mb-8 text-left text-4xl text-white md:text-5xl">
+        <h2 className="mb-8 text-left text-xl text-white md:text-2xl">
           Bli inspirert 🤩
         </h2>
         <div>

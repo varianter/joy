@@ -32,7 +32,7 @@ export default function Dashboard() {
     <div className="mt-12 sm:mt-24">
       <section className="text-left text-white">
         <p className="font-serif text-xl">En variant av en</p>
-        <h2 className="text-5xl">Læringshub</h2>
+        <h2 className="text-4xl">Læringshub</h2>
         <p className="mt-8">
           Vi i Variant lager og holder en del kurs og foredrag i flere
           sammenhenger. Vi har noen bloggposter her, noen YouTube-videoer der,

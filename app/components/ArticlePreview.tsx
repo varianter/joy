@@ -46,7 +46,7 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
       case "podcast":
         return { text: "Se alle pocasts", route: "/podcasts" };
       case "kurs":
-        return { text: "Se alle kurs", route: "/course" };
+        return { text: "Se alle kurs", route: "/courses" };
       case "foredrag":
         return { text: "Se alle foredrag", route: "/lecture" };
       default:
@@ -63,14 +63,14 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
           className="fill-current h-[1.5rem] text-variant-pink"
           src={`/assets/icons/course.svg`}
         />
-        <span>{category}</span>
-        <span className="ml-auto font-bold">{createdDate}</span>
+        <span className="font-sans">{category}</span>
+        <span className="ml-auto font-sans">{createdDate}</span>
       </div>
       <h1 className="text-left text-4xl line-clamp-2">{title}</h1>
       <p className="my-5 line-clamp-3">{description}</p>
       <div className="flex items-center sm:absolute sm:inset-x-6 sm:bottom-2">
         <Link
-          className="underline hover:text-variant-pink"
+          className="font-sans underline hover:text-variant-pink"
           to={linkButtonText().route}
         >
           {linkButtonText().text}
