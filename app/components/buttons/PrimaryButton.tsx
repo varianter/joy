@@ -27,13 +27,11 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
       type={type}
       disabled={disabled}
       onClick={(e) => onClick && onClick(e)}
-      className={`rounded-3xl ${
+      className={`rounded-3xl font-sans ${
         disabled
           ? "bg-variant-gray"
           : "bg-variant-beige hover:bg-variant-beige-2"
-      } ${
-        size ? setButtonSize(size) : `px-9 py-3`
-      } text-variant-blue transition-all`}
+      } ${size ? setButtonSize(size) : `px-9 py-3`} transition-all`}
     >
       {/* String.fromCharCode(160) creates a non-breaking space */}
       {text.replace(" ", String.fromCharCode(160))}
