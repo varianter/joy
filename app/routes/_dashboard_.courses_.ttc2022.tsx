@@ -35,8 +35,9 @@ const Ttc2022 = () => {
       </div>
       <h1>{ttc2022?.title}</h1>
       <div className="flex w-full flex-row justify-between pb-5 pt-10">
-        {ttc2022?.tags &&
-          ttc2022.tags.map((tag: Tag) => <Level key={tag.id} tag={tag.text} />)}
+        {ttc2022?.tags.map((tag: Tag) => (
+          <Level key={tag.id} tag={tag.text} />
+        ))}
         <ul className="flex items-end">
           {ttc2022?.tags &&
             ttc2022.tags.map((tag: Tag) => (
@@ -57,23 +58,23 @@ const Ttc2022 = () => {
         <div className="flex items-center">
           <p>Intro</p>
           <img
-            alt="arrowRigth"
+            alt="arrowRight"
             className="h-[1rem] pl-2"
             src={"/assets/icons/arrowRight.svg"}
           />
         </div>
         <div className="flex items-center">
-          <p>Kapitel 1</p>
+          <p>Kapittel 1</p>
           <img
-            alt="arrowRigth"
+            alt="arrowRight"
             className="h-[1rem] pl-2"
             src={"/assets/icons/arrowRight.svg"}
           />
         </div>
         <div className="flex items-center">
-          <p>Kapitel 2</p>
+          <p>Kapittel 2</p>
           <img
-            alt="arrowRigth"
+            alt="arrowRight"
             className="h-[1rem] pl-2"
             src={"/assets/icons/arrowRight.svg"}
           />

@@ -3,18 +3,14 @@ import SecondaryButton from "../buttons/SecondaryButton";
 import Card from "./Card";
 import type { SerializeFrom } from "@remix-run/node";
 import { NavLink } from "@remix-run/react";
+import { Category, formatDate } from "~/utils";
 
 interface CardWithContentProps {
   buttonText: string;
   content: SerializeFrom<Content & { tags?: Tag[] }>;
-  contentType?: "course" | "blogpost" | "video" | "lecture" | "podcast";
 }
 
-const CardWithContent = ({
-  buttonText,
-  content,
-  contentType,
-}: CardWithContentProps) => {
+const CardWithContent = ({ buttonText, content }: CardWithContentProps) => {
   return (
     <Card cssClass="bg-variant-blue-4 sm:h-[24rem]">
       <div className="grid h-full">
@@ -27,14 +23,13 @@ const CardWithContent = ({
         </div>
         <div className="bottom-0 p-3 text-left">
           <h3 className="text-left text-2xl line-clamp-1">{content.title}</h3>
-
           <p className="my-5 text-base line-clamp-3">{content.description}</p>
         </div>
         <div className="flex items-center p-3 ">
           <span className="font-bold">
-            {new Date(content.createdAt).toLocaleDateString("nb")}
+            {formatDate(new Date(content.createdAt))}
           </span>
-          {contentType === "course" ? (
+          {content.category === Category.Course ? (
             <NavLink to={content.url} className="ml-auto">
               <SecondaryButton text={buttonText} />
             </NavLink>

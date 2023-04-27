@@ -154,7 +154,7 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  const newContentRecord = await createContent(
+  const newContentItem = await createContent(
     {
       title,
       description,
@@ -169,7 +169,7 @@ export async function action({ request }: ActionArgs) {
   );
 
   if (category == Category.Course) {
-    return redirect(`/admin/new/${newContentRecord.id}`);
+    return redirect(`/admin/new/${newContentItem.id}`);
   } else return redirect(`/`);
 }
 

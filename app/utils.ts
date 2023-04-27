@@ -2,6 +2,9 @@ export function validateExample(tall1: number, tall2: number) {
   return tall1 + tall2;
 }
 
+export const formatDate = (date: Date) =>
+  new Date(date).toLocaleDateString("nb");
+
 export const isValidUrl = (str: string) => {
   try {
     new URL(str);
