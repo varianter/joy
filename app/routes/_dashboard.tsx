@@ -35,9 +35,9 @@ export default function Dashboard() {
         <h2 className="text-4xl">Læringshub</h2>
         <p className="mt-8">
           Vi i Variant lager og holder en del kurs og foredrag i flere
-          sammenhenger. Vi har noen bloggposter her, noen YouTube-videoer der,
-          og noen foredrag en annen plass. Dette har vi samlet i denne
-          læringshuben.
+          sammenhenger. <br /> Vi har noen bloggposter her, noen YouTube-videoer
+          der, og noen foredrag en annen plass. <br />
+          Dette har vi samlet i denne læringshuben.
         </p>
       </section>
 
