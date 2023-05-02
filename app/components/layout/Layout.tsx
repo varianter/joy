@@ -70,7 +70,7 @@ export const Layout = ({
         >
           {isAuthenticated && (
             <Link to="/admin">
-              <PrimaryButton type="button" text={"Admin"} size="medium" />
+              <PrimaryButton type="button" text="Admin" size="medium" />
             </Link>
           )}
 
@@ -88,7 +88,7 @@ export const Layout = ({
         </div>
       </div>
 
-      <div className="mx-5 min-h-[40rem] md:mx-[5rem] xl:mx-[35rem]">
+      <div className="mx-[5rem] flex min-h-[30rem] justify-center lg:mx-[20rem] xl:mx-[30rem] ">
         {children}
       </div>
       <Footer isAuthenticated={isAuthenticated} />
