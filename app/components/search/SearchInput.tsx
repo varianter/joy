@@ -12,7 +12,7 @@ export const SearchInput = (props: SearchInputProps) => {
       <div className="relative w-auto">
         <input
           type="search"
-          className="block w-full rounded-full bg-variant-blue p-4 pl-8 text-white md:bg-variant-blue-2 md:text-sm"
+          className="block w-full rounded-full bg-variant-blue p-4 pl-8 font-sans text-sm text-white"
           placeholder="Søk ..."
           onChange={onChange}
         />

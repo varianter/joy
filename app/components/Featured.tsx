@@ -12,9 +12,7 @@ const Featured = ({ newestContent }: FeaturedProps) => {
   return (
     <div>
       <section>
-        <h2 className="mb-8 text-left text-xl text-white md:text-2xl">
-          Bli inspirert 🤩
-        </h2>
+        <h3 className="mb-8 text-left text-white">Bli inspirert 🤩</h3>
         <div>
           {newestContent?.map((content, index) => {
             return (
