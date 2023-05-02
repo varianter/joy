@@ -1,5 +1,10 @@
 import { json } from "@remix-run/node";
-import { Link, Outlet, useLoaderData, useRouteError } from "@remix-run/react";
+import {
+  NavLink,
+  Outlet,
+  useLoaderData,
+  useRouteError,
+} from "@remix-run/react";
 import ErrorComponent from "~/components/Error";
 import NavigationCard from "~/components/card/NavigationCard";
 import {
@@ -41,58 +46,86 @@ export default function Dashboard() {
         </p>
       </section>
 
-      <section className="mt-8 mb-12 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-4">
-        <Link to="blogposts">
-          <NavigationCard
-            title={`Bloggposter (${numBlogposts})`}
-            icon={
-              <img
-                alt={"Figur av bloggpost"}
-                className="h-[3rem]"
-                src={"/assets/icons/blogpost.svg"}
-              />
-            }
-          />
-        </Link>
+      <section className="mb-12 mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-4">
+        <NavLink to="blogposts">
+          {({ isActive }) => (
+            <NavigationCard
+              title={`Bloggposter (${numBlogposts})`}
+              icon={
+                <img
+                  alt={"Figur av bloggpost"}
+                  className="h-[3rem]"
+                  src={
+                    isActive
+                      ? "/assets/icons/blogpost_dark.svg"
+                      : "/assets/icons/blogpost.svg"
+                  }
+                />
+              }
+              isActive={isActive}
+            />
+          )}
+        </NavLink>
 
-        <Link to="lectures">
-          <NavigationCard
-            title={`Foredrag (${numLectures})`}
-            icon={
-              <img
-                alt={"Figur av foredrag"}
-                className="h-[3rem]"
-                src={"/assets/icons/lecture.svg"}
-              />
-            }
-          />
-        </Link>
+        <NavLink to="lectures">
+          {({ isActive }) => (
+            <NavigationCard
+              title={`Foredrag (${numLectures})`}
+              icon={
+                <img
+                  alt={"Figur av foredrag"}
+                  className="h-[3rem]"
+                  src={
+                    isActive
+                      ? "/assets/icons/lecture_dark.svg"
+                      : "/assets/icons/lecture.svg"
+                  }
+                />
+              }
+              isActive={isActive}
+            />
+          )}
+        </NavLink>
 
-        <Link to="courses">
-          <NavigationCard
-            title={`Kurs (${numCourses})`}
-            icon={
-              <img
-                alt={"Figur av kurs"}
-                className="h-[3rem]"
-                src={"/assets/icons/course.svg"}
-              />
-            }
-          />
-        </Link>
+        <NavLink to="courses">
+          {({ isActive }) => (
+            <NavigationCard
+              title={`Kurs (${numCourses})`}
+              icon={
+                <img
+                  alt={"Figur av kurs"}
+                  className="h-[3rem]"
+                  src={
+                    isActive
+                      ? "/assets/icons/course_dark.svg"
+                      : "/assets/icons/course.svg"
+                  }
+                />
+              }
+              isActive={isActive}
+            />
+          )}
+        </NavLink>
 
-        <Link to="videos">
-          <NavigationCard
-            title={`Videoer (${numVideos})`}
-            icon={
-              <img
-                alt={"Figur av video"}
-                className="h-[3rem]"
-                src={"/assets/icons/video.svg"}
-              />
-            }
-          />
-        </Link>
+        <NavLink to="videos">
+          {({ isActive }) => (
+            <NavigationCard
+              title={`Videoer (${numVideos})`}
+              icon={
+                <img
+                  alt={"Figur av video"}
+                  className="h-[3rem]"
+                  src={
+                    isActive
+                      ? "/assets/icons/video_dark.svg"
+                      : "/assets/icons/video.svg"
+                  }
+                />
+              }
+              isActive={isActive}
+            />
+          )}
+        </NavLink>
       </section>
       <Outlet />
     </div>

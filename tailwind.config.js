@@ -17,6 +17,7 @@ module.exports = {
       white: "#fafaf6",
       "variant-white": "#FCF7FF",
       "variant-gray": "#C4CAD0",
+      "variant-dark-gray": "#332726",
       "variant-blue": "#423D89",
       "variant-blue-2": "#35316E",
       "variant-blue-3": "#736EBE",

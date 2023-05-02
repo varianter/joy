@@ -57,11 +57,10 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
   return (
     <div className="p-3 text-left sm:relative ">
       <div className="mb-5 flex gap-2">
-        {/* TODO: change back to src={`/assets/icons/${icon}.svg`} when prisma schema is correctly updated */}
         <img
           alt={"Figur av læreglede"}
           className="fill-current h-[1.5rem] text-variant-pink"
-          src={`/assets/icons/course.svg`}
+          src={`/assets/icons/${icon}.svg`}
         />
         <span className="font-sans">{category}</span>
         <span className="ml-auto font-sans">{createdDate}</span>

@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation, useRouteError } from "@remix-run/react";
+import { NavLink, Outlet, useRouteError } from "@remix-run/react";
 import type { LoaderArgs } from "@remix-run/server-runtime";
 import ErrorComponent from "~/components/Error";
 import NavigationCard from "~/components/card/NavigationCard";
@@ -9,8 +9,6 @@ export const loader = async ({ request }: LoaderArgs) => {
 };
 
 const Admin = () => {
-  const location = useLocation();
-
   return (
     <div className="flex flex-col">
       <section className="text-left text-white sm:w-1/2">
@@ -22,45 +20,63 @@ const Admin = () => {
       </section>
       <section>
         <div className="mt-5 flex flex-col gap-5 md:flex-row">
-          <Link to="new">
-            <NavigationCard
-              title="Legg til innhold"
-              isActive={location.pathname.includes("new")}
-              icon={
-                <img
-                  alt={"Figur av læreglede"}
-                  className="h-[3rem]"
-                  src={"/assets/icons/newContent.svg"}
-                />
-              }
-            />
-          </Link>
-          <Link to="edit">
-            <NavigationCard
-              title="Endre innhold"
-              isActive={location.pathname.includes("edit")}
-              icon={
-                <img
-                  alt={"Figur av læreglede"}
-                  className="h-[3rem]"
-                  src={"/assets/icons/editContent.svg"}
-                />
-              }
-            />
-          </Link>
-          <Link to="delete">
-            <NavigationCard
-              title="Slett innhold"
-              isActive={location.pathname.includes("delete")}
-              icon={
-                <img
-                  alt={"Figur av læreglede"}
-                  className="h-[3rem]"
-                  src={"/assets/icons/deleteContent.svg"}
-                />
-              }
-            />
-          </Link>
+          <NavLink to="new">
+            {({ isActive }) => (
+              <NavigationCard
+                title="Legg til innhold"
+                isActive={isActive}
+                icon={
+                  <img
+                    alt={"Figur av læreglede"}
+                    className="h-[3rem]"
+                    src={
+                      isActive
+                        ? "/assets/icons/newContent_dark.svg"
+                        : "/assets/icons/newContent.svg"
+                    }
+                  />
+                }
+              />
+            )}
+          </NavLink>
+          <NavLink to="edit">
+            {({ isActive }) => (
+              <NavigationCard
+                title="Endre innhold"
+                isActive={isActive}
+                icon={
+                  <img
+                    alt={"Figur av læreglede"}
+                    className="h-[3rem]"
+                    src={
+                      isActive
+                        ? "/assets/icons/editContent_dark.svg"
+                        : "/assets/icons/editContent.svg"
+                    }
+                  />
+                }
+              />
+            )}
+          </NavLink>
+          <NavLink to="delete">
+            {({ isActive }) => (
+              <NavigationCard
+                title="Slett innhold"
+                isActive={isActive}
+                icon={
+                  <img
+                    alt={"Figur av læreglede"}
+                    className="h-[3rem]"
+                    src={
+                      isActive
+                        ? "/assets/icons/deleteContent_dark.svg"
+                        : "/assets/icons/deleteContent.svg"
+                    }
+                  />
+                }
+              />
+            )}
+          </NavLink>
         </div>
       </section>
       <Outlet />
