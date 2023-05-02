@@ -29,7 +29,7 @@ const Footer = ({ isAuthenticated }: FooterProps) => {
             </Form>
           </div>
           <div className="mt-48">
-            <h3 className="pb-4">Utforsk</h3>
+            <h4 className="pb-4">Utforsk</h4>
             <ul className="text-left">
               <li>
                 <a href="https://variant.no/jobs">Ledige stillinger</a>
@@ -64,7 +64,7 @@ const Footer = ({ isAuthenticated }: FooterProps) => {
             </ul>
           </div>
           <div className="mt-24 text-left">
-            <h3 className="pb-4">Still oss spørsmål</h3>
+            <h4 className="pb-4">Still oss spørsmål</h4>
             <ul>
               <li>
                 Ring på <a href="tel:+4792807375">928 07 375</a>
@@ -95,7 +95,7 @@ const Footer = ({ isAuthenticated }: FooterProps) => {
             </ul>
           </div>
           <div className="">
-            <h3 className="pb-4">Møt oss</h3>
+            <h4 className="pb-4">Møt oss</h4>
 
             <p>
               Vi holder til i vårt eget hus i{" "}
