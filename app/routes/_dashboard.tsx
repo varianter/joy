@@ -54,7 +54,7 @@ export default function Dashboard() {
               icon={
                 <img
                   alt={"Figur av bloggpost"}
-                  className="h-[3rem] fill-white"
+                  className="h-[3rem]"
                   src={
                     isActive
                       ? "/assets/icons/blogpost_dark.svg"
