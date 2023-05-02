@@ -51,7 +51,7 @@ const Footer = ({ isAuthenticated }: FooterProps) => {
                 <a href="https://variant.no/kalkulator">Lønnskalkulator</a>
               </li>
               <li>
-                <a href="https://styleguide.variant.no">Styleguide</a>
+                <a href="https://stil.variant.no">Stilhåndbok</a>
               </li>
               <li>
                 <a
@@ -63,7 +63,7 @@ const Footer = ({ isAuthenticated }: FooterProps) => {
               </li>
             </ul>
           </div>
-          <div className="mt-24 text-left">
+          <div className="mt-28 text-left">
             <h4 className="pb-4">Still oss spørsmål</h4>
             <ul>
               <li>
@@ -125,28 +125,6 @@ const Footer = ({ isAuthenticated }: FooterProps) => {
               i Bergen. Kom innom for en kopp kaffe eller bare en hyggelig prat.
             </p>
           </div>
-        </div>
-        <div className="mb-12 grid grid-cols-1 md:grid-cols-3">
-          <p>
-            <strong>Variant Trondheim AS</strong>
-            <br />
-            Thomas Angells gate 10 <br />
-            7011 Trondheim
-          </p>
-          <p>
-            <strong>Variant Oslo AS</strong>
-            <br />
-            Tollbugata 24
-            <br />
-            0157 Oslo
-          </p>
-          <p>
-            <strong>Variant Bergen AS</strong>
-            <br />
-            Vaskerelven 39
-            <br />
-            5014 Bergen
-          </p>
         </div>
       </div>
     </footer>
