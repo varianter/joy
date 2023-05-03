@@ -7,17 +7,19 @@ import ErrorComponent from "~/components/Error";
 const numberOfNewContent = 4;
 
 export const loader = async () => {
-  const newestContent = await getNewestFeaturedContent(numberOfNewContent);
+  const newestFeaturedContent = await getNewestFeaturedContent(
+    numberOfNewContent
+  );
 
   return json({
-    newestContent,
+    newestFeaturedContent,
   });
 };
 
 export default function Index() {
-  const { newestContent } = useLoaderData<typeof loader>();
+  const { newestFeaturedContent } = useLoaderData<typeof loader>();
 
-  return <Featured newestContent={newestContent} />;
+  return <Featured newestFeaturedContent={newestFeaturedContent} />;
 }
 
 export const ErrorBoundary = () => {

@@ -5,16 +5,16 @@ import TagButton from "~/components/buttons/TagButton";
 import Card from "~/components/card/Card";
 
 interface FeaturedProps {
-  newestContent: SerializeFrom<(Content & { tags: Tag[] })[]>;
+  newestFeaturedContent: SerializeFrom<(Content & { tags: Tag[] })[]>;
 }
 
-const Featured = ({ newestContent }: FeaturedProps) => {
+const Featured = ({ newestFeaturedContent }: FeaturedProps) => {
   return (
     <div>
       <section>
         <h3 className="mb-8 text-left text-white">Bli inspirert 🤩</h3>
         <div>
-          {newestContent?.map((content, index) => {
+          {newestFeaturedContent?.map((content, index) => {
             return (
               <div key={content.id} className="my-5">
                 <Card cssClass="bg-variant-blue-4 sm:h-[22rem]">
