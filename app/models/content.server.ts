@@ -186,3 +186,15 @@ export async function getNumberOfLectures() {
     where: { category: Category.Lecture },
   });
 }
+
+export async function getPodcasts() {
+  return prisma.content.findMany({
+    where: { category: Category.Podcast },
+  });
+}
+
+export async function getNumberOfPodcasts() {
+  return prisma.content.count({
+    where: { category: Category.Podcast },
+  });
+}
