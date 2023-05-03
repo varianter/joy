@@ -34,7 +34,7 @@ export default function Dashboard() {
     useLoaderData<typeof loader>();
 
   return (
-    <div className="sm:mt-32">
+    <div className="sm:mt-32 w-full">
       <section className="text-left text-white">
         <p className="font-serif text-xl">En variant av en</p>
         <h2>Læringshub</h2>
