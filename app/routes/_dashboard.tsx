@@ -134,10 +134,10 @@ export default function Dashboard() {
         <NavLink to="podcasts">
           {({ isActive }) => (
             <NavigationCard
-              title={`Podcaster (${numPodcasts})`}
+              title={`Podkaster (${numPodcasts})`}
               icon={
                 <img
-                  alt={"Figur av podcast"}
+                  alt={"Figur av podkast"}
                   className="h-[3rem]"
                   src={
                     isActive
