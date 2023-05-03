@@ -3,6 +3,7 @@ import type { SerializeFrom } from "@remix-run/server-runtime";
 import ArticlePreview from "~/components/ArticlePreview";
 import TagButton from "~/components/buttons/TagButton";
 import Card from "~/components/card/Card";
+import { formatDate } from "~/utils";
 
 interface FeaturedProps {
   newestContent: SerializeFrom<(Content & { tags: Tag[] })[]>;
@@ -35,7 +36,7 @@ const Featured = ({ newestContent }: FeaturedProps) => {
 
                     <ArticlePreview
                       category={content.category}
-                      createdDate={content.createdAt.toString().split("T")[0]}
+                      createdDate={formatDate(new Date(content.createdAt))}
                       title={content.title}
                       description={content.description}
                       url={content.url}
