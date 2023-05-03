@@ -14,7 +14,7 @@ const Videos = () => {
 
   const featuredVideos = videos.filter((video) => video.featured).slice(0, 3);
 
-  const otherVideos = videos.filter((video) => !video.featured);
+  const otherVideos = videos;
 
   return (
     <div className="flex flex-col gap-4">

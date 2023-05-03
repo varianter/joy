@@ -14,7 +14,7 @@ const Lectures = () => {
 
   const featuredLectures = lectures.filter((lecture) => lecture.featured).slice(0, 3);
 
-  const otherLectures = lectures.filter((lecture) => !lecture.featured);
+  const otherLectures = lectures;
 
   return (
     <div className="flex flex-col gap-4">
