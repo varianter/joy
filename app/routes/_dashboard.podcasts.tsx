@@ -11,7 +11,9 @@ export const loader = async () => {
 
 const Podcasts = () => {
   const { podcasts } = useLoaderData<typeof loader>();
-  const featuredPodcasts = podcasts.filter((podcast) => podcast.featured);
+  const featuredPodcasts = podcasts
+    .filter((podcast) => podcast.featured)
+    .slice(0, 3);
   const otherPodcasts = podcasts.filter((podcast) => !podcast.featured);
 
   return (
@@ -20,14 +22,14 @@ const Podcasts = () => {
         <CardWithMultipleContent
           content={featuredPodcasts}
           heading="Anbefalte 🔥"
-          buttonText="Hør podcast"
+          buttonText="Hør podkast"
         />
       )}
       {otherPodcasts.length > 0 && (
         <CardWithMultipleContent
           content={otherPodcasts}
-          heading="Alle podcaster 🤩"
-          buttonText="Hør podcast"
+          heading="Alle podkaster 🤩"
+          buttonText="Hør podkast"
         />
       )}
     </div>
