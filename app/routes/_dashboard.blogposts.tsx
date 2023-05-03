@@ -12,7 +12,7 @@ export const loader = async () => {
 const Blogposts = () => {
   const { blogposts } = useLoaderData<typeof loader>();
 
-  const featuredBlogposts = blogposts.filter((blogpost) => blogpost.featured);
+  const featuredBlogposts = blogposts.filter((blogpost) => blogpost.featured).slice(0, 3);
 
   const otherBlogposts = blogposts.filter((blogpost) => !blogpost.featured);
 

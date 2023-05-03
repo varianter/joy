@@ -12,7 +12,7 @@ export const loader = async () => {
 const Lectures = () => {
   const { lectures } = useLoaderData<typeof loader>();
 
-  const featuredLectures = lectures.filter((lecture) => lecture.featured);
+  const featuredLectures = lectures.filter((lecture) => lecture.featured).slice(0, 3);
 
   const otherLectures = lectures.filter((lecture) => !lecture.featured);
 
