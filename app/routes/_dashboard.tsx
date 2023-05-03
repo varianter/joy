@@ -12,29 +12,33 @@ import {
   getNumberOfCourses,
   getNumberOfLectures,
   getNumberOfVideos,
+  getNumberOfPodcasts,
 } from "~/models/content.server";
 
 export const loader = async () => {
-  const [numVideos, numBlogposts, numCourses, numLectures] = await Promise.all([
-    getNumberOfVideos(),
-    getNumberOfBlogposts(),
-    getNumberOfCourses(),
-    getNumberOfLectures(),
-  ]);
+  const [numVideos, numBlogposts, numCourses, numLectures, numPodcasts] =
+    await Promise.all([
+      getNumberOfVideos(),
+      getNumberOfBlogposts(),
+      getNumberOfCourses(),
+      getNumberOfLectures(),
+      getNumberOfPodcasts(),
+    ]);
   return json({
     numVideos,
     numBlogposts,
     numCourses,
     numLectures,
+    numPodcasts,
   });
 };
 
 export default function Dashboard() {
-  const { numVideos, numBlogposts, numCourses, numLectures } =
+  const { numVideos, numBlogposts, numCourses, numLectures, numPodcasts } =
     useLoaderData<typeof loader>();
 
   return (
-    <div className="sm:mt-32">
+    <div className="w-full sm:mt-32">
       <section className="text-left text-white">
         <p className="font-serif text-xl">En variant av en</p>
         <h2>Læringshub</h2>
@@ -46,7 +50,7 @@ export default function Dashboard() {
         </p>
       </section>
 
-      <section className="mb-12 mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-4">
+      <section className="mb-12 mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3 md:grid-cols-5">
         <NavLink to="blogposts">
           {({ isActive }) => (
             <NavigationCard
@@ -119,6 +123,26 @@ export default function Dashboard() {
                     isActive
                       ? "/assets/icons/video_dark.svg"
                       : "/assets/icons/video.svg"
+                  }
+                />
+              }
+              isActive={isActive}
+            />
+          )}
+        </NavLink>
+
+        <NavLink to="podcasts">
+          {({ isActive }) => (
+            <NavigationCard
+              title={`Podkaster (${numPodcasts})`}
+              icon={
+                <img
+                  alt={"Figur av podkast"}
+                  className="h-[3rem]"
+                  src={
+                    isActive
+                      ? "/assets/icons/podcast_dark.svg"
+                      : "/assets/icons/podcast.svg"
                   }
                 />
               }

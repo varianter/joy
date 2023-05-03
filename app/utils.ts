@@ -14,26 +14,11 @@ export const isValidUrl = (str: string) => {
   }
 };
 
-export const getIconForCategory = (category: string) => {
-  switch (category.toLowerCase()) {
-    case "bloggpost":
-      return "blogpost";
-    case "kurs":
-      return "course";
-    case "video":
-      return "video";
-    case "podcast":
-      return "podcast";
-    case "foredrag":
-      return "lecture";
-  }
-};
-
 export enum Category {
   Blogpost = "Bloggpost",
   Course = "Kurs",
   Video = "Video",
-  Podcast = "Podcast",
+  Podcast = "Podkast",
   Lecture = "Foredrag",
 }
 
@@ -44,3 +29,18 @@ export const CATEGORIES = [
   Category.Podcast,
   Category.Lecture,
 ];
+
+export const getIconForCategory = (category: string) => {
+  switch (category) {
+    case Category.Blogpost:
+      return "blogpost";
+    case Category.Course:
+      return "course";
+    case Category.Video:
+      return "video";
+    case Category.Podcast:
+      return "podcast";
+    case Category.Lecture:
+      return "lecture";
+  }
+};
