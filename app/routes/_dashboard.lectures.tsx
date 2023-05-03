@@ -14,8 +14,6 @@ const Lectures = () => {
 
   const featuredLectures = lectures.filter((lecture) => lecture.featured).slice(0, 3);
 
-  const otherLectures = lectures;
-
   return (
     <div className="flex flex-col gap-4">
       {featuredLectures.length > 0 && (
@@ -26,9 +24,9 @@ const Lectures = () => {
         />
       )}
 
-      {otherLectures.length > 0 && (
+      {lectures.length > 0 && (
         <CardWithMultipleContent
-          content={otherLectures}
+          content={lectures}
           heading="Alle foredrag 🤩"
           buttonText="Se foredrag"
         />
