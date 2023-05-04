@@ -1,13 +1,7 @@
 import { json } from "@remix-run/node";
-import {
-  NavLink,
-  Outlet,
-  useLoaderData,
-  useRouteError,
-} from "@remix-run/react";
+import { Outlet, useLoaderData, useRouteError } from "@remix-run/react";
 import ErrorComponent from "~/components/Error";
 import { getTags } from "~/models/tag.server";
-import TagButton from "~/components/buttons/TagButton";
 
 export const loader = async () => {
   const tags = await getTags();
@@ -19,22 +13,21 @@ const Tags = () => {
   const { tags } = useLoaderData<typeof loader>();
 
   return (
-    <div className="grid">
-      <h2 className="text-white">Tags</h2>
-      <div className="my-12 grid auto-rows-min grid-cols-2 gap-1 text-left sm:grid-cols-4 md:grid-cols-8">
-        {tags.map((tag) => (
-          <NavLink
-            to={`/tags/${tag.text}`}
-            key={tag.id}
-            className="inline-grid"
-          >
-            {({ isActive }) => (
-              <TagButton text={tag.text} isActive={isActive} />
-            )}
-          </NavLink>
-        ))}
+    <div className="mt-24 block w-full text-left">
+      <section className="text-left text-white">
+        <p className="font-serif text-xl">En variant av en</p>
+        <h2>Læringshub</h2>
+        <p className="mt-8">
+          Vi i Variant lager og holder en del kurs og foredrag i flere
+          sammenhenger. <br /> Vi har noen bloggposter her, noen YouTube-videoer
+          der, og noen foredrag en annen plass. <br />
+          Dette har vi samlet i denne læringshuben.
+        </p>
+      </section>
+      {/* Todo: Add functionality for searching for tags here */}
+      <div className="my-8">
+        <Outlet />
       </div>
-      <Outlet />
     </div>
   );
 };
