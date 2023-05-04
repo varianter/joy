@@ -14,7 +14,6 @@ const Podcasts = () => {
   const featuredPodcasts = podcasts
     .filter((podcast) => podcast.featured)
     .slice(0, 3);
-  const otherPodcasts = podcasts.filter((podcast) => !podcast.featured);
 
   return (
     <div className="flex flex-col gap-4">
@@ -25,9 +24,9 @@ const Podcasts = () => {
           buttonText="Hør podkast"
         />
       )}
-      {otherPodcasts.length > 0 && (
+      {podcasts.length > 0 && (
         <CardWithMultipleContent
-          content={otherPodcasts}
+          content={podcasts}
           heading="Alle podkaster 🤩"
           buttonText="Hør podkast"
         />

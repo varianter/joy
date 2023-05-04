@@ -12,9 +12,7 @@ export const loader = async () => {
 const Videos = () => {
   const { videos } = useLoaderData<typeof loader>();
 
-  const featuredVideos = videos.filter((video) => video.featured);
-
-  const otherVideos = videos.filter((video) => !video.featured);
+  const featuredVideos = videos.filter((video) => video.featured).slice(0, 3);
 
   return (
     <div className="flex flex-col gap-4">
@@ -26,9 +24,9 @@ const Videos = () => {
         />
       )}
 
-      {otherVideos.length > 0 && (
+      {videos.length > 0 && (
         <CardWithMultipleContent
-          content={otherVideos}
+          content={videos}
           heading="Alle videoer 🤩"
           buttonText="Se video"
         />
