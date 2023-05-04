@@ -46,7 +46,7 @@ export const Layout = ({
           <SearchInput onChange={handleOnChangeSearch} />
           <div className="relative">
             {(searchResult.length > 0 || isLoadingSearchResult || (searchParams.get("search") !== null && searchParams.get("search")!.length > 0 && !isLoadingSearchResult && searchResult.length == 0)) && (
-              <div className="mt-2 overflow-y-auto rounded-xl border bg-variant-blue-4 text-left absolute w-full">
+              <div className="mt-2 overflow-y-auto rounded-xl border bg-variant-blue-4 text-left absolute w-full z-10">
                 {isLoadingSearchResult && <p className="p-2">Søker...</p>}
                 {!isLoadingSearchResult &&
                   searchResult.length > 0 &&
