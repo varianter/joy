@@ -50,7 +50,7 @@ export default function Dashboard() {
         </p>
       </section>
 
-      <section className="mb-12 mt-8 grid grid-cols-1 gap-5 xs:grid-cols-2 md:grid-cols-4">
+      <section className="mb-12 mt-8 grid grid-cols-1 gap-5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-5">
         <NavLink to="blogposts">
           {({ isActive }) => (
             <NavigationCard
