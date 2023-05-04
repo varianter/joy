@@ -1,23 +1,25 @@
 import { json } from "@remix-run/node";
-import { getNewestContent } from "~/models/content.server";
+import { getNewestFeaturedContent } from "~/models/content.server";
 import Featured from "~/components/Featured";
 import { useLoaderData, useRouteError } from "@remix-run/react";
 import ErrorComponent from "~/components/Error";
 
-const numberOfNewContent = 2;
+const numberOfNewContent = 4;
 
 export const loader = async () => {
-  const newestContent = await getNewestContent(numberOfNewContent);
+  const newestFeaturedContent = await getNewestFeaturedContent(
+    numberOfNewContent
+  );
 
   return json({
-    newestContent,
+    newestFeaturedContent,
   });
 };
 
 export default function Index() {
-  const { newestContent } = useLoaderData<typeof loader>();
+  const { newestFeaturedContent } = useLoaderData<typeof loader>();
 
-  return <Featured newestContent={newestContent} />;
+  return <Featured newestFeaturedContent={newestFeaturedContent} />;
 }
 
 export const ErrorBoundary = () => {

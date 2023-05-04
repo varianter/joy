@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-import { getIconForCategory } from "~/utils";
+import { Category, getIconForCategory } from "~/utils";
 import SecondaryButton from "./buttons/SecondaryButton";
 
 interface ArticlePreviewProps {
@@ -21,16 +21,16 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
   const icon = getIconForCategory(category);
 
   const buttonText = () => {
-    switch (category.toLowerCase()) {
-      case "bloggpost":
+    switch (category) {
+      case Category.Blogpost:
         return "Les artikkel";
-      case "video":
+      case Category.Video:
         return "Se video";
-      case "podcast":
-        return "Hør podcast";
-      case "kurs":
+      case Category.Podcast:
+        return "Hør podkast";
+      case Category.Course:
         return "Se kurs";
-      case "foredrag":
+      case Category.Lecture:
         return "Se foredrag";
       default:
         return "";
@@ -38,16 +38,16 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
   };
 
   const linkButtonText = (): LinkButtonProps => {
-    switch (category.toLowerCase()) {
-      case "bloggpost":
+    switch (category) {
+      case Category.Blogpost:
         return { text: "Se alle bloggposter", route: "/blogposts" };
-      case "video":
+      case Category.Video:
         return { text: "Se alle videoer", route: "/videos" };
-      case "podcast":
-        return { text: "Se alle pocasts", route: "/podcasts" };
-      case "kurs":
+      case Category.Podcast:
+        return { text: "Se alle podkaster", route: "/podcasts" };
+      case Category.Course:
         return { text: "Se alle kurs", route: "/courses" };
-      case "foredrag":
+      case Category.Lecture:
         return { text: "Se alle foredrag", route: "/lecture" };
       default:
         return { text: "", route: "/" };
@@ -58,7 +58,7 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
     <div className="p-3 text-left sm:relative ">
       <div className="mb-5 flex gap-2">
         <img
-          alt={"Figur av læreglede"}
+          alt={"Kategoriikon"}
           className="fill-current h-[1.5rem] text-variant-pink"
           src={`/assets/icons/${icon}.svg`}
         />
