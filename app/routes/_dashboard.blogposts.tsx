@@ -12,9 +12,7 @@ export const loader = async () => {
 const Blogposts = () => {
   const { blogposts } = useLoaderData<typeof loader>();
 
-  const featuredBlogposts = blogposts.filter((blogpost) => blogpost.featured);
-
-  const otherBlogposts = blogposts.filter((blogpost) => !blogpost.featured);
+  const featuredBlogposts = blogposts.filter((blogpost) => blogpost.featured).splice(0, 3);
 
   return (
     <div className="flex flex-col gap-4">
@@ -26,9 +24,9 @@ const Blogposts = () => {
         />
       )}
 
-      {otherBlogposts.length > 0 && (
+      {blogposts.length > 0 && (
         <CardWithMultipleContent
-          content={otherBlogposts}
+          content={blogposts}
           heading="Alle bloggposter 🤩"
           buttonText="Les mer"
         />
