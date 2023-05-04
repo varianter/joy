@@ -7,10 +7,10 @@ interface FooterProps {
 
 const Footer = ({ isAuthenticated }: FooterProps) => {
   return (
-    <footer className="footer flex justify-center">
+    <footer className="footer mt-8 flex justify-center px-[1rem]">
       <div className="mt-16 max-w-3xl text-white">
-        <div className="mb-12 grid grid-cols-1 md:grid-cols-3 ">
-          <div className="mt-4 gap-4 sm:hidden">
+        <div className="mb-12 grid grid-cols-1 sm:grid-cols-3 ">
+          <div className="flex flex-col gap-4 sm:hidden">
             {isAuthenticated && (
               <Link to="/admin">
                 <PrimaryButton type="button" text={"Admin"} size="small" />
@@ -28,7 +28,7 @@ const Footer = ({ isAuthenticated }: FooterProps) => {
               />
             </Form>
           </div>
-          <div className="mt-48">
+          <div className="mt-8 sm:mt-48">
             <h4 className="pb-4">Utforsk</h4>
             <ul className="text-left">
               <li>
@@ -63,7 +63,7 @@ const Footer = ({ isAuthenticated }: FooterProps) => {
               </li>
             </ul>
           </div>
-          <div className="mt-28 text-left">
+          <div className="mt-8 text-left sm:mt-28">
             <h4 className="pb-4">Still oss spørsmål</h4>
             <ul>
               <li>
@@ -94,7 +94,7 @@ const Footer = ({ isAuthenticated }: FooterProps) => {
               </li>
             </ul>
           </div>
-          <div className="">
+          <div className="mt-8 sm:mt-0">
             <h4 className="pb-4">Møt oss</h4>
 
             <p>

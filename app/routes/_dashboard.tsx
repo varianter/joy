@@ -38,7 +38,7 @@ export default function Dashboard() {
     useLoaderData<typeof loader>();
 
   return (
-    <div className="sm:mt-32 w-full">
+    <div className="w-full sm:mt-32">
       <section className="text-left text-white">
         <p className="font-serif text-xl">En variant av en</p>
         <h2>Læringshub</h2>
@@ -50,7 +50,7 @@ export default function Dashboard() {
         </p>
       </section>
 
-      <section className="mb-12 mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3 md:grid-cols-5">
+      <section className="mb-12 mt-8 grid grid-cols-1 gap-5 xs:grid-cols-2 md:grid-cols-4">
         <NavLink to="blogposts">
           {({ isActive }) => (
             <NavigationCard

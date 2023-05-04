@@ -43,11 +43,11 @@ module.exports = {
       body: ['"Open Sans"'],
     },
     screens: {
+      xs: "350px",
       sm: "576px",
-      // => @media (min-width: 576px) { ... }
       md: "960px",
       lg: "1440px",
-      xl: "2400px"
+      xl: "2400px",
     },
   },
   plugins: [require("@tailwindcss/line-clamp")],
