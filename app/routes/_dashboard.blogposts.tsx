@@ -16,6 +16,8 @@ const Blogposts = () => {
 
   const otherBlogposts = blogposts.filter((blogpost) => !blogpost.featured);
 
+  const otherBlogposts = blogposts;
+
   return (
     <div className="flex flex-col gap-4">
       {featuredBlogposts.length > 0 && (
@@ -26,9 +28,9 @@ const Blogposts = () => {
         />
       )}
 
-      {blogposts.length > 0 && (
+      {otherBlogposts.length > 0 && (
         <CardWithMultipleContent
-          content={blogposts}
+          content={otherBlogposts}
           heading="Alle bloggposter 🤩"
           buttonText="Les mer"
         />

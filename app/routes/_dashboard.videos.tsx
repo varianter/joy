@@ -16,6 +16,8 @@ const Videos = () => {
 
   const otherVideos = videos.filter((video) => !video.featured);
 
+  const otherVideos = videos;
+
   return (
     <div className="flex flex-col gap-4">
       {featuredVideos.length > 0 && (
@@ -26,9 +28,9 @@ const Videos = () => {
         />
       )}
 
-      {videos.length > 0 && (
+      {otherVideos.length > 0 && (
         <CardWithMultipleContent
-          content={videos}
+          content={otherVideos}
           heading="Alle videoer 🤩"
           buttonText="Se video"
         />
