@@ -4,7 +4,8 @@ import type { SerializeFrom } from "@remix-run/server-runtime";
 import ArticlePreview from "~/components/ArticlePreview";
 import TagButton from "~/components/buttons/TagButton";
 import Card from "~/components/card/Card";
-import { formatDate } from "~/utils";
+import { formatDate, getButtonText } from "~/utils";
+import CardWithContent from "./card/CardWithContent";
 
 interface FeaturedProps {
   newestFeaturedContent: SerializeFrom<(Content & { tags: Tag[] })[]>;
@@ -16,7 +17,7 @@ const Featured = ({ newestFeaturedContent }: FeaturedProps) => {
       <section>
         <h3 className="mb-8 text-left text-white">Bli inspirert:</h3>
         <div>
-          {newestFeaturedContent?.map((content, index) => {
+          {newestFeaturedContent?.slice(0, 2).map((content, index) => {
             return (
               <div key={content.id} className="my-5">
                 <Card cssClass="bg-variant-blue-4 sm:h-[22rem]">
@@ -63,6 +64,18 @@ const Featured = ({ newestFeaturedContent }: FeaturedProps) => {
               </div>
             );
           })}
+          <div className="grid gap-7 sm:grid-cols-1 md:grid-cols-2">
+            {newestFeaturedContent?.slice(2).map((content) => {
+              return (
+                <div key={content.id} className="my-5">
+                  <CardWithContent
+                    content={content}
+                    buttonText={getButtonText(content.category)}
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
     </div>
