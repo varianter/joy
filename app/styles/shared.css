@@ -4,33 +4,8 @@
 }
 
 @font-face {
-  font-family: "Recoleta-SemiBold";
-  src: url(../fonts/recoleta-semibold.woff) format("truetype");
-}
-
-@font-face {
-  font-family: "Recoleta-Thin";
-  src: url(../fonts/recoleta-thin.woff) format("truetype");
-}
-
-@font-face {
   font-family: "Recoleta-Medium";
   src: url(../fonts/recoleta-medium.woff) format("truetype");
-}
-
-@font-face {
-  font-family: "Recoleta-Light";
-  src: url(../fonts/recoleta-light.woff) format("truetype");
-}
-
-@font-face {
-  font-family: "Recoleta-Bold";
-  src: url(../fonts/recoleta-bold.woff) format("truetype");
-}
-
-@font-face {
-  font-family: "Recoleta-Black";
-  src: url(../fonts/recoleta-black.woff) format("truetype");
 }
 
 @font-face {
