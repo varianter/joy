@@ -79,8 +79,9 @@ export async function searchContent(search: string) {
   });
 }
 
-export async function getNewestContent(numberOfItems: number) {
+export async function getNewestFeaturedContent(numberOfItems: number) {
   return prisma.content.findMany({
+    where: { featured: true },
     take: numberOfItems,
     orderBy: {
       createdAt: "desc",
