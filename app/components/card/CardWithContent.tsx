@@ -26,7 +26,7 @@ const CardWithContent = ({ buttonText, content }: CardWithContentProps) => {
           <p className="my-5 text-base line-clamp-3">{content.description}</p>
         </div>
         <div className="flex items-center p-3 ">
-          <span className="font-bold">
+          <span className="font-medium font-sans">
             {formatDate(new Date(content.createdAt))}
           </span>
           {content.category === Category.Course ? (

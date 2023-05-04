@@ -63,7 +63,7 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
           src={`/assets/icons/${icon}.svg`}
         />
         <span className="font-sans">{category}</span>
-        <span className="ml-auto font-sans">{createdDate}</span>
+        <span className="ml-auto font-medium font-sans">{createdDate}</span>
       </div>
       <h1 className="text-left text-4xl line-clamp-2">{title}</h1>
       <p className="my-5 line-clamp-3">{description}</p>
