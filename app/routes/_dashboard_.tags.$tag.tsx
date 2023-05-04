@@ -24,22 +24,34 @@ const Tag = () => {
   const { contentByTag, tag } = useLoaderData<typeof loader>();
 
   return (
-    <div>
-      <section className="flex text-white">
-        <p className="inline-flex font-serif text-xl">
-          Viser alt innhold relatert til temaet
-        </p>
-        <TagButton className="ml-4" text={tag} notClickable />
-      </section>
-      <section className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-        {contentByTag.map((content) => (
-          <CardWithContent
-            key={content.id}
-            buttonText={content.title}
-            content={content}
-          />
-        ))}
-      </section>
+    <div className="text-white">
+      {contentByTag.length > 0 ? (
+        <div>
+          <section className="flex">
+            <p className="inline-flex font-serif text-xl">
+              Viser alt innhold relatert til temaet
+            </p>
+            <TagButton className="ml-4" text={tag} notClickable />
+          </section>
+          <section className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+            {contentByTag.map((content) => (
+              <CardWithContent
+                key={content.id}
+                buttonText={content.title}
+                content={content}
+              />
+            ))}
+          </section>
+        </div>
+      ) : (
+        <div className="mb-8">
+          <section className="flex">
+            <p className="inline-flex">Kunne ikke finne noe innhold for</p>
+            <TagButton className="ml-4" text={tag} notClickable />
+          </section>
+          <p className="my-4 text-5xl">😢</p>
+        </div>
+      )}
     </div>
   );
 };
