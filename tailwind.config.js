@@ -5,9 +5,7 @@ module.exports = {
     colors: {
       black: "#000",
       gray: "#8492a6",
-      lightgray: "#eee",
       white: "#fafaf6",
-      "variant-white": "#FCF7FF",
       "variant-gray": "#C4CAD0",
       "variant-dark-gray": "#332726",
       "variant-blue": "#423D89",
@@ -16,8 +14,6 @@ module.exports = {
       "variant-blue-4": "#B7B4DE",
       "variant-pink": "#E61A6B",
       "variant-pink-2": "#EB4889",
-      "variant-wenge": "#655560",
-      "variant-black": "#333333",
       "variant-beige": "#FFC4BC",
       "variant-beige-2": "#FFDCD7",
     },
