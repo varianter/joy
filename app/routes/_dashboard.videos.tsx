@@ -18,6 +18,8 @@ const Videos = () => {
 
   const otherVideos = videos;
 
+  const otherVideos = videos;
+
   return (
     <div className="flex flex-col gap-4">
       {featuredVideos.length > 0 && (

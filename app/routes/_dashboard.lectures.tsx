@@ -18,6 +18,8 @@ const Lectures = () => {
 
   const otherLectures = lectures;
 
+  const otherLectures = lectures;
+
   return (
     <div className="flex flex-col gap-4">
       {featuredLectures.length > 0 && (

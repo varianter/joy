@@ -18,6 +18,8 @@ const Blogposts = () => {
 
   const otherBlogposts = blogposts;
 
+  const otherBlogposts = blogposts;
+
   return (
     <div className="flex flex-col gap-4">
       {featuredBlogposts.length > 0 && (
