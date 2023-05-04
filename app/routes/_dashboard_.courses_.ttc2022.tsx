@@ -1,10 +1,8 @@
-import type { LoaderArgs, SerializeFrom } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { NavLink, useLoaderData, useRouteError } from "@remix-run/react";
 import { getContentById } from "~/models/content.server";
-import invariant from "tiny-invariant";
 import Level from "~/components/Level";
-import type { Content, Tag } from "@prisma/client";
+import type { Tag } from "@prisma/client";
 import SecondaryButton from "~/components/buttons/SecondaryButton";
 import CheckTask from "~/components/CheckTask";
 import ErrorComponent from "~/components/Error";
