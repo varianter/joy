@@ -88,7 +88,7 @@ export const Layout = ({
         </div>
       </div>
 
-      <div className="mx-4 flex justify-center sm:mx-12 md:mx-16 lg:mx-auto lg:w-full lg:max-w-6xl">
+      <div className="mx-4 flex min-h-[30rem] justify-center sm:mx-12 md:mx-16 lg:mx-auto lg:w-full lg:max-w-6xl">
         {children}
       </div>
       <Footer isAuthenticated={isAuthenticated} />
