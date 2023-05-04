@@ -1,10 +1,11 @@
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useRouteError } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { searchContent } from "~/models/content.server";
 import CardWithContent from "~/components/card/CardWithContent";
 import TagButton from "~/components/buttons/TagButton";
+import ErrorComponent from "~/components/Error";
 
 export const loader = async ({ params }: LoaderArgs) => {
   invariant(params.tag, "Tag not found");
@@ -44,3 +45,9 @@ const Tag = () => {
 };
 
 export default Tag;
+
+export const ErrorBoundary = () => {
+  const error = useRouteError();
+
+  return <ErrorComponent error={error} />;
+};
