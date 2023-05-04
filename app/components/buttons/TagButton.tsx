@@ -1,13 +1,14 @@
 interface TagButtonProps {
+  className?: string;
   isActive?: boolean;
   text: string;
 }
 
-const TagButton = ({ isActive, text }: TagButtonProps) => {
+const TagButton = ({ className, isActive, text }: TagButtonProps) => {
   return (
     <button
       type="button"
-      className={`rounded-3xl ${
+      className={`${className} rounded-3xl ${
         isActive
           ? `bg-variant-beige text-black`
           : `bg-variant-blue-3 text-white`
