@@ -14,6 +14,8 @@ const Blogposts = () => {
 
   const featuredBlogposts = blogposts.filter((blogpost) => blogpost.featured).slice(0, 3);
 
+  const otherBlogposts = blogposts.filter((blogpost) => !blogpost.featured);
+
   return (
     <div className="flex flex-col gap-4">
       {featuredBlogposts.length > 0 && (
