@@ -12,7 +12,7 @@ export const loader = async () => {
 const Blogposts = () => {
   const { blogposts } = useLoaderData<typeof loader>();
 
-  const featuredBlogposts = blogposts.filter((blogpost) => blogpost.featured).splice(0, 3);
+  const featuredBlogposts = blogposts.filter((blogpost) => blogpost.featured).slice(0, 3);
 
   return (
     <div className="flex flex-col gap-4">

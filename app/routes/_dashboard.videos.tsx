@@ -12,7 +12,7 @@ export const loader = async () => {
 const Videos = () => {
   const { videos } = useLoaderData<typeof loader>();
 
-  const featuredVideos = videos.filter((video) => video.featured).splice(0, 2);
+  const featuredVideos = videos.filter((video) => video.featured).slice(0, 3);
 
   return (
     <div className="flex flex-col gap-4">
