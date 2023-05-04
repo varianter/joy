@@ -44,24 +44,27 @@ export const Layout = ({
 
         <div className="my-4 w-full lg:px-48">
           <SearchInput onChange={handleOnChangeSearch} />
-          {(searchResult.length > 0 || isLoadingSearchResult) && (
-            <div className="mt-2 overflow-y-auto rounded-xl border bg-variant-blue-4 text-left">
-              {isLoadingSearchResult && <p className="p-2">Søker...</p>}
-              {!isLoadingSearchResult &&
-                searchResult.length > 0 &&
-                searchResult.map((res) => {
-                  return (
-                    <Link
-                      key={res.id}
-                      className="block truncate p-2 hover:bg-variant-blue-3 focus:bg-variant-blue-3"
-                      to={res.id}
-                    >
-                      <span>{res.title}</span>
-                    </Link>
-                  );
-                })}
-            </div>
-          )}
+          <div className="relative">
+            {(searchResult.length > 0 || isLoadingSearchResult || (searchParams.get("search") !== null && searchParams.get("search")!.length > 0 && !isLoadingSearchResult && searchResult.length == 0)) && (
+              <div className="mt-2 overflow-y-auto rounded-xl border bg-variant-blue-4 text-left absolute w-full">
+                {isLoadingSearchResult && <p className="p-2">Søker...</p>}
+                {!isLoadingSearchResult &&
+                  searchResult.length > 0 &&
+                  searchResult.map((res) => {
+                    return (
+                      <Link
+                        key={res.id}
+                        className="block truncate p-2 hover:bg-variant-blue-3 focus:bg-variant-blue-3"
+                        to={res.id}
+                      >
+                        <span>{res.title}</span>
+                      </Link>
+                    );
+                  })}
+                  {!isLoadingSearchResult && searchResult.length == 0 && <p className="p-2">Ingen resultater på '{searchParams.get("search")}'</p>}
+              </div>
+            )}
+          </div>
         </div>
         <div
           className={`hidden items-center sm:flex ${
