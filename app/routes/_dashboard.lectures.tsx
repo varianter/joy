@@ -12,10 +12,7 @@ export const loader = async () => {
 const Lectures = () => {
   const { lectures } = useLoaderData<typeof loader>();
 
-  const featuredLectures = lectures.filter((lecture) => lecture.featured);
-
-  const otherLectures = lectures.filter((lecture) => !lecture.featured);
-
+  const featuredLectures = lectures.filter((lecture) => lecture.featured).slice(0, 3);
   return (
     <div className="flex flex-col gap-4">
       {featuredLectures.length > 0 && (
@@ -26,9 +23,9 @@ const Lectures = () => {
         />
       )}
 
-      {otherLectures.length > 0 && (
+      {lectures.length > 0 && (
         <CardWithMultipleContent
-          content={otherLectures}
+          content={lectures}
           heading="Alle foredrag 🤩"
           buttonText="Se foredrag"
         />
