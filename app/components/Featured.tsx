@@ -4,7 +4,8 @@ import type { SerializeFrom } from "@remix-run/server-runtime";
 import ArticlePreview from "~/components/ArticlePreview";
 import TagButton from "~/components/buttons/TagButton";
 import Card from "~/components/card/Card";
-import { formatDate } from "~/utils";
+import { formatDate, getButtonText } from "~/utils";
+import CardWithContent from "./card/CardWithContent";
 
 interface FeaturedProps {
   newestFeaturedContent: SerializeFrom<(Content & { tags: Tag[] })[]>;

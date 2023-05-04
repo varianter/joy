@@ -1,5 +1,6 @@
 import { Link } from "@remix-run/react";
 import { Category, getButtonText, getIconForCategory } from "~/utils";
+import { Category, getButtonText, getIconForCategory } from "~/utils";
 import SecondaryButton from "./buttons/SecondaryButton";
 
 interface ArticlePreviewProps {
@@ -20,6 +21,7 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
 
   const icon = getIconForCategory(category);
 
+  const buttonText = getButtonText(category);
   const buttonText = getButtonText(category);
 
   const linkButtonText = (): LinkButtonProps => {
