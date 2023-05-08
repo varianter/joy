@@ -10,6 +10,7 @@ interface LayoutProps {
   isAuthenticated: boolean;
   isLoadingSearchResult: boolean;
   searchResult: Content[];
+  searchValue: string;
 }
 
 export const Layout = ({
@@ -17,8 +18,14 @@ export const Layout = ({
   isAuthenticated,
   isLoadingSearchResult,
   searchResult,
+  searchValue,
 }: LayoutProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  searchValue =
+    searchParams.get("search") === null
+      ? ""
+      : searchParams.get("search")!.toString();
 
   const handleOnChangeSearch = (event: any) => {
     if (event.target.value === "") {
@@ -43,7 +50,10 @@ export const Layout = ({
         </div>
 
         <div className="order-3 my-4 w-full sm:order-2 sm:inline lg:px-48">
-          <SearchInput onChange={handleOnChangeSearch} />
+          <SearchInput
+            onChange={handleOnChangeSearch}
+            searchValue={searchValue}
+          />
           <div className="relative">
             {(searchResult.length > 0 || isLoadingSearchResult) && (
               <div className="absolute z-10 mt-2 w-full overflow-y-auto rounded-xl border bg-variant-blue-4 text-left">
