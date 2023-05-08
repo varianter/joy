@@ -76,6 +76,9 @@ export const Layout = ({
                 {!isLoadingSearchResult && searchResult.length == 0 && (
                   <p className="p-2">Ingen resultater på '{searchValue}'</p>
                 )}
+                {!isLoadingSearchResult && searchResult.length == 0 && (
+                  <p className="p-2">Ingen resultater på '{searchValue}'</p>
+                )}
               </div>
             )}
           </div>
