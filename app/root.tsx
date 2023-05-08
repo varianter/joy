@@ -19,10 +19,13 @@ import { authenticator } from "./services/auth.server";
 import { searchContent } from "./models/content.server";
 import type { Content } from "@prisma/client";
 
+import searchStyles from "./components/search/styles.css";
+
 export const links: LinksFunction = () => {
   return [
     { rel: "stylesheet", href: tailwindStylesheetUrl },
     { rel: "stylesheet", href: globalStylesheetUrl },
+    { rel: "stylesheet", href: searchStyles },
   ];
 };
 
