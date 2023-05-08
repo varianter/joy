@@ -10,7 +10,6 @@ interface LayoutProps {
   isAuthenticated: boolean;
   isLoadingSearchResult: boolean;
   searchResult: Content[];
-  searchValue: string;
 }
 
 export const Layout = ({
@@ -18,11 +17,10 @@ export const Layout = ({
   isAuthenticated,
   isLoadingSearchResult,
   searchResult,
-  searchValue,
 }: LayoutProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  searchValue =
+  let searchValue =
     searchParams.get("search") === null
       ? ""
       : searchParams.get("search")!.toString();
