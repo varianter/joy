@@ -47,7 +47,7 @@ export const Layout = ({
           </h1>
         </div>
 
-        <div className="order-3 my-4 w-full sm:order-2 sm:inline lg:px-48">
+        <div className="my-4 w-full lg:px-48">
           <SearchInput
             onChange={handleOnChangeSearch}
             searchValue={searchValue}
