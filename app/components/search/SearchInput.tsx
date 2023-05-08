@@ -1,11 +1,19 @@
 import { Form } from "@remix-run/react";
+import type { KeyboardEvent } from "react";
 
 interface SearchInputProps {
   onChange: (e: any) => void;
+  searchValue: string;
 }
 
 export const SearchInput = (props: SearchInputProps) => {
-  const { onChange } = props;
+  const { onChange, searchValue } = props;
+
+  const onKeyDown = (e: KeyboardEvent) => {
+    if (e.code === "Enter") {
+      e.preventDefault();
+    }
+  };
 
   return (
     <Form>
@@ -15,8 +23,10 @@ export const SearchInput = (props: SearchInputProps) => {
           className="block w-full rounded-full bg-variant-blue p-4 pl-8 font-sans text-sm text-white"
           placeholder="Søk ..."
           onChange={onChange}
+          onKeyDown={onKeyDown}
+          value={searchValue}
         />
-        <span className="absolute right-2.5 bottom-2.5 rounded-lg px-4 py-2 ">
+        <span className="absolute bottom-2.5 right-2.5 rounded-lg px-4 py-2 ">
           <svg
             className="h-5 w-5"
             fill="none"
