@@ -2,7 +2,7 @@ import { Form } from "@remix-run/react";
 
 interface SearchInputProps {
   onChange: (e: any) => void;
-  searchValue?: string;
+  searchValue: string;
 }
 
 export const SearchInput = (props: SearchInputProps) => {
