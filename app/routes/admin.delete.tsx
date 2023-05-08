@@ -45,18 +45,21 @@ const DeleteContent = () => {
 
   const navigation = useNavigation();
 
+  let searchValue: string = "";
+
   const handleSearchChange = (e: React.FormEvent<HTMLInputElement>) => {
     const tempFilteredContent = content.filter((fc) =>
       fc.title.toLowerCase().includes(e.currentTarget.value.toLowerCase())
     );
 
     setFilteredContent(tempFilteredContent);
+    searchValue = e.currentTarget.value;
   };
 
   return (
     <div className="mt-5 w-full">
       <div className="mb-5">
-        <SearchInput onChange={handleSearchChange} />
+        <SearchInput onChange={handleSearchChange} searchValue={searchValue} />
       </div>
 
       {filteredContent.map((c) => {
