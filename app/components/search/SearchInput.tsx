@@ -1,5 +1,6 @@
 import { Form } from "@remix-run/react";
 import type { KeyboardEvent } from "react";
+import { useState } from "react";
 
 interface SearchInputProps {
   onChange: (e: any) => void;
@@ -8,6 +9,7 @@ interface SearchInputProps {
 
 export const SearchInput = (props: SearchInputProps) => {
   const { onChange, searchValue } = props;
+  const [searchText, setSearchText] = useState(searchValue);
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.code === "Enter") {
@@ -22,9 +24,12 @@ export const SearchInput = (props: SearchInputProps) => {
           type="search"
           className="block w-full rounded-full bg-variant-blue p-4 pl-8 font-sans text-sm text-white placeholder:text-white"
           placeholder="Søk ..."
-          onChange={onChange}
+          onChange={(e) => {
+            onChange(e);
+            setSearchText(e.target.value);
+          }}
           onKeyDown={onKeyDown}
-          value={searchValue}
+          value={searchText}
         />
         <span className="absolute bottom-2.5 right-2.5 rounded-lg px-4 py-2 ">
           <svg
