@@ -10,6 +10,7 @@ interface LayoutProps {
   isAuthenticated: boolean;
   isLoadingSearchResult: boolean;
   searchResult: Content[];
+  searchValue?: string;
 }
 
 export const Layout = ({
@@ -17,8 +18,14 @@ export const Layout = ({
   isAuthenticated,
   isLoadingSearchResult,
   searchResult,
+  searchValue,
 }: LayoutProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  searchValue =
+    searchParams.get("search") === null
+      ? ""
+      : searchParams.get("search")!.toString();
 
   const handleOnChangeSearch = (event: any) => {
     if (event.target.value === "") {
@@ -37,16 +44,23 @@ export const Layout = ({
           <NavLink className="w-32" to="/">
             <img alt={"Variant-logo"} src={"/assets/variant-bw.svg"} />
           </NavLink>
-          <h1 className="hidden text-white md:mt-2 md:ml-6 md:block md:text-4xl">
+          <h1 className="hidden text-white md:ml-6 md:mt-2 md:block md:text-4xl">
             Læreglede
           </h1>
         </div>
 
         <div className="my-4 w-full lg:px-48">
-          <SearchInput onChange={handleOnChangeSearch} />
+          <SearchInput
+            onChange={handleOnChangeSearch}
+            searchValue={searchValue}
+          />
           <div className="relative">
-            {(searchResult.length > 0 || isLoadingSearchResult || (searchParams.get("search") !== null && searchParams.get("search")!.length > 0 && !isLoadingSearchResult && searchResult.length == 0)) && (
-              <div className="mt-2 overflow-y-auto rounded-xl border bg-variant-blue-4 text-left absolute w-full z-10">
+            {(searchResult.length > 0 ||
+              isLoadingSearchResult ||
+              (searchValue!.length > 0 &&
+                !isLoadingSearchResult &&
+                searchResult.length == 0)) && (
+              <div className="absolute z-10 mt-2 w-full overflow-y-auto rounded-xl border bg-variant-blue-4 text-left">
                 {isLoadingSearchResult && <p className="p-2">Søker...</p>}
                 {!isLoadingSearchResult &&
                   searchResult.length > 0 &&
@@ -61,7 +75,9 @@ export const Layout = ({
                       </Link>
                     );
                   })}
-                  {!isLoadingSearchResult && searchResult.length == 0 && <p className="p-2">Ingen resultater på '{searchParams.get("search")}'</p>}
+                {!isLoadingSearchResult && searchResult.length == 0 && (
+                  <p className="p-2">Ingen resultater på '{searchValue}'</p>
+                )}
               </div>
             )}
           </div>
