@@ -105,7 +105,6 @@ const Featured = ({ newestFeaturedContent }: FeaturedProps) => {
                 )}
               </div>
             ))}
-            ;
           </div>
         </div>
       </section>
