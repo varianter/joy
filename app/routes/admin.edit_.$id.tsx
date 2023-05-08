@@ -308,7 +308,7 @@ const EditContent = () => {
         <Input
           type="date"
           error={errors?.createdAt}
-          label={"Opprettet (mm-dd-yyyy)"}
+          label={"Opprettet (dd.mm.yyyy)"}
           htmlRef={createdAtRef}
           defaultValue={content.createdAt.split("T")[0]}
           name={"createdAt"}

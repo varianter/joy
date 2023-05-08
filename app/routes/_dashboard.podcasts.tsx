@@ -1,40 +1,41 @@
 import { json } from "@remix-run/node";
 import { useLoaderData, useRouteError } from "@remix-run/react";
-import { getLectures } from "~/models/content.server";
+import { getPodcasts } from "~/models/content.server";
 import CardWithMultipleContent from "~/components/card/CardWithMultipleContent";
 import ErrorComponent from "~/components/Error";
 
 export const loader = async () => {
-  const lectures = await getLectures();
-  return json({ lectures });
+  const podcasts = await getPodcasts();
+  return json({ podcasts });
 };
 
-const Lectures = () => {
-  const { lectures } = useLoaderData<typeof loader>();
+const Podcasts = () => {
+  const { podcasts } = useLoaderData<typeof loader>();
+  const featuredPodcasts = podcasts
+    .filter((podcast) => podcast.featured)
+    .slice(0, 3);
 
-  const featuredLectures = lectures.filter((lecture) => lecture.featured).slice(0, 3);
   return (
     <div className="flex flex-col gap-4">
-      {featuredLectures.length > 0 && (
+      {featuredPodcasts.length > 0 && (
         <CardWithMultipleContent
-          content={featuredLectures}
+          content={featuredPodcasts}
           heading="Anbefalte 🔥"
-          buttonText="Se foredrag"
+          buttonText="Hør podkast"
         />
       )}
-
-      {lectures.length > 0 && (
+      {podcasts.length > 0 && (
         <CardWithMultipleContent
-          content={lectures}
-          heading="Alle foredrag 🤩"
-          buttonText="Se foredrag"
+          content={podcasts}
+          heading="Alle podkaster 🤩"
+          buttonText="Hør podkast"
         />
       )}
     </div>
   );
 };
 
-export default Lectures;
+export default Podcasts;
 
 export const ErrorBoundary = () => {
   const error = useRouteError();

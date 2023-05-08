@@ -79,8 +79,9 @@ export async function searchContent(search: string) {
   });
 }
 
-export async function getNewestContent(numberOfItems: number) {
+export async function getNewestFeaturedContent(numberOfItems: number) {
   return prisma.content.findMany({
+    where: { featured: true },
     take: numberOfItems,
     orderBy: {
       createdAt: "desc",
@@ -184,5 +185,17 @@ export async function getLectures() {
 export async function getNumberOfLectures() {
   return prisma.content.count({
     where: { category: Category.Lecture },
+  });
+}
+
+export async function getPodcasts() {
+  return prisma.content.findMany({
+    where: { category: Category.Podcast },
+  });
+}
+
+export async function getNumberOfPodcasts() {
+  return prisma.content.count({
+    where: { category: Category.Podcast },
   });
 }

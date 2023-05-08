@@ -1,20 +1,22 @@
 import type { Content, Tag } from "@prisma/client";
+import { Link } from "@remix-run/react";
 import type { SerializeFrom } from "@remix-run/server-runtime";
 import ArticlePreview from "~/components/ArticlePreview";
 import TagButton from "~/components/buttons/TagButton";
 import Card from "~/components/card/Card";
+import { formatDate } from "~/utils";
 
 interface FeaturedProps {
-  newestContent: SerializeFrom<(Content & { tags: Tag[] })[]>;
+  newestFeaturedContent: SerializeFrom<(Content & { tags: Tag[] })[]>;
 }
 
-const Featured = ({ newestContent }: FeaturedProps) => {
+const Featured = ({ newestFeaturedContent }: FeaturedProps) => {
   return (
     <div>
       <section>
         <h3 className="mb-8 text-left text-white">Bli inspirert 🤩</h3>
         <div>
-          {newestContent?.map((content, index) => {
+          {newestFeaturedContent?.map((content, index) => {
             return (
               <div key={content.id} className="my-5">
                 <Card cssClass="bg-variant-blue-4 sm:h-[22rem]">
@@ -35,7 +37,7 @@ const Featured = ({ newestContent }: FeaturedProps) => {
 
                     <ArticlePreview
                       category={content.category}
-                      createdDate={content.createdAt.toString().split("T")[0]}
+                      createdDate={formatDate(new Date(content.createdAt))}
                       title={content.title}
                       description={content.description}
                       url={content.url}
@@ -47,9 +49,13 @@ const Featured = ({ newestContent }: FeaturedProps) => {
                   <div className="flex justify-end gap-4">
                     {content.tags.map((tag) => {
                       return (
-                        <div key={tag.id} className="my-4">
+                        <Link
+                          to={`tags/${tag.text}`}
+                          key={tag.id}
+                          className="my-4"
+                        >
                           <TagButton text={tag.text} />
-                        </div>
+                        </Link>
                       );
                     })}
                   </div>
