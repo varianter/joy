@@ -55,7 +55,11 @@ export const Layout = ({
             searchValue={searchValue}
           />
           <div className="relative">
-            {(searchResult.length > 0 || isLoadingSearchResult) && (
+            {(searchResult.length > 0 ||
+              isLoadingSearchResult ||
+              (searchValue!.length > 0 &&
+                !isLoadingSearchResult &&
+                searchResult.length == 0)) && (
               <div className="absolute z-10 mt-2 w-full overflow-y-auto rounded-xl border bg-variant-blue-4 text-left">
                 {isLoadingSearchResult && <p className="p-2">Søker...</p>}
                 {!isLoadingSearchResult &&
@@ -71,6 +75,9 @@ export const Layout = ({
                       </Link>
                     );
                   })}
+                {!isLoadingSearchResult && searchResult.length == 0 && (
+                  <p className="p-2">Ingen resultater på '{searchValue}'</p>
+                )}
               </div>
             )}
           </div>
