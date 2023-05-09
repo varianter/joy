@@ -55,9 +55,7 @@ export const Layout = ({
           <div className="relative">
             {(searchResult.length > 0 ||
               isLoadingSearchResult ||
-              (searchValue!.length > 0 &&
-                !isLoadingSearchResult &&
-                searchResult.length == 0)) && (
+              (searchValue!.length > 0 && !isLoadingSearchResult)) && (
               <div className="absolute z-10 mt-2 w-full overflow-y-auto rounded-xl border bg-variant-blue-4 text-left">
                 {isLoadingSearchResult && <p className="p-2">Søker...</p>}
                 {!isLoadingSearchResult &&
