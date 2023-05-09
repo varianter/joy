@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-import { Category, getIconForCategory } from "~/utils";
+import { Category, getButtonText, getIconForCategory } from "~/utils";
 import SecondaryButton from "./buttons/SecondaryButton";
 
 interface ArticlePreviewProps {
@@ -20,22 +20,7 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
 
   const icon = getIconForCategory(category);
 
-  const buttonText = () => {
-    switch (category) {
-      case Category.Blogpost:
-        return "Les artikkel";
-      case Category.Video:
-        return "Se video";
-      case Category.Podcast:
-        return "Hør podkast";
-      case Category.Course:
-        return "Se kurs";
-      case Category.Lecture:
-        return "Se foredrag";
-      default:
-        return "";
-    }
-  };
+  const buttonText = getButtonText(category);
 
   const linkButtonText = (): LinkButtonProps => {
     switch (category) {
@@ -75,7 +60,7 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
           {linkButtonText().text}
         </Link>
         <a className="ml-auto" href={url} target="_blank" rel="noreferrer">
-          <SecondaryButton text={buttonText()} />
+          <SecondaryButton text={buttonText} />
         </a>
       </div>
     </div>

@@ -20,6 +20,11 @@ export const Layout = ({
 }: LayoutProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
+  let searchValue =
+    searchParams.get("search") === null
+      ? ""
+      : searchParams.get("search")!.toString();
+
   const handleOnChangeSearch = (event: any) => {
     if (event.target.value === "") {
       searchParams.delete("search");
@@ -37,31 +42,41 @@ export const Layout = ({
           <NavLink className="w-32" to="/">
             <img alt={"Variant-logo"} src={"/assets/variant-bw.svg"} />
           </NavLink>
-          <h1 className="hidden text-white md:mt-2 md:ml-6 md:block md:text-4xl">
+          <h1 className="hidden text-white md:ml-6 md:mt-2 md:block md:text-4xl">
             Læreglede
           </h1>
         </div>
 
         <div className="my-4 w-full lg:px-48">
-          <SearchInput onChange={handleOnChangeSearch} />
-          {(searchResult.length > 0 || isLoadingSearchResult) && (
-            <div className="mt-2 overflow-y-auto rounded-xl border bg-variant-blue-4 text-left">
-              {isLoadingSearchResult && <p className="p-2">Søker...</p>}
-              {!isLoadingSearchResult &&
-                searchResult.length > 0 &&
-                searchResult.map((res) => {
-                  return (
-                    <Link
-                      key={res.id}
-                      className="block truncate p-2 hover:bg-variant-blue-3 focus:bg-variant-blue-3"
-                      to={res.id}
-                    >
-                      <span>{res.title}</span>
-                    </Link>
-                  );
-                })}
-            </div>
-          )}
+          <SearchInput
+            onChange={handleOnChangeSearch}
+            searchValue={searchValue}
+          />
+          <div className="relative">
+            {(searchResult.length > 0 ||
+              isLoadingSearchResult ||
+              (searchValue!.length > 0 && !isLoadingSearchResult)) && (
+              <div className="absolute z-10 mt-2 w-full overflow-y-auto rounded-xl border bg-variant-blue-4 text-left">
+                {isLoadingSearchResult && <p className="p-2">Søker...</p>}
+                {!isLoadingSearchResult &&
+                  searchResult.length > 0 &&
+                  searchResult.map((res) => {
+                    return (
+                      <Link
+                        key={res.id}
+                        className="block truncate p-2 hover:bg-variant-blue-3 focus:bg-variant-blue-3"
+                        to={res.id}
+                      >
+                        <span>{res.title}</span>
+                      </Link>
+                    );
+                  })}
+                {!isLoadingSearchResult && searchResult.length == 0 && (
+                  <p className="p-2">Ingen resultater på '{searchValue}'</p>
+                )}
+              </div>
+            )}
+          </div>
         </div>
         <div
           className={`hidden items-center sm:flex ${
