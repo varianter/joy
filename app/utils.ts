@@ -44,3 +44,20 @@ export const getIconForCategory = (category: string) => {
       return "lecture";
   }
 };
+
+export const getButtonText = (category: string) => {
+  switch (category) {
+    case Category.Blogpost:
+      return "Les artikkel";
+    case Category.Video:
+      return "Se video";
+    case Category.Podcast:
+      return "Hør podkast";
+    case Category.Course:
+      return "Se kurs";
+    case Category.Lecture:
+      return "Se foredrag";
+    default:
+      return "";
+  }
+};
