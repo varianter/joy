@@ -1,33 +1,12 @@
-import { Link, Form } from "@remix-run/react";
-import PrimaryButton from "./buttons/PrimaryButton";
-
 interface FooterProps {
   isAuthenticated: boolean;
 }
 
 const Footer = ({ isAuthenticated }: FooterProps) => {
   return (
-    <footer className="footer mt-8 flex justify-center px-[1rem]">
+    <footer className="footer mt-8 flex justify-center px-[1rem] sm:mx-[1rem]">
       <div className="mt-16 max-w-3xl text-white">
         <div className="mb-12 grid grid-cols-1 sm:grid-cols-3 ">
-          <div className="flex flex-col gap-4 sm:hidden">
-            {isAuthenticated && (
-              <Link to="/admin">
-                <PrimaryButton type="button" text={"Admin"} size="small" />
-              </Link>
-            )}
-
-            <Form
-              action={`/auth/${isAuthenticated ? "logout" : "login"}`}
-              method="post"
-            >
-              <PrimaryButton
-                type="submit"
-                text={isAuthenticated ? "Logg ut" : "Logg inn"}
-                size="small"
-              />
-            </Form>
-          </div>
           <div className="mt-8 sm:mt-48">
             <h4 className="pb-4">Utforsk</h4>
             <ul className="text-left">

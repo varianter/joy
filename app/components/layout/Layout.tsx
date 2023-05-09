@@ -32,17 +32,17 @@ export const Layout = ({
 
   return (
     <main className="background min-h-screen text-center">
-      <div className="mx-6 gap-4 py-6 sm:flex sm:px-6">
+      <div className="mx-6 flex flex-wrap justify-between gap-4 py-6 sm:flex-nowrap sm:px-6 ">
         <div className="flex sm:items-center">
           <NavLink className="w-32" to="/">
             <img alt={"Variant-logo"} src={"/assets/variant-bw.svg"} />
           </NavLink>
-          <h1 className="hidden text-white md:mt-2 md:ml-6 md:block md:text-4xl">
+          <h1 className="hidden text-white md:ml-6 md:mt-2 md:block md:text-4xl">
             Læreglede
           </h1>
         </div>
 
-        <div className="my-4 w-full lg:px-48">
+        <div className="order-3 my-4 w-full sm:order-2 sm:inline lg:px-48">
           <SearchInput onChange={handleOnChangeSearch} />
           {(searchResult.length > 0 || isLoadingSearchResult) && (
             <div className="mt-2 overflow-y-auto rounded-xl border bg-variant-blue-4 text-left">
@@ -64,9 +64,9 @@ export const Layout = ({
           )}
         </div>
         <div
-          className={`hidden items-center sm:flex ${
-            isAuthenticated ? "sm:grid-cols-2" : "sm:grid-cols-1"
-          } sm:gap-2`}
+          className={`order-2 flex items-center sm:order-last ${
+            isAuthenticated ? "grid-cols-2" : "grid-cols-1"
+          } gap-2`}
         >
           {isAuthenticated && (
             <Link to="/admin">
