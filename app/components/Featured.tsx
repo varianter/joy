@@ -14,7 +14,7 @@ const Featured = ({ newestFeaturedContent }: FeaturedProps) => {
   return (
     <div>
       <section>
-        <h3 className="mb-8 text-left text-white">Bli inspirert 🤩</h3>
+        <h3 className="mb-8 text-left text-white">Bli inspirert:</h3>
         <div>
           {newestFeaturedContent?.map((content, index) => {
             return (

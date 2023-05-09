@@ -15,7 +15,7 @@ const CardWithMultipleContent = ({
   heading,
 }: CardWithMultipleContentProps) => {
   return (
-    <Card cssClass="bg-variant-blue-3 p-8">
+    <Card cssClass="bg-variant-blue-2 p-8">
       <h2 className="my-2 text-left text-xl text-white">{heading}</h2>
       <div className="grid gap-7 sm:grid-cols-1 md:grid-cols-3">
         {content.map((content) => {
