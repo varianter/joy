@@ -1,40 +1,68 @@
 import type { Content, Tag } from "@prisma/client";
 import type { SerializeFrom } from "@remix-run/node";
 import Level from "~/components/Level";
+import { formatDate } from "~/utils";
 
 type CourseHeaderProps = {
   content: SerializeFrom<Content & { tags?: Tag[] }>;
+  author: string;
 };
 
-const CourseHeader = ({ content }: CourseHeaderProps) => {
+const CourseHeader = ({ content, author }: CourseHeaderProps) => {
+  const courseDifficulties = content?.tags
+    ?.filter(
+      (tag: Tag) =>
+        tag.text === "Nybegynner" ||
+        tag.text === "Middels" ||
+        tag.text === "Avansert"
+    )
+    .sort((a: Tag, b: Tag) => {
+      const order: string[] = ["Nybegynner", "Middels", "Avansert"];
+      return order.indexOf(a.text) - order.indexOf(b.text);
+    });
+
   return (
-    <div className="flex w-full justify-between pt-10">
-      <div className="flex items-center">
-        <img
-          alt="course icon"
-          className="h-[1rem] pr-2"
-          src={"/assets/icons/course.svg"}
-        />
-        <p>Kurs</p>
+    <div className="flex w-full flex-col justify-between pt-10">
+      <div className="flex justify-between">
+        <div className="flex items-center">
+          <img
+            alt="course icon"
+            className="h-[1rem] pr-2"
+            src={"/assets/icons/course.svg"}
+          />
+          <h4>Kurs</h4>
+        </div>
+        <p>{formatDate(new Date(content?.createdAt))} </p>
       </div>
-      <p>{content?.createdAt} </p>
-      <h1>{content?.title}</h1>
-      <div className="flex w-full flex-row justify-between pb-5 pt-10">
-        {content?.tags?.map((tag: Tag) => (
-          <Level key={tag.id} tag={tag.text} />
-        ))}
-        <ul className="flex items-end">
+
+      <h1 className="pt-2 text-left">{content?.title}</h1>
+
+      <div className="flex flex-row items-start justify-between pb-12 pt-10">
+        <div>
+          {author !== undefined && <h4 className="pb-5">{`av ${author}`}</h4>}
+          {courseDifficulties?.map((tag: Tag) => (
+            <Level key={tag.id} tag={tag.text} />
+          ))}
+        </div>
+        <ul className="flex w-6/12 flex-wrap justify-end gap-2">
           {content?.tags &&
-            content.tags.map((tag: Tag) => (
-              <li
-                key={tag.id}
-                className=" mr-3 rounded-3xl bg-variant-blue-3 px-2 py-1 text-xs hover:bg-variant-blue md:px-6 md:text-sm"
-              >
-                {tag.text}
-              </li>
-            ))}
+            content.tags.map(
+              (tag: Tag) =>
+                tag.text !== "Nybegynner" &&
+                tag.text !== "Middels" &&
+                tag.text !== "Avansert" && (
+                  <li
+                    key={tag.id}
+                    className="rounded-3xl bg-variant-blue-3 px-2 py-1 text-xs hover:bg-variant-blue md:px-6 md:text-sm"
+                  >
+                    {tag.text}
+                  </li>
+                )
+            )}
         </ul>
       </div>
+
+      <p className="text-left">{content?.description}</p>
     </div>
   );
 };
