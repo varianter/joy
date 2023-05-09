@@ -1,57 +1,30 @@
-import type { LoaderArgs, SerializeFrom } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { NavLink, useLoaderData, useRouteError } from "@remix-run/react";
 import { getContentById } from "~/models/content.server";
-import invariant from "tiny-invariant";
-import Level from "~/components/Level";
-import type { Content, Tag } from "@prisma/client";
 import SecondaryButton from "~/components/buttons/SecondaryButton";
 import CheckTask from "~/components/CheckTask";
 import ErrorComponent from "~/components/Error";
+import CourseHeader from "~/components/CourseHeader";
 
 export const loader = async () => {
-  const ttc2022 = await getContentById("36ae94e3-10ba-4e4d-b5fe-5d987c9d19df");
+  const ttc2022 = await getContentById("6181d8fe-375a-4263-bc24-36cc22ef4091");
+  if (!ttc2022) {
+    throw new Response("Not Found", { status: 404 });
+  }
   return json({ ttc2022 });
 };
 
 const Ttc2022 = () => {
   const { ttc2022 } = useLoaderData<typeof loader>();
+  let author = "Martin Martinsen";
 
   return (
-    <div className="flex flex-col items-start text-white md:mx-[5rem] lg:mx-[15rem] xl:mx-[35rem]">
+    <div className="mt-32 flex flex-col items-start text-white ">
       <NavLink to={"/courses"}>
         <SecondaryButton text="Tilbake" />
       </NavLink>
-      <div className="flex w-full justify-between pt-10">
-        <div className="flex items-center">
-          <img
-            alt="course icon"
-            className="h-[1rem] pr-2"
-            src={"/assets/icons/course.svg"}
-          />
-          <p>Kurs</p>
-        </div>
-        <p>{ttc2022?.createdAt} </p>
-      </div>
-      <h1>{ttc2022?.title}</h1>
-      <div className="flex w-full flex-row justify-between pb-5 pt-10">
-        {ttc2022?.tags.map((tag: Tag) => (
-          <Level key={tag.id} tag={tag.text} />
-        ))}
-        <ul className="flex items-end">
-          {ttc2022?.tags &&
-            ttc2022.tags.map((tag: Tag) => (
-              <li
-                key={tag.id}
-                className=" mr-3 rounded-3xl bg-variant-blue-3 px-2 py-1 text-xs hover:bg-variant-blue md:px-6 md:text-sm"
-              >
-                {tag.text}
-              </li>
-            ))}
-        </ul>
-      </div>
+      <CourseHeader content={ttc2022} author={author} />
 
-      <p className="text-left">{ttc2022?.description}</p>
       <hr className="my-5 h-px w-full"></hr>
       <h2>Innhold</h2>
       <div className="text-left underline md:mx-[12rem] md:mt-32 lg:mx-[12rem] xl:mx-[12srem]">
