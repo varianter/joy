@@ -48,7 +48,7 @@ export async function updateContent(
     where: { id },
     select: { tags: { select: { id: true } } },
   });
-  const TagsToDelete = oldTags?.tags?.filter((t) => !tags?.includes(t.id));
+  const tagsToDelete = oldTags?.tags?.filter((t) => !tags?.includes(t.id));
 
   return prisma.content.update({
     where: { id },
@@ -63,7 +63,7 @@ export async function updateContent(
       author,
       createdAt,
       tags: {
-        disconnect: TagsToDelete?.map((t) => {
+        disconnect: tagsToDelete?.map((t) => {
           return { id: t.id };
         }),
         connect: tags?.map((t) => {
