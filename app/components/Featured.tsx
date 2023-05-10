@@ -22,7 +22,7 @@ const Featured = ({ newestFeaturedContent }: FeaturedProps) => {
                 <Card cssClass="bg-variant-blue-4 sm:h-[22rem]">
                   <div className="grid h-full sm:grid-cols-2">
                     <div
-                      className={`sm:relative ${
+                      className={`xs:h-[9rem] sm:relative sm:h-full ${
                         index % 2 === 0 ? "sm:order-last" : "sm:order-first"
                       } `}
                     >
