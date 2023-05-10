@@ -23,7 +23,7 @@ const NewCourseInformation = () => {
         <li>
           I loaderen må du bruke getContentById() for å hente dataen som du la
           inn for kurset ditt når du opprettet det. Denne metoden må ha kursets
-          ID som input, og det er: {courseId}
+          ID som input, og ID-en til ditt kurs er: {courseId}.
         </li>
         <li>
           Se på filen '_dashboard_.courses_.ttc2022.tsx' for inspirasjon til
