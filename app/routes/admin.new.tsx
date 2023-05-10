@@ -168,7 +168,7 @@ export async function action({ request }: ActionArgs) {
     tags
   );
 
-  if (category == Category.Course) {
+  if (category == Category.Course && !isValidUrl(url)) {
     return redirect(`/admin/new/${newContentItem.id}`);
   } else return redirect(`/`);
 }
