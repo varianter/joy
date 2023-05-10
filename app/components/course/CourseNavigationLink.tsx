@@ -8,7 +8,7 @@ interface CourseNavigtionLinkProps {
 const CourseNavigationLink = ({ id, text }: CourseNavigtionLinkProps) => {
   return (
     <Link to={`#${id}`} className="no-underline">
-      <div className="mb-2 flex flex-row items-center border-b text-variant-white">
+      <div className="text-variant-white mb-2 flex flex-row items-center border-b">
         <p>{text}</p>
         <img
           alt="arrowRight"
