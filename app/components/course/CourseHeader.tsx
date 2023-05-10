@@ -31,16 +31,20 @@ const CourseHeader = ({ content, author }: CourseHeaderProps) => {
             className="h-[1rem] pr-2"
             src={"/assets/icons/course.svg"}
           />
-          <h4>Kurs</h4>
+          <p className="heading-4">Kurs</p>
         </div>
         <p>{formatDate(new Date(content?.createdAt))} </p>
       </div>
 
-      <h1 className="pt-2 text-left">{content?.title}</h1>
+      <h1 className="pt-2 text-left" aria-label={`Kurs ${content?.title}`}>
+        {content?.title}
+      </h1>
 
-      <div className="flex flex-row items-start justify-between pb-12 pt-10">
+      <div className="flex flex-row items-start justify-between pb-12 pt-4">
         <div>
-          {author !== undefined && <h4 className="pb-5">{`av ${author}`}</h4>}
+          {author !== undefined && (
+            <p className="heading-4 pb-5">{`av ${author}`}</p>
+          )}
           {sortedDifficultTags?.map((tag: Tag) => (
             <Level key={tag.id} tag={tag.text} />
           ))}
@@ -57,7 +61,7 @@ const CourseHeader = ({ content, author }: CourseHeaderProps) => {
         </ul>
       </div>
 
-      <p className="text-left">{content?.description}</p>
+      <p>{content?.description}</p>
     </div>
   );
 };
