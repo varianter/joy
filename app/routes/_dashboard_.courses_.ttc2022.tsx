@@ -28,21 +28,21 @@ const Ttc2022 = () => {
 
       <hr className="my-5 h-px w-full"></hr>
 
-      <h4>Innhold</h4>
+      <h2>Innhold</h2>
       <CourseNavigationLink id="intro" text="Intro" />
       <CourseNavigationLink id="chapter1" text="Kapittel 1" />
       <CourseNavigationLink id="chapter2" text="Kapittel 2" />
 
-      <h2 id="intro" className="mt-5 py-10">
+      <h3 id="intro" className="mt-5 py-10">
         Intro
-      </h2>
+      </h3>
       <div className=" flex w-full rounded-2xl bg-variant-blue-2 p-5">
         Slides...
       </div>
 
-      <h2 id="chapter1" className="mt-5 py-10">
+      <h3 id="chapter1" className="mt-5 py-10">
         Kapittel 1 med oppgaveliste
-      </h2>
+      </h3>
       <CheckTask
         title="Oppgave 1: skriv navnet ditt"
         description="Bruk turtle-komandoene som forward(), left(), right(), penup() og
@@ -61,9 +61,9 @@ const Ttc2022 = () => {
         done={false}
       />
 
-      <h2 id="chapter2" className="mt-5 py-10">
+      <h3 id="chapter2" className="mt-5 py-10">
         Kapittel 2 med oppgaveliste
-      </h2>
+      </h3>
       <CheckTask
         title="Oppgave 4: Figurer"
         description="Lek deg med ulike farger, og tegn et hus, en bil eller noe annet du har lyst til å lage. Bruk fantasien!"
