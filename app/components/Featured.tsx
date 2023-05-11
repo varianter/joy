@@ -5,6 +5,7 @@ import ArticlePreview from "~/components/ArticlePreview";
 import TagButton from "~/components/buttons/TagButton";
 import Card from "~/components/card/Card";
 import { formatDate } from "~/utils";
+import DbImage from "./DbImage";
 
 interface FeaturedProps {
   newestFeaturedContent: SerializeFrom<(Content & { tags: Tag[] })[]>;
@@ -29,12 +30,10 @@ const Featured = ({ newestFeaturedContent }: FeaturedProps) => {
                         index % 2 === 0 ? "sm:order-last" : "sm:order-first"
                       } `}
                     >
-                      <img
+                      <DbImage
                         alt={content.imageText ?? "Figur av læreglede"}
                         className={`h-full w-full object-cover sm:absolute`}
-                        src={
-                          content.image ?? "/assets/default-article-image.svg"
-                        }
+                        id={content.id}
                       />
                     </div>
 
@@ -73,12 +72,10 @@ const Featured = ({ newestFeaturedContent }: FeaturedProps) => {
                 <Card cssClass="bg-variant-blue-4 sm:h-[32rem]">
                   <div className="grid h-full">
                     <div className="h-[12rem] sm:relative">
-                      <img
+                      <DbImage
                         alt={content.imageText ?? "Figur av læreglede"}
                         className={`h-full w-full object-cover sm:absolute`}
-                        src={
-                          content.image ?? "/assets/default-article-image.svg"
-                        }
+                        id={content.id}
                       />
                     </div>
 

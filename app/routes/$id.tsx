@@ -2,6 +2,7 @@ import { useLoaderData, useRouteError } from "@remix-run/react";
 import type { LoaderArgs } from "@remix-run/server-runtime";
 import { json } from "@remix-run/server-runtime";
 import ArticlePreview from "~/components/ArticlePreview";
+import DbImage from "~/components/DbImage";
 import ErrorComponent from "~/components/Error";
 import Card from "~/components/card/Card";
 import { getContentById } from "~/models/content.server";
@@ -22,10 +23,10 @@ const ContentId = () => {
   return (
     <Card cssClass="bg-variant-blue-4 ">
       <div className="grid h-full sm:grid-cols-2">
-        <img
+        <DbImage
           alt={content.imageText ?? "Figur av læreglede"}
           className="h-full w-full object-cover"
-          src={content.image ?? "/assets/default-article-image.svg"}
+          id={content.id}
         />
 
         <ArticlePreview

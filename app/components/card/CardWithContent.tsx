@@ -4,6 +4,7 @@ import Card from "./Card";
 import type { SerializeFrom } from "@remix-run/node";
 import { NavLink } from "@remix-run/react";
 import { Category, formatDate, getIconForCategory } from "~/utils";
+import DbImage from "../DbImage";
 
 interface CardWithContentProps {
   buttonText: string;
@@ -30,10 +31,10 @@ const CardWithContent = ({ buttonText, content }: CardWithContentProps) => {
           </span>
         </div>
         <div className="h-[9rem] sm:relative ">
-          <img
+          <DbImage
             alt={content.imageText ?? "Figur av læreglede"}
             className="h-full w-full rounded-xl object-cover sm:absolute sm:rounded-none"
-            src={content.image ?? "/assets/default-article-image.svg"}
+            id={content.id}
           />
         </div>
         <div className="bottom-0 overflow-hidden py-3 sm:p-3">
