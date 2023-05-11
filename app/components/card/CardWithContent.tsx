@@ -3,7 +3,7 @@ import SecondaryButton from "../buttons/SecondaryButton";
 import Card from "./Card";
 import type { SerializeFrom } from "@remix-run/node";
 import { NavLink } from "@remix-run/react";
-import { Category, formatDate } from "~/utils";
+import { Category, formatDate, getIconForCategory } from "~/utils";
 
 interface CardWithContentProps {
   buttonText: string;
@@ -11,22 +11,7 @@ interface CardWithContentProps {
 }
 
 const CardWithContent = ({ buttonText, content }: CardWithContentProps) => {
-  const iconName = () => {
-    switch (content.category) {
-      case Category.Blogpost.toString():
-        return "blogpost";
-      case Category.Lecture:
-        return "lecture";
-      case Category.Course:
-        return "course";
-      case Category.Video:
-        return "video";
-      case Category.Podcast:
-        return "podcast";
-      default:
-        return "";
-    }
-  };
+  const iconName = getIconForCategory(content.category);
 
   return (
     <Card cssClass="bg-variant-blue-4 sm:h-[24rem] min-w-[17rem] ">
@@ -36,7 +21,7 @@ const CardWithContent = ({ buttonText, content }: CardWithContentProps) => {
             <img
               alt={`Figur av ${content.category.toLowerCase()}`}
               className="h-[2rem] pr-4"
-              src={`/assets/icons/${iconName()}_dark.svg`}
+              src={`/assets/icons/${iconName}_dark.svg`}
             />
             <p className="text-xl"> {content.category} </p>
           </div>

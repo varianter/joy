@@ -4,7 +4,7 @@ interface FooterProps {
 
 const Footer = ({ isAuthenticated }: FooterProps) => {
   return (
-    <footer className="footer mt-8 flex justify-center px-[1rem] sm:mx-[1rem]">
+    <footer className="footer mt-8 flex justify-center px-[3rem]">
       <div className="mt-16 max-w-3xl text-white">
         <div className="mb-12 grid grid-cols-1 sm:grid-cols-3 ">
           <div className="mt-8 sm:mt-48">
