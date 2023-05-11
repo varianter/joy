@@ -38,15 +38,30 @@ export default function Dashboard() {
     useLoaderData<typeof loader>();
 
   return (
-    <div className="sm:mt-32 w-full">
+    <div className="w-full sm:mt-16">
       <section className="text-left text-white">
-        <p className="font-serif text-xl">En variant av en</p>
+        <p className="font-serif text-xl">En variants</p>
         <h2>Læringshub</h2>
         <p className="mt-8">
-          Vi i Variant lager og holder en del kurs og foredrag i flere
-          sammenhenger. <br /> Vi har noen bloggposter her, noen YouTube-videoer
-          der, og noen foredrag en annen plass. <br />
-          Dette har vi samlet i denne læringshuben.
+          I Variant er læreglede en av våre{" "}
+          <a
+            aria-label="Variants hovedverdier"
+            href="https://variant.no"
+            className="text-variant-beige"
+          >
+            hovedverdier
+          </a>
+          . Vi digger å lære oss nye ting eller å lære bort det vi kan, og så
+          blir vi jaggu meg så mye bedre på det når vi deler det med hverandre.
+        </p>
+        <p className="py-1">
+          For å gi deg (og oss selv) bedre oversikt over alt faglig innhold som
+          vi poster, har vi samlet hele sulamitten på denne siden. Vi kaller den
+          herved Læringshuben. Sjå dæ rundt og så håper vi du liker det du ser.
+        </p>
+        <p className="py-1">
+          PS: Ikke vær sjenert om du vil slå av en prat med oss, om et tema som
+          engasjerer deg da ❤️
         </p>
       </section>
 

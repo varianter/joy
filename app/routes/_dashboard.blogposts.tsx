@@ -19,7 +19,7 @@ const Blogposts = () => {
       {featuredBlogposts.length > 0 && (
         <CardWithMultipleContent
           content={featuredBlogposts}
-          heading="Anbefalte 🔥"
+          heading="Tre utvalgte favoritter"
           buttonText="Les mer"
         />
       )}
@@ -27,7 +27,7 @@ const Blogposts = () => {
       {blogposts.length > 0 && (
         <CardWithMultipleContent
           content={blogposts}
-          heading="Alle bloggposter 🤩"
+          heading="Alle bloggposter"
           buttonText="Les mer"
         />
       )}

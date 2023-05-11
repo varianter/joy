@@ -20,14 +20,14 @@ const Podcasts = () => {
       {featuredPodcasts.length > 0 && (
         <CardWithMultipleContent
           content={featuredPodcasts}
-          heading="Anbefalte 🔥"
+          heading="Tre utvalgte favoritter"
           buttonText="Hør podkast"
         />
       )}
       {podcasts.length > 0 && (
         <CardWithMultipleContent
           content={podcasts}
-          heading="Alle podkaster 🤩"
+          heading="Alle podkaster"
           buttonText="Hør podkast"
         />
       )}
