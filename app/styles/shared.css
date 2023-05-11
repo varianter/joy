@@ -4,38 +4,23 @@
 }
 
 @font-face {
-  font-family: "Recoleta-SemiBold";
-  src: url(../fonts/recoleta-semibold.woff) format("truetype");
-}
-
-@font-face {
-  font-family: "Recoleta-Thin";
-  src: url(../fonts/recoleta-thin.woff) format("truetype");
-}
-
-@font-face {
   font-family: "Recoleta-Medium";
   src: url(../fonts/recoleta-medium.woff) format("truetype");
 }
 
 @font-face {
-  font-family: "Recoleta-Light";
-  src: url(../fonts/recoleta-light.woff) format("truetype");
-}
-
-@font-face {
-  font-family: "Recoleta-Bold";
-  src: url(../fonts/recoleta-bold.woff) format("truetype");
-}
-
-@font-face {
-  font-family: "Recoleta-Black";
-  src: url(../fonts/recoleta-black.woff) format("truetype");
-}
-
-@font-face {
   font-family: "Graphic-Regular";
-  src: url(../fonts/Graphik-Regular.otf) format("truetype");
+  src: url(../fonts/Graphik-Regular-Web.woff2) format("truetype");
+}
+
+@font-face {
+  font-family: "Graphic-Medium";
+  src: url(../fonts/Graphik-Medium-Web.woff2) format("truetype");
+}
+
+@font-face {
+  font-family: "Graphic-Bold";
+  src: url(../fonts/Graphik-Bold-Web.woff2) format("truetype");
 }
 
 h1 {
@@ -77,13 +62,12 @@ a {
   font-size: 1rem;
   font-family: "Graphic-Regular";
   line-height: 1.6;
-  color: #736ebe;
   text-decoration: underline;
   transition: border-bottom 200ms ease-out;
 }
 
 a:hover {
-  color: #b7b4de;
+  font-family: "Graphic-Medium";
 }
 
 * {
@@ -97,6 +81,5 @@ a:hover {
 }
 
 .footer {
-  margin-top: 4rem;
   background: url("/assets/footer.svg") no-repeat center top;
 }

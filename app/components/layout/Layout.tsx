@@ -37,7 +37,7 @@ export const Layout = ({
 
   return (
     <main className="background min-h-screen text-center">
-      <div className="mx-6 gap-4 py-6 sm:flex sm:px-6">
+      <div className="mx-6 flex flex-wrap justify-between gap-4 py-6 sm:flex-nowrap sm:px-6 ">
         <div className="flex sm:items-center">
           <NavLink className="w-32" to="/">
             <img alt={"Variant-logo"} src={"/assets/variant-bw.svg"} />
@@ -79,9 +79,9 @@ export const Layout = ({
           </div>
         </div>
         <div
-          className={`hidden items-center sm:flex ${
-            isAuthenticated ? "sm:grid-cols-2" : "sm:grid-cols-1"
-          } sm:gap-2`}
+          className={`order-2 flex items-center sm:order-last ${
+            isAuthenticated ? "grid-cols-2" : "grid-cols-1"
+          } gap-2`}
         >
           {isAuthenticated && (
             <Link to="/admin">
@@ -103,7 +103,7 @@ export const Layout = ({
         </div>
       </div>
 
-      <div className="mx-[1rem] flex min-h-[30rem] justify-center sm:mx-[5rem] lg:mx-[20rem] xl:mx-[30rem] ">
+      <div className="mx-4 flex min-h-[30rem] justify-center sm:mx-12 md:mx-16 lg:mx-auto lg:w-full lg:max-w-6xl">
         {children}
       </div>
       <Footer isAuthenticated={isAuthenticated} />
