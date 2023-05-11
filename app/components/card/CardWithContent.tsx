@@ -24,7 +24,6 @@ const CardWithContent = ({ buttonText, content }: CardWithContentProps) => {
       case Category.Podcast:
         return "podcast";
       default:
-        console.log("Noe annet");
         return "";
     }
   };
