@@ -13,10 +13,16 @@ export async function getContentById(id: string) {
   });
 }
 
-export async function getImage(id: string) {
+export async function getContentByIdWithImageData(id: string) {
   return prisma.content.findUnique({
     where: { id },
-    select: { image: true },
+    include: { tags: true, imageData: true },
+  });
+}
+
+export async function getImage(id: string) {
+  return prisma.imageData.findUnique({
+    where: { contentId: id },
   });
 }
 
@@ -24,31 +30,21 @@ export async function deleteContent(id: string) {
   return prisma.content.delete({ where: { id } });
 }
 
+type UpdateContentItem = Pick<
+  Content,
+  | "id"
+  | "title"
+  | "description"
+  | "url"
+  | "featured"
+  | "category"
+  | "imageText"
+  | "author"
+  | "createdAt"
+> & { image: string };
+
 export async function updateContent(
-  {
-    id,
-    title,
-    description,
-    url,
-    featured,
-    category,
-    image,
-    imageText,
-    author,
-    createdAt,
-  }: Pick<
-    Content,
-    | "id"
-    | "title"
-    | "description"
-    | "url"
-    | "featured"
-    | "category"
-    | "image"
-    | "imageText"
-    | "author"
-    | "createdAt"
-  >,
+  { id, image, ...content }: UpdateContentItem,
   tags?: string[]
 ) {
   const oldTags = await prisma.content.findUnique({
@@ -58,17 +54,12 @@ export async function updateContent(
   const tagsToDelete = oldTags?.tags?.filter((t) => !tags?.includes(t.id));
 
   return prisma.content.update({
-    where: { id },
+    where: { id: id },
     data: {
-      title,
-      description,
-      url,
-      featured,
-      category,
-      image,
-      imageText,
-      author,
-      createdAt,
+      ...content,
+      imageData: {
+        update: { dataUrl: image },
+      },
       tags: {
         disconnect: tagsToDelete?.map((t) => {
           return { id: t.id };
@@ -122,39 +113,26 @@ export async function getNumberOfVideos() {
   });
 }
 
+type CreateContentItem = Pick<
+  Content,
+  | "title"
+  | "description"
+  | "url"
+  | "featured"
+  | "category"
+  | "imageText"
+  | "author"
+> & { image: string };
 export function createContent(
-  {
-    title,
-    description,
-    url,
-    featured,
-    category,
-    image,
-    imageText,
-    author,
-  }: Pick<
-    Content,
-    | "title"
-    | "description"
-    | "url"
-    | "featured"
-    | "category"
-    | "image"
-    | "imageText"
-    | "author"
-  >,
+  { image, ...content }: CreateContentItem,
   tags?: string[]
 ) {
   return prisma.content.create({
     data: {
-      title,
-      description,
-      url,
-      featured,
-      category,
-      image,
-      imageText,
-      author,
+      ...content,
+      imageData: {
+        create: { dataUrl: image },
+      },
       tags: {
         connect: tags?.map((t) => {
           return { id: t };

@@ -13,12 +13,15 @@ import ErrorComponent from "~/components/Error";
 import Input from "~/components/inputs/Input";
 import TextArea from "~/components/inputs/TextArea";
 import Toggle from "~/components/Toggle";
-import { getContentById, updateContent } from "~/models/content.server";
+import {
+  getContentByIdWithImageData,
+  updateContent,
+} from "~/models/content.server";
 import { getTags } from "~/models/tag.server";
 import { CATEGORIES, Category, isValidUrl } from "~/utils";
 
 export const loader = async ({ params }: LoaderArgs) => {
-  const content = await getContentById(params.id ?? "");
+  const content = await getContentByIdWithImageData(params.id ?? "");
   if (!content) {
     throw new Response("Not Found", { status: 404 });
   }
@@ -271,7 +274,7 @@ const EditContent = () => {
 
         <Input
           error={errors?.image}
-          defaultValue={content.image ?? ""}
+          defaultValue={content.imageData?.dataUrl ?? ""}
           label={
             <span>
               Base64-enkodet bilde: Kan genereres{" "}

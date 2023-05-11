@@ -6,11 +6,11 @@ const notFound = () => redirect("/assets/default-article-image.svg", 302);
 export async function loader({ params }: LoaderArgs) {
   try {
     const content = await getImage(params.id ?? "");
-    if (!content?.image) {
+    if (!content?.dataUrl) {
       return notFound();
     }
 
-    const { contentType, base64 } = extractImage(content.image);
+    const { contentType, base64 } = extractImage(content.dataUrl);
     return new Response(Buffer.from(base64, "base64"), {
       status: 200,
       headers: {
