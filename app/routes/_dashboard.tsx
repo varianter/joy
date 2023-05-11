@@ -51,7 +51,10 @@ export default function Dashboard() {
       </section>
 
       <section className="mb-12 mt-8 grid grid-cols-1 gap-5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-5">
-        <NavLink to="blogposts">
+        <NavLink
+          to="blogposts"
+          className={({ isActive }) => (isActive ? "" : "decoration-white")}
+        >
           {({ isActive }) => (
             <NavigationCard
               title={`Bloggposter (${numBlogposts})`}
@@ -71,7 +74,10 @@ export default function Dashboard() {
           )}
         </NavLink>
 
-        <NavLink to="lectures">
+        <NavLink
+          to="lectures"
+          className={({ isActive }) => (isActive ? "" : "decoration-white")}
+        >
           {({ isActive }) => (
             <NavigationCard
               title={`Foredrag (${numLectures})`}
@@ -91,7 +97,10 @@ export default function Dashboard() {
           )}
         </NavLink>
 
-        <NavLink to="courses">
+        <NavLink
+          to="courses"
+          className={({ isActive }) => (isActive ? "" : "decoration-white")}
+        >
           {({ isActive }) => (
             <NavigationCard
               title={`Kurs (${numCourses})`}
@@ -111,7 +120,10 @@ export default function Dashboard() {
           )}
         </NavLink>
 
-        <NavLink to="videos">
+        <NavLink
+          to="videos"
+          className={({ isActive }) => (isActive ? "" : "decoration-white")}
+        >
           {({ isActive }) => (
             <NavigationCard
               title={`Videoer (${numVideos})`}
@@ -131,7 +143,10 @@ export default function Dashboard() {
           )}
         </NavLink>
 
-        <NavLink to="podcasts">
+        <NavLink
+          to="podcasts"
+          className={({ isActive }) => (isActive ? "" : "decoration-white")}
+        >
           {({ isActive }) => (
             <NavigationCard
               title={`Podkaster (${numPodcasts})`}
