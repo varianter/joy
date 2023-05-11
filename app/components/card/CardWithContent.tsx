@@ -25,7 +25,7 @@ const CardWithContent = ({ buttonText, content }: CardWithContentProps) => {
             />
             <p className="text-xl"> {content.category} </p>
           </div>
-          <span className="font-sans text-xl font-medium">
+          <span className="font-sans text-xl">
             {formatDate(new Date(content.createdAt))}
           </span>
         </div>

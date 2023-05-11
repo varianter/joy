@@ -18,7 +18,6 @@ export async function deleteContent(id: string) {
 }
 
 export async function updateContent(
-export async function updateContent(
   {
     id,
     title,
