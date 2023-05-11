@@ -19,7 +19,7 @@ const Videos = () => {
       {featuredVideos.length > 0 && (
         <CardWithMultipleContent
           content={featuredVideos}
-          heading="Anbefalte 🔥"
+          heading="Tre utvalgte favoritter"
           buttonText="Se video"
         />
       )}
@@ -27,7 +27,7 @@ const Videos = () => {
       {videos.length > 0 && (
         <CardWithMultipleContent
           content={videos}
-          heading="Alle videoer 🤩"
+          heading="Alle videoer"
           buttonText="Se video"
         />
       )}
