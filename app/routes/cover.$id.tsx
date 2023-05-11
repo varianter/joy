@@ -1,7 +1,8 @@
 import { type LoaderArgs, redirect } from "@remix-run/server-runtime";
 import { getImage } from "~/models/content.server";
 
-const notFound = () => redirect("/assets/default-article-image.svg", 302);
+const notFound = () =>
+  redirect("/assets/default-article-image.svg", 303 /* See other */);
 
 export async function loader({ params }: LoaderArgs) {
   try {
