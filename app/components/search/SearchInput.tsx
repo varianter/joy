@@ -12,11 +12,11 @@ export const SearchInput = (props: SearchInputProps) => {
       <div className="relative w-auto">
         <input
           type="search"
-          className="block w-full rounded-full bg-variant-blue p-4 pl-8 font-sans text-sm text-white"
+          className="block w-full rounded-full bg-variant-blue p-4 pl-8 font-sans text-sm text-white placeholder:text-white"
           placeholder="Søk ..."
           onChange={onChange}
         />
-        <span className="absolute right-2.5 bottom-2.5 rounded-lg px-4 py-2 ">
+        <span className="absolute bottom-2.5 right-2.5 rounded-lg px-4 py-2 ">
           <svg
             className="h-5 w-5"
             fill="none"
