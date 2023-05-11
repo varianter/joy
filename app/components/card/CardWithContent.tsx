@@ -52,7 +52,7 @@ const CardWithContent = ({ buttonText, content }: CardWithContentProps) => {
             src={content.image ?? "/assets/default-article-image.svg"}
           />
         </div>
-        <div className="bg-red bottom-0 overflow-hidden py-3 sm:p-3">
+        <div className="bottom-0 overflow-hidden py-3 sm:p-3">
           <h3 className="text-left line-clamp-1">{content.title}</h3>
           <p className="my-5 text-base line-clamp-3">{content.description}</p>
         </div>
