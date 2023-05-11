@@ -13,6 +13,13 @@ export async function getContentById(id: string) {
   });
 }
 
+export async function getImage(id: string) {
+  return prisma.content.findUnique({
+    where: { id },
+    select: { image: true },
+  });
+}
+
 export async function deleteContent(id: string) {
   return prisma.content.delete({ where: { id } });
 }
