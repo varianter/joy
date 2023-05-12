@@ -1,3 +1,6 @@
+import type { Content, Tag } from "@prisma/client";
+import type { SerializeFrom } from "@remix-run/node";
+
 export function validateExample(tall1: number, tall2: number) {
   return tall1 + tall2;
 }
@@ -61,3 +64,10 @@ export const getButtonText = (category: string) => {
       return "";
   }
 };
+
+export const separateFeaturedAndOtherContent = (allContent: SerializeFrom<(Content & { tags?: Tag[]})[]>) => {
+  const featured = allContent.filter((content) => content.featured).slice(0, 3);
+  const other = allContent.filter((content) => !featured.includes(content))
+
+  return [featured, other];
+}

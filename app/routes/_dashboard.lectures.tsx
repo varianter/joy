@@ -3,6 +3,7 @@ import { useLoaderData, useRouteError } from "@remix-run/react";
 import { getLectures } from "~/models/content.server";
 import CardWithMultipleContent from "~/components/card/CardWithMultipleContent";
 import ErrorComponent from "~/components/Error";
+import { separateFeaturedAndOtherContent } from "~/utils";
 
 export const loader = async () => {
   const lectures = await getLectures();
@@ -12,9 +13,9 @@ export const loader = async () => {
 const Lectures = () => {
   const { lectures } = useLoaderData<typeof loader>();
 
-  const featuredLectures = lectures
-    .filter((lecture) => lecture.featured)
-    .slice(0, 3);
+  const [featuredLectures, otherLectures] =
+    separateFeaturedAndOtherContent(lectures);
+
   return (
     <div className="flex flex-col gap-4">
       {featuredLectures.length > 0 && (
@@ -25,10 +26,10 @@ const Lectures = () => {
         />
       )}
 
-      {lectures.length > 0 && (
+      {otherLectures.length > 0 && (
         <CardWithMultipleContent
-          content={lectures}
-          heading="Alle foredrag"
+          content={otherLectures}
+          heading="Andre foredrag"
           buttonText="Se foredrag"
         />
       )}

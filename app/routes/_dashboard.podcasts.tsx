@@ -3,6 +3,7 @@ import { useLoaderData, useRouteError } from "@remix-run/react";
 import { getPodcasts } from "~/models/content.server";
 import CardWithMultipleContent from "~/components/card/CardWithMultipleContent";
 import ErrorComponent from "~/components/Error";
+import { separateFeaturedAndOtherContent } from "~/utils";
 
 export const loader = async () => {
   const podcasts = await getPodcasts();
@@ -11,9 +12,9 @@ export const loader = async () => {
 
 const Podcasts = () => {
   const { podcasts } = useLoaderData<typeof loader>();
-  const featuredPodcasts = podcasts
-    .filter((podcast) => podcast.featured)
-    .slice(0, 3);
+
+  const [featuredPodcasts, otherPodcasts] =
+    separateFeaturedAndOtherContent(podcasts);
 
   return (
     <div className="flex flex-col gap-4">
@@ -24,10 +25,10 @@ const Podcasts = () => {
           buttonText="Hør podkast"
         />
       )}
-      {podcasts.length > 0 && (
+      {otherPodcasts.length > 0 && (
         <CardWithMultipleContent
-          content={podcasts}
-          heading="Alle podkaster"
+          content={otherPodcasts}
+          heading="Andre podkaster"
           buttonText="Hør podkast"
         />
       )}

@@ -3,6 +3,7 @@ import { useLoaderData, useRouteError } from "@remix-run/react";
 import { getBlogposts } from "~/models/content.server";
 import CardWithMultipleContent from "~/components/card/CardWithMultipleContent";
 import ErrorComponent from "~/components/Error";
+import { separateFeaturedAndOtherContent } from "~/utils";
 
 export const loader = async () => {
   const blogposts = await getBlogposts();
@@ -12,7 +13,8 @@ export const loader = async () => {
 const Blogposts = () => {
   const { blogposts } = useLoaderData<typeof loader>();
 
-  const featuredBlogposts = blogposts.filter((blogpost) => blogpost.featured).slice(0, 3);
+  const [featuredBlogposts, otherBlogposts] =
+    separateFeaturedAndOtherContent(blogposts);
 
   return (
     <div className="flex flex-col gap-4">
@@ -24,10 +26,10 @@ const Blogposts = () => {
         />
       )}
 
-      {blogposts.length > 0 && (
+      {otherBlogposts.length > 0 && (
         <CardWithMultipleContent
-          content={blogposts}
-          heading="Alle bloggposter"
+          content={otherBlogposts}
+          heading="Andre bloggposter"
           buttonText="Les mer"
         />
       )}
