@@ -4,6 +4,7 @@ import PrimaryButton from "../buttons/PrimaryButton";
 import { SearchInput } from "../search/SearchInput";
 import type { ReactNode } from "react";
 import Footer from "../Footer";
+import { createUrlSlug } from "~/utils";
 
 interface LayoutProps {
   children: ReactNode;
@@ -65,7 +66,7 @@ export const Layout = ({
                       <Link
                         key={res.id}
                         className="block truncate p-2 hover:bg-variant-blue-3 focus:bg-variant-blue-3"
-                        to={res.id}
+                        to={`search/${createUrlSlug(res.title)}`}
                       >
                         <span>{res.title}</span>
                       </Link>

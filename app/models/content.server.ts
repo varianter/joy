@@ -13,6 +13,13 @@ export async function getContentById(id: string) {
   });
 }
 
+export async function getContentByUrlSlug(urlSlug: string) {
+  return prisma.content.findUnique({
+    where: { urlSlug },
+    include: { tags: true },
+  });
+}
+
 export async function deleteContent(id: string) {
   return prisma.content.delete({ where: { id } });
 }
@@ -125,6 +132,7 @@ export function createContent(
     image,
     imageText,
     author,
+    urlSlug,
   }: Pick<
     Content,
     | "title"
@@ -135,6 +143,7 @@ export function createContent(
     | "image"
     | "imageText"
     | "author"
+    | "urlSlug"
   >,
   tags?: string[]
 ) {
@@ -148,6 +157,7 @@ export function createContent(
       image,
       imageText,
       author,
+      urlSlug,
       tags: {
         connect: tags?.map((t) => {
           return { id: t };
