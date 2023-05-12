@@ -42,9 +42,6 @@ export const Layout = ({
           <NavLink className="w-32" to="/">
             <img alt={"Variant-logo"} src={"/assets/variant-bw.svg"} />
           </NavLink>
-          <h1 className="hidden text-white md:ml-6 md:mt-2 md:block md:text-4xl">
-            Læreglede
-          </h1>
         </div>
 
         <div className="my-4 grow lg:px-48">
