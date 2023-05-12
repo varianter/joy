@@ -38,9 +38,11 @@ export default function Dashboard() {
   const { numVideos, numBlogposts, numCourses, numLectures, numPodcasts } =
     useLoaderData<typeof loader>();
 
+  const { pathname } = useLocation();
+
   return (
     <div className="w-full sm:mt-16">
-      {useLocation().pathname === "/" && (
+      {pathname === "/" && (
         <section className="text-left text-white">
           <p className="font-serif text-xl">En variants</p>
           <h2>Læringshub</h2>
