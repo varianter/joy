@@ -31,7 +31,7 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
       <p className="my-5 line-clamp-3">{description}</p>
       <div className="item-center w-full sm:absolute sm:bottom-2">
         <div className="mx-1 sm:mx-auto sm:w-52">
-          <a className="" href={url} target="_blank" rel="noreferrer">
+          <a href={url} target="_blank" rel="noreferrer">
             <SecondaryButton text={buttonText} />
           </a>
         </div>
