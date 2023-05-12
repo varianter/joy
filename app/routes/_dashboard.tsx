@@ -4,6 +4,7 @@ import {
   Outlet,
   useLoaderData,
   useRouteError,
+  useLocation,
 } from "@remix-run/react";
 import ErrorComponent from "~/components/Error";
 import NavigationCard from "~/components/card/NavigationCard";
@@ -39,31 +40,35 @@ export default function Dashboard() {
 
   return (
     <div className="w-full sm:mt-16">
-      <section className="text-left text-white">
-        <p className="font-serif text-lg">En variants</p>
-        <h1>Læringshub</h1>
-        <p className="mt-8">
-          I Variant er læreglede en av våre{" "}
-          <a
-            aria-label="Variants hovedverdier"
-            href="https://variant.no"
-            className="text-variant-beige"
-          >
-            hovedverdier
-          </a>
-          . Vi digger å lære oss nye ting eller å lære bort det vi kan, og så
-          blir vi jaggu meg så mye bedre på det når vi deler det med hverandre.
-        </p>
-        <p className="py-1">
-          For å gi deg (og oss selv) bedre oversikt over alt faglig innhold som
-          vi poster, har vi samlet hele sulamitten på denne siden. Vi kaller den
-          herved Læringshuben. Sjå dæ rundt og så håper vi du liker det du ser.
-        </p>
-        <p className="py-1">
-          PS: Ikke vær sjenert om du vil slå av en prat med oss, om et tema som
-          engasjerer deg da ❤️
-        </p>
-      </section>
+      {useLocation().pathname === "/" && (
+        <section className="text-left text-white">
+          <p className="font-serif text-xl">En variants</p>
+          <h2>Læringshub</h2>
+          <p className="mt-8">
+            I Variant er læreglede en av våre{" "}
+            <a
+              aria-label="Variants hovedverdier"
+              href="https://variant.no"
+              className="text-variant-beige"
+            >
+              hovedverdier
+            </a>
+            . Vi digger å lære oss nye ting eller å lære bort det vi kan, og så
+            blir vi jaggu meg så mye bedre på det når vi deler det med
+            hverandre.
+          </p>
+          <p className="py-1">
+            For å gi deg (og oss selv) bedre oversikt over alt faglig innhold
+            som vi poster, har vi samlet hele sulamitten på denne siden. Vi
+            kaller den herved Læringshuben. Sjå dæ rundt og så håper vi du liker
+            det du ser.
+          </p>
+          <p className="py-1">
+            PS: Ikke vær sjenert om du vil slå av en prat med oss, om et tema
+            som engasjerer deg da ❤️
+          </p>
+        </section>
+      )}
 
       <section className="mb-12 mt-8 grid grid-cols-1 gap-5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-5">
         <NavLink
