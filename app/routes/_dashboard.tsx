@@ -40,8 +40,8 @@ export default function Dashboard() {
   return (
     <div className="w-full sm:mt-16">
       <section className="text-left text-white">
-        <p className="font-serif text-xl">En variants</p>
-        <h2>Læringshub</h2>
+        <p className="font-serif text-lg">En variants</p>
+        <h1>Læringshub</h1>
         <p className="mt-8">
           I Variant er læreglede en av våre{" "}
           <a
