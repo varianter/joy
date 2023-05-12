@@ -3,6 +3,7 @@ import { useLoaderData, useRouteError } from "@remix-run/react";
 import { getVideos } from "~/models/content.server";
 import CardWithMultipleContent from "~/components/card/CardWithMultipleContent";
 import ErrorComponent from "~/components/Error";
+import { separateFeaturedAndOtherContent } from "~/utils";
 
 export const loader = async () => {
   const videos = await getVideos();
@@ -12,7 +13,7 @@ export const loader = async () => {
 const Videos = () => {
   const { videos } = useLoaderData<typeof loader>();
 
-  const featuredVideos = videos.filter((video) => video.featured).slice(0, 3);
+  const [featuredVideos, otherVideos] = separateFeaturedAndOtherContent(videos);
 
   return (
     <div className="flex flex-col gap-4">
@@ -24,10 +25,10 @@ const Videos = () => {
         />
       )}
 
-      {videos.length > 0 && (
+      {otherVideos.length > 0 && (
         <CardWithMultipleContent
-          content={videos}
-          heading="Alle videoer"
+          content={otherVideos}
+          heading="Andre videoer"
           buttonText="Se video"
         />
       )}
