@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react";
+import { Link, NavLink } from "@remix-run/react";
 import { Category, getButtonText, getIconForCategory } from "~/utils";
 import SecondaryButton from "./buttons/SecondaryButton";
 
@@ -59,9 +59,15 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
         >
           {linkButtonText().text}
         </Link>
-        <a className="ml-auto" href={url} target="_blank" rel="noreferrer">
-          <SecondaryButton text={buttonText} />
-        </a>
+        {category === Category.Course ? (
+          <NavLink to={`/courses/${url}`} className="ml-auto">
+            <SecondaryButton text={buttonText} />
+          </NavLink>
+        ) : (
+          <a className="ml-auto" href={url} target="_blank" rel="noreferrer">
+            <SecondaryButton text={buttonText} />
+          </a>
+        )}
       </div>
     </div>
   );
