@@ -1,5 +1,4 @@
-import { Link } from "@remix-run/react";
-import { Category, getButtonText, getIconForCategory } from "~/utils";
+import { getButtonText, getIconForCategory } from "~/utils";
 import SecondaryButton from "./buttons/SecondaryButton";
 
 interface ArticlePreviewProps {
@@ -8,11 +7,6 @@ interface ArticlePreviewProps {
   title: string;
   description: string;
   url: string;
-}
-
-interface LinkButtonProps {
-  text: string;
-  route: string;
 }
 
 const ArticlePreview = (props: ArticlePreviewProps) => {
