@@ -38,7 +38,7 @@ export const Layout = ({
   return (
     <main className="background min-h-screen text-center">
       <div className="mx-6 flex flex-wrap justify-between gap-4 py-6 sm:flex-nowrap sm:px-6 ">
-        <div className="flex sm:items-center">
+        <div className="flex items-center">
           <NavLink className="w-32" to="/">
             <img alt={"Variant-logo"} src={"/assets/variant-bw.svg"} />
           </NavLink>
@@ -47,7 +47,7 @@ export const Layout = ({
           </h1>
         </div>
 
-        <div className="my-4 w-full lg:px-48">
+        <div className="my-4 grow lg:px-48">
           <SearchInput
             onChange={handleOnChangeSearch}
             searchValue={searchValue}
@@ -79,7 +79,7 @@ export const Layout = ({
           </div>
         </div>
         <div
-          className={`order-2 flex items-center sm:order-last ${
+          className={`hidden items-center sm:order-last md:flex ${
             isAuthenticated ? "grid-cols-2" : "grid-cols-1"
           } gap-2`}
         >
