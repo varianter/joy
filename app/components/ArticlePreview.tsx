@@ -17,7 +17,7 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
   const buttonText = getButtonText(category);
 
   return (
-    <div className="p-3 text-left sm:relative ">
+    <div className="m-3 text-left sm:relative ">
       <div className="mb-5 flex gap-2">
         <img
           alt={"Kategoriikon"}
@@ -29,10 +29,12 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
       </div>
       <h3 className="text-left text-2xl line-clamp-2">{title}</h3>
       <p className="my-5 line-clamp-3">{description}</p>
-      <div className="inset-x-6 items-center sm:absolute sm:bottom-2">
-        <a className="w-full" href={url} target="_blank" rel="noreferrer">
-          <SecondaryButton text={buttonText} />
-        </a>
+      <div className="item-center w-full sm:absolute sm:bottom-2">
+        <div className="mx-1 sm:mx-auto sm:w-52">
+          <a className="" href={url} target="_blank" rel="noreferrer">
+            <SecondaryButton text={buttonText} />
+          </a>
+        </div>
       </div>
     </div>
   );
