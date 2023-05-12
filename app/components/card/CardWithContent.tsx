@@ -37,9 +37,9 @@ const CardWithContent = ({ buttonText, content }: CardWithContentProps) => {
             id={content.id}
           />
         </div>
-        <div className="bottom-0 overflow-hidden py-3 sm:p-3">
-          <h3 className="text-left text-2xl line-clamp-1">{content.title}</h3>
-          <p className="my-5 text-base line-clamp-3">{content.description}</p>
+        <div className="overflow-hidden p-3">
+          <h3 className="line-clamp-2">{content.title}</h3>
+          <p className="my-5 line-clamp-5">{content.description}</p>
         </div>
         <div className="w-full items-center sm:flex sm:px-3 sm:pb-6">
           <span className="hidden font-sans sm:flex">
