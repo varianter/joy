@@ -24,44 +24,38 @@
 }
 
 h1 {
-  font-size: 5.05rem;
+  font-size: 2rem;
   font-family: "Recoleta-Regular";
   line-height: 1.2;
 }
 
 h2 {
-  font-size: 3.4rem;
+  font-size: 1.5rem;
   font-family: "Recoleta-Regular";
-  line-height: 1.2;
 }
 
 h3 {
-  font-size: 2.25rem;
+  font-size: 1.17rem;
   font-family: "Recoleta-Regular";
-  line-height: 1.2;
   text-align: left;
 }
 
 h4,
 .heading-4 {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-family: "Recoleta-Regular";
-  line-height: 1.3;
   text-align: left;
 }
 
 p,
 li {
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-family: "Graphic-Regular";
-  line-height: 1.6;
   text-align: left;
 }
 
 a {
-  font-size: 1rem;
   font-family: "Graphic-Regular";
-  line-height: 1.6;
   text-decoration: underline;
   transition: border-bottom 200ms ease-out;
 }
