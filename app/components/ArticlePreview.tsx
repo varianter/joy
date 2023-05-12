@@ -50,8 +50,8 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
         <span className="font-sans">{category}</span>
         <span className="ml-auto font-sans">{createdDate}</span>
       </div>
-      <h3 className="text-left text-2xl line-clamp-2">{title}</h3>
-      <p className="my-5 line-clamp-3">{description}</p>
+      <h3 className="line-clamp-2">{title}</h3>
+      <p className="my-5 line-clamp-5">{description}</p>
       <div className="inset-x-6 flex flex-col items-center sm:absolute sm:bottom-2 md:flex-row md:justify-between">
         <span className="hidden sm:flex md:order-1">
           <Link to={linkButtonText().route}>{linkButtonText().text}</Link>
