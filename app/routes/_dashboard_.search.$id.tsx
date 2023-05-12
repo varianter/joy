@@ -33,7 +33,7 @@ const ContentId = () => {
           createdDate={content.createdAt.toString().split("T")[0]}
           title={content.title}
           description={content.description}
-          url={content.url}
+          url={content.title}
         />
       </div>
     </Card>
