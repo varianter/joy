@@ -21,7 +21,6 @@ const Videos = () => {
         <CardWithMultipleContent
           content={featuredVideos}
           heading="Tre utvalgte favoritter"
-          buttonText="Se video"
         />
       )}
 
@@ -29,7 +28,6 @@ const Videos = () => {
         <CardWithMultipleContent
           content={otherVideos}
           heading="Andre videoer"
-          buttonText="Se video"
         />
       )}
     </div>

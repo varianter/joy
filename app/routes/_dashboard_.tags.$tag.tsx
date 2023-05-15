@@ -3,7 +3,6 @@ import invariant from "tiny-invariant";
 import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { searchContent } from "~/models/content.server";
-import CardWithContent from "~/components/card/CardWithContent";
 import TagButton from "~/components/buttons/TagButton";
 import ErrorComponent from "~/components/Error";
 import PreviewCard from "~/components/card/PreviewCard";
