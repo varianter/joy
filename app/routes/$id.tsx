@@ -1,7 +1,7 @@
 import { useLoaderData, useRouteError } from "@remix-run/react";
 import type { LoaderArgs } from "@remix-run/server-runtime";
 import { json } from "@remix-run/server-runtime";
-import ArticlePreview from "~/components/ArticlePreview";
+import TextPreview from "~/components/TextPreview";
 import DbImage from "~/components/DbImage";
 import ErrorComponent from "~/components/Error";
 import Card from "~/components/card/Card";
@@ -29,7 +29,7 @@ const ContentId = () => {
           id={content.id}
         />
 
-        <ArticlePreview
+        <TextPreview
           category={content.category}
           createdDate={content.createdAt.toString().split("T")[0]}
           title={content.title}

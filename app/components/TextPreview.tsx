@@ -1,17 +1,21 @@
-import { getButtonText, getIconForCategory } from "~/utils";
+import { formatDate, getButtonText, getIconForCategory } from "~/utils";
 import SecondaryButton from "./buttons/SecondaryButton";
 
-interface ArticlePreviewProps {
+interface TextPreviewProps {
   category: string;
-  createdDate: string;
+  createdAt: string;
   title: string;
   description: string;
   url: string;
 }
 
-const ArticlePreview = (props: ArticlePreviewProps) => {
-  const { category, createdDate, title, description, url } = props;
-
+const TextPreview = ({
+  category,
+  createdAt,
+  title,
+  description,
+  url,
+}: TextPreviewProps) => {
   const icon = getIconForCategory(category);
 
   const buttonText = getButtonText(category);
@@ -25,7 +29,9 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
           src={`/assets/icons/${icon}.svg`}
         />
         <span className="font-sans">{category}</span>
-        <span className="ml-auto font-sans">{createdDate}</span>
+        <span className="ml-auto font-sans">
+          {formatDate(new Date(createdAt))}
+        </span>
       </div>
       <h3 className="line-clamp-2">{title}</h3>
       <p className="my-5 line-clamp-5">{description}</p>
@@ -40,4 +46,4 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
   );
 };
 
-export default ArticlePreview;
+export default TextPreview;
