@@ -6,6 +6,7 @@ import { searchContent } from "~/models/content.server";
 import CardWithContent from "~/components/card/CardWithContent";
 import TagButton from "~/components/buttons/TagButton";
 import ErrorComponent from "~/components/Error";
+import PreviewCard from "~/components/card/PreviewCard";
 
 export const loader = async ({ params }: LoaderArgs) => {
   invariant(params.tag, "Tag not found");
@@ -35,11 +36,7 @@ const Tag = () => {
           </section>
           <section className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
             {contentByTag.map((content) => (
-              <CardWithContent
-                key={content.id}
-                buttonText={content.title}
-                content={content}
-              />
+              <PreviewCard content={content} key={content.id} />
             ))}
           </section>
         </div>

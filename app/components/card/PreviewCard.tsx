@@ -9,15 +9,15 @@ import { Link } from "@remix-run/react";
 interface PreviewCardProps {
   content: SerializeFrom<Content & { tags?: Tag[] }>;
   className?: string;
-  direction?: "horizontal" | "vertical";
+  horizontal?: boolean;
 }
 
-const PreviewCard = ({ content, className, direction }: PreviewCardProps) => {
+const PreviewCard = ({ content, className, horizontal }: PreviewCardProps) => {
   const { tags } = content;
 
   return (
-    <div className={className}>
-      {direction === "horizontal" ? (
+    <div className={`${className} text-black`}>
+      {horizontal ? (
         <Card cssClass="bg-variant-blue-4 sm:h-[22rem]">
           <div className="grid h-full sm:grid-cols-2">
             <div className="xs:h-[9rem] sm:relative sm:h-full">
@@ -41,13 +41,12 @@ const PreviewCard = ({ content, className, direction }: PreviewCardProps) => {
                 id={content.id}
               />
             </div>
-
             <TextPreview {...content} />
           </div>
         </Card>
       )}
 
-      {direction === "horizontal" && tags && tags.length > 0 && (
+      {horizontal && tags && tags.length > 0 && (
         // TODO: Ved klikk på tags, så skal man finne all content relevant til denne
         <div className="flex justify-end gap-4">
           {tags.map((tag) => {

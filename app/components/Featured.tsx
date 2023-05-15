@@ -21,7 +21,7 @@ const Featured = ({ newestFeaturedContent }: FeaturedProps) => {
                 key={content.id}
                 className="my-5"
                 content={content}
-                direction="horizontal"
+                horizontal
               />
             ))}
           </div>
