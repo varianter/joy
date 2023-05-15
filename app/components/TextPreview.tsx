@@ -21,27 +21,23 @@ const TextPreview = ({
   const buttonText = getButtonText(category);
 
   return (
-    <div className="m-3 text-left sm:relative ">
-      <div className="mb-5 flex gap-2">
-        <img
-          alt={"Kategoriikon"}
-          className="fill-current h-[1.5rem] text-variant-pink"
-          src={`/assets/icons/${icon}.svg`}
-        />
-        <span className="font-sans">{category}</span>
-        <span className="ml-auto font-sans">
-          {formatDate(new Date(createdAt))}
-        </span>
-      </div>
-      <h3 className="line-clamp-2">{title}</h3>
-      <p className="my-5 line-clamp-5">{description}</p>
-      <div className="item-center w-full sm:absolute sm:bottom-1">
-        <div className="mx-1 sm:mx-auto sm:max-w-xs">
-          <a href={url} target="_blank" rel="noreferrer">
-            <SecondaryButton text={buttonText} />
-          </a>
+    <div className="m-3 flex flex-col justify-between">
+      <div className="mb-2 flex flex-col">
+        <div className="mb-4 flex items-center gap-2">
+          <img
+            alt={"Kategoriikon"}
+            className="fill-current h-[1rem] text-variant-pink"
+            src={`/assets/icons/${icon}.svg`}
+          />
+          <p>{category}</p>
+          <p className="ml-auto">{formatDate(new Date(createdAt))}</p>
         </div>
+        <h3 className="line-clamp-2">{title}</h3>
+        <p className="line-clamp-5">{description}</p>
       </div>
+      <a href={url} target="_blank" rel="noreferrer">
+        <SecondaryButton text={buttonText} />
+      </a>
     </div>
   );
 };

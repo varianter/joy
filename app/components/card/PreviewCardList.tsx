@@ -10,9 +10,9 @@ interface PreviewCardListProps {
 
 const PreviewCardList = ({ content, heading }: PreviewCardListProps) => {
   return (
-    <Card cssClass="bg-variant-blue-2 p-4 sm:p-8 ">
+    <Card cssClass="bg-variant-blue-2 p-4 sm:p-8">
       <h2 className="mb-2 text-left text-white">{heading}</h2>
-      <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
         {content.map((content) => {
           return <PreviewCard content={content} key={content.id} />;
         })}

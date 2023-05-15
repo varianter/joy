@@ -11,33 +11,23 @@ const Featured = ({ newestFeaturedContent }: FeaturedProps) => {
   const verticalFeaturedContent = newestFeaturedContent?.slice(2);
 
   return (
-    <div>
-      <section>
-        <h3 className="mb-8 text-left text-white">Fremhevet innhold</h3>
-        <div>
-          <div className="grid grid-cols-1 gap-7">
-            {horizontalFeaturedContent?.map((content) => (
-              <PreviewCard
-                key={content.id}
-                className="my-5"
-                content={content}
-                horizontal
-              />
-            ))}
-          </div>
+    <section>
+      <h3 className="mb-8 text-left text-white">Fremhevet innhold</h3>
+      {horizontalFeaturedContent?.map((content) => (
+        <PreviewCard
+          key={content.id}
+          content={content}
+          className="mb-8"
+          horizontal
+        />
+      ))}
 
-          <div className="grid grid-cols-1 gap-7 md:grid-cols-2">
-            {verticalFeaturedContent?.map((content) => (
-              <PreviewCard
-                content={content}
-                key={content.id}
-                className="my-5"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-    </div>
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+        {verticalFeaturedContent?.map((content) => (
+          <PreviewCard content={content} key={content.id} className="mb-8" />
+        ))}
+      </div>
+    </section>
   );
 };
 

@@ -22,16 +22,11 @@ const Lectures = () => {
         <PreviewCardList
           content={featuredLectures}
           heading="Tre utvalgte favoritter"
-          buttonText="Se foredrag"
         />
       )}
 
       {otherLectures.length > 0 && (
-        <PreviewCardList
-          content={otherLectures}
-          heading="Andre foredrag"
-          buttonText="Se foredrag"
-        />
+        <PreviewCardList content={otherLectures} heading="Andre foredrag" />
       )}
     </div>
   );
