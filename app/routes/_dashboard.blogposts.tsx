@@ -1,7 +1,7 @@
 import { json } from "@remix-run/node";
 import { useLoaderData, useRouteError } from "@remix-run/react";
 import { getBlogposts } from "~/models/content.server";
-import CardWithMultipleContent from "~/components/card/CardWithMultipleContent";
+import PreviewCardList from "~/components/card/PreviewCardList";
 import ErrorComponent from "~/components/Error";
 import { separateFeaturedAndOtherContent } from "~/utils";
 
@@ -19,7 +19,7 @@ const Blogposts = () => {
   return (
     <div className="flex flex-col gap-4">
       {featuredBlogposts.length > 0 && (
-        <CardWithMultipleContent
+        <PreviewCardList
           content={featuredBlogposts}
           heading="Tre utvalgte favoritter"
           buttonText="Les mer"
@@ -27,7 +27,7 @@ const Blogposts = () => {
       )}
 
       {otherBlogposts.length > 0 && (
-        <CardWithMultipleContent
+        <PreviewCardList
           content={otherBlogposts}
           heading="Andre bloggposter"
           buttonText="Les mer"

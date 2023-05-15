@@ -1,7 +1,7 @@
 import { json } from "@remix-run/node";
 import { useLoaderData, useRouteError } from "@remix-run/react";
 import { getPodcasts } from "~/models/content.server";
-import CardWithMultipleContent from "~/components/card/CardWithMultipleContent";
+import PreviewCardList from "~/components/card/PreviewCardList";
 import ErrorComponent from "~/components/Error";
 import { separateFeaturedAndOtherContent } from "~/utils";
 
@@ -19,14 +19,14 @@ const Podcasts = () => {
   return (
     <div className="flex flex-col gap-4">
       {featuredPodcasts.length > 0 && (
-        <CardWithMultipleContent
+        <PreviewCardList
           content={featuredPodcasts}
           heading="Tre utvalgte favoritter"
           buttonText="Hør podkast"
         />
       )}
       {otherPodcasts.length > 0 && (
-        <CardWithMultipleContent
+        <PreviewCardList
           content={otherPodcasts}
           heading="Andre podkaster"
           buttonText="Hør podkast"

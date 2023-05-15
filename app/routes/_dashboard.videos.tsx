@@ -1,7 +1,7 @@
 import { json } from "@remix-run/node";
 import { useLoaderData, useRouteError } from "@remix-run/react";
 import { getVideos } from "~/models/content.server";
-import CardWithMultipleContent from "~/components/card/CardWithMultipleContent";
+import PreviewCardList from "~/components/card/PreviewCardList";
 import ErrorComponent from "~/components/Error";
 import { separateFeaturedAndOtherContent } from "~/utils";
 
@@ -18,17 +18,14 @@ const Videos = () => {
   return (
     <div className="flex flex-col gap-4">
       {featuredVideos.length > 0 && (
-        <CardWithMultipleContent
+        <PreviewCardList
           content={featuredVideos}
           heading="Tre utvalgte favoritter"
         />
       )}
 
       {otherVideos.length > 0 && (
-        <CardWithMultipleContent
-          content={otherVideos}
-          heading="Andre videoer"
-        />
+        <PreviewCardList content={otherVideos} heading="Andre videoer" />
       )}
     </div>
   );

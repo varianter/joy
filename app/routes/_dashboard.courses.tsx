@@ -1,6 +1,6 @@
 import { useLoaderData, useRouteError } from "@remix-run/react";
 import { getCourses } from "~/models/content.server";
-import CardWithMultipleContent from "~/components/card/CardWithMultipleContent";
+import PreviewCardList from "~/components/card/PreviewCardList";
 import { json } from "@remix-run/node";
 import ErrorComponent from "~/components/Error";
 
@@ -14,7 +14,7 @@ const Courses = () => {
 
   return (
     <section className="flex flex-col items-center justify-center">
-      <CardWithMultipleContent
+      <PreviewCardList
         content={courses}
         heading="Kurs"
         buttonText="Gå til kurs"
