@@ -47,7 +47,7 @@ const PreviewCard = ({ content, className, direction }: PreviewCardProps) => {
         </Card>
       )}
 
-      {tags && tags.length > 0 && (
+      {direction === "horizontal" && tags && tags.length > 0 && (
         // TODO: Ved klikk på tags, så skal man finne all content relevant til denne
         <div className="flex justify-end gap-4">
           {tags.map((tag) => {
