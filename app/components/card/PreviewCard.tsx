@@ -4,6 +4,7 @@ import type { SerializeFrom } from "@remix-run/server-runtime";
 import type { Content, Tag } from "@prisma/client";
 import TagButton from "../buttons/TagButton";
 import TextPreview from "../TextPreview";
+import { Link } from "@remix-run/react";
 
 interface PreviewCardProps {
   content: SerializeFrom<Content & { tags?: Tag[] }>;
@@ -51,9 +52,9 @@ const PreviewCard = ({ content, className, direction }: PreviewCardProps) => {
         <div className="flex justify-end gap-4">
           {tags.map((tag) => {
             return (
-              <div key={tag.id} className="my-4">
+              <Link to={`tags/${tag.text}`} key={tag.id} className="my-4">
                 <TagButton text={tag.text} />
-              </div>
+              </Link>
             );
           })}
         </div>
