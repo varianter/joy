@@ -25,10 +25,19 @@ const Edit = () => {
     searchValue = e.currentTarget.value;
   };
 
+  const handleOnResetSearch = () => {
+    searchValue = "";
+    setFilteredContent(content);
+  };
+
   return (
     <div className="mt-5 w-full">
       <div className="mb-5">
-        <SearchInput onChange={handleSearchChange} searchValue={searchValue} />
+        <SearchInput
+          onChange={handleSearchChange}
+          searchValue={searchValue}
+          onResetSearch={handleOnResetSearch}
+        />
       </div>
 
       {filteredContent.map((c) => {
