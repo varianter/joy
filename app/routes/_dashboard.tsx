@@ -1,6 +1,5 @@
 import { json } from "@remix-run/node";
 import {
-  NavLink,
   Outlet,
   useLoaderData,
   useRouteError,
@@ -15,6 +14,7 @@ import {
   getNumberOfVideos,
   getNumberOfPodcasts,
 } from "~/models/content.server";
+import { Category } from "~/utils";
 
 export const loader = async () => {
   const [numVideos, numBlogposts, numCourses, numLectures, numPodcasts] =
@@ -72,121 +72,36 @@ export default function Dashboard() {
         </section>
       )}
 
-      <section className="mb-12 mt-8 grid grid-cols-1 gap-5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-5">
-        <NavLink
+      <section className="mb-12 mt-8 grid grid-cols-1 gap-4 xxs:grid-cols-2 xs:grid-cols-3 smmd:grid-cols-5">
+        <NavigationCard
+          title={`Bloggposter (${numBlogposts})`}
           to="blogposts"
-          className={({ isActive }) => (isActive ? "" : "decoration-white")}
-        >
-          {({ isActive }) => (
-            <NavigationCard
-              title={`Bloggposter (${numBlogposts})`}
-              icon={
-                <img
-                  alt={"Figur av bloggpost"}
-                  className="h-[3rem]"
-                  src={
-                    isActive
-                      ? "/assets/icons/blogpost_dark.svg"
-                      : "/assets/icons/blogpost.svg"
-                  }
-                />
-              }
-              isActive={isActive}
-            />
-          )}
-        </NavLink>
+          category={Category.Blogpost}
+        />
 
-        <NavLink
+        <NavigationCard
+          title={`Foredrag (${numLectures})`}
           to="lectures"
-          className={({ isActive }) => (isActive ? "" : "decoration-white")}
-        >
-          {({ isActive }) => (
-            <NavigationCard
-              title={`Foredrag (${numLectures})`}
-              icon={
-                <img
-                  alt={"Figur av foredrag"}
-                  className="h-[3rem]"
-                  src={
-                    isActive
-                      ? "/assets/icons/lecture_dark.svg"
-                      : "/assets/icons/lecture.svg"
-                  }
-                />
-              }
-              isActive={isActive}
-            />
-          )}
-        </NavLink>
+          category={Category.Lecture}
+        />
 
-        <NavLink
+        <NavigationCard
+          title={`Kurs (${numCourses})`}
           to="courses"
-          className={({ isActive }) => (isActive ? "" : "decoration-white")}
-        >
-          {({ isActive }) => (
-            <NavigationCard
-              title={`Kurs (${numCourses})`}
-              icon={
-                <img
-                  alt={"Figur av kurs"}
-                  className="h-[3rem]"
-                  src={
-                    isActive
-                      ? "/assets/icons/course_dark.svg"
-                      : "/assets/icons/course.svg"
-                  }
-                />
-              }
-              isActive={isActive}
-            />
-          )}
-        </NavLink>
+          category={Category.Course}
+        />
 
-        <NavLink
+        <NavigationCard
+          title={`Videoer (${numVideos})`}
           to="videos"
-          className={({ isActive }) => (isActive ? "" : "decoration-white")}
-        >
-          {({ isActive }) => (
-            <NavigationCard
-              title={`Videoer (${numVideos})`}
-              icon={
-                <img
-                  alt={"Figur av video"}
-                  className="h-[3rem]"
-                  src={
-                    isActive
-                      ? "/assets/icons/video_dark.svg"
-                      : "/assets/icons/video.svg"
-                  }
-                />
-              }
-              isActive={isActive}
-            />
-          )}
-        </NavLink>
+          category={Category.Video}
+        />
 
-        <NavLink
+        <NavigationCard
+          title={`Podkaster (${numPodcasts})`}
           to="podcasts"
-          className={({ isActive }) => (isActive ? "" : "decoration-white")}
-        >
-          {({ isActive }) => (
-            <NavigationCard
-              title={`Podkaster (${numPodcasts})`}
-              icon={
-                <img
-                  alt={"Figur av podkast"}
-                  className="h-[3rem]"
-                  src={
-                    isActive
-                      ? "/assets/icons/podcast_dark.svg"
-                      : "/assets/icons/podcast.svg"
-                  }
-                />
-              }
-              isActive={isActive}
-            />
-          )}
-        </NavLink>
+          category={Category.Podcast}
+        />
       </section>
       <Outlet />
     </div>

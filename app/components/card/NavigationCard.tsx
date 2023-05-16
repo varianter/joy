@@ -1,22 +1,37 @@
+import { NavLink } from "@remix-run/react";
+import { getIconForCategory } from "~/utils";
+
 interface NavigationCardProps {
   title: string;
-  icon: JSX.Element;
-  isActive?: boolean;
+  to: string;
+  category: string;
 }
 
-const NavigationCard = (props: NavigationCardProps) => {
-  const { title, icon, isActive } = props;
+const NavigationCard = ({ title, to, category }: NavigationCardProps) => {
   return (
-    <article
-      className={`min-w-[10rem] overflow-hidden rounded-xl ${
-        isActive
-          ? "bg-variant-beige text-variant-dark-gray"
-          : "bg-variant-blue-2 text-white hover:bg-variant-blue"
-      }  p-4 `}
-    >
-      <h3 className="text-center text-lg">{title}</h3>
-      <div className="flex justify-center">{icon}</div>
-    </article>
+    <NavLink to={to}>
+      {({ isActive }) => (
+        <article
+          className={`mx-1 min-h-[5rem] min-w-[8rem] rounded-xl ${
+            isActive
+              ? "bg-variant-beige text-variant-dark-gray"
+              : "bg-variant-blue-2 text-white no-underline hover:bg-variant-blue"
+          }  p-3 `}
+        >
+          <p className="text-left font-serif text-sm">{title}</p>
+          <div className="flex justify-center">
+            <img
+              alt={`Figur av ${category}`}
+              className="mt-3 h-[1.75rem]"
+              src={`/assets/icons/${getIconForCategory(
+                category,
+                isActive
+              )}.svg`}
+            />
+          </div>
+        </article>
+      )}
+    </NavLink>
   );
 };
 

@@ -56,7 +56,6 @@ li {
 
 a {
   font-family: "Graphic-Regular";
-  text-decoration: underline;
   transition: border-bottom 200ms ease-out;
 }
 
