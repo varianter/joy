@@ -51,7 +51,7 @@ export default function Dashboard() {
             <a
               aria-label="Variants hovedverdier"
               href="https://variant.no"
-              className="text-variant-beige"
+              className="text-variant-beige underline"
             >
               hovedverdier
             </a>
@@ -61,9 +61,9 @@ export default function Dashboard() {
           </p>
           <p className="py-1">
             For å gi deg (og oss selv) bedre oversikt over alt faglig innhold
-            som vi poster, har vi samlet hele sulamitten på denne siden. Vi
-            kaller den herved Læringshuben. Sjå dæ rundt og så håper vi du liker
-            det du ser.
+            som vi poster, har vi samlet en god del på denne siden. Vi kaller
+            den herved Læringshuben. Sjå dæ rundt og så håper vi du liker det du
+            ser.
           </p>
           <p className="py-1">
             PS: Ikke vær sjenert om du vil slå av en prat med oss, om et tema
