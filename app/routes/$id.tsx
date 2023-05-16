@@ -21,7 +21,7 @@ export const loader = async ({ params }: LoaderArgs) => {
 const ContentId = () => {
   const { content } = useLoaderData<typeof loader>();
   return (
-    <Card cssClass="bg-variant-blue-4 ">
+    <Card className="bg-variant-blue-4 ">
       <div className="grid h-full sm:grid-cols-2">
         <DbImage
           alt={content.imageText ?? "Figur av læreglede"}

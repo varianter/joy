@@ -22,15 +22,10 @@ const Podcasts = () => {
         <PreviewCardList
           content={featuredPodcasts}
           heading="Tre utvalgte favoritter"
-          buttonText="Hør podkast"
         />
       )}
       {otherPodcasts.length > 0 && (
-        <PreviewCardList
-          content={otherPodcasts}
-          heading="Andre podkaster"
-          buttonText="Hør podkast"
-        />
+        <PreviewCardList content={otherPodcasts} heading="Andre podkaster" />
       )}
     </div>
   );

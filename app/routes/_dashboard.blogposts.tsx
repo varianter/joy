@@ -22,16 +22,11 @@ const Blogposts = () => {
         <PreviewCardList
           content={featuredBlogposts}
           heading="Tre utvalgte favoritter"
-          buttonText="Les mer"
         />
       )}
 
       {otherBlogposts.length > 0 && (
-        <PreviewCardList
-          content={otherBlogposts}
-          heading="Andre bloggposter"
-          buttonText="Les mer"
-        />
+        <PreviewCardList content={otherBlogposts} heading="Andre bloggposter" />
       )}
     </div>
   );

@@ -14,11 +14,7 @@ const Courses = () => {
 
   return (
     <section className="flex flex-col items-center justify-center">
-      <PreviewCardList
-        content={courses}
-        heading="Kurs"
-        buttonText="Gå til kurs"
-      />
+      <PreviewCardList content={courses} heading="Kurs" />
     </section>
   );
 };

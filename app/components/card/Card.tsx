@@ -1,15 +1,14 @@
 import type { ReactNode } from "react";
 
 interface CardProps {
-  cssClass?: string;
+  className?: string;
   children: ReactNode;
 }
 
-const Card = ({ children, cssClass }: CardProps) => (
+const Card = ({ children, className }: CardProps) => (
   <div
-    className={`overflow-hidden rounded-xl ${
-      cssClass ? cssClass : "bg-variant-blue-4"
-    } shadow-xl`}
+    className={`overflow-hidden rounded-xl 
+    shadow-xl ${className ? className : "bg-variant-blue-4"}`}
   >
     {children}
   </div>

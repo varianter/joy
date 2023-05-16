@@ -22,24 +22,22 @@ const PreviewCard = ({ content, className, horizontal }: PreviewCardProps) => {
   return (
     <div className={`${className} text-black`}>
       {horizontal ? (
-        <Card cssClass="bg-variant-blue-4 h-full">
-          <div className="grid md:grid-cols-2">
-            <DbImage
-              alt={content.imageText ?? "Figur av læreglede"}
-              className={`h-full max-h-[16rem] w-full object-cover`}
-              id={content.id}
-            />
+        <Card className="grid h-full bg-variant-blue-4 md:grid-cols-2">
+          <DbImage
+            alt={content.imageText ?? "Figur av læreglede"}
+            className={`h-full max-h-[16rem] w-full object-cover`}
+            id={content.id}
+          />
 
-            <div className="flex flex-col justify-between">
-              <TextPreview {...content} />
-              <a className="mb-2" href={url} target="_blank" rel="noreferrer">
-                <SecondaryButton text={buttonText} />
-              </a>
-            </div>
+          <div className="flex flex-col justify-between">
+            <TextPreview {...content} />
+            <a className="mb-2" href={url} target="_blank" rel="noreferrer">
+              <SecondaryButton text={buttonText} />
+            </a>
           </div>
         </Card>
       ) : (
-        <Card cssClass="bg-variant-blue-4 h-full justify-between flex flex-col">
+        <Card className="flex h-full flex-col justify-between bg-variant-blue-4">
           <div>
             <DbImage
               alt={content.imageText ?? "Figur av læreglede"}
