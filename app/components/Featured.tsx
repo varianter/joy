@@ -22,7 +22,7 @@ const Featured = ({ newestFeaturedContent }: FeaturedProps) => {
         />
       ))}
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
         {verticalFeaturedContent?.map((content) => (
           <PreviewCard content={content} key={content.id} className="mb-8" />
         ))}
