@@ -4,10 +4,11 @@ import { getIconForCategory } from "~/utils";
 interface NavigationCardProps {
   title: string;
   to: string;
-  category: string;
+  category?: string;
+  src?: string;
 }
 
-const NavigationCard = ({ title, to, category }: NavigationCardProps) => {
+const NavigationCard = ({ title, to, category, src }: NavigationCardProps) => {
   return (
     <NavLink to={to}>
       {({ isActive }) => (
@@ -23,10 +24,11 @@ const NavigationCard = ({ title, to, category }: NavigationCardProps) => {
             <img
               alt={`Figur av ${category}`}
               className="mt-3 h-[1.75rem]"
-              src={`/assets/icons/${getIconForCategory(
-                category,
-                isActive
-              )}.svg`}
+              src={
+                src ||
+                (category &&
+                  `/assets/icons/${getIconForCategory(category, isActive)}.svg`)
+              }
             />
           </div>
         </article>
