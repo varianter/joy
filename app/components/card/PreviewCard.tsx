@@ -5,6 +5,8 @@ import type { Content, Tag } from "@prisma/client";
 import TagButton from "../buttons/TagButton";
 import TextPreview from "../TextPreview";
 import { Link } from "@remix-run/react";
+import SecondaryButton from "../buttons/SecondaryButton";
+import { getButtonText } from "~/utils";
 
 interface PreviewCardProps {
   content: SerializeFrom<Content & { tags?: Tag[] }>;
@@ -13,32 +15,42 @@ interface PreviewCardProps {
 }
 
 const PreviewCard = ({ content, className, horizontal }: PreviewCardProps) => {
-  const { tags } = content;
+  const { category, tags, url } = content;
+
+  const buttonText = getButtonText(category);
 
   return (
     <div className={`${className} text-black`}>
       {horizontal ? (
-        <Card cssClass="bg-variant-blue-4">
-          <div className="grid sm:grid-cols-2">
+        <Card cssClass="bg-variant-blue-4 h-full">
+          <div className="grid md:grid-cols-2">
             <DbImage
               alt={content.imageText ?? "Figur av læreglede"}
               className={`h-full max-h-[16rem] w-full object-cover`}
               id={content.id}
             />
 
-            <TextPreview {...content} />
+            <div className="flex flex-col justify-between">
+              <TextPreview {...content} />
+              <a className="mb-2" href={url} target="_blank" rel="noreferrer">
+                <SecondaryButton text={buttonText} />
+              </a>
+            </div>
           </div>
         </Card>
       ) : (
-        <Card cssClass="bg-variant-blue-4">
-          <div className="flex flex-col">
+        <Card cssClass="bg-variant-blue-4 h-full justify-between flex flex-col">
+          <div>
             <DbImage
               alt={content.imageText ?? "Figur av læreglede"}
-              className={`h-full max-h-[12rem] w-full object-cover`}
+              className={`max-h-[12rem] w-full object-cover`}
               id={content.id}
             />
             <TextPreview {...content} />
           </div>
+          <a className="mb-2" href={url} target="_blank" rel="noreferrer">
+            <SecondaryButton text={buttonText} />
+          </a>
         </Card>
       )}
 
