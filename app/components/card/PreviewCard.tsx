@@ -31,7 +31,12 @@ const PreviewCard = ({ content, className, horizontal }: PreviewCardProps) => {
 
           <div className="flex flex-col justify-between">
             <TextPreview {...content} />
-            <a className="mb-2" href={url} target="_blank" rel="noreferrer">
+            <a
+              className="m-2 flex justify-end no-underline"
+              href={url}
+              target="_blank"
+              rel="noreferrer"
+            >
               <SecondaryButton text={buttonText} />
             </a>
           </div>
@@ -46,7 +51,12 @@ const PreviewCard = ({ content, className, horizontal }: PreviewCardProps) => {
             />
             <TextPreview {...content} />
           </div>
-          <a className="mb-2" href={url} target="_blank" rel="noreferrer">
+          <a
+            className="m-2 flex justify-end no-underline"
+            href={url}
+            target="_blank"
+            rel="noreferrer"
+          >
             <SecondaryButton text={buttonText} />
           </a>
         </Card>
