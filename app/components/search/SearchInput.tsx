@@ -1,6 +1,7 @@
 import { Form } from "@remix-run/react";
 import type { KeyboardEvent } from "react";
 import { useState } from "react";
+import { useRef } from "react";
 
 interface SearchInputProps {
   onChange: (e: any) => void;
@@ -11,6 +12,7 @@ interface SearchInputProps {
 export const SearchInput = (props: SearchInputProps) => {
   const { onChange, searchValue, onResetSearch } = props;
   const [searchText, setSearchText] = useState(searchValue);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.code === "Enter") {
@@ -31,6 +33,7 @@ export const SearchInput = (props: SearchInputProps) => {
           }}
           onKeyDown={onKeyDown}
           value={searchText}
+          ref={inputRef}
         />
         {searchText.length > 0 && (
           <button
@@ -46,23 +49,32 @@ export const SearchInput = (props: SearchInputProps) => {
               className="h-5 w-5"
               fill="none"
               stroke="white"
-              viewBox="0 0 18 18"
+              strokeWidth="1.5"
+              viewBox="0 0 22 22"
             >
-              <path d="M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z"></path>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         )}
 
-        <span className="absolute bottom-2.5 right-2.5 rounded-lg px-4 py-2 ">
+        <button
+          className="absolute bottom-2.5 right-2.5 rounded-lg px-4 py-2 "
+          onClick={() => inputRef.current?.focus()}
+        >
           <svg
             className="h-5 w-5"
             fill="none"
             stroke="white"
-            viewBox="0 0 24 24"
+            viewBox="0 0 22 22"
+            strokeWidth="1.5"
           >
             <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
-        </span>
+        </button>
       </div>
     </Form>
   );
