@@ -28,11 +28,16 @@ export const Layout = ({
   const handleOnChangeSearch = (event: any) => {
     if (event.target.value === "") {
       searchParams.delete("search");
-      setSearchParams(searchParams);
     } else {
       searchParams.set("search", event.target.value);
-      setSearchParams(searchParams);
     }
+    setSearchParams(searchParams);
+  };
+
+  const handleOnResetSearch = () => {
+    searchParams.delete("search");
+    searchValue = "";
+    setSearchParams(searchParams);
   };
 
   return (
@@ -48,6 +53,7 @@ export const Layout = ({
           <SearchInput
             onChange={handleOnChangeSearch}
             searchValue={searchValue}
+            onResetSearch={handleOnResetSearch}
           />
           <div className="relative">
             {(searchResult.length > 0 ||

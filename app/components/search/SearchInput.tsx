@@ -5,10 +5,11 @@ import { useState } from "react";
 interface SearchInputProps {
   onChange: (e: any) => void;
   searchValue: string;
+  onResetSearch: () => void;
 }
 
 export const SearchInput = (props: SearchInputProps) => {
-  const { onChange, searchValue } = props;
+  const { onChange, searchValue, onResetSearch } = props;
   const [searchText, setSearchText] = useState(searchValue);
 
   const onKeyDown = (e: KeyboardEvent) => {
@@ -31,6 +32,27 @@ export const SearchInput = (props: SearchInputProps) => {
           onKeyDown={onKeyDown}
           value={searchText}
         />
+        {searchText.length > 0 && (
+          <button
+            className="absolute bottom-2.5 right-10 rounded-lg px-4 py-2"
+            type="reset"
+            aria-label="Tøm søket"
+            onClick={() => {
+              onResetSearch();
+              setSearchText("");
+            }}
+          >
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              stroke="white"
+              viewBox="0 0 18 18"
+            >
+              <path d="M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z"></path>
+            </svg>
+          </button>
+        )}
+
         <span className="absolute bottom-2.5 right-2.5 rounded-lg px-4 py-2 ">
           <svg
             className="h-5 w-5"
