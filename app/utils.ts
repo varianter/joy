@@ -6,7 +6,11 @@ export function validateExample(tall1: number, tall2: number) {
 }
 
 export const formatDate = (date: Date) =>
-  new Date(date).toLocaleDateString("nb");
+  new Date(date).toLocaleDateString("nb-NO", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
 
 export const isValidUrl = (str: string) => {
   try {
