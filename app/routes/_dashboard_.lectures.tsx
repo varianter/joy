@@ -52,7 +52,7 @@ const Lectures = () => {
         {featuredLectures.length > 0 && (
           <PreviewCardList
             content={featuredLectures}
-            heading="Tre utvalgte favoritter"
+            heading="To utvalgte favoritter"
           />
         )}
 

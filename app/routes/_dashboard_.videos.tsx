@@ -33,7 +33,7 @@ const Videos = () => {
         {featuredVideos.length > 0 && (
           <PreviewCardList
             content={featuredVideos}
-            heading="Tre utvalgte favoritter"
+            heading="To utvalgte favoritter"
           />
         )}
 

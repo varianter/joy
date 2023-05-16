@@ -34,7 +34,7 @@ const Podcasts = () => {
         {featuredPodcasts.length > 0 && (
           <PreviewCardList
             content={featuredPodcasts}
-            heading="Tre utvalgte favoritter"
+            heading="To utvalgte favoritter"
           />
         )}
         {otherPodcasts.length > 0 && (

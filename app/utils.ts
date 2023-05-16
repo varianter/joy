@@ -77,7 +77,7 @@ export const getButtonText = (category: string) => {
 export const separateFeaturedAndOtherContent = (
   allContent: SerializeFrom<(Content & { tags?: Tag[] })[]>
 ) => {
-  const featured = allContent.filter((content) => content.featured).slice(0, 3);
+  const featured = allContent.filter((content) => content.featured).slice(0, 2);
   const other = allContent.filter((content) => !featured.includes(content));
 
   return [featured, other];

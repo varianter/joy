@@ -40,7 +40,7 @@ const Blogposts = () => {
         {featuredBlogposts.length > 0 && (
           <PreviewCardList
             content={featuredBlogposts}
-            heading="Tre utvalgte favoritter"
+            heading="To utvalgte favoritter"
           />
         )}
 
