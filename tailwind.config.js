@@ -31,8 +31,10 @@ module.exports = {
       body: ['"Open Sans"'],
     },
     screens: {
-      xs: "350px",
+      xxs: "325px",
+      xs: "425px",
       sm: "600px",
+      smmd: "750px",
       md: "960px",
       lg: "1440px",
       xl: "2400px",

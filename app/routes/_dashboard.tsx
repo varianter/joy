@@ -41,7 +41,7 @@ export default function Dashboard() {
   const { pathname } = useLocation();
 
   return (
-    <div className="w-full sm:mt-16">
+    <div className="container mx-auto w-full max-w-3xl sm:mt-16">
       {pathname === "/" && (
         <section className="text-left text-white">
           <p className="font-serif text-xl">En variants</p>
