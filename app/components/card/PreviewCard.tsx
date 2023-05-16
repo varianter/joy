@@ -25,7 +25,7 @@ const PreviewCard = ({ content, className, horizontal }: PreviewCardProps) => {
         <Card className="grid h-full bg-variant-blue-4 md:grid-cols-2">
           <DbImage
             alt={content.imageText ?? "Figur av læreglede"}
-            className={`h-full max-h-[16rem] w-full object-cover`}
+            className={`h-full w-full object-cover md:h-[20rem]`}
             id={content.id}
           />
 

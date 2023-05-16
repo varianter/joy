@@ -2,9 +2,7 @@ interface SecondaryButtonProps {
   text: string;
 }
 
-const SecondaryButton = (props: SecondaryButtonProps) => {
-  const { text } = props;
-
+const SecondaryButton = ({ text }: SecondaryButtonProps) => {
   return (
     <button
       type="button"
