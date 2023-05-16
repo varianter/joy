@@ -6,7 +6,11 @@ export function validateExample(tall1: number, tall2: number) {
 }
 
 export const formatDate = (date: Date) =>
-  new Date(date).toLocaleDateString("nb");
+  new Date(date).toLocaleDateString("nb-NO", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
 
 export const isValidUrl = (str: string) => {
   try {
@@ -51,7 +55,7 @@ export const getIconForCategory = (category: string) => {
 export const getButtonText = (category: string) => {
   switch (category) {
     case Category.Blogpost:
-      return "Les artikkel";
+      return "Les bloggpost";
     case Category.Video:
       return "Se video";
     case Category.Podcast:
@@ -65,9 +69,11 @@ export const getButtonText = (category: string) => {
   }
 };
 
-export const separateFeaturedAndOtherContent = (allContent: SerializeFrom<(Content & { tags?: Tag[]})[]>) => {
+export const separateFeaturedAndOtherContent = (
+  allContent: SerializeFrom<(Content & { tags?: Tag[] })[]>
+) => {
   const featured = allContent.filter((content) => content.featured).slice(0, 3);
-  const other = allContent.filter((content) => !featured.includes(content))
+  const other = allContent.filter((content) => !featured.includes(content));
 
   return [featured, other];
-}
+};
