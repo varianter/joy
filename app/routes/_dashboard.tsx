@@ -2,8 +2,8 @@ import { json } from "@remix-run/node";
 import {
   Outlet,
   useLoaderData,
-  useRouteError,
   useLocation,
+  useRouteError,
 } from "@remix-run/react";
 import ErrorComponent from "~/components/Error";
 import NavigationCard from "~/components/card/NavigationCard";
