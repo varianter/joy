@@ -4,6 +4,7 @@ import PrimaryButton from "../buttons/PrimaryButton";
 import { SearchInput } from "../search/SearchInput";
 import type { ReactNode } from "react";
 import Footer from "../Footer";
+import { getIconForCategory } from "~/utils";
 
 interface LayoutProps {
   children: ReactNode;
@@ -28,11 +29,16 @@ export const Layout = ({
   const handleOnChangeSearch = (event: any) => {
     if (event.target.value === "") {
       searchParams.delete("search");
-      setSearchParams(searchParams);
     } else {
       searchParams.set("search", event.target.value);
-      setSearchParams(searchParams);
     }
+    setSearchParams(searchParams);
+  };
+
+  const handleOnResetSearch = () => {
+    searchParams.delete("search");
+    searchValue = "";
+    setSearchParams(searchParams);
   };
 
   return (
@@ -48,6 +54,7 @@ export const Layout = ({
           <SearchInput
             onChange={handleOnChangeSearch}
             searchValue={searchValue}
+            onResetSearch={handleOnResetSearch}
           />
           <div className="relative">
             {(searchResult.length > 0 ||
@@ -61,10 +68,17 @@ export const Layout = ({
                     return (
                       <Link
                         key={res.id}
-                        className="block truncate p-2 hover:bg-variant-blue-3 focus:bg-variant-blue-3"
+                        className="block truncate p-2 hover:bg-variant-blue-3 hover:font-medium focus:bg-variant-blue-3"
                         to={res.id}
                       >
-                        <span>{res.title}</span>
+                        <span>{res.title} </span>
+                        <img
+                          alt={"Kategoriikon"}
+                          className="fill-current ml-1 inline h-[1rem] text-variant-pink"
+                          src={`/assets/icons/${getIconForCategory(
+                            res.category
+                          )}_dark.svg`}
+                        />
                       </Link>
                     );
                   })}
