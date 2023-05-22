@@ -1,6 +1,5 @@
 import { json } from "@remix-run/node";
 import {
-  NavLink,
   Outlet,
   useLoaderData,
   useLocation,
@@ -43,7 +42,7 @@ export default function Dashboard() {
   const { pathname } = useLocation();
 
   return (
-    <div className="container mx-auto w-full max-w-4xl xxs:mt-8 sm:mt-16">
+    <div className="container mx-auto w-full max-w-4xl xs:mt-8 sm:mt-16">
       {pathname === "/" ? (
         <div>
           <section className="text-left text-white">
@@ -107,7 +106,7 @@ export default function Dashboard() {
           </section>
         </div>
       ) : (
-        <section className="mb-12 mt-8 flex gap-2 text-white">
+        <section className="mb-12 flex flex-col gap-2 text-left text-white sm:flex-row smmd:mt-8">
           <NavigationLink
             to="blogposts"
             title={`Bloggposter (${numBlogposts})`}

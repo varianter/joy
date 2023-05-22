@@ -1,10 +1,9 @@
 import { json } from "@remix-run/node";
-import { NavLink, useLoaderData, useRouteError } from "@remix-run/react";
+import { useLoaderData, useRouteError } from "@remix-run/react";
 import { getVideos } from "~/models/content.server";
 import PreviewCardList from "~/components/card/PreviewCardList";
 import ErrorComponent from "~/components/Error";
 import { separateFeaturedAndOtherContent } from "~/utils";
-import SecondaryButton from "~/components/buttons/SecondaryButton";
 
 export const loader = async () => {
   const videos = await getVideos();
