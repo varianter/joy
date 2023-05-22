@@ -18,11 +18,8 @@ const Videos = () => {
 
   return (
     <div className="my-8 max-w-4xl text-left text-white">
-      <NavLink to={"/"}>
-        <SecondaryButton size="small" text="Tilbake" />
-      </NavLink>
-      <h1 className="my-8">Videoer</h1>
-      <p className="my-8">
+      <h1 className="mt-8">Videoer</h1>
+      <p className="mt-4 mb-12">
         Her har vi samlet opptak fra temaer vi enkeltvis brenner for, som vi har
         laget på eget initiativ. Det kan være både smalt og bredt det du finner
         her. Alt fra tutorials, live streams på et par timer (for de som liker å

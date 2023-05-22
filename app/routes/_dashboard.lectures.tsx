@@ -1,10 +1,9 @@
 import { json } from "@remix-run/node";
-import { NavLink, useLoaderData, useRouteError } from "@remix-run/react";
+import { useLoaderData, useRouteError } from "@remix-run/react";
 import { getLectures } from "~/models/content.server";
 import PreviewCardList from "~/components/card/PreviewCardList";
 import ErrorComponent from "~/components/Error";
 import { separateFeaturedAndOtherContent } from "~/utils";
-import SecondaryButton from "~/components/buttons/SecondaryButton";
 
 export const loader = async () => {
   const lectures = await getLectures();
@@ -19,11 +18,8 @@ const Lectures = () => {
 
   return (
     <div className="my-8 max-w-4xl text-left text-white">
-      <NavLink to={"/"}>
-        <SecondaryButton size="small" text="Tilbake" />
-      </NavLink>
-      <h1 className="my-8">Foredrag og presentasjoner</h1>
-      <p className="my-8">
+      <h1 className="mt-8">Foredrag og presentasjoner</h1>
+      <p className="mt-4 mb-12">
         In the name of læreglede, oppfordrer vi alltid folk til å engasjere seg
         i læredeling (ja det er vel et ord?). Vi ønsker selvsagt også å være
         synlige i bransjen, så vi melder oss stadig på interessante og relevante

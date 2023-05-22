@@ -1,10 +1,9 @@
 import { json } from "@remix-run/node";
-import { NavLink, useLoaderData, useRouteError } from "@remix-run/react";
+import { useLoaderData, useRouteError } from "@remix-run/react";
 import { getPodcasts } from "~/models/content.server";
 import PreviewCardList from "~/components/card/PreviewCardList";
 import ErrorComponent from "~/components/Error";
 import { separateFeaturedAndOtherContent } from "~/utils";
-import SecondaryButton from "~/components/buttons/SecondaryButton";
 
 export const loader = async () => {
   const podcasts = await getPodcasts();
@@ -19,11 +18,8 @@ const Podcasts = () => {
 
   return (
     <div className="my-8 max-w-4xl text-left text-white">
-      <NavLink to={"/"}>
-        <SecondaryButton size="small" text="Tilbake" />
-      </NavLink>
-      <h1 className="my-8">Podkaster</h1>
-      <p className="my-8">
+      <h1 className="mt-8">Podkaster</h1>
+      <p className="mt-4 mb-12">
         Enkelte tema engasjerer oss så mye at vi aldri får sagt nok om det. Av
         og til er det også godt for oss å diskutere noe høyt med hverandre. Så
         godt at vi inviterer deg til å høre på. Podkastene våre kan være spissa

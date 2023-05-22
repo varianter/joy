@@ -1,10 +1,9 @@
 import { json } from "@remix-run/node";
-import { NavLink, useLoaderData, useRouteError } from "@remix-run/react";
+import { useLoaderData, useRouteError } from "@remix-run/react";
 import { getBlogposts } from "~/models/content.server";
 import PreviewCardList from "~/components/card/PreviewCardList";
 import ErrorComponent from "~/components/Error";
-import { Category, separateFeaturedAndOtherContent } from "~/utils";
-import SecondaryButton from "~/components/buttons/SecondaryButton";
+import { separateFeaturedAndOtherContent } from "~/utils";
 
 export const loader = async () => {
   const blogposts = await getBlogposts();
@@ -19,11 +18,8 @@ const Blogposts = () => {
 
   return (
     <div className="my-8 max-w-4xl text-left text-white">
-      <NavLink to={"/"}>
-        <SecondaryButton size="small" text="Tilbake" />
-      </NavLink>
-      <h1 className="my-8">Bloggposter</h1>
-      <p className="my-8">
+      <h1 className="mt-8">Bloggposter</h1>
+      <p className="mt-4 mb-12">
         Vi mener mye og deler mangt. Her finner du alle våre artikler som vi har
         publisert. Vi legger de som regel ut på{" "}
         <a

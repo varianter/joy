@@ -19,7 +19,7 @@ const NavigationCard = ({ title, to, category, src }: NavigationCardProps) => {
               : "bg-variant-blue-2 text-white no-underline hover:bg-variant-blue"
           }  p-3 `}
         >
-          <p className="text-left font-serif text-sm">{title}</p>
+          <p className="text-left font-serif">{title}</p>
           <div className="flex justify-center">
             <img
               alt={`Figur av ${category}`}
