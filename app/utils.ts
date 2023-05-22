@@ -37,18 +37,23 @@ export const CATEGORIES = [
   Category.Lecture,
 ];
 
-export const getIconForCategory = (category: string) => {
+export const getIconForCategory = (category: string, isActive?: boolean) => {
   switch (category) {
     case Category.Blogpost:
+      if (isActive) return "blogpost_dark";
       return "blogpost";
+    case Category.Lecture:
+      if (isActive) return "lecture_dark";
+      return "lecture";
     case Category.Course:
+      if (isActive) return "course_dark";
       return "course";
     case Category.Video:
+      if (isActive) return "video_dark";
       return "video";
     case Category.Podcast:
+      if (isActive) return "podcast_dark";
       return "podcast";
-    case Category.Lecture:
-      return "lecture";
   }
 };
 
@@ -72,7 +77,7 @@ export const getButtonText = (category: string) => {
 export const separateFeaturedAndOtherContent = (
   allContent: SerializeFrom<(Content & { tags?: Tag[] })[]>
 ) => {
-  const featured = allContent.filter((content) => content.featured).slice(0, 3);
+  const featured = allContent.filter((content) => content.featured).slice(0, 2);
   const other = allContent.filter((content) => !featured.includes(content));
 
   return [featured, other];

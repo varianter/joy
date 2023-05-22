@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useRouteError } from "@remix-run/react";
+import { Outlet, useRouteError } from "@remix-run/react";
 import type { LoaderArgs } from "@remix-run/server-runtime";
 import ErrorComponent from "~/components/Error";
 import NavigationCard from "~/components/card/NavigationCard";
@@ -20,63 +20,21 @@ const Admin = () => {
       </section>
       <section>
         <div className="mt-5 flex flex-col gap-5 md:flex-row">
-          <NavLink to="new">
-            {({ isActive }) => (
-              <NavigationCard
-                title="Legg til innhold"
-                isActive={isActive}
-                icon={
-                  <img
-                    alt={"Figur av læreglede"}
-                    className="h-[3rem]"
-                    src={
-                      isActive
-                        ? "/assets/icons/newContent_dark.svg"
-                        : "/assets/icons/newContent.svg"
-                    }
-                  />
-                }
-              />
-            )}
-          </NavLink>
-          <NavLink to="edit">
-            {({ isActive }) => (
-              <NavigationCard
-                title="Endre innhold"
-                isActive={isActive}
-                icon={
-                  <img
-                    alt={"Figur av læreglede"}
-                    className="h-[3rem]"
-                    src={
-                      isActive
-                        ? "/assets/icons/editContent_dark.svg"
-                        : "/assets/icons/editContent.svg"
-                    }
-                  />
-                }
-              />
-            )}
-          </NavLink>
-          <NavLink to="delete">
-            {({ isActive }) => (
-              <NavigationCard
-                title="Slett innhold"
-                isActive={isActive}
-                icon={
-                  <img
-                    alt={"Figur av læreglede"}
-                    className="h-[3rem]"
-                    src={
-                      isActive
-                        ? "/assets/icons/deleteContent_dark.svg"
-                        : "/assets/icons/deleteContent.svg"
-                    }
-                  />
-                }
-              />
-            )}
-          </NavLink>
+          <NavigationCard
+            title="Legg til innhold"
+            src="/assets/icons/newContent.svg"
+            to="new"
+          />
+          <NavigationCard
+            title="Endre innhold"
+            src="/assets/icons/editContent.svg"
+            to="edit"
+          />
+          <NavigationCard
+            title="Slett innhold"
+            src="/assets/icons/deleteContent.svg"
+            to="delete"
+          />
         </div>
       </section>
       <Outlet />

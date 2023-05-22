@@ -1,4 +1,5 @@
-import { MicrosoftProfile, MicrosoftStrategy } from "remix-auth-microsoft";
+import type { MicrosoftProfile } from "remix-auth-microsoft";
+import { MicrosoftStrategy } from "remix-auth-microsoft";
 import { Authenticator } from "remix-auth";
 import { sessionStorage } from "~/services/session.server";
 import invariant from "tiny-invariant";
@@ -8,7 +9,10 @@ export interface User {
 }
 
 invariant(process.env.MICROSOFT_CLIENT_ID, "MICROSOFT_CLIENT_ID must be set");
-invariant(process.env.MICROSOFT_CLIENT_SECRET, "MICROSOFT_CLIENT_SECRET must be set");
+invariant(
+  process.env.MICROSOFT_CLIENT_SECRET,
+  "MICROSOFT_CLIENT_SECRET must be set"
+);
 invariant(process.env.MICROSOFT_TENANT_ID, "MICROSOFT_TENANT_ID must be set");
 
 export let authenticator = new Authenticator<User>(sessionStorage);

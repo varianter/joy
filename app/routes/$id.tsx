@@ -20,13 +20,11 @@ const ContentId = () => {
   const { content } = useLoaderData<typeof loader>();
 
   return (
-    <div className="my-12">
-      <PreviewCard
-        key={content.id}
-        content={content}
-        className="mb-8"
-        horizontal
-      />
+    <div className="my-12 max-w-4xl text-left text-white">
+      <h1 className="my-4">
+        {content.category}: {content.title}
+      </h1>
+      <PreviewCard key={content.id} content={content} horizontal />
     </div>
   );
 };

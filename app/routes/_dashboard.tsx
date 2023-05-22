@@ -1,12 +1,12 @@
 import { json } from "@remix-run/node";
 import {
-  NavLink,
   Outlet,
   useLoaderData,
-  useRouteError,
   useLocation,
+  useRouteError,
 } from "@remix-run/react";
 import ErrorComponent from "~/components/Error";
+import NavigationLink from "~/components/NavigationLink";
 import NavigationCard from "~/components/card/NavigationCard";
 import {
   getNumberOfBlogposts,
@@ -15,6 +15,7 @@ import {
   getNumberOfVideos,
   getNumberOfPodcasts,
 } from "~/models/content.server";
+import { Category } from "~/utils";
 
 export const loader = async () => {
   const [numVideos, numBlogposts, numCourses, numLectures, numPodcasts] =
@@ -41,153 +42,85 @@ export default function Dashboard() {
   const { pathname } = useLocation();
 
   return (
-    <div className="w-full sm:mt-16">
-      {pathname === "/" && (
-        <section className="text-left text-white">
-          <p className="font-serif text-xl">En variants</p>
-          <h1>Læringshub</h1>
-          <p className="mt-8">
-            I Variant er læreglede en av våre{" "}
-            <a
-              aria-label="Variants hovedverdier"
-              href="https://variant.no"
-              className="text-variant-beige"
-            >
-              hovedverdier
-            </a>
-            . Vi digger å lære oss nye ting eller å lære bort det vi kan, og så
-            blir vi jaggu meg så mye bedre på det når vi deler det med
-            hverandre.
-          </p>
-          <p className="py-1">
-            For å gi deg (og oss selv) bedre oversikt over alt faglig innhold
-            som vi poster, har vi samlet hele sulamitten på denne siden. Vi
-            kaller den herved Læringshuben. Sjå dæ rundt og så håper vi du liker
-            det du ser.
-          </p>
-          <p className="py-1">
-            PS: Ikke vær sjenert om du vil slå av en prat med oss, om et tema
-            som engasjerer deg da ❤️
-          </p>
-        </section>
-      )}
+    <div className="container mx-auto w-full max-w-4xl xs:mt-8 sm:mt-16">
+      {pathname === "/" ? (
+        <div>
+          <section className="text-left text-white">
+            <p className="font-serif text-xl">Variants</p>
+            <h1>Læreglede</h1>
+            <p className="mt-8">
+              I Variant er læreglede en av våre{" "}
+              <a
+                aria-label="Variants hovedverdier"
+                href="https://variant.no"
+                className="text-variant-beige underline"
+              >
+                hovedverdier
+              </a>
+              . Vi digger å lære oss nye ting eller å lære bort det vi kan, og
+              så blir vi jaggu meg så mye bedre på det når vi deler det med
+              hverandre.
+            </p>
+            <p className="py-1">
+              For å gi deg (og oss selv) bedre oversikt over alt faglig innhold
+              som vi poster, har vi samlet en god del på denne siden. Vi kaller
+              den herved Læringshuben. Sjå dæ rundt og så håper vi du liker det
+              du ser.
+            </p>
+            <p className="py-1">
+              PS: Ikke vær sjenert om du vil slå av en prat med oss, om et tema
+              som engasjerer deg da ❤️
+            </p>
+          </section>
 
-      <section className="mb-12 mt-8 grid grid-cols-1 gap-5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-5">
-        <NavLink
-          to="blogposts"
-          className={({ isActive }) => (isActive ? "" : "decoration-white")}
-        >
-          {({ isActive }) => (
+          <section className="mb-12 mt-8 grid grid-cols-1 gap-4 xxs:grid-cols-2 xs:grid-cols-3 smmd:grid-cols-5">
             <NavigationCard
               title={`Bloggposter (${numBlogposts})`}
-              icon={
-                <img
-                  alt={"Figur av bloggpost"}
-                  className="h-[3rem]"
-                  src={
-                    isActive
-                      ? "/assets/icons/blogpost_dark.svg"
-                      : "/assets/icons/blogpost.svg"
-                  }
-                />
-              }
-              isActive={isActive}
+              to="blogposts"
+              category={Category.Blogpost}
             />
-          )}
-        </NavLink>
 
-        <NavLink
-          to="lectures"
-          className={({ isActive }) => (isActive ? "" : "decoration-white")}
-        >
-          {({ isActive }) => (
             <NavigationCard
               title={`Foredrag (${numLectures})`}
-              icon={
-                <img
-                  alt={"Figur av foredrag"}
-                  className="h-[3rem]"
-                  src={
-                    isActive
-                      ? "/assets/icons/lecture_dark.svg"
-                      : "/assets/icons/lecture.svg"
-                  }
-                />
-              }
-              isActive={isActive}
+              to="lectures"
+              category={Category.Lecture}
             />
-          )}
-        </NavLink>
 
-        <NavLink
-          to="courses"
-          className={({ isActive }) => (isActive ? "" : "decoration-white")}
-        >
-          {({ isActive }) => (
             <NavigationCard
               title={`Kurs (${numCourses})`}
-              icon={
-                <img
-                  alt={"Figur av kurs"}
-                  className="h-[3rem]"
-                  src={
-                    isActive
-                      ? "/assets/icons/course_dark.svg"
-                      : "/assets/icons/course.svg"
-                  }
-                />
-              }
-              isActive={isActive}
+              to="courses"
+              category={Category.Course}
             />
-          )}
-        </NavLink>
 
-        <NavLink
-          to="videos"
-          className={({ isActive }) => (isActive ? "" : "decoration-white")}
-        >
-          {({ isActive }) => (
             <NavigationCard
               title={`Videoer (${numVideos})`}
-              icon={
-                <img
-                  alt={"Figur av video"}
-                  className="h-[3rem]"
-                  src={
-                    isActive
-                      ? "/assets/icons/video_dark.svg"
-                      : "/assets/icons/video.svg"
-                  }
-                />
-              }
-              isActive={isActive}
+              to="videos"
+              category={Category.Video}
             />
-          )}
-        </NavLink>
 
-        <NavLink
-          to="podcasts"
-          className={({ isActive }) => (isActive ? "" : "decoration-white")}
-        >
-          {({ isActive }) => (
             <NavigationCard
               title={`Podkaster (${numPodcasts})`}
-              icon={
-                <img
-                  alt={"Figur av podkast"}
-                  className="h-[3rem]"
-                  src={
-                    isActive
-                      ? "/assets/icons/podcast_dark.svg"
-                      : "/assets/icons/podcast.svg"
-                  }
-                />
-              }
-              isActive={isActive}
+              to="podcasts"
+              category={Category.Podcast}
             />
-          )}
-        </NavLink>
-      </section>
+          </section>
+        </div>
+      ) : (
+        <section className="mb-12 flex flex-col gap-2 text-left text-white sm:flex-row smmd:mt-8">
+          <NavigationLink
+            to="blogposts"
+            title={`Bloggposter (${numBlogposts})`}
+          />
+
+          <NavigationLink to="lectures" title={`Foredrag (${numLectures})`} />
+
+          <NavigationLink to="courses" title={`Kurs (${numCourses})`} />
+
+          <NavigationLink to="videos" title={`Videoer (${numVideos})`} />
+
+          <NavigationLink to="podcasts" title={`Podkaster (${numPodcasts})`} />
+        </section>
+      )}
       <Outlet />
     </div>
   );
