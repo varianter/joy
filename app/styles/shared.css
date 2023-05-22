@@ -72,14 +72,21 @@ a:hover {
   font-family: "Recoleta-Regular";
 }
 
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .background {
   position: relative;
   background: url("/assets/background.svg") no-repeat 0 -60px;
   background-repeat: no-repeat;
 }
 
-.footer {
+footer {
   background: url("/assets/footer.svg") no-repeat center top;
+  margin-top: auto;
 }
 
 .navlink {
