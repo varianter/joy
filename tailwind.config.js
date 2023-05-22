@@ -13,7 +13,7 @@ module.exports = {
       "variant-blue-3": "#736EBE",
       "variant-blue-4": "#B7B4DE",
       "variant-pink": "#E61A6B",
-      "variant-pink-2": "#EB4889",
+      "variant-pink-2": "#F076A6",
       "variant-beige": "#FFC4BC",
       "variant-beige-2": "#FFDCD7",
     },

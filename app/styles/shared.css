@@ -19,6 +19,11 @@
 }
 
 @font-face {
+  font-family: "Graphic-Semibold";
+  src: url(../fonts/Graphik-Semibold-Web.woff2) format("truetype");
+}
+
+@font-face {
   font-family: "Graphic-Bold";
   src: url(../fonts/Graphik-Bold-Web.woff2) format("truetype");
 }
@@ -75,4 +80,9 @@ a:hover {
 
 .footer {
   background: url("/assets/footer.svg") no-repeat center top;
+}
+
+.navlink {
+  font-family: "Graphik-Semibold";
+  text-decoration: underline;
 }
