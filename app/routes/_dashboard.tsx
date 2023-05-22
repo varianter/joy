@@ -47,8 +47,8 @@ export default function Dashboard() {
       {pathname === "/" ? (
         <div>
           <section className="text-left text-white">
-            <p className="font-serif text-xl">En variants</p>
-            <h1>Læringshub</h1>
+            <p className="font-serif text-xl">Variants</p>
+            <h1>Læreglede</h1>
             <p className="mt-8">
               I Variant er læreglede en av våre{" "}
               <a
