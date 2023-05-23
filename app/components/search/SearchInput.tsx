@@ -1,6 +1,7 @@
 import { Form } from "@remix-run/react";
 import { useState, useRef } from "react";
 import type { KeyboardEvent, ChangeEvent } from "react";
+import { DebounceInput } from "react-debounce-input";
 
 interface SearchInputProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -17,7 +18,7 @@ export const SearchInput = (props: SearchInputProps) => {
   return (
     <Form>
       <div className="relative w-auto">
-        <input
+        <DebounceInput
           type="search"
           className="block w-full rounded-full bg-variant-blue p-4 pl-8 font-sans text-sm text-white placeholder:text-white"
           placeholder="Søk ..."
@@ -27,7 +28,7 @@ export const SearchInput = (props: SearchInputProps) => {
           }}
           onKeyDown={onKeyNavigate}
           value={searchText}
-          ref={inputRef}
+          debounceTimeout={300}
         />
         {searchText.length > 0 && (
           <button
