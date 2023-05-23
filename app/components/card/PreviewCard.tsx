@@ -30,7 +30,7 @@ const PreviewCard = ({ content, className, horizontal }: PreviewCardProps) => {
           />
 
           <div className="flex flex-col justify-between">
-            <TextPreview {...content} />
+            <TextPreview {...content} horizontal />
             <a
               className="m-2 flex justify-end no-underline"
               href={url}
@@ -42,7 +42,7 @@ const PreviewCard = ({ content, className, horizontal }: PreviewCardProps) => {
           </div>
         </Card>
       ) : (
-        <Card className="flex h-full flex-col justify-between bg-variant-blue-4">
+        <Card className="flex h-[32rem] flex-col justify-between bg-variant-blue-4">
           <div>
             <DbImage
               alt={content.imageText ?? "Figur av læreglede"}
@@ -52,7 +52,7 @@ const PreviewCard = ({ content, className, horizontal }: PreviewCardProps) => {
             <TextPreview {...content} />
           </div>
           <a
-            className="m-2 flex justify-end no-underline"
+            className="mb-2 mr-2 flex justify-end no-underline"
             href={url}
             target="_blank"
             rel="noreferrer"

@@ -5,6 +5,7 @@ interface TextPreviewProps {
   createdAt: string;
   title: string;
   description: string;
+  horizontal?: boolean;
 }
 
 const TextPreview = ({
@@ -12,6 +13,7 @@ const TextPreview = ({
   createdAt,
   title,
   description,
+  horizontal,
 }: TextPreviewProps) => {
   const icon = getIconForCategory(category);
 
@@ -27,7 +29,9 @@ const TextPreview = ({
         <p className="ml-auto">{formatDate(new Date(createdAt))}</p>
       </div>
       <h3 className="line-clamp-2">{title}</h3>
-      <p className="line-clamp-5">{description}</p>
+      <p className={`${horizontal ? "line-clamp-5" : "line-clamp-6"}`}>
+        {description}
+      </p>
     </div>
   );
 };
