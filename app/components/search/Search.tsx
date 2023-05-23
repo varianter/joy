@@ -3,7 +3,7 @@ import { useSearchParams } from "@remix-run/react";
 import type { Content } from "@prisma/client";
 import { Link, useNavigation, useNavigate } from "@remix-run/react";
 import { useState, useMemo, useEffect } from "react";
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, KeyboardEvent } from "react";
 
 import { getIconForCategory } from "~/utils";
 const debouce = require("lodash.debounce");
@@ -64,12 +64,13 @@ export const Search = (props: SearchProps) => {
     };
   });
 
-  const handleOnKeyDown = (event: any) => {
+  const handleOnKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     let tempFocusIndex;
     switch (event.code) {
       case "Enter":
         if (searchResults.length == 0) {
-          fetchSearchResults(event.target.value);
+          const target = event.target as HTMLInputElement;
+          fetchSearchResults(target.value);
         } else {
           navigate(searchResults[focusIndex].id);
         }
