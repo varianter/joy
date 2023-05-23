@@ -35,6 +35,7 @@
     "@tailwindcss/line-clamp": "^0.4.2",
     "bcryptjs": "^2.4.3",
     "isbot": "^3.6.5",
+    "lodash.debounce": "^4.0.8",
     "marked": "^4.2.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -1,5 +1,4 @@
 import { Form } from "@remix-run/react";
-import type { KeyboardEvent } from "react";
 import { useState } from "react";
 import { useRef } from "react";
 
@@ -7,18 +6,13 @@ interface SearchInputProps {
   onChange: (e: any) => void;
   searchValue: string;
   onResetSearch: () => void;
+  onKeyNavigate: (e: any) => void;
 }
 
 export const SearchInput = (props: SearchInputProps) => {
-  const { onChange, searchValue, onResetSearch } = props;
+  const { onChange, searchValue, onResetSearch, onKeyNavigate } = props;
   const [searchText, setSearchText] = useState(searchValue);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const onKeyDown = (e: KeyboardEvent) => {
-    if (e.code === "Enter") {
-      e.preventDefault();
-    }
-  };
 
   return (
     <Form>
@@ -31,7 +25,7 @@ export const SearchInput = (props: SearchInputProps) => {
             onChange(e);
             setSearchText(e.target.value);
           }}
-          onKeyDown={onKeyDown}
+          onKeyDown={onKeyNavigate}
           value={searchText}
           ref={inputRef}
         />

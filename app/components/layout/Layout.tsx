@@ -1,46 +1,21 @@
 import type { Content } from "@prisma/client";
-import { Form, Link, NavLink, useSearchParams } from "@remix-run/react";
+import { Form, Link, NavLink } from "@remix-run/react";
 import PrimaryButton from "../buttons/PrimaryButton";
-import { SearchInput } from "../search/SearchInput";
 import type { ReactNode } from "react";
 import Footer from "../Footer";
-import { getIconForCategory } from "~/utils";
+import { Search } from "../search/Search";
 
 interface LayoutProps {
   children: ReactNode;
   isAuthenticated: boolean;
-  isLoadingSearchResult: boolean;
   searchResult: Content[];
 }
 
 export const Layout = ({
   children,
   isAuthenticated,
-  isLoadingSearchResult,
   searchResult,
 }: LayoutProps) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  let searchValue =
-    searchParams.get("search") === null
-      ? ""
-      : searchParams.get("search")!.toString();
-
-  const handleOnChangeSearch = (event: any) => {
-    if (event.target.value === "") {
-      searchParams.delete("search");
-    } else {
-      searchParams.set("search", event.target.value);
-    }
-    setSearchParams(searchParams);
-  };
-
-  const handleOnResetSearch = () => {
-    searchParams.delete("search");
-    searchValue = "";
-    setSearchParams(searchParams);
-  };
-
   return (
     <main className="background min-h-screen text-center">
       <div className="mx-6 flex flex-wrap justify-between gap-4 py-6 sm:flex-nowrap sm:px-6 ">
@@ -51,43 +26,7 @@ export const Layout = ({
         </div>
 
         <div className="my-4 grow lg:px-48">
-          <SearchInput
-            onChange={handleOnChangeSearch}
-            searchValue={searchValue}
-            onResetSearch={handleOnResetSearch}
-          />
-          <div className="relative">
-            {(searchResult.length > 0 ||
-              isLoadingSearchResult ||
-              (searchValue!.length > 0 && !isLoadingSearchResult)) && (
-              <div className="absolute z-10 mt-2 w-full overflow-y-auto rounded-xl border bg-variant-blue-4 text-left">
-                {isLoadingSearchResult && <p className="p-2">Søker...</p>}
-                {!isLoadingSearchResult &&
-                  searchResult.length > 0 &&
-                  searchResult.map((res) => {
-                    return (
-                      <Link
-                        key={res.id}
-                        className="block truncate p-2 hover:bg-variant-blue-3 hover:font-medium focus:bg-variant-blue-3"
-                        to={res.id}
-                      >
-                        <span>{res.title} </span>
-                        <img
-                          alt={"Kategoriikon"}
-                          className="fill-current ml-1 inline h-[1rem] text-variant-pink"
-                          src={`/assets/icons/${getIconForCategory(
-                            res.category
-                          )}_dark.svg`}
-                        />
-                      </Link>
-                    );
-                  })}
-                {!isLoadingSearchResult && searchResult.length == 0 && (
-                  <p className="p-2">Ingen resultater på '{searchValue}'</p>
-                )}
-              </div>
-            )}
-          </div>
+          <Search searchResult={searchResult} />
         </div>
         <div
           className={`hidden items-center sm:order-last md:flex ${
