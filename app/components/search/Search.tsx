@@ -9,11 +9,11 @@ import { getIconForCategory } from "~/utils";
 const debouce = require("lodash.debounce");
 
 interface SearchProps {
-  searchResult: Content[];
+  searchResults: Content[];
 }
 
 export const Search = (props: SearchProps) => {
-  const { searchResult } = props;
+  const { searchResults } = props;
   const navigation = useNavigation();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -25,7 +25,7 @@ export const Search = (props: SearchProps) => {
       ? ""
       : searchParams.get("search")!.toString();
 
-  const isLoadingSearchResult =
+  const isLoadingSearchResults =
     navigation.state === "loading" &&
     navigation.location.search.includes("search")
       ? true
@@ -65,25 +65,25 @@ export const Search = (props: SearchProps) => {
   });
 
   const handleOnKeyDown = (event: any) => {
-    var tempFocusIndex;
+    let tempFocusIndex;
     switch (event.code) {
       case "Enter":
-        if (searchResult.length == 0) {
+        if (searchResults.length == 0) {
           fetchSearchResults(event.target.value);
         } else {
-          navigate(searchResult[focusIndex].id);
+          navigate(searchResults[focusIndex].id);
         }
         event.preventDefault();
         break;
       case "ArrowUp":
         tempFocusIndex =
-          focusIndex == 0 ? searchResult.length + 1 : focusIndex - 1;
+          focusIndex == 0 ? searchResults.length + 1 : focusIndex - 1;
         setFocusIndex(tempFocusIndex);
         event.preventDefault();
         break;
       case "ArrowDown":
         tempFocusIndex =
-          focusIndex == searchResult.length - 1 ? 0 : focusIndex + 1;
+          focusIndex == searchResults.length - 1 ? 0 : focusIndex + 1;
         setFocusIndex(tempFocusIndex);
         event.preventDefault();
         break;
@@ -99,23 +99,23 @@ export const Search = (props: SearchProps) => {
         onKeyNavigate={handleOnKeyDown}
       />
       <div className="relative">
-        {(searchResult.length > 0 ||
-          isLoadingSearchResult ||
-          (searchValue!.length > 0 && !isLoadingSearchResult)) && (
+        {(searchResults.length > 0 ||
+          isLoadingSearchResults ||
+          (searchValue!.length > 0 && !isLoadingSearchResults)) && (
           <div
             className="absolute z-10 mt-2 w-full overflow-y-auto rounded-xl border bg-variant-blue-4 text-left"
             id="main-search-menu"
           >
-            {isLoadingSearchResult && <p className="p-2">Søker...</p>}
-            {!isLoadingSearchResult &&
-              searchResult.length > 0 &&
+            {isLoadingSearchResults && <p className="p-2">Søker...</p>}
+            {!isLoadingSearchResults &&
+              searchResults.length > 0 &&
               searchIsReset === false &&
-              searchResult.map((res, index) => {
+              searchResults.map((res, index) => {
                 return (
                   <Link
                     key={res.id}
                     className={`${
-                      res.id === searchResult[focusIndex]?.id
+                      res.id === searchResults[focusIndex]?.id
                         ? "bg-variant-blue-3"
                         : ""
                     } block truncate p-2 hover:bg-variant-blue-3 hover:font-medium focus:bg-variant-blue-3`}
@@ -133,7 +133,7 @@ export const Search = (props: SearchProps) => {
                   </Link>
                 );
               })}
-            {!isLoadingSearchResult && searchResult.length == 0 && (
+            {!isLoadingSearchResults && searchResults.length == 0 && (
               <p className="p-2">Ingen resultater på '{searchValue}'</p>
             )}
           </div>
