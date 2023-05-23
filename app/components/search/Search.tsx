@@ -1,7 +1,7 @@
 import { SearchInput } from "../search/SearchInput";
 import { useSearchParams } from "@remix-run/react";
 import type { Content } from "@prisma/client";
-import { Link, useNavigation } from "@remix-run/react";
+import { Link, useNavigation, useNavigate } from "@remix-run/react";
 import { useState, useMemo, useEffect } from "react";
 import type { ChangeEvent } from "react";
 
@@ -15,6 +15,7 @@ interface SearchProps {
 export const Search = (props: SearchProps) => {
   const { searchResult } = props;
   const navigation = useNavigation();
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [focusIndex, setFocusIndex] = useState(0);
   const [searchIsReset, setSearchIsReset] = useState(false);
@@ -70,7 +71,7 @@ export const Search = (props: SearchProps) => {
         if (searchResult.length == 0) {
           fetchSearchResults(event.target.value);
         } else {
-          window.location.pathname = searchResult[focusIndex].id;
+          navigate(searchResult[focusIndex].id);
         }
         event.preventDefault();
         break;
