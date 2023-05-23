@@ -37,23 +37,23 @@ export async function loader({ request }: LoaderArgs) {
   const queryParams = new URL(request.url).searchParams;
   const query = queryParams.get("search");
 
-  const [user, searchResult] = await Promise.all([
+  const [user, searchResults] = await Promise.all([
     authenticator.isAuthenticated(request),
     query && query.length > 0 && searchContent(query ?? ""),
   ]);
 
   return json({
     user,
-    searchResult,
+    searchResults,
   });
 }
 
 export default function Root() {
-  const { user, searchResult } = useLoaderData<typeof loader>();
+  const { user, searchResults } = useLoaderData<typeof loader>();
 
   const isAuthenticated = user?.profile ? true : false;
-  const search: Content[] = searchResult
-    ? searchResult.map((result) => result as unknown as Content)
+  const search: Content[] = searchResults
+    ? searchResults.map((results) => results as unknown as Content)
     : [];
 
   return (
@@ -63,7 +63,7 @@ export default function Root() {
         <Links />
       </head>
       <body className="h-full">
-        <Layout isAuthenticated={isAuthenticated} searchResult={search}>
+        <Layout isAuthenticated={isAuthenticated} searchResults={search}>
           <Outlet />
         </Layout>
         <ScrollRestoration />

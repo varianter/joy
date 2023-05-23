@@ -8,13 +8,13 @@ import { Search } from "../search/Search";
 interface LayoutProps {
   children: ReactNode;
   isAuthenticated: boolean;
-  searchResult: Content[];
+  searchResults: Content[];
 }
 
 export const Layout = ({
   children,
   isAuthenticated,
-  searchResult,
+  searchResults,
 }: LayoutProps) => {
   return (
     <main className="background min-h-screen text-center">
@@ -26,7 +26,7 @@ export const Layout = ({
         </div>
 
         <div className="my-4 grow lg:px-48">
-          <Search searchResult={searchResult} />
+          <Search searchResults={searchResults} />
         </div>
         <div
           className={`hidden items-center sm:order-last md:flex ${
