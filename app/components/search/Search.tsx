@@ -2,11 +2,9 @@ import { SearchInput } from "../search/SearchInput";
 import { useSearchParams } from "@remix-run/react";
 import type { Content } from "@prisma/client";
 import { Link, useNavigation, useNavigate } from "@remix-run/react";
-import { useState, useMemo, useEffect } from "react";
+import { useState } from "react";
 import type { ChangeEvent, KeyboardEvent } from "react";
-
 import { getIconForCategory } from "~/utils";
-const debouce = require("lodash.debounce");
 
 interface SearchProps {
   searchResults: Content[];
@@ -45,24 +43,13 @@ export const Search = (props: SearchProps) => {
     setSearchIsReset(true);
   };
 
-  const debouncedResults = useMemo(() => {
-    const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-      if (event.target.value === "") {
-        handleOnResetSearch();
-      } else {
-        fetchSearchResults(event.target.value.trim());
-      }
-    };
-
-    return debouce(handleOnChange, 300);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      debouncedResults.cancel();
-    };
-  });
+  const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.value === "") {
+      handleOnResetSearch();
+    } else {
+      fetchSearchResults(event.target.value.trim());
+    }
+  };
 
   const handleOnKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     let tempFocusIndex;
@@ -94,7 +81,7 @@ export const Search = (props: SearchProps) => {
   return (
     <div className="my-4 grow lg:px-48">
       <SearchInput
-        onChange={debouncedResults}
+        onChange={handleOnChange}
         searchValue={searchValue}
         onResetSearch={handleOnResetSearch}
         onKeyNavigate={handleOnKeyDown}
