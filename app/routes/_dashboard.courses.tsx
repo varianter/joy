@@ -1,12 +1,5 @@
 import { useRouteError } from "@remix-run/react";
-import { getCourses } from "~/models/content.server";
-import { json } from "@remix-run/node";
 import ErrorComponent from "~/components/Error";
-
-export const loader = async () => {
-  const courses = await getCourses();
-  return json({ courses });
-};
 
 const Courses = () => {
   return (

@@ -10,7 +10,6 @@ import NavigationLink from "~/components/NavigationLink";
 import NavigationCard from "~/components/card/NavigationCard";
 import {
   getNumberOfBlogposts,
-  getNumberOfCourses,
   getNumberOfLectures,
   getNumberOfVideos,
   getNumberOfPodcasts,
@@ -18,25 +17,24 @@ import {
 import { Category } from "~/utils";
 
 export const loader = async () => {
-  const [numVideos, numBlogposts, numCourses, numLectures, numPodcasts] =
-    await Promise.all([
+  const [numVideos, numBlogposts, numLectures, numPodcasts] = await Promise.all(
+    [
       getNumberOfVideos(),
       getNumberOfBlogposts(),
-      getNumberOfCourses(),
       getNumberOfLectures(),
       getNumberOfPodcasts(),
-    ]);
+    ]
+  );
   return json({
     numVideos,
     numBlogposts,
-    numCourses,
     numLectures,
     numPodcasts,
   });
 };
 
 export default function Dashboard() {
-  const { numVideos, numBlogposts, numCourses, numLectures, numPodcasts } =
+  const { numVideos, numBlogposts, numLectures, numPodcasts } =
     useLoaderData<typeof loader>();
 
   const { pathname } = useLocation();
@@ -87,7 +85,7 @@ export default function Dashboard() {
             />
 
             <NavigationCard
-              title={`Kurs (${numCourses})`}
+              title={`Kurs`}
               to="courses"
               category={Category.Course}
             />
@@ -106,7 +104,7 @@ export default function Dashboard() {
           </section>
         </div>
       ) : (
-        <section className="mb-12 flex flex-col gap-2 text-left text-white sm:flex-row smmd:mt-8">
+        <section className="mb-12 flex flex-col gap-4 text-left text-white sm:flex-row smmd:mt-8">
           <NavigationLink
             to="blogposts"
             title={`Bloggposter (${numBlogposts})`}
@@ -114,7 +112,7 @@ export default function Dashboard() {
 
           <NavigationLink to="lectures" title={`Foredrag (${numLectures})`} />
 
-          <NavigationLink to="courses" title={`Kurs (${numCourses})`} />
+          <NavigationLink to="courses" title={`Kurs`} />
 
           <NavigationLink to="videos" title={`Videoer (${numVideos})`} />
 
