@@ -93,3 +93,7 @@ footer {
   font-family: "Graphik-Semibold";
   text-decoration: underline;
 }
+
+body {
+  background-color: #35316e;
+}
