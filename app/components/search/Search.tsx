@@ -70,7 +70,7 @@ export const Search = (props: SearchProps) => {
         if (searchResult.length == 0) {
           fetchSearchResults(event.target.value);
         } else {
-          window.location.href = searchResult[focusIndex].id;
+          window.location.pathname = searchResult[focusIndex].id;
         }
         event.preventDefault();
         break;
