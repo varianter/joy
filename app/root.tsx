@@ -8,16 +8,14 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
-  useNavigation,
 } from "@remix-run/react";
-
+import type { Content } from "@prisma/client";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import globalStylesheetUrl from "./styles/shared.css";
 
 import { Layout } from "./components/layout/Layout";
 import { authenticator } from "./services/auth.server";
 import { searchContent } from "./models/content.server";
-import type { Content } from "@prisma/client";
 
 import searchStyles from "./components/search/styles.css";
 
@@ -58,14 +56,6 @@ export default function Root() {
     ? searchResult.map((result) => result as unknown as Content)
     : [];
 
-  const navigation = useNavigation();
-
-  const isLoadingSearchResult =
-    navigation.state === "loading" &&
-    navigation.location.search.includes("search")
-      ? true
-      : false;
-
   return (
     <html lang="en" className="h-full">
       <head>
@@ -73,11 +63,7 @@ export default function Root() {
         <Links />
       </head>
       <body className="h-full">
-        <Layout
-          isAuthenticated={isAuthenticated}
-          searchResult={search}
-          isLoadingSearchResult={isLoadingSearchResult}
-        >
+        <Layout isAuthenticated={isAuthenticated} searchResult={search}>
           <Outlet />
         </Layout>
         <ScrollRestoration />
