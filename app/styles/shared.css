@@ -19,30 +19,35 @@
 }
 
 @font-face {
+  font-family: "Graphic-Semibold";
+  src: url(../fonts/Graphik-Semibold-Web.woff2) format("truetype");
+}
+
+@font-face {
   font-family: "Graphic-Bold";
   src: url(../fonts/Graphik-Bold-Web.woff2) format("truetype");
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-family: "Recoleta-Regular";
   line-height: 1.2;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-family: "Recoleta-Regular";
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-family: "Recoleta-Regular";
   text-align: left;
 }
 
 h4,
 .heading-4 {
-  font-size: 1.17rem;
+  font-size: 1.25rem;
   font-family: "Recoleta-Regular";
   text-align: left;
 }
@@ -56,7 +61,6 @@ li {
 
 a {
   font-family: "Graphic-Regular";
-  text-decoration: underline;
   transition: border-bottom 200ms ease-out;
 }
 
@@ -68,12 +72,28 @@ a:hover {
   font-family: "Recoleta-Regular";
 }
 
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .background {
   position: relative;
   background: url("/assets/background.svg") no-repeat 0 -60px;
   background-repeat: no-repeat;
 }
 
-.footer {
+footer {
   background: url("/assets/footer.svg") no-repeat center top;
+  margin-top: auto;
+}
+
+.navlink {
+  font-family: "Graphik-Semibold";
+  text-decoration: underline;
+}
+
+body {
+  background-color: #35316e;
 }

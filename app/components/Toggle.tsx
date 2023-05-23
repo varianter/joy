@@ -1,5 +1,3 @@
-import type { RefObject } from "react";
-
 interface ToggleProps {
   leftText: string;
   rightText: string;
@@ -9,8 +7,7 @@ interface ToggleProps {
 }
 
 const Toggle = (props: ToggleProps) => {
-  const { leftText, rightText, label, inputName, defaultChecked } =
-    props;
+  const { leftText, rightText, label, inputName, defaultChecked } = props;
 
   return (
     <div className="flex flex-col">

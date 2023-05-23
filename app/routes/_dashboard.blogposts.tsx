@@ -17,17 +17,36 @@ const Blogposts = () => {
     separateFeaturedAndOtherContent(blogposts);
 
   return (
-    <div className="flex flex-col gap-4">
-      {featuredBlogposts.length > 0 && (
-        <PreviewCardList
-          content={featuredBlogposts}
-          heading="Tre utvalgte favoritter"
-        />
-      )}
+    <div className="my-8 max-w-4xl text-left text-white">
+      <h1 className="mt-8">Bloggposter</h1>
+      <p className="mt-4 mb-12">
+        Vi mener mye og deler mangt. Her finner du alle våre artikler som vi har
+        publisert. Vi legger de som regel ut på{" "}
+        <a
+          className="text-variant-beige underline"
+          href="http://variant.blog"
+          rel="noopener"
+        >
+          Medium
+        </a>
+        , så du blir tatt med dit for å lese. Håper du finner noen engasjerende
+        tema, god lesning!
+      </p>
+      <div className="flex flex-col gap-4">
+        {featuredBlogposts.length > 0 && (
+          <PreviewCardList
+            content={featuredBlogposts}
+            heading="To utvalgte favoritter"
+          />
+        )}
 
-      {otherBlogposts.length > 0 && (
-        <PreviewCardList content={otherBlogposts} heading="Andre bloggposter" />
-      )}
+        {otherBlogposts.length > 0 && (
+          <PreviewCardList
+            content={otherBlogposts}
+            heading="Andre bloggposter"
+          />
+        )}
+      </div>
     </div>
   );
 };

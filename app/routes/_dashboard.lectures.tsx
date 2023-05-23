@@ -17,17 +17,45 @@ const Lectures = () => {
     separateFeaturedAndOtherContent(lectures);
 
   return (
-    <div className="flex flex-col gap-4">
-      {featuredLectures.length > 0 && (
-        <PreviewCardList
-          content={featuredLectures}
-          heading="Tre utvalgte favoritter"
-        />
-      )}
+    <div className="my-8 max-w-4xl text-left text-white">
+      <h1 className="mt-8">Foredrag og presentasjoner</h1>
+      <p className="mt-4 mb-12">
+        In the name of læreglede, oppfordrer vi alltid folk til å engasjere seg
+        i læredeling (ja det er vel et ord?). Vi ønsker selvsagt også å være
+        synlige i bransjen, så vi melder oss stadig på interessante og relevante
+        konferanser, for å holde foredrag. Da er det jo så deilig og kult at
+        sånt blir filma, slik at alle kan se de i ettertid. I tillegg filmer vi
+        foredragene når vi har{" "}
+        <a
+          href="https://handbook.variant.no/#Variantdag"
+          rel="noopener"
+          className="text-variant-beige underline"
+        >
+          Variantdag
+        </a>
+        . Alt legger vi ut på vår egen{" "}
+        <a
+          href="https://www.youtube.com/channel/UCMBx54cKNj8i9R51IE4bfCg"
+          rel="noopener"
+          className="text-variant-beige underline"
+        >
+          YouTube-side
+        </a>
+        .
+      </p>
 
-      {otherLectures.length > 0 && (
-        <PreviewCardList content={otherLectures} heading="Andre foredrag" />
-      )}
+      <div className="flex flex-col gap-4">
+        {featuredLectures.length > 0 && (
+          <PreviewCardList
+            content={featuredLectures}
+            heading="To utvalgte favoritter"
+          />
+        )}
+
+        {otherLectures.length > 0 && (
+          <PreviewCardList content={otherLectures} heading="Andre foredrag" />
+        )}
+      </div>
     </div>
   );
 };

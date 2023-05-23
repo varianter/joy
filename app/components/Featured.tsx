@@ -12,7 +12,7 @@ const Featured = ({ newestFeaturedContent }: FeaturedProps) => {
 
   return (
     <section>
-      <h3 className="mb-8 text-left text-white">Fremhevet innhold</h3>
+      <h2 className="mb-8 text-left text-white">Fremhevet innhold</h2>
       {horizontalFeaturedContent?.map((content) => (
         <PreviewCard
           key={content.id}
