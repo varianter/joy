@@ -6,7 +6,7 @@ interface SearchInputProps {
   onChange: (e: any) => void;
   searchValue: string;
   onResetSearch: () => void;
-  onKeyNavigate: (e: any) => void;
+  onKeyNavigate?: (e: any) => void;
 }
 
 export const SearchInput = (props: SearchInputProps) => {
