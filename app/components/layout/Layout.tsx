@@ -25,9 +25,7 @@ export const Layout = ({
           </NavLink>
         </div>
 
-        <div className="my-4 grow lg:px-48">
-          <Search searchResults={searchResults} />
-        </div>
+        <Search searchResults={searchResults} />
         <div
           className={`hidden items-center sm:order-last md:flex ${
             isAuthenticated ? "grid-cols-2" : "grid-cols-1"
