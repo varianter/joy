@@ -40,15 +40,15 @@ export const Search = (props: SearchProps) => {
       : false;
 
   const setInitialSearchState = () => {
-    if (isLoadingSearchResults === true) {
+    if (isLoadingSearchResults) {
       return SearchState.Searching;
     } else if (
       searchResults.length > 0 &&
       showSearchResults &&
-      searchIsReset == false
+      !searchIsReset
     ) {
       return SearchState.ShowResults;
-    } else if (searchValue.length > 0 && searchResults.length == 0) {
+    } else if (searchValue.length > 0 && searchResults.length === 0) {
       return SearchState.NoResults;
     } else {
       return SearchState.Hide;
