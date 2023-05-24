@@ -10,6 +10,13 @@ interface SearchProps {
   searchResults: Content[];
 }
 
+enum SearchState {
+  Hide,
+  Searching,
+  ShowResults,
+  NoResults,
+}
+
 export const Search = (props: SearchProps) => {
   const { searchResults } = props;
   const navigation = useNavigation();
@@ -17,6 +24,9 @@ export const Search = (props: SearchProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [focusIndex, setFocusIndex] = useState(0);
   const [searchIsReset, setSearchIsReset] = useState(false);
+  const [showSearchResults, setShowSearchResults] = useState(
+    searchResults.length > 0
+  );
 
   let searchValue: string =
     searchParams.get("search") === null
@@ -28,6 +38,24 @@ export const Search = (props: SearchProps) => {
     navigation.location.search.includes("search")
       ? true
       : false;
+
+  const setInitialSearchState = () => {
+    if (isLoadingSearchResults === true) {
+      return SearchState.Searching;
+    } else if (
+      searchResults.length > 0 &&
+      showSearchResults &&
+      searchIsReset == false
+    ) {
+      return SearchState.ShowResults;
+    } else if (searchValue.length > 0 && searchResults.length == 0) {
+      return SearchState.NoResults;
+    } else {
+      return SearchState.Hide;
+    }
+  };
+
+  const searchState = setInitialSearchState();
 
   const fetchSearchResults = (searchText: string) => {
     searchParams.set("search", searchText);
@@ -85,19 +113,22 @@ export const Search = (props: SearchProps) => {
         searchValue={searchValue}
         onResetSearch={handleOnResetSearch}
         onKeyNavigate={handleOnKeyDown}
+        handleOnFocus={(isFocus) => {
+          setShowSearchResults(isFocus);
+        }}
       />
       <div className="relative">
-        {(searchResults.length > 0 ||
-          isLoadingSearchResults ||
-          (searchValue!.length > 0 && !isLoadingSearchResults)) && (
+        {(searchState === SearchState.Searching ||
+          searchState === SearchState.ShowResults ||
+          searchState === SearchState.NoResults) && (
           <div
             className="absolute z-10 mt-2 w-full overflow-y-auto rounded-xl border bg-variant-blue-4 text-left"
             id="main-search-menu"
           >
-            {isLoadingSearchResults && <p className="p-2">Søker...</p>}
-            {!isLoadingSearchResults &&
-              searchResults.length > 0 &&
-              searchIsReset === false &&
+            {searchState === SearchState.Searching && (
+              <p className="p-2">Søker...</p>
+            )}
+            {searchState === SearchState.ShowResults &&
               searchResults.map((res, index) => {
                 return (
                   <Link
@@ -121,7 +152,7 @@ export const Search = (props: SearchProps) => {
                   </Link>
                 );
               })}
-            {!isLoadingSearchResults && searchResults.length == 0 && (
+            {searchState === SearchState.NoResults && (
               <p className="p-2">Ingen resultater på '{searchValue}'</p>
             )}
           </div>

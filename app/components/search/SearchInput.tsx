@@ -8,16 +8,26 @@ interface SearchInputProps {
   searchValue: string;
   onResetSearch: () => void;
   onKeyNavigate?: (e: KeyboardEvent<HTMLInputElement>) => void;
+  handleOnFocus?: (isFocus: boolean) => void;
 }
 
 export const SearchInput = (props: SearchInputProps) => {
-  const { onChange, searchValue, onResetSearch, onKeyNavigate } = props;
+  const { onChange, searchValue, onResetSearch, onKeyNavigate, handleOnFocus } =
+    props;
   const [searchText, setSearchText] = useState(searchValue);
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
     <Form>
-      <div className="relative w-auto">
+      <div
+        className="relative w-auto"
+        onFocus={() =>
+          handleOnFocus != null ? handleOnFocus(true) : undefined
+        }
+        onBlur={() =>
+          handleOnFocus != null ? handleOnFocus(false) : undefined
+        }
+      >
         <DebounceInput
           type="search"
           className="block w-full rounded-full bg-variant-blue p-4 pl-8 font-sans text-sm text-white placeholder:text-white"
