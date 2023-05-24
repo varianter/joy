@@ -22,7 +22,7 @@ export const SearchInput = (props: SearchInputProps) => {
           type="search"
           className="block w-full rounded-full bg-variant-blue p-4 pl-8 font-sans text-sm text-white placeholder:text-white"
           placeholder="Søk ..."
-          onChange={(e) => {
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
             onChange(e);
             setSearchText(e.target.value);
           }}
