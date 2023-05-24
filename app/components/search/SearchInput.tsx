@@ -21,12 +21,8 @@ export const SearchInput = (props: SearchInputProps) => {
     <Form>
       <div
         className="relative w-auto"
-        onFocus={() =>
-          handleOnFocus != null ? handleOnFocus(true) : undefined
-        }
-        onBlur={() =>
-          handleOnFocus != null ? handleOnFocus(false) : undefined
-        }
+        onFocus={() => handleOnFocus && handleOnFocus(true)}
+        onBlur={() => handleOnFocus && handleOnFocus(false)}
       >
         <DebounceInput
           type="search"
