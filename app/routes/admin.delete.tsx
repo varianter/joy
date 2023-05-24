@@ -48,12 +48,14 @@ const DeleteContent = () => {
   let searchValue: string = "";
 
   const handleSearchChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+
     const tempFilteredContent = content.filter((fc) =>
-      fc.title.toLowerCase().includes(e.currentTarget.value.toLowerCase())
+      fc.title.toLowerCase().includes(target.value.toLowerCase())
     );
 
     setFilteredContent(tempFilteredContent);
-    searchValue = e.currentTarget.value;
+    searchValue = target.value;
   };
 
   const handleOnResetSearch = () => {
