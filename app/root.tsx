@@ -24,6 +24,7 @@ export const links: LinksFunction = () => {
     { rel: "stylesheet", href: tailwindStylesheetUrl },
     { rel: "stylesheet", href: globalStylesheetUrl },
     { rel: "stylesheet", href: searchStyles },
+    { rel: "icon", type: "image/png", href: "/favicon.png" },
   ];
 };
 
